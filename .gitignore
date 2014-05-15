@@ -3,4 +3,6 @@ obj
 bin/*
 obj/*
 *.user
+*.suo
+_ReSharper.*
 TestResults
