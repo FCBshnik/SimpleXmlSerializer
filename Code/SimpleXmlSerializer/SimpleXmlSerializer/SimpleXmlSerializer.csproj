@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFF9DE2C-C663-4998-929F-6C2A1CA1C4CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleXmlSerializer</RootNamespace>
+    <AssemblyName>SimpleXmlSerializer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Core\Collections\CollectionDescription.cs" />
+    <Compile Include="Core\Collections\CollectionProvider.cs" />
+    <Compile Include="Core\Collections\ICollectionProvider.cs" />
+    <Compile Include="Core\Complex\ComplexDescription.cs" />
+    <Compile Include="Core\Complex\ComplexProvider.cs" />
+    <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />
+    <Compile Include="Core\Complex\IComplexProvider.cs" />
+    <Compile Include="Core\Complex\XmlAttributesPropertiesSelector.cs" />
+    <Compile Include="Core\Custom\CustomProvider.cs" />
+    <Compile Include="Core\Custom\ICustomProvider.cs" />
+    <Compile Include="Core\Custom\ICustomSerializer.cs" />
+    <Compile Include="Core\Naming\PrimitiveToAttributeNameProvider.cs" />
+    <Compile Include="Core\Naming\CompositeNameProvider.cs" />
+    <Compile Include="Core\Naming\DataAttributesNameProvider.cs" />
+    <Compile Include="Core\Naming\NameProvider.cs" />
+    <Compile Include="Core\Naming\INameProvider.cs" />
+    <Compile Include="Core\Complex\IPropertiesSelector.cs" />
+    <Compile Include="Core\Naming\NodeName.cs" />
+    <Compile Include="Core\Naming\XmlAttributesNameProvider.cs" />
+    <Compile Include="Core\Naming\CamelCaseNamingConvention.cs" />
+    <Compile Include="Core\Naming\INamingConvention.cs" />
+    <Compile Include="Core\Naming\NoNamingConvention.cs" />
+    <Compile Include="Core\Nodes\CollectionNode.cs" />
+    <Compile Include="Core\Nodes\ComplexNode.cs" />
+    <Compile Include="Core\Nodes\CustomNode.cs" />
+    <Compile Include="Core\Primitives\Serializers\DecimalSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\DoubleSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\FloatSerializer.cs" />
+    <Compile Include="Core\Visitors\DeserializeFromXmlVisitor.cs" />
+    <Compile Include="Core\INode.cs" />
+    <Compile Include="Core\INodeVisitor.cs" />
+    <Compile Include="Core\Nodes\PrimitiveNode.cs" />
+    <Compile Include="Core\Visitors\SerializeToXmlVisitor.cs" />
+    <Compile Include="Core\Primitives\IPrimitiveProvider.cs" />
+    <Compile Include="Core\Primitives\PrimitiveDescription.cs" />
+    <Compile Include="Core\Primitives\PrimitiveProvider.cs" />
+    <Compile Include="Core\Primitives\Serializers\EnumSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\LongSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\DateTimeSerializer.cs" />
+    <Compile Include="Core\Primitives\IPrimitiveSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\TimeSpanSerializer.cs" />
+    <Compile Include="Core\Complex\PropertiesSelector.cs" />
+    <Compile Include="Core\Primitives\Serializers\BoolSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\IntSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\StringSerializer.cs" />
+    <Compile Include="XmlSerializer.cs" />
+    <Compile Include="XmlSerializerSettings.cs" />
+    <Compile Include="XmlSerializerSettingsBuilder.cs" />
+    <Compile Include="Extensions\EnumerableExtenstions.cs" />
+    <Compile Include="Extensions\ListEstensions.cs" />
+    <Compile Include="Extensions\MemberInfoExtensions.cs" />
+    <Compile Include="Extensions\XmlReaderExtensions.cs" />
+    <Compile Include="Extensions\XmlSerializerExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Preconditions.cs" />
+    <Compile Include="Utils\StringWriterWithEncoding.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

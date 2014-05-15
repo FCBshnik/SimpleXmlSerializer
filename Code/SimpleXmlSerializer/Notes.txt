@@ -1,0 +1,18 @@
+Analyze:
+- meta types: primitive, complex, collection
+- type is tree where each node is one of meta types
+- instance of type is tree too but with values
+
+Future features:
+- Think about inheritance (as called known types)
+- Validation
+- Multi dimensional arrays (quad and jagged)
+- Typeless serialization (store full type name in xml) (?)
+- Support of heterogeneous collections (store full type name in xml) (?)
+
+Features:
+- Built-in serialization IList, ICollection, IEnumerable, IDictionary and theirs generic analogs
+- Support Xml* attributes to provide element names
+- Support Data* attributes to provide element names
+- Extensibility point for custom serialization of values of specified type
+- Extensibility point for custom serialization of values of specified type as primitives

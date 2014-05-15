@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<collection>
+  <add>
+    <key>Xavi</key>
+    <value>
+      <name>Xavi</name>
+      <number>6</number>
+    </value>
+  </add>
+  <add>
+    <key>Iniesta</key>
+    <value>
+      <name>Iniesta</name>
+      <number>8</number>
+    </value>
+  </add>
+</collection>

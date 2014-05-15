@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<collection>
+  <add>
+    <key>1</key>
+    <value>
+      <add>One</add>
+      <add>Two</add>
+    </value>
+  </add>
+  <add>
+    <key>2</key>
+    <value>
+      <add>Three</add>
+      <add>Four</add>
+    </value>
+  </add>
+</collection>
