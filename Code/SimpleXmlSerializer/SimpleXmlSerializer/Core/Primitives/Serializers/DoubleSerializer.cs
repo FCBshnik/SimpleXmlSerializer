@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleXmlSerializer.Core.Primitives.Serializers
+namespace SimpleXmlSerializer.Core.Serializers
 {
     public class DoubleSerializer : IPrimitiveSerializer
     {

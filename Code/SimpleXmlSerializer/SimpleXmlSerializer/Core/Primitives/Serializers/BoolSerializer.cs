@@ -1,4 +1,4 @@
-﻿namespace SimpleXmlSerializer.Core.Primitives.Serializers
+﻿namespace SimpleXmlSerializer.Core.Serializers
 {
     public class BoolSerializer : IPrimitiveSerializer
     {

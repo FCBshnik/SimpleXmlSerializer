@@ -1,7 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Naming;
-using SimpleXmlSerializer.Core.Primitives;
-
-namespace SimpleXmlSerializer.Core.Nodes
+﻿namespace SimpleXmlSerializer.Core
 {
     public class PrimitiveNode : INode
     {

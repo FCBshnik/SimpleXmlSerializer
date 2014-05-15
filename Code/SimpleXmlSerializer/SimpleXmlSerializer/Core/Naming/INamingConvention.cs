@@ -1,4 +1,4 @@
-﻿namespace SimpleXmlSerializer.Core.Naming
+﻿namespace SimpleXmlSerializer.Core
 {
     public interface INamingConvention
     {

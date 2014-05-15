@@ -1,8 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Collections;
-using SimpleXmlSerializer.Core.Complex;
-using SimpleXmlSerializer.Core.Custom;
-using SimpleXmlSerializer.Core.Naming;
-using SimpleXmlSerializer.Core.Primitives;
+﻿using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer
 {

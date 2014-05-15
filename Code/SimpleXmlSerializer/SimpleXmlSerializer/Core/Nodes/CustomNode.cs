@@ -1,7 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Custom;
-using SimpleXmlSerializer.Core.Naming;
-
-namespace SimpleXmlSerializer.Core.Nodes
+﻿namespace SimpleXmlSerializer.Core
 {
     public class CustomNode : INode
     {

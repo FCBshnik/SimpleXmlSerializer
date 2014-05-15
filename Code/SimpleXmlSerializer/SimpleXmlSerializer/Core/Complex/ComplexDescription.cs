@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SimpleXmlSerializer.Core.Complex
+namespace SimpleXmlSerializer.Core
 {
     public class ComplexDescription
     {

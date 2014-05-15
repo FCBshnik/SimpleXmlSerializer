@@ -1,6 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Nodes;
-
-namespace SimpleXmlSerializer.Core
+﻿namespace SimpleXmlSerializer.Core
 {
     public interface INodeVisitor
     {

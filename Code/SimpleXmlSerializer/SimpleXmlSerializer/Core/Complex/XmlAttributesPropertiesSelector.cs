@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Xml.Serialization;
 using SimpleXmlSerializer.Extensions;
 
-namespace SimpleXmlSerializer.Core.Complex
+namespace SimpleXmlSerializer.Core
 {
     public class XmlAttributesPropertiesSelector : IPropertiesSelector
     {

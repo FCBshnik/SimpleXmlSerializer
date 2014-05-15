@@ -1,4 +1,4 @@
-﻿namespace SimpleXmlSerializer.Core.Primitives
+﻿namespace SimpleXmlSerializer.Core
 {
     public interface IPrimitiveSerializer
     {

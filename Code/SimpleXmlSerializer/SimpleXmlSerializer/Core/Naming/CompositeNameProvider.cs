@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-namespace SimpleXmlSerializer.Core.Naming
+namespace SimpleXmlSerializer.Core
 {
     public class CompositeNameProvider : INameProvider
     {

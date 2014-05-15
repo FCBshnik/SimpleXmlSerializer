@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using SimpleXmlSerializer.Core.Primitives.Serializers;
+using SimpleXmlSerializer.Core.Serializers;
 using SimpleXmlSerializer.Utils;
 
-namespace SimpleXmlSerializer.Core.Primitives
+namespace SimpleXmlSerializer.Core
 {
     public class PrimitiveProvider : IPrimitiveProvider
     {

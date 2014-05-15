@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SimpleXmlSerializer.Core.Complex
+namespace SimpleXmlSerializer.Core
 {
     public class ComplexProvider : IComplexProvider
     {

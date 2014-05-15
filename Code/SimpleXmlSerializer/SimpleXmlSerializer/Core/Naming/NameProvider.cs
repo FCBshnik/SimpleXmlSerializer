@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using SimpleXmlSerializer.Core.Collections;
 
-namespace SimpleXmlSerializer.Core.Naming
+namespace SimpleXmlSerializer.Core
 {
     public class NameProvider : INameProvider
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
-using SimpleXmlSerializer.Core.Custom;
+using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleXmlSerializer.Core.Complex
+namespace SimpleXmlSerializer.Core
 {
     public interface IComplexProvider
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleXmlSerializer.Core.Collections
+namespace SimpleXmlSerializer.Core
 {
     public interface ICollectionProvider
     {

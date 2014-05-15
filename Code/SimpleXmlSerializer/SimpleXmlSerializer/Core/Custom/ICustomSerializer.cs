@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace SimpleXmlSerializer.Core.Custom
+namespace SimpleXmlSerializer.Core
 {
     public interface ICustomSerializer
     {

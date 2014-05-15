@@ -1,7 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Collections;
-using SimpleXmlSerializer.Core.Naming;
-
-namespace SimpleXmlSerializer.Core.Nodes
+﻿namespace SimpleXmlSerializer.Core
 {
     public class CollectionNode : INode
     {

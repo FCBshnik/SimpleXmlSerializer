@@ -4,15 +4,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml;
-using SimpleXmlSerializer.Core.Collections;
-using SimpleXmlSerializer.Core.Custom;
-using SimpleXmlSerializer.Core.Naming;
-using SimpleXmlSerializer.Core.Nodes;
-using SimpleXmlSerializer.Core.Primitives;
 using SimpleXmlSerializer.Extensions;
 using System.Linq;
 
-namespace SimpleXmlSerializer.Core.Visitors
+namespace SimpleXmlSerializer.Core
 {
     public class DeserializeFromXmlVisitor : INodeVisitor
     {

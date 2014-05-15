@@ -1,6 +1,6 @@
 ﻿using SimpleXmlSerializer.Utils;
 
-namespace SimpleXmlSerializer.Core.Naming
+namespace SimpleXmlSerializer.Core
 {
     public class CamelCaseNamingConvention : INamingConvention
     {

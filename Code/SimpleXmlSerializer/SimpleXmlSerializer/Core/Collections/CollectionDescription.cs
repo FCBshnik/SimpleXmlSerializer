@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace SimpleXmlSerializer.Core.Collections
+namespace SimpleXmlSerializer.Core
 {
     public class CollectionDescription
     {

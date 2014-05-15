@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml;
-using SimpleXmlSerializer.Core.Visitors;
+using SimpleXmlSerializer.Core;
 using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer

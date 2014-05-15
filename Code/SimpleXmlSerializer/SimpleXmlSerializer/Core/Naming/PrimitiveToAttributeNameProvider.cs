@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using SimpleXmlSerializer.Core.Primitives;
 
-namespace SimpleXmlSerializer.Core.Naming
+namespace SimpleXmlSerializer.Core
 {
     public class PrimitiveToAttributeNameProvider : INameProvider
     {

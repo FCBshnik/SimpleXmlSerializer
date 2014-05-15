@@ -1,6 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Naming;
-
-namespace SimpleXmlSerializer.Core
+﻿namespace SimpleXmlSerializer.Core
 {
     public interface INode
     {

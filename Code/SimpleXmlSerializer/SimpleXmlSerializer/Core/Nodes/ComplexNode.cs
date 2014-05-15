@@ -1,7 +1,4 @@
-﻿using SimpleXmlSerializer.Core.Complex;
-using SimpleXmlSerializer.Core.Naming;
-
-namespace SimpleXmlSerializer.Core.Nodes
+﻿namespace SimpleXmlSerializer.Core
 {
     public class ComplexNode : INode
     {

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using SimpleXmlSerializer.Extensions;
 
-namespace SimpleXmlSerializer.Core.Naming
+namespace SimpleXmlSerializer.Core
 {
     public class DataAttributesNameProvider : INameProvider
     {
