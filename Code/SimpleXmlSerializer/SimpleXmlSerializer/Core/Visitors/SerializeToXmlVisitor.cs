@@ -49,9 +49,7 @@ namespace SimpleXmlSerializer.Core.Visitors
             if (node.Name.IsElement)
             {
                 xmlWriter.WriteStartElement(node.Name.ElementName);
-
                 xmlWriter.WriteValue(value);
-
                 xmlWriter.WriteEndElement();
             }
             else if (node.Name.IsAttribute)
@@ -73,9 +71,11 @@ namespace SimpleXmlSerializer.Core.Visitors
 
             foreach (var item in ((IEnumerable)node.Value).SkipNulls())
             {
-                itemNode.Value = item;
+                // note: passing second parameter to NodeName ctor is not clear
+                // we pass such parameter for more clear xml output and it does
+                // make sense only for collection of collections
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
-                
+                itemNode.Value = item;
                 itemNode.Accept(this);
             }
 
@@ -86,9 +86,15 @@ namespace SimpleXmlSerializer.Core.Visitors
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var properties = node.TypeDescription.Properties.ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
+            var properties = node.TypeDescription.Properties
+                .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
 
-            properties = properties.Where(p => p.Key.IsAttribute).Concat(properties.Where(p => !p.Key.IsAttribute)).ToDictionary(p => p.Key, p => p.Value);
+            // some properties may be presented as attribute and as element
+            // here we give precedence to attributes
+            properties = properties
+                .Where(p => p.Key.IsAttribute)
+                .Concat(properties.Where(p => !p.Key.IsAttribute))
+                .ToDictionary(p => p.Key, p => p.Value);
 
             foreach (var pair in properties)
             {

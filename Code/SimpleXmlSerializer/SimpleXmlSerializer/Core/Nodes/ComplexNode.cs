@@ -1,6 +1,5 @@
 ﻿using SimpleXmlSerializer.Core.Complex;
 using SimpleXmlSerializer.Core.Naming;
-using SimpleXmlSerializer.Core.Visitors;
 
 namespace SimpleXmlSerializer.Core.Nodes
 {

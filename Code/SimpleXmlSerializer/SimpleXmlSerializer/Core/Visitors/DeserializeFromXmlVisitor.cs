@@ -72,15 +72,16 @@ namespace SimpleXmlSerializer.Core.Visitors
             {
                 var items = new ArrayList();
 
+                // note: passing second parameter to NodeName ctor is not clear
+                // we pass such parameter for more clear xml output and it does
+                // make sense only for collection of collections
                 var itemNode = GetNode(node.TypeDescription.ItemType);
-
                 var itemNodeName = settings.NameProvider.GetNodeName(node.TypeDescription.ItemType);
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
 
                 do
                 {
                     itemNode.Accept(this);
-
                     items.Add(itemNode.Value);
 
                 } while (xmlReader.ReadToNextSibling(node.Name.ItemName));
@@ -92,12 +93,16 @@ namespace SimpleXmlSerializer.Core.Visitors
         public void Visit(ComplexNode node)
         {
             var propertyValues = new Dictionary<PropertyInfo, object>();
-            var names = node.TypeDescription.Properties.ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
 
-            // deserialize from attributes
+            var names = node.TypeDescription.Properties
+                .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
+
+            // first deserialize from attributes of current element
             if (xmlReader.MoveToFirstAttribute())
             {
-                var attributesNames = names.Where(p => p.Key.IsAttribute).ToDictionary(p => p.Key.AttributeName, p => p.Value);
+                var attributesNames = names
+                    .Where(p => p.Key.IsAttribute)
+                    .ToDictionary(p => p.Key.AttributeName, p => p.Value);
 
                 do
                 {
@@ -110,12 +115,8 @@ namespace SimpleXmlSerializer.Core.Visitors
 
                         propertyNode.Accept(this);
 
-                        if (propertyNode.Value != null)
-                        {
-                            propertyValues[propertyInfo] = propertyNode.Value;
-                        }
+                        propertyValues[propertyInfo] = propertyNode.Value;
                     }
-
                 } while (xmlReader.MoveToNextAttribute());
 
                 xmlReader.MoveToElement();
@@ -124,7 +125,9 @@ namespace SimpleXmlSerializer.Core.Visitors
             // deserialize from elements
             if (!xmlReader.IsEmptyElement && xmlReader.ReadToDescendant())
             {
-                var elementsNames = names.Where(p => p.Key.IsElement).ToDictionary(p => p.Key.ElementName, p => p.Value);
+                var elementsNames = names
+                    .Where(p => p.Key.IsElement)
+                    .ToDictionary(p => p.Key.ElementName, p => p.Value);
 
                 do
                 {
@@ -137,12 +140,8 @@ namespace SimpleXmlSerializer.Core.Visitors
 
                         propertyNode.Accept(this);
 
-                        if (propertyNode.Value != null)
-                        {
-                            propertyValues[propertyInfo] = propertyNode.Value;
-                        }
+                        propertyValues[propertyInfo] = propertyNode.Value;
                     }
-
                 } while (xmlReader.ReadToNextSibling());
             }
 
