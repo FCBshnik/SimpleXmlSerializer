@@ -12,7 +12,7 @@ namespace SimpleXmlSerializer.Utils
             this.encoding = encoding;
         }
 
-        public override System.Text.Encoding Encoding
+        public override Encoding Encoding
         {
             get
             {

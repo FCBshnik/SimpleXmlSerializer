@@ -4,7 +4,7 @@ namespace SimpleXmlSerializer
 {
     public class XmlSerializerSettings
     {
-        private static readonly XmlSerializerSettings defaultSettings;
+        private static readonly XmlSerializerSettings @default;
 
         private readonly INameProvider nameProvider;
 
@@ -18,7 +18,7 @@ namespace SimpleXmlSerializer
 
         static XmlSerializerSettings()
         {
-            defaultSettings = new XmlSerializerSettingsBuilder().GetSettings();
+            @default = new XmlSerializerSettingsBuilder().GetSettings();
         }
 
         public XmlSerializerSettings(
@@ -55,9 +55,9 @@ namespace SimpleXmlSerializer
             get { return complexProvider; }
         }
 
-        public static XmlSerializerSettings DefaultSettings
+        public static XmlSerializerSettings Default
         {
-            get { return defaultSettings; }
+            get { return @default; }
         }
 
         public ICustomProvider CustomProvider

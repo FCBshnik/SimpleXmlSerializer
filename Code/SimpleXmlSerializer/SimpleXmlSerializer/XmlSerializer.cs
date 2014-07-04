@@ -9,7 +9,7 @@ namespace SimpleXmlSerializer
     {
         private readonly XmlSerializerSettings settings;
 
-        public XmlSerializer() : this(XmlSerializerSettings.DefaultSettings)
+        public XmlSerializer() : this(XmlSerializerSettings.Default)
         {
         }
 
