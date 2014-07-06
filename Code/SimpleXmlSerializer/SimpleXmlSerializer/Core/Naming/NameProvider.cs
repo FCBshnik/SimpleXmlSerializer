@@ -10,16 +10,16 @@ namespace SimpleXmlSerializer.Core
 
         private readonly INamingConvention namingConvention = new CamelCaseNamingConvention();
 
-        private readonly ICollectionProvider collectionProvider = new CollectionProvider();
+        private readonly ICollectionNodeProvider collectionProvider = new CollectionNodeProvider();
 
         public NodeName GetNodeName(Type type)
         {
             var name = type.Name;
             var itemName = string.Empty;
 
-            CollectionDescription collectionDescription;
+            CollectionNodeDescription collectionDescription;
 
-            if (collectionProvider.TryGetCollectionDescription(type, out collectionDescription))
+            if (collectionProvider.TryGetDescription(type, out collectionDescription))
             {
                 name = CollectionName;
                 itemName = CollectionItemName;
@@ -39,9 +39,9 @@ namespace SimpleXmlSerializer.Core
             var name = namingConvention.NormalizeName(propertyInfo.Name);
             var itemName = string.Empty;
 
-            CollectionDescription collectionDescription;
+            CollectionNodeDescription collectionDescription;
 
-            if (collectionProvider.TryGetCollectionDescription(propertyInfo.PropertyType, out collectionDescription))
+            if (collectionProvider.TryGetDescription(propertyInfo.PropertyType, out collectionDescription))
             {
                 itemName = CollectionItemName;
             }

@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class CollectionDescription
+    public class CollectionNodeDescription
     {
-        public CollectionDescription(Type itemType, Func<IList, object> factory)
+        public CollectionNodeDescription(Type itemType, Func<IList, object> factory)
         {
             Factory = factory;
             ItemType = itemType;

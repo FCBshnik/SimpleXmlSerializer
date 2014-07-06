@@ -6,7 +6,7 @@ using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class CollectionProvider : ICollectionProvider
+    public class CollectionNodeProvider : ICollectionNodeProvider
     {
         private static readonly HashSet<Type> collectionTypes = new HashSet<Type>
             {
@@ -20,7 +20,7 @@ namespace SimpleXmlSerializer.Core
                 typeof(IDictionary), typeof(IDictionary<,>), typeof(Dictionary<,>)
             };
 
-        public bool TryGetCollectionDescription(Type valueType, out CollectionDescription collectionDescription)
+        public bool TryGetDescription(Type valueType, out CollectionNodeDescription collectionDescription)
         {
             if (valueType.IsGenericType)
             {
@@ -29,7 +29,7 @@ namespace SimpleXmlSerializer.Core
                 if (collectionTypes.Contains(genericTypeDefinition.UnderlyingSystemType))
                 {
                     var genericArguments = valueType.GetGenericArguments();
-                    collectionDescription = new CollectionDescription(genericArguments[0],
+                    collectionDescription = new CollectionNodeDescription(genericArguments[0],
                         
                             items =>
                                 {
@@ -45,7 +45,7 @@ namespace SimpleXmlSerializer.Core
                 {
                     var genericArguments = valueType.GetGenericArguments();
                     var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
-                    collectionDescription = new CollectionDescription(itemType,
+                    collectionDescription = new CollectionNodeDescription(itemType,
                             items =>
                                 {
                                     var type = typeof(Dictionary<,>).MakeGenericType(genericArguments);
@@ -67,7 +67,7 @@ namespace SimpleXmlSerializer.Core
             if (valueType.IsArray)
             {
                 var elementType = valueType.GetElementType();
-                collectionDescription = new CollectionDescription(elementType,
+                collectionDescription = new CollectionNodeDescription(elementType,
                         items =>
                             {
                                 var value = Array.CreateInstance(elementType, items.Count);

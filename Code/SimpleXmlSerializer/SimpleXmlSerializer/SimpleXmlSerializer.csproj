@@ -39,9 +39,9 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\Collections\CollectionDescription.cs" />
-    <Compile Include="Core\Collections\CollectionProvider.cs" />
-    <Compile Include="Core\Collections\ICollectionProvider.cs" />
+    <Compile Include="Core\Collections\CollectionNodeDescription.cs" />
+    <Compile Include="Core\Collections\CollectionNodeProvider.cs" />
+    <Compile Include="Core\Collections\ICollectionNodeProvider.cs" />
     <Compile Include="Core\Complex\ComplexDescription.cs" />
     <Compile Include="Core\Complex\ComplexProvider.cs" />
     <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />

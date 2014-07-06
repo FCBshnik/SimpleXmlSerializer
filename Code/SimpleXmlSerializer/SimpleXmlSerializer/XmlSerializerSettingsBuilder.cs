@@ -35,7 +35,7 @@ namespace SimpleXmlSerializer
             return new XmlSerializerSettings(
                 nameProvider,
                 primitiveProvider,
-                new CollectionProvider(), 
+                new CollectionNodeProvider(), 
                 new ComplexProvider(propertiesSelector),
                 customProvider);
         }

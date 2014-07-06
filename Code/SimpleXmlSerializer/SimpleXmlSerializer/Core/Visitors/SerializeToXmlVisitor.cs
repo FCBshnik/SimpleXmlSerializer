@@ -127,7 +127,7 @@ namespace SimpleXmlSerializer.Core
 
             ICustomSerializer customSerializer;
             PrimitiveDescription primitiveDescription;
-            CollectionDescription collectionDescription;
+            CollectionNodeDescription collectionDescription;
 
             if(settings.CustomProvider.TryGetCustomSerializer(valueType, out customSerializer))
             {
@@ -143,7 +143,7 @@ namespace SimpleXmlSerializer.Core
                         TypeDescription = primitiveDescription,
                     };
             }
-            else if (settings.CollectionProvider.TryGetCollectionDescription(valueType, out collectionDescription))
+            else if (settings.CollectionProvider.TryGetDescription(valueType, out collectionDescription))
             {
                 node = new CollectionNode
                     {
