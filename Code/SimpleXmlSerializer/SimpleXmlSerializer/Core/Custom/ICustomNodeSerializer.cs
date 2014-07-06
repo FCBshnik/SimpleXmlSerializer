@@ -2,7 +2,7 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    public interface ICustomSerializer
+    public interface ICustomNodeSerializer
     {
         void Serialize(object value, XmlWriter xmlWriter);
 

@@ -5,7 +5,7 @@ using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
 {
-    public class CoachCustomSerializer : ICustomSerializer
+    public class CoachCustomSerializer : ICustomNodeSerializer
     {
         public void Serialize(object value, XmlWriter xmlWriter)
         {

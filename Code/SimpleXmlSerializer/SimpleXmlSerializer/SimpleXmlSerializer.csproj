@@ -47,9 +47,9 @@
     <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />
     <Compile Include="Core\Complex\IComplexNodeProvider.cs" />
     <Compile Include="Core\Complex\XmlAttributesPropertiesSelector.cs" />
-    <Compile Include="Core\Custom\CustomProvider.cs" />
-    <Compile Include="Core\Custom\ICustomProvider.cs" />
-    <Compile Include="Core\Custom\ICustomSerializer.cs" />
+    <Compile Include="Core\Custom\CustomNodeProvider.cs" />
+    <Compile Include="Core\Custom\ICustomNodeProvider.cs" />
+    <Compile Include="Core\Custom\ICustomNodeSerializer.cs" />
     <Compile Include="Core\Naming\PrimitiveToAttributeNameProvider.cs" />
     <Compile Include="Core\Naming\CompositeNameProvider.cs" />
     <Compile Include="Core\Naming\DataAttributesNameProvider.cs" />

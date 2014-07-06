@@ -6,7 +6,7 @@
 
         public NodeName Name { get; set; }
 
-        public ICustomSerializer Serializer { get; set; }
+        public ICustomNodeSerializer Serializer { get; set; }
 
         public void Accept(INodeVisitor visitor)
         {

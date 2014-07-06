@@ -14,7 +14,7 @@ namespace SimpleXmlSerializer
 
         private readonly IComplexNodeProvider complexProvider;
 
-        private readonly ICustomProvider customProvider;
+        private readonly ICustomNodeProvider customProvider;
 
         static XmlSerializerSettings()
         {
@@ -26,7 +26,7 @@ namespace SimpleXmlSerializer
             IPrimitiveProvider primitiveProvider, 
             ICollectionNodeProvider collectionProvider, 
             IComplexNodeProvider complexProvider, 
-            ICustomProvider customProvider)
+            ICustomNodeProvider customProvider)
         {
             this.nameProvider = nameProvider;
             this.primitiveProvider = primitiveProvider;
@@ -60,7 +60,7 @@ namespace SimpleXmlSerializer
             get { return @default; }
         }
 
-        public ICustomProvider CustomProvider
+        public ICustomNodeProvider CustomProvider
         {
             get { return customProvider; }
         }

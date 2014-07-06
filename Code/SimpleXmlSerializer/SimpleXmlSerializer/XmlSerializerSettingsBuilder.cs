@@ -11,7 +11,7 @@ namespace SimpleXmlSerializer
 
         private INameProvider nameProvider = new NameProvider();
 
-        private readonly CustomProvider customProvider = new CustomProvider();
+        private readonly CustomNodeProvider customProvider = new CustomNodeProvider();
 
         private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
 
@@ -73,7 +73,7 @@ namespace SimpleXmlSerializer
             return this;
         }
 
-        public XmlSerializerSettingsBuilder AddCustomSerializer(Type type, ICustomSerializer customSerializer)
+        public XmlSerializerSettingsBuilder AddCustomSerializer(Type type, ICustomNodeSerializer customSerializer)
         {
             customProvider.AddSerializer(type, customSerializer);
 

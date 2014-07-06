@@ -125,11 +125,11 @@ namespace SimpleXmlSerializer.Core
         {
             INode node;
 
-            ICustomSerializer customSerializer;
+            ICustomNodeSerializer customSerializer;
             PrimitiveDescription primitiveDescription;
             CollectionNodeDescription collectionDescription;
 
-            if(settings.CustomProvider.TryGetCustomSerializer(valueType, out customSerializer))
+            if(settings.CustomProvider.TryGetSerializer(valueType, out customSerializer))
             {
                 node = new CustomNode
                 {
