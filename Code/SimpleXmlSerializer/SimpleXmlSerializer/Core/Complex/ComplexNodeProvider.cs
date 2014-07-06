@@ -5,20 +5,20 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class ComplexProvider : IComplexProvider
+    public class ComplexNodeProvider : IComplexNodeProvider
     {
         private readonly IPropertiesSelector propertiesSelector;
 
-        public ComplexProvider(IPropertiesSelector propertiesSelector)
+        public ComplexNodeProvider(IPropertiesSelector propertiesSelector)
         {
             this.propertiesSelector = propertiesSelector;
         }
 
-        public ComplexDescription GetDescription(Type type)
+        public ComplexNodeDescription GetDescription(Type type)
         {
             var propertiesInfo = propertiesSelector.SelectProperties(type).ToList();
 
-            return new ComplexDescription(propertiesInfo, ps => Create(ps, type));
+            return new ComplexNodeDescription(propertiesInfo, ps => Create(ps, type));
         }
 
         private object Create(IDictionary<PropertyInfo, object> properties, Type type)

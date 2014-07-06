@@ -36,7 +36,7 @@ namespace SimpleXmlSerializer
                 nameProvider,
                 primitiveProvider,
                 new CollectionNodeProvider(), 
-                new ComplexProvider(propertiesSelector),
+                new ComplexNodeProvider(propertiesSelector),
                 customProvider);
         }
 

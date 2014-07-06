@@ -4,9 +4,9 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class ComplexDescription
+    public class ComplexNodeDescription
     {
-        public ComplexDescription(IEnumerable<PropertyInfo> properties, Func<IDictionary<PropertyInfo, object>, object> factory)
+        public ComplexNodeDescription(IEnumerable<PropertyInfo> properties, Func<IDictionary<PropertyInfo, object>, object> factory)
         {
             Properties = properties;
             Factory = factory;
