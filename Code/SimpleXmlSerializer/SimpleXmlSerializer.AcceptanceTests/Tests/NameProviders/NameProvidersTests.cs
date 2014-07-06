@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
+using SimpleXmlSerializer.AcceptanceTests.Utils;
 using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders

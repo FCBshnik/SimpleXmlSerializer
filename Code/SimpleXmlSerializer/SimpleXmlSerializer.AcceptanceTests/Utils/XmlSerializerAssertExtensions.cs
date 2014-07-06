@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.Extensions;
 
-namespace SimpleXmlSerializer.AcceptanceTests
+namespace SimpleXmlSerializer.AcceptanceTests.Utils
 {
     public static class XmlSerializerAssertExtensions
     {

@@ -2,7 +2,7 @@
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SimpleXmlSerializer.AcceptanceTests
+namespace SimpleXmlSerializer.AcceptanceTests.Utils
 {
     public static class ObjectAssert
     {
