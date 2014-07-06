@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Extensions
 {
@@ -8,6 +9,7 @@ namespace SimpleXmlSerializer.Extensions
     {
         public static TAttribute FindAttribute<TAttribute>(this MemberInfo memberInfo, bool inherited = false) where TAttribute : Attribute
         {
+            Preconditions.NotNull(memberInfo, "memberInfo");
             return memberInfo.GetCustomAttributes(inherited).OfType<TAttribute>().FirstOrDefault();
         }
 

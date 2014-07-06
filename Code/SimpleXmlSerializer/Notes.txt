@@ -16,3 +16,8 @@ Features:
 - Support Data* attributes to provide element names
 - Extensibility point for custom serialization of values of specified type
 - Extensibility point for custom serialization of values of specified type as primitives
+
+Notes:
+- There is may be no invariance when serialize/deserialize collection with null items.
+- Add extension to serialize into file.
+- Add extension to serialize into Stream.
