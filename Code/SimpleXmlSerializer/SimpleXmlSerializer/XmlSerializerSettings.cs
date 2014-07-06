@@ -8,7 +8,7 @@ namespace SimpleXmlSerializer
 
         private readonly INameProvider nameProvider;
 
-        private readonly IPrimitiveProvider primitiveProvider;
+        private readonly IPrimitiveNodeProvider primitiveProvider;
 
         private readonly ICollectionNodeProvider collectionProvider;
 
@@ -23,7 +23,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettings(
             INameProvider nameProvider, 
-            IPrimitiveProvider primitiveProvider, 
+            IPrimitiveNodeProvider primitiveProvider, 
             ICollectionNodeProvider collectionProvider, 
             IComplexNodeProvider complexProvider, 
             ICustomNodeProvider customProvider)
@@ -40,7 +40,7 @@ namespace SimpleXmlSerializer
             get { return nameProvider; }
         }
 
-        public IPrimitiveProvider PrimitiveProvider
+        public IPrimitiveNodeProvider PrimitiveProvider
         {
             get { return primitiveProvider; }
         }

@@ -72,9 +72,9 @@
     <Compile Include="Core\INodeVisitor.cs" />
     <Compile Include="Core\Nodes\PrimitiveNode.cs" />
     <Compile Include="Core\Visitors\SerializeToXmlVisitor.cs" />
-    <Compile Include="Core\Primitives\IPrimitiveProvider.cs" />
-    <Compile Include="Core\Primitives\PrimitiveDescription.cs" />
-    <Compile Include="Core\Primitives\PrimitiveProvider.cs" />
+    <Compile Include="Core\Primitives\IPrimitiveNodeProvider.cs" />
+    <Compile Include="Core\Primitives\PrimitiveNodeDescription.cs" />
+    <Compile Include="Core\Primitives\PrimitiveNodeProvider.cs" />
     <Compile Include="Core\Primitives\Serializers\EnumSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\LongSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DateTimeSerializer.cs" />

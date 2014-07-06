@@ -126,7 +126,7 @@ namespace SimpleXmlSerializer.Core
             INode node;
 
             ICustomNodeSerializer customSerializer;
-            PrimitiveDescription primitiveDescription;
+            PrimitiveNodeDescription primitiveDescription;
             CollectionNodeDescription collectionDescription;
 
             if(settings.CustomProvider.TryGetSerializer(valueType, out customSerializer))

@@ -5,11 +5,11 @@ namespace SimpleXmlSerializer.Core
 {
     public class PrimitiveToAttributeNameProvider : INameProvider
     {
-        private readonly IPrimitiveProvider primitiveProvider;
+        private readonly IPrimitiveNodeProvider primitiveProvider;
 
         private readonly INameProvider underlyingProvider;
 
-        public PrimitiveToAttributeNameProvider(INameProvider underlyingProvider, IPrimitiveProvider primitiveProvider)
+        public PrimitiveToAttributeNameProvider(INameProvider underlyingProvider, IPrimitiveNodeProvider primitiveProvider)
         {
             this.primitiveProvider = primitiveProvider;
             this.underlyingProvider = underlyingProvider;
@@ -41,7 +41,7 @@ namespace SimpleXmlSerializer.Core
 
         private bool IsPrimitive(Type type)
         {
-            PrimitiveDescription primitiveDescription;
+            PrimitiveNodeDescription primitiveDescription;
             if (primitiveProvider.TryGetPrimitiveDescription(type, out primitiveDescription))
             {
                 return true;

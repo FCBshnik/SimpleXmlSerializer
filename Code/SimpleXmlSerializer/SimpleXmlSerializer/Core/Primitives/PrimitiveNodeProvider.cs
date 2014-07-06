@@ -5,11 +5,11 @@ using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class PrimitiveProvider : IPrimitiveProvider
+    public class PrimitiveNodeProvider : IPrimitiveNodeProvider
     {
         private readonly Dictionary<Type, IPrimitiveSerializer> primitiveSerializers;
 
-        public PrimitiveProvider(IFormatProvider formatProvider)
+        public PrimitiveNodeProvider(IFormatProvider formatProvider)
         {
             primitiveSerializers = new Dictionary<Type, IPrimitiveSerializer>
                 {
@@ -25,18 +25,18 @@ namespace SimpleXmlSerializer.Core
                 };
         }
 
-        public bool TryGetPrimitiveDescription(Type type, out PrimitiveDescription primitiveDescription)
+        public bool TryGetPrimitiveDescription(Type type, out PrimitiveNodeDescription primitiveDescription)
         {
             IPrimitiveSerializer primitiveSerializer;
             if (primitiveSerializers.TryGetValue(type, out primitiveSerializer))
             {
-                primitiveDescription = new PrimitiveDescription(primitiveSerializer);
+                primitiveDescription = new PrimitiveNodeDescription(primitiveSerializer);
                 return true;
             }
 
             if (type.IsEnum)
             {
-                primitiveDescription = new PrimitiveDescription(new EnumSerializer(type));
+                primitiveDescription = new PrimitiveNodeDescription(new EnumSerializer(type));
                 return true;
             }
 

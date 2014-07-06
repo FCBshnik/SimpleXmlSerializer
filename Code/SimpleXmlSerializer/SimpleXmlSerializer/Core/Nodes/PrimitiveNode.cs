@@ -6,7 +6,7 @@
 
         public NodeName Name { get; set; }
 
-        public PrimitiveDescription TypeDescription { get; set; }
+        public PrimitiveNodeDescription TypeDescription { get; set; }
 
         public void Accept(INodeVisitor visitor)
         {

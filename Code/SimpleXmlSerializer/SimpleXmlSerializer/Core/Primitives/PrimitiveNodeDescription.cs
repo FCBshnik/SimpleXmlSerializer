@@ -1,8 +1,8 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
-    public class PrimitiveDescription
+    public class PrimitiveNodeDescription
     {
-        public PrimitiveDescription(IPrimitiveSerializer serializer)
+        public PrimitiveNodeDescription(IPrimitiveSerializer serializer)
         {
             Serializer = serializer;
         }

@@ -21,7 +21,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettings GetSettings()
         {
-            var primitiveProvider = new PrimitiveProvider(formatProvider);
+            var primitiveProvider = new PrimitiveNodeProvider(formatProvider);
             foreach (var type in primitiveSerializers.Keys)
             {
                 primitiveProvider.AddPrimitiveSerializer(type, primitiveSerializers[type]);
