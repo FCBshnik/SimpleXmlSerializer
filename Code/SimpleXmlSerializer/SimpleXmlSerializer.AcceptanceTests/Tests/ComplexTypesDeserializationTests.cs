@@ -13,27 +13,27 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         private static readonly XmlSerializer serializer = new XmlSerializer();
 
         [TestMethod]
-        public void Deserialize_ComlexWithPrimitive()
+        public void Deserialize_ComplexWithPrimitives()
         {
-            DeserializeAndAssert(Players.Xavi, "xavi");
+            DeserializeAndAssert(Players.Xavi, "complexWithPrimitives");
         }
 
         [TestMethod]
-        public void Deserialize_ComlexWithNullable()
+        public void Deserialize_ComlexWithNullables()
         {
-            DeserializeAndAssert(Coaches.Unknown, "unknownCoach");
+            DeserializeAndAssert(Coaches.Unknown, "complexWithNullables");
         }
 
         [TestMethod]
-        public void Deserialize_ComplexWithCollection()
+        public void Deserialize_ComplexWithCollections()
         {
-            DeserializeAndAssert(Teams.Barca, "barcaTeam");
+            DeserializeAndAssert(Teams.Barca, "complexWithCollections");
         }
 
         [TestMethod]
-        public void Deserialize_ComplexWithComplex()
+        public void Deserialize_ComplexWithComplexes()
         {
-            DeserializeAndAssert(Clubs.Barca, "barcaClub");
+            DeserializeAndAssert(Clubs.Barca, "complexWithComplexes");
         }
 
         private void DeserializeAndAssert(object expected, string fileName)

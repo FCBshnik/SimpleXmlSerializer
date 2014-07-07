@@ -70,49 +70,55 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Assets\Collections\numbersCollectionsDictionary.xml">
+    <Content Include="Assets\Collections\collectionOfDictionaries.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\numbersCollectionsCollection.xml">
+    <Content Include="Assets\Collections\dictionaryOfDictionaries.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\playersDictionary.xml">
+    <Content Include="Assets\Collections\dictionaryOfCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\playersCollection.xml">
+    <Content Include="Assets\Collections\collectionOfCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\numbersDictionary.xml">
+    <Content Include="Assets\Collections\dictionaryOfComplexes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\numbersCollection.xml">
+    <Content Include="Assets\Collections\collectionOfComplexes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\barcaTeam.xml">
+    <Content Include="Assets\Collections\dictionaryOfPrimitives.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\barcaClub.xml">
+    <Content Include="Assets\Collections\collectionOfPrimitives.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\unknownCoach.xml">
+    <Content Include="Assets\Complex\complexWithCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\xavi.xml">
+    <Content Include="Assets\Complex\complexWithComplexes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Features\barcaClub_primitivesToAttributes.xml">
+    <Content Include="Assets\Complex\complexWithNullables.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Features\barcaClub_customSerializer.xml">
+    <Content Include="Assets\Complex\complexWithPrimitives.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\barcaClub_default.xml">
+    <Content Include="Assets\Features\primitivesToAttributes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\barcaClub_xmlAttributes.xml">
+    <Content Include="Assets\Features\customSerializer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\barcaClub_dataAttributes.xml">
+    <Content Include="Assets\NameProviders\default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\xmlAttributes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\dataAttributes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\boolean.xml">

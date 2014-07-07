@@ -2,9 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
 using SimpleXmlSerializer.AcceptanceTests.Utils;
-using SimpleXmlSerializer.Core;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
+namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
     public class NameProvidersTests
@@ -16,7 +15,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
         {
             var serializer = new XmlSerializer();
 
-            SerializeAndAssert(serializer, Clubs.Barca, "barcaClub_default");
+            SerializeAndAssert(serializer, Clubs.Barca, "default");
         }
 
         [TestMethod]
@@ -24,7 +23,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
         {
             var serializer = new XmlSerializer();
 
-            DeserializeAndAssert(serializer, Clubs.Barca, "barcaClub_default");
+            DeserializeAndAssert(serializer, Clubs.Barca, "default");
         }
 
         [TestMethod]
@@ -34,7 +33,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
 
             var serializer = new XmlSerializer(settings);
 
-            SerializeAndAssert(serializer, Clubs.Barca, "barcaClub_xmlAttributes");
+            SerializeAndAssert(serializer, Clubs.Barca, "xmlAttributes");
         }
 
         [TestMethod]
@@ -46,7 +45,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
             var expected = Clubs.Barca;
             expected.President = null;
 
-            DeserializeAndAssert(serializer, expected, "barcaClub_xmlAttributes");
+            DeserializeAndAssert(serializer, expected, "xmlAttributes");
         }
 
         [TestMethod]
@@ -56,7 +55,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
 
             var serializer = new XmlSerializer(settings);
 
-            SerializeAndAssert(serializer, Clubs.Barca, "barcaClub_dataAttributes");
+            SerializeAndAssert(serializer, Clubs.Barca, "dataAttributes");
         }
 
         [TestMethod]
@@ -68,7 +67,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.NameProviders
             var expected = Clubs.Barca;
             expected.President = null;
 
-            DeserializeAndAssert(serializer, expected, "barcaClub_dataAttributes");
+            DeserializeAndAssert(serializer, expected, "dataAttributes");
         }
 
         private void SerializeAndAssert(XmlSerializer serializer, object obj, string fileName)

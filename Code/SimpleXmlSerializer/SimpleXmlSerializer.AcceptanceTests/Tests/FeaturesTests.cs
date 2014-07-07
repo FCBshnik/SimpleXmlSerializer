@@ -1,9 +1,10 @@
 ﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
+using SimpleXmlSerializer.AcceptanceTests.Tests.Features;
 using SimpleXmlSerializer.AcceptanceTests.Utils;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
+namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
     public class FeaturesTests
@@ -17,7 +18,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
 
             var serializer = new XmlSerializer(settings);
 
-            SerializeAndAssert(serializer, Clubs.Barca, "barcaClub_PrimitivesToAttributes");
+            SerializeAndAssert(serializer, Clubs.Barca, "primitivesToAttributes");
         }
 
         [TestMethod]
@@ -27,7 +28,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
 
             var serializer = new XmlSerializer(settings);
 
-            DeserializeAndAssert(serializer, Clubs.Barca, "barcaClub_PrimitivesToAttributes");
+            DeserializeAndAssert(serializer, Clubs.Barca, "primitivesToAttributes");
         }
 
         [TestMethod]
@@ -39,7 +40,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
 
             var serializer = new XmlSerializer(settings);
 
-            SerializeAndAssert(serializer, Clubs.Barca, "barcaClub_customSerializer");
+            SerializeAndAssert(serializer, Clubs.Barca, "customSerializer");
         }
 
         [TestMethod]
@@ -51,7 +52,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests.Features
 
             var serializer = new XmlSerializer(settings);
 
-            DeserializeAndAssert(serializer, Clubs.Barca, "barcaClub_customSerializer");
+            DeserializeAndAssert(serializer, Clubs.Barca, "customSerializer");
         }
 
         private void SerializeAndAssert(XmlSerializer serializer, object obj, string fileName)
