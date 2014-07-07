@@ -13,7 +13,7 @@ namespace SimpleXmlSerializer
 
         private readonly CustomNodeProvider customProvider = new CustomNodeProvider();
 
-        private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
+        private IFormatProvider internalFormatProvider = CultureInfo.InvariantCulture;
 
         private readonly Dictionary<Type, IPrimitiveSerializer> primitiveSerializers = new Dictionary<Type,IPrimitiveSerializer>();
 
@@ -21,7 +21,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettings GetSettings()
         {
-            var primitiveProvider = new PrimitiveNodeProvider(formatProvider);
+            var primitiveProvider = new PrimitiveNodeProvider(internalFormatProvider);
             foreach (var type in primitiveSerializers.Keys)
             {
                 primitiveProvider.AddPrimitiveSerializer(type, primitiveSerializers[type]);
@@ -89,7 +89,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettingsBuilder WithFormatProvider(IFormatProvider formatProvider)
         {
-            this.formatProvider = formatProvider;
+            internalFormatProvider = formatProvider;
 
             return this;
         }
