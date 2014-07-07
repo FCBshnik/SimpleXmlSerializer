@@ -25,7 +25,7 @@ namespace SimpleXmlSerializer.Core
                 };
         }
 
-        public bool TryGetPrimitiveDescription(Type type, out PrimitiveNodeDescription primitiveDescription)
+        public bool TryGetDescription(Type type, out PrimitiveNodeDescription primitiveDescription)
         {
             IPrimitiveSerializer primitiveSerializer;
             if (primitiveSerializers.TryGetValue(type, out primitiveSerializer))
@@ -45,7 +45,7 @@ namespace SimpleXmlSerializer.Core
                 var genericTypeDefinition = type.GetGenericTypeDefinition();
                 if (genericTypeDefinition == typeof(Nullable<>))
                 {
-                    return TryGetPrimitiveDescription(type.GetGenericArguments()[0], out primitiveDescription);
+                    return TryGetDescription(type.GetGenericArguments()[0], out primitiveDescription);
                 }
             }
 

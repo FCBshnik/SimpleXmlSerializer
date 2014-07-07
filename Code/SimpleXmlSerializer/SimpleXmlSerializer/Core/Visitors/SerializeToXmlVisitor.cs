@@ -116,7 +116,7 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            node.Serializer.Serialize(node.Value, xmlWriter);
+            node.Description.Serializer.Serialize(node.Value, xmlWriter);
 
             xmlWriter.WriteEndElement();
         }
@@ -125,18 +125,18 @@ namespace SimpleXmlSerializer.Core
         {
             INode node;
 
-            ICustomNodeSerializer customSerializer;
+            CustomNodeDescription customNodeDescription;
             PrimitiveNodeDescription primitiveDescription;
             CollectionNodeDescription collectionDescription;
 
-            if(settings.CustomProvider.TryGetSerializer(valueType, out customSerializer))
+            if(settings.CustomProvider.TryGetDescription(valueType, out customNodeDescription))
             {
                 node = new CustomNode
                 {
-                    Serializer = customSerializer
+                    Description = customNodeDescription
                 };
             }
-            else if (settings.PrimitiveProvider.TryGetPrimitiveDescription(valueType, out primitiveDescription))
+            else if (settings.PrimitiveProvider.TryGetDescription(valueType, out primitiveDescription))
             {
                 node = new PrimitiveNode
                     {

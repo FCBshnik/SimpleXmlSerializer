@@ -42,7 +42,7 @@ namespace SimpleXmlSerializer.Core
         private bool IsPrimitive(Type type)
         {
             PrimitiveNodeDescription primitiveDescription;
-            if (primitiveProvider.TryGetPrimitiveDescription(type, out primitiveDescription))
+            if (primitiveProvider.TryGetDescription(type, out primitiveDescription))
             {
                 return true;
             }

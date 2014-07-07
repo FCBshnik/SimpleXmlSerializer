@@ -5,16 +5,16 @@ namespace SimpleXmlSerializer.Core
 {
     public class CustomNodeProvider : ICustomNodeProvider
     {
-        private readonly Dictionary<Type, ICustomNodeSerializer> serializers = new Dictionary<Type, ICustomNodeSerializer>();
-
-        public bool TryGetSerializer(Type type, out ICustomNodeSerializer serializer)
-        {
-            return serializers.TryGetValue(type, out serializer);
-        }
+        private readonly Dictionary<Type, CustomNodeDescription> descriptions = new Dictionary<Type, CustomNodeDescription>();
 
         public void AddSerializer(Type type, ICustomNodeSerializer serializer)
         {
-            serializers[type] = serializer;
+            descriptions[type] = new CustomNodeDescription(serializer);
+        }
+
+        public bool TryGetDescription(Type type, out CustomNodeDescription description)
+        {
+            return descriptions.TryGetValue(type, out description);
         }
     }
 }

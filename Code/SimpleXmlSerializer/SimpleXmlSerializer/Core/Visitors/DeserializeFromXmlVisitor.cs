@@ -145,25 +145,25 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(CustomNode node)
         {
-            node.Value = node.Serializer.Deserialize(xmlReader);
+            node.Value = node.Description.Serializer.Deserialize(xmlReader);
         }
 
         private INode GetNode(Type valueType)
         {
             INode node;
 
-            ICustomNodeSerializer customSerializer;
+            CustomNodeDescription customNodeDescription;
             PrimitiveNodeDescription primitiveDescription;
             CollectionNodeDescription collectionDescription;
 
-            if (settings.CustomProvider.TryGetSerializer(valueType, out customSerializer))
+            if (settings.CustomProvider.TryGetDescription(valueType, out customNodeDescription))
             {
                 node = new CustomNode
                 {
-                    Serializer = customSerializer
+                    Description = customNodeDescription
                 };
             }
-            else if (settings.PrimitiveProvider.TryGetPrimitiveDescription(valueType, out primitiveDescription))
+            else if (settings.PrimitiveProvider.TryGetDescription(valueType, out primitiveDescription))
             {
                 node = new PrimitiveNode
                     {

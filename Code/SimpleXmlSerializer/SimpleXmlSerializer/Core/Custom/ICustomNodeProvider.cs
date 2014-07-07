@@ -4,6 +4,6 @@ namespace SimpleXmlSerializer.Core
 {
     public interface ICustomNodeProvider
     {
-        bool TryGetSerializer(Type type, out ICustomNodeSerializer serializer);
+        bool TryGetDescription(Type type, out CustomNodeDescription description);
     }
 }
