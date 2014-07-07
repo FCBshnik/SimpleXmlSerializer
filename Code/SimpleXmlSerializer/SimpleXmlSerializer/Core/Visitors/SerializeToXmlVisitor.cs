@@ -21,14 +21,13 @@ namespace SimpleXmlSerializer.Core
         {
             var valueType = value.GetType();
 
-            xmlWriter.WriteStartDocument();
-
             var node = GetNode(valueType);
             var nodeName = settings.NameProvider.GetNodeName(valueType);
-
             node.Value = value;
             node.Name = nodeName;
-            
+
+            xmlWriter.WriteStartDocument();
+
             node.Accept(this);
 
             xmlWriter.WriteEndDocument();
@@ -59,7 +58,6 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var itemNode = GetNode(node.Description.ItemType);
             var itemNodeName = settings.NameProvider.GetNodeName(node.Description.ItemType);
 
             foreach (var item in ((IEnumerable)node.Value).SkipNulls())
@@ -67,6 +65,7 @@ namespace SimpleXmlSerializer.Core
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
+                var itemNode = GetNode(node.Description.ItemType);
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
                 itemNode.Value = item;
                 itemNode.Accept(this);
@@ -98,9 +97,8 @@ namespace SimpleXmlSerializer.Core
                     continue;
                 }
 
-                var propertyNode = GetNode(propertyInfo.PropertyType);
                 var propertyNodeName = settings.NameProvider.GetNodeName(propertyInfo);
-
+                var propertyNode = GetNode(propertyInfo.PropertyType);
                 propertyNode.Value = propertyValue;
                 propertyNode.Name = propertyNodeName;
                 

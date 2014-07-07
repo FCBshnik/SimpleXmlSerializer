@@ -19,5 +19,6 @@ Features:
 
 Notes:
 - There is may be no invariance when serialize/deserialize collection with null items.
+- Add settings to control handling of unknown elements.
 - Add extension to serialize into file.
 - Add extension to serialize into Stream.

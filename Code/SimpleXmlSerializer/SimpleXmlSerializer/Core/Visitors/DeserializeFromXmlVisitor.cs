@@ -59,6 +59,7 @@ namespace SimpleXmlSerializer.Core
         {
             if (xmlReader.ReadToDescendant(node.Name.ItemName))
             {
+                // todo: think about boxing
                 var items = new ArrayList();
 
                 // note: passing second parameter to NodeName ctor is not clear
