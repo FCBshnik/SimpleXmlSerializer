@@ -15,6 +15,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializer(XmlSerializerSettings settings)
         {
+            Preconditions.NotNull(settings, "settings");
             this.settings = settings;
         }
 
@@ -33,8 +34,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(xmlReader, "xmlReader");
 
             var visitor = new DeserializeFromXmlVisitor(xmlReader, settings);
-            visitor.Visit(type);
-            return visitor.GetResult();
+            return visitor.Visit(type);
         }
     }
 }

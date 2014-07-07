@@ -114,6 +114,7 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
+            // todo: somehow validate custom serializer
             node.Description.Serializer.Serialize(node.Value, xmlWriter);
 
             xmlWriter.WriteEndElement();

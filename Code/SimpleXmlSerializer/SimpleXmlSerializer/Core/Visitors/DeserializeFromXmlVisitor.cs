@@ -14,20 +14,13 @@ namespace SimpleXmlSerializer.Core
         private readonly XmlSerializerSettings settings;
         private readonly XmlReader xmlReader;
 
-        private object result;
-
         public DeserializeFromXmlVisitor(XmlReader xmlReader, XmlSerializerSettings settings) : base(settings)
         {
             this.xmlReader = xmlReader;
             this.settings = settings;
         }
 
-        public object GetResult()
-        {
-            return result;
-        }
-
-        public void Visit(Type type)
+        public object Visit(Type type)
         {
             var nodeName = settings.NameProvider.GetNodeName(type);
 
@@ -38,8 +31,10 @@ namespace SimpleXmlSerializer.Core
                 
                 node.Accept(this);
 
-                result = node.Value;
+                return node.Value;
             }
+
+            return null;
         }
 
         public void Visit(PrimitiveNode node)

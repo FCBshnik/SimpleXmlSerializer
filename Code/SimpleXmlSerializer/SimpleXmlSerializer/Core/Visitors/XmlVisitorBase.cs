@@ -16,36 +16,25 @@ namespace SimpleXmlSerializer.Core
             INode node;
 
             CustomNodeDescription customNodeDescription;
-            PrimitiveNodeDescription primitiveDescription;
-            CollectionNodeDescription collectionDescription;
+            PrimitiveNodeDescription primitiveNodeDescription;
+            CollectionNodeDescription collectionNodeDescription;
 
             if (settings.CustomProvider.TryGetDescription(valueType, out customNodeDescription))
             {
-                node = new CustomNode
-                {
-                    Description = customNodeDescription
-                };
+                node = new CustomNode(customNodeDescription);
             }
-            else if (settings.PrimitiveProvider.TryGetDescription(valueType, out primitiveDescription))
+            else if (settings.PrimitiveProvider.TryGetDescription(valueType, out primitiveNodeDescription))
             {
-                node = new PrimitiveNode
-                {
-                    Description = primitiveDescription,
-                };
+                node = new PrimitiveNode(primitiveNodeDescription);
             }
-            else if (settings.CollectionProvider.TryGetDescription(valueType, out collectionDescription))
+            else if (settings.CollectionProvider.TryGetDescription(valueType, out collectionNodeDescription))
             {
-                node = new CollectionNode
-                {
-                    Description = collectionDescription,
-                };
+                node = new CollectionNode(collectionNodeDescription);
             }
             else
             {
-                node = new ComplexNode
-                {
-                    Description = settings.ComplexProvider.GetDescription(valueType),
-                };
+                var complexNodeDescription = settings.ComplexProvider.GetDescription(valueType);
+                node = new ComplexNode(complexNodeDescription);
             }
 
             return node;
