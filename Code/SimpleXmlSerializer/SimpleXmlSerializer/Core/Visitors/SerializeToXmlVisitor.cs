@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Runtime.Serialization;
 using System.Xml;
 using SimpleXmlSerializer.Extensions;
@@ -7,13 +6,12 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class SerializeToXmlVisitor : INodeVisitor
+    public class SerializeToXmlVisitor : XmlVisitorBase, INodeVisitor
     {
+        private readonly XmlSerializerSettings settings;
         private readonly XmlWriter xmlWriter;
 
-        private readonly XmlSerializerSettings settings;
-
-        public SerializeToXmlVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings)
+        public SerializeToXmlVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings) : base(settings)
         {
             this.xmlWriter = xmlWriter;
             this.settings = settings;
@@ -39,7 +37,7 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(PrimitiveNode node)
         {
-            var value = node.TypeDescription.Serializer.Serialize(node.Value);
+            var value = node.Description.Serializer.Serialize(node.Value);
 
             if (node.Name.IsElement)
             {
@@ -61,8 +59,8 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var itemNode = GetNode(node.TypeDescription.ItemType);
-            var itemNodeName = settings.NameProvider.GetNodeName(node.TypeDescription.ItemType);
+            var itemNode = GetNode(node.Description.ItemType);
+            var itemNodeName = settings.NameProvider.GetNodeName(node.Description.ItemType);
 
             foreach (var item in ((IEnumerable)node.Value).SkipNulls())
             {
@@ -81,7 +79,7 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var properties = node.TypeDescription.Properties
+            var properties = node.Description.Properties
                 .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
 
             // some properties may be presented as attribute and as element
@@ -119,46 +117,6 @@ namespace SimpleXmlSerializer.Core
             node.Description.Serializer.Serialize(node.Value, xmlWriter);
 
             xmlWriter.WriteEndElement();
-        }
-
-        private INode GetNode(Type valueType)
-        {
-            INode node;
-
-            CustomNodeDescription customNodeDescription;
-            PrimitiveNodeDescription primitiveDescription;
-            CollectionNodeDescription collectionDescription;
-
-            if(settings.CustomProvider.TryGetDescription(valueType, out customNodeDescription))
-            {
-                node = new CustomNode
-                {
-                    Description = customNodeDescription
-                };
-            }
-            else if (settings.PrimitiveProvider.TryGetDescription(valueType, out primitiveDescription))
-            {
-                node = new PrimitiveNode
-                    {
-                        TypeDescription = primitiveDescription,
-                    };
-            }
-            else if (settings.CollectionProvider.TryGetDescription(valueType, out collectionDescription))
-            {
-                node = new CollectionNode
-                    {
-                        TypeDescription = collectionDescription,
-                    };
-            }
-            else
-            {
-                node = new ComplexNode
-                    {
-                        TypeDescription = settings.ComplexProvider.GetDescription(valueType),
-                    };
-            }
-
-            return node;
         }
     }
 }

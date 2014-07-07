@@ -85,6 +85,7 @@
     <Compile Include="Core\Primitives\Serializers\BoolSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\IntSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\StringSerializer.cs" />
+    <Compile Include="Core\Visitors\XmlVisitorBase.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="XmlSerializerSettings.cs" />
     <Compile Include="XmlSerializerSettingsBuilder.cs" />

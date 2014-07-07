@@ -9,15 +9,14 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class DeserializeFromXmlVisitor : INodeVisitor
+    public class DeserializeFromXmlVisitor : XmlVisitorBase, INodeVisitor
     {
-        private readonly XmlReader xmlReader;
-
         private readonly XmlSerializerSettings settings;
+        private readonly XmlReader xmlReader;
 
         private object result;
 
-        public DeserializeFromXmlVisitor(XmlReader xmlReader, XmlSerializerSettings settings)
+        public DeserializeFromXmlVisitor(XmlReader xmlReader, XmlSerializerSettings settings) : base(settings)
         {
             this.xmlReader = xmlReader;
             this.settings = settings;
@@ -48,12 +47,12 @@ namespace SimpleXmlSerializer.Core
             if (node.Name.IsElement)
             {
                 var serializedValue = xmlReader.ReadElementString();
-                node.Value = node.TypeDescription.Serializer.Deserialize(serializedValue);
+                node.Value = node.Description.Serializer.Deserialize(serializedValue);
             }
             else if (node.Name.IsAttribute)
             {
                 var serializedValue = xmlReader.Value;
-                node.Value = node.TypeDescription.Serializer.Deserialize(serializedValue);
+                node.Value = node.Description.Serializer.Deserialize(serializedValue);
             }
             else
             {
@@ -70,8 +69,8 @@ namespace SimpleXmlSerializer.Core
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
-                var itemNode = GetNode(node.TypeDescription.ItemType);
-                var itemNodeName = settings.NameProvider.GetNodeName(node.TypeDescription.ItemType);
+                var itemNode = GetNode(node.Description.ItemType);
+                var itemNodeName = settings.NameProvider.GetNodeName(node.Description.ItemType);
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
 
                 do
@@ -81,7 +80,7 @@ namespace SimpleXmlSerializer.Core
 
                 } while (xmlReader.ReadToNextSibling(node.Name.ItemName));
 
-                node.Value = node.TypeDescription.Factory(items);
+                node.Value = node.Description.Factory(items);
             }
         }
 
@@ -89,7 +88,7 @@ namespace SimpleXmlSerializer.Core
         {
             var propertyValues = new Dictionary<PropertyInfo, object>();
 
-            var names = node.TypeDescription.Properties
+            var names = node.Description.Properties
                 .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
 
             // first deserialize from attributes of current element
@@ -140,52 +139,12 @@ namespace SimpleXmlSerializer.Core
                 } while (xmlReader.ReadToNextSibling());
             }
 
-            node.Value = node.TypeDescription.Factory(propertyValues);
+            node.Value = node.Description.Factory(propertyValues);
         }
 
         public void Visit(CustomNode node)
         {
             node.Value = node.Description.Serializer.Deserialize(xmlReader);
-        }
-
-        private INode GetNode(Type valueType)
-        {
-            INode node;
-
-            CustomNodeDescription customNodeDescription;
-            PrimitiveNodeDescription primitiveDescription;
-            CollectionNodeDescription collectionDescription;
-
-            if (settings.CustomProvider.TryGetDescription(valueType, out customNodeDescription))
-            {
-                node = new CustomNode
-                {
-                    Description = customNodeDescription
-                };
-            }
-            else if (settings.PrimitiveProvider.TryGetDescription(valueType, out primitiveDescription))
-            {
-                node = new PrimitiveNode
-                    {
-                        TypeDescription = primitiveDescription,
-                    };
-            }
-            else if (settings.CollectionProvider.TryGetDescription(valueType, out collectionDescription))
-            {
-                node = new CollectionNode
-                    {
-                        TypeDescription = collectionDescription,
-                    };
-            }
-            else
-            {
-                node = new ComplexNode
-                    {
-                        TypeDescription = settings.ComplexProvider.GetDescription(valueType),
-                    };
-            }
-
-            return node;
         }
     }
 }
