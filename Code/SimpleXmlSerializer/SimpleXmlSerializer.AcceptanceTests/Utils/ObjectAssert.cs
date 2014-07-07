@@ -6,6 +6,9 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
 {
     public static class ObjectAssert
     {
+        /// <summary>
+        /// Performs deep equality comparison of objects.
+        /// </summary>
         public static void AreEqual(object expected, object actual)
         {
             if (expected == null && actual == null)

@@ -2,12 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
 using SimpleXmlSerializer.AcceptanceTests.Utils;
-using SimpleXmlSerializer.Core;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests.Deserialization
+namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class DeserializeComplexTypesTests
+    public class ComplexTypesDeserializationTests
     {
         private const string AssetsDirectory = "Assets\\Complex";
 

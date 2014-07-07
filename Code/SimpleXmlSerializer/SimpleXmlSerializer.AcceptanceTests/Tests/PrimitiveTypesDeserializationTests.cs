@@ -3,12 +3,11 @@ using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Utils;
-using SimpleXmlSerializer.Core;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests.Deserialization
+namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class DeserializePrimitiveTypesTests
+    public class PrimitiveTypesDeserializationTests
     {
         private const string AssetsDirectory = "Assets\\Primitives";
 

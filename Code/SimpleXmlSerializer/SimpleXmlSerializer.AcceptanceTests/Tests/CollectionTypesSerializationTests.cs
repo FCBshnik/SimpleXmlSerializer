@@ -3,12 +3,11 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
 using SimpleXmlSerializer.AcceptanceTests.Utils;
-using SimpleXmlSerializer.Core;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests.Serialization
+namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class SerializeCollectionTypesTests
+    public class CollectionTypesSerializationTests
     {
         private const string AssetsDirectory = "Assets\\Collections";
 
