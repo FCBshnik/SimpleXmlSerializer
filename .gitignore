@@ -6,4 +6,5 @@ obj/*
 *.suo
 _ReSharper.*
 *.DotSettings
+packages
 TestResults
