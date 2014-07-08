@@ -6,6 +6,7 @@ Analyze:
 Future features:
 - Think about inheritance (as called known types)
 - Validation
+- Add cycling protection
 - Multi dimensional arrays (quad and jagged)
 - Typeless serialization (store full type name in xml) (?)
 - Support of heterogeneous collections (store full type name in xml) (?)
