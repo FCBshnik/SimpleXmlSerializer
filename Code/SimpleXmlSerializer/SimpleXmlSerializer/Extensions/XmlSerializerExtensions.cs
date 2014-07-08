@@ -26,6 +26,7 @@ namespace SimpleXmlSerializer.Extensions
          public static object Deserialize(this XmlSerializer xmlSerializer, Type type, string xml)
          {
              Preconditions.NotNull(xmlSerializer, "xmlSerializer");
+             Preconditions.NotNull(type, "type");
              Preconditions.NotNull(xml, "xml");
 
              using (var stringReader = new StringReader(xml))
@@ -34,6 +35,29 @@ namespace SimpleXmlSerializer.Extensions
                  {
                      return xmlSerializer.Deserialize(type, xmlReader);
                  }
+             }
+         }
+
+         public static void Serialize(this XmlSerializer xmlSerializer, object obj, Stream outputStream)
+         {
+             Preconditions.NotNull(xmlSerializer, "xmlSerializer");
+             
+             var settings = new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 };
+
+             using (var xmlWriter = XmlWriter.Create(outputStream, settings))
+             {
+                 xmlSerializer.Serialize(obj, xmlWriter);
+             }
+         }
+
+         public static object Deserialize(this XmlSerializer xmlSerializer, Type type, Stream inputStream)
+         {
+             Preconditions.NotNull(xmlSerializer, "xmlSerializer");
+             Preconditions.NotNull(type, "type");
+
+             using (var xmlReader = XmlReader.Create(inputStream))
+             {
+                 return xmlSerializer.Deserialize(type, xmlReader);
              }
          }
     }

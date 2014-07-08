@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -39,7 +40,17 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Adapters\DataContractSerializerAdapter.cs" />
+    <Compile Include="Adapters\IXmlSerializerAdapter.cs" />
+    <Compile Include="Adapters\NetXmlSerializerAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Adapters\SimpleXmlSerializerAdapter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleXmlSerializer\SimpleXmlSerializer.csproj">
+      <Project>{dff9de2c-c663-4998-929f-6c2a1ca1c4ca}</Project>
+      <Name>SimpleXmlSerializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
