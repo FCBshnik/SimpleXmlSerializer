@@ -52,7 +52,6 @@
     <Compile Include="Dto\Football\Players.cs" />
     <Compile Include="Dto\Football\Team.cs" />
     <Compile Include="Dto\Football\Teams.cs" />
-    <Compile Include="Tests\CoachCustomSerializer.cs" />
     <Compile Include="Tests\FeaturesTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Utils\ObjectAssert.cs" />
