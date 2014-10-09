@@ -9,15 +9,15 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
         private readonly Type serializedType;
         private readonly XmlSerializer xmlSerializer;
 
-        public SimpleXmlSerializerAdapter(Type serializedType, XmlSerializer xmlSerializer)
+        public SimpleXmlSerializerAdapter(Type serializedType)
         {
-            this.xmlSerializer = xmlSerializer;
+            xmlSerializer = new XmlSerializer();
             this.serializedType = serializedType;
         }
 
         public string Name
         {
-            get { return xmlSerializer.GetType().FullName; }
+            get { return "Simple"; }
         }
 
         public Type SerializedType

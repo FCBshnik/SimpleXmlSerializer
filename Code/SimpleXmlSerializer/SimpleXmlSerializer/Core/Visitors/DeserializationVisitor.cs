@@ -9,12 +9,12 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class DeserializeFromXmlVisitor : XmlVisitorBase, INodeVisitor
+    public class DeserializationVisitor : NodeVisitor, INodeVisitor
     {
         private readonly XmlSerializerSettings settings;
         private readonly XmlReader xmlReader;
 
-        public DeserializeFromXmlVisitor(XmlReader xmlReader, XmlSerializerSettings settings) : base(settings)
+        public DeserializationVisitor(XmlReader xmlReader, XmlSerializerSettings settings) : base(settings)
         {
             this.xmlReader = xmlReader;
             this.settings = settings;

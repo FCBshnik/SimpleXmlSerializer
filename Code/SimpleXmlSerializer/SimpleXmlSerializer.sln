@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.Perform
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.AcceptanceTests", "SimpleXmlSerializer.AcceptanceTests\SimpleXmlSerializer.AcceptanceTests.csproj", "{7ABB3CAD-94F4-4A0D-9D37-227553380CF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.PerformanceTests.Cmd", "SimpleXmlSerializer.PerformanceTests.Cmd\SimpleXmlSerializer.PerformanceTests.Cmd.csproj", "{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7ABB3CAD-94F4-4A0D-9D37-227553380CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ABB3CAD-94F4-4A0D-9D37-227553380CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ABB3CAD-94F4-4A0D-9D37-227553380CF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{24CABED6-189D-420E-BAFF-BB94C96D30F4} = {3D89B95F-E1EC-47A5-B4A4-94BCA2D3314D}
 		{ABF4687B-76C2-4FF6-9F3D-976EADDF167A} = {3D89B95F-E1EC-47A5-B4A4-94BCA2D3314D}
 		{7ABB3CAD-94F4-4A0D-9D37-227553380CF7} = {3D89B95F-E1EC-47A5-B4A4-94BCA2D3314D}
+		{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4} = {3D89B95F-E1EC-47A5-B4A4-94BCA2D3314D}
 	EndGlobalSection
 EndGlobal

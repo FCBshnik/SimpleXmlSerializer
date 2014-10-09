@@ -12,15 +12,15 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
         private readonly Type serializedType;
         private readonly YAXSerializer serializer;
 
-        public YAXLibXmlSerializerAdapter(Type serializedType, YAXSerializer serializer)
+        public YAXLibXmlSerializerAdapter(Type serializedType)
         {
             this.serializedType = serializedType;
-            this.serializer = serializer;
+            serializer = new YAXSerializer(serializedType);
         }
 
         public string Name
         {
-            get { return serializer.GetType().FullName; }
+            get { return "YAX"; }
         }
 
         public Type SerializedType

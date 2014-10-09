@@ -24,7 +24,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(obj, "obj");
             Preconditions.NotNull(xmlWriter, "xmlWriter");
 
-            var visitor = new SerializeToXmlVisitor(xmlWriter, settings);
+            var visitor = new SerializationVisitor(xmlWriter, settings);
             visitor.Visit(obj);
         }
 
@@ -33,7 +33,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(type, "type");
             Preconditions.NotNull(xmlReader, "xmlReader");
 
-            var visitor = new DeserializeFromXmlVisitor(xmlReader, settings);
+            var visitor = new DeserializationVisitor(xmlReader, settings);
             return visitor.Visit(type);
         }
     }

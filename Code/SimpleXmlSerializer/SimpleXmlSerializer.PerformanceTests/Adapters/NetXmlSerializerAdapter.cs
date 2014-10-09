@@ -8,15 +8,15 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
         private readonly Type serializedType;
         private readonly System.Xml.Serialization.XmlSerializer xmlSerializer;
 
-        public NetXmlSerializerAdapter(Type serializedType, System.Xml.Serialization.XmlSerializer xmlSerializer)
+        public NetXmlSerializerAdapter(Type serializedType)
         {
-            this.xmlSerializer = xmlSerializer;
+            xmlSerializer = new System.Xml.Serialization.XmlSerializer(serializedType);
             this.serializedType = serializedType;
         }
 
         public string Name
         {
-            get { return xmlSerializer.GetType().FullName; }
+            get { return "NetXml"; }
         }
 
         public Type SerializedType

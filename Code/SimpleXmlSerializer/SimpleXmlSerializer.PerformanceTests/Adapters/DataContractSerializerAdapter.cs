@@ -9,15 +9,15 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
         private readonly Type serializedType;
         private readonly DataContractSerializer serializer;
 
-        public DataContractSerializerAdapter(Type serializedType, DataContractSerializer serializer)
+        public DataContractSerializerAdapter(Type serializedType)
         {
             this.serializedType = serializedType;
-            this.serializer = serializer;
+            this.serializer = new DataContractSerializer(serializedType);
         }
 
         public string Name
         {
-            get { return serializer.GetType().FullName; }
+            get { return "DataContract"; }
         }
 
         public Type SerializedType

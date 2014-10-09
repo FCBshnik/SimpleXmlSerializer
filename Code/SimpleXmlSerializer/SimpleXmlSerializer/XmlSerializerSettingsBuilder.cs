@@ -24,7 +24,7 @@ namespace SimpleXmlSerializer
             var primitiveProvider = new PrimitiveNodeProvider(internalFormatProvider);
             foreach (var type in primitiveSerializers.Keys)
             {
-                primitiveProvider.AddPrimitiveSerializer(type, primitiveSerializers[type]);
+                primitiveProvider.SetPrimitiveSerializer(type, primitiveSerializers[type]);
             }
             
             if (mapPrimitivesToAttributes)
@@ -40,6 +40,7 @@ namespace SimpleXmlSerializer
                 customProvider);
         }
 
+        // todo: rename to "SerializePri..."
         public XmlSerializerSettingsBuilder MapPrimitivesToAttributes()
         {
             mapPrimitivesToAttributes = true;

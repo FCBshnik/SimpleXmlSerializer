@@ -68,11 +68,11 @@
     <Compile Include="Core\Primitives\Serializers\DecimalSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DoubleSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\FloatSerializer.cs" />
-    <Compile Include="Core\Visitors\DeserializeFromXmlVisitor.cs" />
+    <Compile Include="Core\Visitors\DeserializationVisitor.cs" />
     <Compile Include="Core\INode.cs" />
     <Compile Include="Core\INodeVisitor.cs" />
     <Compile Include="Core\Nodes\PrimitiveNode.cs" />
-    <Compile Include="Core\Visitors\SerializeToXmlVisitor.cs" />
+    <Compile Include="Core\Visitors\SerializationVisitor.cs" />
     <Compile Include="Core\Primitives\IPrimitiveNodeProvider.cs" />
     <Compile Include="Core\Primitives\PrimitiveNodeDescription.cs" />
     <Compile Include="Core\Primitives\PrimitiveNodeProvider.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Core\Primitives\Serializers\BoolSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\IntSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\StringSerializer.cs" />
-    <Compile Include="Core\Visitors\XmlVisitorBase.cs" />
+    <Compile Include="Core\Visitors\NodeVisitor.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="XmlSerializerSettings.cs" />
     <Compile Include="XmlSerializerSettingsBuilder.cs" />

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ABF4687B-76C2-4FF6-9F3D-976EADDF167A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleXmlSerializer.PerformanceTests</RootNamespace>
-    <AssemblyName>SimpleXmlSerializer.PerformanceTests</AssemblyName>
+    <RootNamespace>SimpleXmlSerializer.PerformanceTests.Cmd</RootNamespace>
+    <AssemblyName>SimpleXmlSerializer.PerformanceTests.Cmd</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,48 +34,21 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YAXLib">
-      <HintPath>..\packages\YAXLib.2.13\lib\YAXLib.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SolutionAssemblyInfo.cs">
-      <Link>Properties\SolutionAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Adapters\DataContractSerializerAdapter.cs" />
-    <Compile Include="Adapters\IXmlSerializerAdapter.cs" />
-    <Compile Include="Adapters\NetXmlSerializerAdapter.cs" />
-    <Compile Include="Adapters\YAXLibXmlSerializerAdapter.cs" />
-    <Compile Include="Core\TestCaseExecutor.cs" />
-    <Compile Include="Core\TestResult.cs" />
-    <Compile Include="Core\TestCase.cs" />
-    <Compile Include="TestCases\DTO\CollectionsObject.cs" />
-    <Compile Include="TestCases\DTO\NestedObject.cs" />
-    <Compile Include="TestCases\ObjectsFactory.cs" />
-    <Compile Include="TestCases\TestCasesFactory.cs" />
-    <Compile Include="Core\TestCaseResult.cs" />
-    <Compile Include="Core\TestSuiteResult.cs" />
-    <Compile Include="Core\TestSuiteExecutor.cs" />
-    <Compile Include="Core\TestSuite.cs" />
-    <Compile Include="TestCases\DTO\PlainObject.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Adapters\SimpleXmlSerializerAdapter.cs" />
-    <Compile Include="Adapters\XmlSerializersFactory.cs" />
-    <Compile Include="Utils\EnumerableExtensions.cs" />
-    <Compile Include="Utils\RandomExtensions.cs" />
-    <Compile Include="Utils\TimeSpanUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleXmlSerializer\SimpleXmlSerializer.csproj">
-      <Project>{dff9de2c-c663-4998-929f-6c2a1ca1c4ca}</Project>
-      <Name>SimpleXmlSerializer</Name>
+    <ProjectReference Include="..\SimpleXmlSerializer.PerformanceTests\SimpleXmlSerializer.PerformanceTests.csproj">
+      <Project>{ABF4687B-76C2-4FF6-9F3D-976EADDF167A}</Project>
+      <Name>SimpleXmlSerializer.PerformanceTests</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

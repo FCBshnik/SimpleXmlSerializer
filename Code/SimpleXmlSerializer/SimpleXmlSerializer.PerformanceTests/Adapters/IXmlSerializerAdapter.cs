@@ -3,7 +3,7 @@ using System.IO;
 
 namespace SimpleXmlSerializer.PerformanceTests.Adapters
 {
-    internal interface IXmlSerializerAdapter
+    public interface IXmlSerializerAdapter
     {
         string Name { get; }
 

@@ -6,12 +6,12 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class SerializeToXmlVisitor : XmlVisitorBase, INodeVisitor
+    public class SerializationVisitor : NodeVisitor, INodeVisitor
     {
         private readonly XmlSerializerSettings settings;
         private readonly XmlWriter xmlWriter;
 
-        public SerializeToXmlVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings) : base(settings)
+        public SerializationVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings) : base(settings)
         {
             this.xmlWriter = xmlWriter;
             this.settings = settings;
@@ -81,7 +81,7 @@ namespace SimpleXmlSerializer.Core
             var properties = node.Description.Properties
                 .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
 
-            // some properties may be presented as attribute and as element
+            // some properties may be presented as attributes and as element
             // here we give precedence to attributes
             properties = properties
                 .Where(p => p.Key.IsAttribute)

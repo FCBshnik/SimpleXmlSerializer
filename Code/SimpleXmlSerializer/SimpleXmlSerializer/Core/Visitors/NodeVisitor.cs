@@ -2,11 +2,11 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    public abstract class XmlVisitorBase
+    public abstract class NodeVisitor
     {
         private readonly XmlSerializerSettings settings;
 
-        protected XmlVisitorBase(XmlSerializerSettings settings)
+        protected NodeVisitor(XmlSerializerSettings settings)
         {
             this.settings = settings;
         }

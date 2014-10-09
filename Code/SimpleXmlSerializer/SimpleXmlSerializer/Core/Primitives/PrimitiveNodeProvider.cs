@@ -53,7 +53,7 @@ namespace SimpleXmlSerializer.Core
             return false;
         }
 
-        public void AddPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
+        public void SetPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
         {
             Preconditions.NotNull(type, "type");
             Preconditions.NotNull(primitiveSerializer, "primitiveSerializer");
