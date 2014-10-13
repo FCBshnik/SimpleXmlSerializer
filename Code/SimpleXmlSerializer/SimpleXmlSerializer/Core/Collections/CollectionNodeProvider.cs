@@ -20,31 +20,31 @@ namespace SimpleXmlSerializer.Core
                 typeof(IDictionary), typeof(IDictionary<,>), typeof(Dictionary<,>)
             };
 
-        public bool TryGetDescription(Type valueType, out CollectionNodeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionNodeDescription collectionDescription)
         {
-            if (valueType.IsGenericType)
+            if (type.IsGenericType)
             {
-                var genericTypeDefinition = valueType.GetGenericTypeDefinition();
+                var genericTypeDefinition = type.GetGenericTypeDefinition();
 
                 // handle collections
                 if (collectionTypes.Contains(genericTypeDefinition.UnderlyingSystemType))
                 {
-                    collectionDescription = GetCollectionDescription(valueType);
+                    collectionDescription = GetCollectionDescription(type);
                     return true;
                 }
 
                 // handle dictionaries
                 if (dictionaryTypes.Contains(genericTypeDefinition.UnderlyingSystemType))
                 {
-                    collectionDescription = GetDictionaryDescription(valueType);
+                    collectionDescription = GetDictionaryDescription(type);
                     return true;
                 }
             }
 
             // handle arrays
-            if (valueType.IsArray)
+            if (type.IsArray)
             {
-                collectionDescription = GetArrayDescription(valueType);
+                collectionDescription = GetArrayDescription(type);
                 return true;
             }
 

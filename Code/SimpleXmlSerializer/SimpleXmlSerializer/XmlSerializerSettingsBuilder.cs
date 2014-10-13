@@ -33,10 +33,10 @@ namespace SimpleXmlSerializer
             }
 
             return new XmlSerializerSettings(
-                nameProvider,
-                primitiveProvider,
+                new CachingNameProvider(nameProvider),
+                new CachingPrimitiveNodeProvider(primitiveProvider),
                 new CachingCollectionNodeProvider(new CollectionNodeProvider()), 
-                new ComplexNodeProvider(propertiesSelector),
+                new CachingComplexNodeProvider(new ComplexNodeProvider(propertiesSelector)),
                 customProvider);
         }
 

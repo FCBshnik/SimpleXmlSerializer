@@ -43,6 +43,7 @@
     <Compile Include="Core\Collections\CollectionNodeDescription.cs" />
     <Compile Include="Core\Collections\CollectionNodeProvider.cs" />
     <Compile Include="Core\Collections\ICollectionNodeProvider.cs" />
+    <Compile Include="Core\Complex\CachingComplexNodeProvider.cs" />
     <Compile Include="Core\Complex\ComplexNodeDescription.cs" />
     <Compile Include="Core\Complex\ComplexNodeProvider.cs" />
     <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Core\Custom\CustomNodeProvider.cs" />
     <Compile Include="Core\Custom\ICustomNodeProvider.cs" />
     <Compile Include="Core\Custom\ICustomSerializer.cs" />
+    <Compile Include="Core\Naming\CachingNameProvider.cs" />
     <Compile Include="Core\Naming\PrimitiveToAttributeNameProvider.cs" />
     <Compile Include="Core\Naming\CompositeNameProvider.cs" />
     <Compile Include="Core\Naming\DataAttributesNameProvider.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\ComplexNode.cs" />
     <Compile Include="Core\Nodes\CustomNode.cs" />
+    <Compile Include="Core\Primitives\CachingPrimitiveNodeProvider.cs" />
     <Compile Include="Core\Primitives\Serializers\DecimalSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DoubleSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\FloatSerializer.cs" />

@@ -5,7 +5,7 @@ namespace SimpleXmlSerializer.Core
 {
     public class CachingCollectionNodeProvider : ICollectionNodeProvider
     {
-        private readonly Dictionary<Type, CollectionNodeDescription> cache = new Dictionary<Type,CollectionNodeDescription>();
+        private readonly Dictionary<Type, CollectionNodeDescription> cache = new Dictionary<Type, CollectionNodeDescription>();
         private readonly ICollectionNodeProvider cached;
 
         public CachingCollectionNodeProvider(ICollectionNodeProvider cached)
@@ -13,18 +13,18 @@ namespace SimpleXmlSerializer.Core
             this.cached = cached;
         }
 
-        public bool TryGetDescription(Type valueType, out CollectionNodeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionNodeDescription collectionDescription)
         {
-            if (cache.ContainsKey(valueType))
+            if (cache.ContainsKey(type))
             {
-                collectionDescription = cache[valueType];
+                collectionDescription = cache[type];
                 return true;
             }
 
-            var result = cached.TryGetDescription(valueType, out collectionDescription);
+            var result = cached.TryGetDescription(type, out collectionDescription);
             if (result)
             {
-                cache[valueType] = collectionDescription;
+                cache[type] = collectionDescription;
             }
 
             return result;

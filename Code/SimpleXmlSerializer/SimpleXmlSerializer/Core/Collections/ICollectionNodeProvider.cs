@@ -4,6 +4,6 @@ namespace SimpleXmlSerializer.Core
 {
     public interface ICollectionNodeProvider
     {
-        bool TryGetDescription(Type valueType, out CollectionNodeDescription collectionDescription);
+        bool TryGetDescription(Type type, out CollectionNodeDescription collectionDescription);
     }
 }
