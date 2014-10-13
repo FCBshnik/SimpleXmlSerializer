@@ -8,7 +8,7 @@ namespace SimpleXmlSerializer.Extensions
 {
     public static class XmlSerializerExtensions
     {
-         public static string Serialize(this XmlSerializer xmlSerializer, object obj)
+         public static string SerializeToString(this XmlSerializer xmlSerializer, object obj)
          {
              Preconditions.NotNull(xmlSerializer, "xmlSerializer");
 
@@ -23,7 +23,7 @@ namespace SimpleXmlSerializer.Extensions
              return stringWriter.ToString();
          }
 
-         public static object Deserialize(this XmlSerializer xmlSerializer, Type type, string xml)
+         public static object DeserializeFromString(this XmlSerializer xmlSerializer, Type type, string xml)
          {
              Preconditions.NotNull(xmlSerializer, "xmlSerializer");
              Preconditions.NotNull(type, "type");
@@ -38,7 +38,7 @@ namespace SimpleXmlSerializer.Extensions
              }
          }
 
-         public static void Serialize(this XmlSerializer xmlSerializer, object obj, Stream outputStream)
+         public static void SerializeToStream(this XmlSerializer xmlSerializer, object obj, Stream outputStream)
          {
              Preconditions.NotNull(xmlSerializer, "xmlSerializer");
              
@@ -50,7 +50,7 @@ namespace SimpleXmlSerializer.Extensions
              }
          }
 
-         public static object Deserialize(this XmlSerializer xmlSerializer, Type type, Stream inputStream)
+         public static object DeserializeFromStream(this XmlSerializer xmlSerializer, Type type, Stream inputStream)
          {
              Preconditions.NotNull(xmlSerializer, "xmlSerializer");
              Preconditions.NotNull(type, "type");

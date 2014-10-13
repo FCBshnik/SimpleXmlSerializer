@@ -50,7 +50,7 @@
     <Compile Include="Core\Custom\CustomNodeDescription.cs" />
     <Compile Include="Core\Custom\CustomNodeProvider.cs" />
     <Compile Include="Core\Custom\ICustomNodeProvider.cs" />
-    <Compile Include="Core\Custom\ICustomNodeSerializer.cs" />
+    <Compile Include="Core\Custom\ICustomSerializer.cs" />
     <Compile Include="Core\Naming\PrimitiveToAttributeNameProvider.cs" />
     <Compile Include="Core\Naming\CompositeNameProvider.cs" />
     <Compile Include="Core\Naming\DataAttributesNameProvider.cs" />

@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.Core
     {
         private readonly Dictionary<Type, CustomNodeDescription> descriptions = new Dictionary<Type, CustomNodeDescription>();
 
-        public void AddSerializer(Type type, ICustomNodeSerializer serializer)
+        public void AddSerializer(Type type, ICustomSerializer serializer)
         {
             descriptions[type] = new CustomNodeDescription(serializer);
         }

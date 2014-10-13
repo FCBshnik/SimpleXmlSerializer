@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class SerializationVisitor : NodeVisitor, INodeVisitor
+    internal class SerializationVisitor : NodeVisitor, INodeVisitor
     {
         private readonly XmlSerializerSettings settings;
         private readonly XmlWriter xmlWriter;
@@ -27,10 +27,9 @@ namespace SimpleXmlSerializer.Core
             node.Name = nodeName;
 
             xmlWriter.WriteStartDocument();
-
             node.Accept(this);
-
             xmlWriter.WriteEndDocument();
+
             xmlWriter.Flush();
         }
 

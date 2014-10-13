@@ -4,22 +4,11 @@ namespace SimpleXmlSerializer
 {
     public class XmlSerializerSettings
     {
-        private static readonly XmlSerializerSettings @default;
-
         private readonly INameProvider nameProvider;
-
         private readonly IPrimitiveNodeProvider primitiveProvider;
-
         private readonly ICollectionNodeProvider collectionProvider;
-
         private readonly IComplexNodeProvider complexProvider;
-
         private readonly ICustomNodeProvider customProvider;
-
-        static XmlSerializerSettings()
-        {
-            @default = new XmlSerializerSettingsBuilder().GetSettings();
-        }
 
         public XmlSerializerSettings(
             INameProvider nameProvider, 
@@ -53,11 +42,6 @@ namespace SimpleXmlSerializer
         public IComplexNodeProvider ComplexProvider
         {
             get { return complexProvider; }
-        }
-
-        public static XmlSerializerSettings Default
-        {
-            get { return @default; }
         }
 
         public ICustomNodeProvider CustomProvider

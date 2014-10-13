@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class DeserializationVisitor : NodeVisitor, INodeVisitor
+    internal class DeserializationVisitor : NodeVisitor, INodeVisitor
     {
         private readonly XmlSerializerSettings settings;
         private readonly XmlReader xmlReader;

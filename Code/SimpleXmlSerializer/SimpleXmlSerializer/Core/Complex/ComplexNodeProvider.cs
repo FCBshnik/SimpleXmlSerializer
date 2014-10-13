@@ -17,7 +17,6 @@ namespace SimpleXmlSerializer.Core
         public ComplexNodeDescription GetDescription(Type type)
         {
             var propertiesInfo = propertiesSelector.SelectProperties(type).ToList();
-
             return new ComplexNodeDescription(propertiesInfo, ps => Create(ps, type));
         }
 

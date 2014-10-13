@@ -9,13 +9,14 @@ namespace SimpleXmlSerializer
     {
         private readonly XmlSerializerSettings settings;
 
-        public XmlSerializer() : this(XmlSerializerSettings.Default)
+        public XmlSerializer() : this(new XmlSerializerSettingsBuilder().GetSettings())
         {
         }
 
         public XmlSerializer(XmlSerializerSettings settings)
         {
             Preconditions.NotNull(settings, "settings");
+
             this.settings = settings;
         }
 

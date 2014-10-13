@@ -2,11 +2,11 @@
 {
     public class CustomNodeDescription
     {
-        public CustomNodeDescription(ICustomNodeSerializer serializer)
+        public CustomNodeDescription(ICustomSerializer serializer)
         {
             Serializer = serializer;
         }
 
-        public ICustomNodeSerializer Serializer { get; private set; }
+        public ICustomSerializer Serializer { get; private set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    public abstract class NodeVisitor
+    internal abstract class NodeVisitor
     {
         private readonly XmlSerializerSettings settings;
 
@@ -14,7 +14,6 @@ namespace SimpleXmlSerializer.Core
         protected virtual INode GetNode(Type valueType)
         {
             INode node;
-
             CustomNodeDescription customNodeDescription;
             PrimitiveNodeDescription primitiveNodeDescription;
             CollectionNodeDescription collectionNodeDescription;

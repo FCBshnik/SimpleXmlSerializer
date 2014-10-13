@@ -74,7 +74,7 @@ namespace SimpleXmlSerializer
             return this;
         }
 
-        public XmlSerializerSettingsBuilder AddCustomSerializer(Type type, ICustomNodeSerializer customSerializer)
+        public XmlSerializerSettingsBuilder AddCustomSerializer(Type type, ICustomSerializer customSerializer)
         {
             customProvider.AddSerializer(type, customSerializer);
 

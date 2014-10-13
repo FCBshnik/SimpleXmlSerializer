@@ -27,12 +27,12 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
 
         public void Serialize(object obj, Stream outputStream)
         {
-            xmlSerializer.Serialize(obj, outputStream);
+            xmlSerializer.SerializeToStream(obj, outputStream);
         }
 
         public object Deserialize(Stream inputStream)
         {
-            return xmlSerializer.Deserialize(serializedType, inputStream);
+            return xmlSerializer.DeserializeFromStream(serializedType, inputStream);
         }
     }
 }

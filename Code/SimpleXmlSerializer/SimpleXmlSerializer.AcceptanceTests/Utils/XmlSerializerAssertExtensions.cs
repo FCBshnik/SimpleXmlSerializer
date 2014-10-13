@@ -10,7 +10,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
         {
             var xml = File.ReadAllText(xmlPath);
 
-            var actual = serializer.Deserialize(expected.GetType(), xml);
+            var actual = serializer.DeserializeFromString(expected.GetType(), xml);
 
             ObjectAssert.AreEqual(expected, actual);
         }
@@ -19,7 +19,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
         {
             var expected = File.ReadAllText(expectedXmlPath);
 
-            var actual = serializer.Serialize(obj);
+            var actual = serializer.SerializeToString(obj);
 
             Assert.AreEqual(expected, actual);
         }

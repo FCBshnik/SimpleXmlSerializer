@@ -25,62 +25,79 @@ namespace SimpleXmlSerializer.Core
             if (valueType.IsGenericType)
             {
                 var genericTypeDefinition = valueType.GetGenericTypeDefinition();
-                
+
+                // handle collections
                 if (collectionTypes.Contains(genericTypeDefinition.UnderlyingSystemType))
                 {
-                    var genericArguments = valueType.GetGenericArguments();
-                    collectionDescription = new CollectionNodeDescription(genericArguments[0],
-                        
-                            items =>
-                                {
-                                    var value = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(genericArguments));
-                                    value.AddRange(items);
-                                    return value;
-                                }
-                        );
+                    collectionDescription = GetCollectionDescription(valueType);
                     return true;
                 }
 
+                // handle dictionaries
                 if (dictionaryTypes.Contains(genericTypeDefinition.UnderlyingSystemType))
                 {
-                    var genericArguments = valueType.GetGenericArguments();
-                    var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
-                    collectionDescription = new CollectionNodeDescription(itemType,
-                            items =>
-                                {
-                                    var type = typeof(Dictionary<,>).MakeGenericType(genericArguments);
-                                    var collectionType = typeof(ICollection<>).MakeGenericType(itemType);
-                                    var value = Activator.CreateInstance(type);
-                                    var add = collectionType.GetMethod("Add", new[] { itemType });
-                                    foreach (var item in items)
-                                    {
-                                        add.Invoke(value, new []{ item });
-                                    }
-
-                                    return value;
-                                }
-                        );
+                    collectionDescription = GetDictionaryDescription(valueType);
                     return true;
                 }
             }
 
+            // handle arrays
             if (valueType.IsArray)
             {
-                var elementType = valueType.GetElementType();
-                collectionDescription = new CollectionNodeDescription(elementType,
-                        items =>
-                            {
-                                var value = Array.CreateInstance(elementType, items.Count);
-                                items.CopyTo(value, 0);
-                                return value;
-                            }
-                        );
-
+                collectionDescription = GetArrayDescription(valueType);
                 return true;
             }
 
             collectionDescription = null;
             return false;
+        }
+
+        private static CollectionNodeDescription GetCollectionDescription(Type collectionType)
+        {
+            var itemType = collectionType.GetGenericArguments()[0];
+            return new CollectionNodeDescription(itemType, items => CreateList(items, itemType));
+        }
+
+        private static CollectionNodeDescription GetArrayDescription(Type collectionType)
+        {
+            var itemType = collectionType.GetElementType();
+            return new CollectionNodeDescription(itemType, items => CreateArray(items, itemType));
+        }
+
+        private static CollectionNodeDescription GetDictionaryDescription(Type collectionType)
+        {
+            var genericArguments = collectionType.GetGenericArguments();
+            var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
+            return new CollectionNodeDescription(itemType, items => CreateDictionary(items, genericArguments));
+        }
+
+        private static object CreateArray(ICollection items, Type itemType)
+        {
+            var value = Array.CreateInstance(itemType, items.Count);
+            items.CopyTo(value, 0);
+            return value;
+        }
+
+        private static object CreateList(ICollection items, Type itemType)
+        {
+            var value = (IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(new []{ itemType }));
+            value.AddRange(items);
+            return value;
+        }
+
+        private static object CreateDictionary(ICollection items, Type[] genericArguments)
+        {
+            var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
+            var type = typeof(Dictionary<,>).MakeGenericType(genericArguments);
+            var collectionType = typeof(ICollection<>).MakeGenericType(itemType);
+            var value = Activator.CreateInstance(type);
+            var add = collectionType.GetMethod("Add", new[] { itemType });
+            foreach (var item in items)
+            {
+                add.Invoke(value, new[] { item });
+            }
+
+            return value;
         }
     }
 }

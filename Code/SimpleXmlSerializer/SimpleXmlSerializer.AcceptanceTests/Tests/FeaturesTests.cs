@@ -71,7 +71,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             serializer.DeserializeAndAssertObject(expected, path);
         }
 
-        public class CoachCustomSerializer : ICustomNodeSerializer
+        public class CoachCustomSerializer : ICustomSerializer
         {
             public void Serialize(object value, XmlWriter xmlWriter)
             {
