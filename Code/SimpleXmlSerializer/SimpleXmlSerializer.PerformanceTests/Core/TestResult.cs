@@ -8,9 +8,6 @@ namespace SimpleXmlSerializer.PerformanceTests.Core
 
         public TimeSpan TotalTime { get; set; }
 
-        public override string ToString()
-        {
-            return string.Format("Total: {0}", TotalTime);
-        }
+        public double Slowness { get; set; }
     }
 }

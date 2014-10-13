@@ -39,6 +39,13 @@ namespace SimpleXmlSerializer.PerformanceTests.Core
             result.SerializersResults = result.SerializersResults
                 .OrderBy(r => r.Value.TotalTime)
                 .ToDictionary();
+
+            var minTotalTime = result.SerializersResults.First().Value.TotalTime;
+            foreach (var testResult in result.SerializersResults.Values)
+            {
+                testResult.Slowness = testResult.TotalTime.TotalMilliseconds / minTotalTime.TotalMilliseconds;
+            }
+
             return result;
         }
     }

@@ -39,6 +39,7 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Collections\CachingCollectionNodeProvider.cs" />
     <Compile Include="Core\Collections\CollectionNodeDescription.cs" />
     <Compile Include="Core\Collections\CollectionNodeProvider.cs" />
     <Compile Include="Core\Collections\ICollectionNodeProvider.cs" />

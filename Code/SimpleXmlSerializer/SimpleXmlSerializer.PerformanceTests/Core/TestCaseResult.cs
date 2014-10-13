@@ -22,7 +22,7 @@ namespace SimpleXmlSerializer.PerformanceTests.Core
             foreach (var result in SerializersResults)
             {
                 stringBuilder.AppendLine();
-                stringBuilder.AppendFormat("{0}: {1}", result.Key.Name, result.Value);
+                stringBuilder.AppendFormat("{0,-13} {1,-11} {2:0.###}", result.Key.Name, result.Value.TotalTime, result.Value.Slowness);
             }
 
             return stringBuilder.ToString();
