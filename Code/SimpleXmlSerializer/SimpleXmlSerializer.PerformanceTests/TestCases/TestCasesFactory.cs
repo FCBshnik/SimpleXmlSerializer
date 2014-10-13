@@ -9,10 +9,10 @@ namespace SimpleXmlSerializer.PerformanceTests.TestCases
     {
         public static IEnumerable<TestCase> CreateTestCases()
         {
-            yield return PlainObject(10000);
-            yield return Collections(100, 10000);
-            yield return Collections(1000, 100);
-            yield return Nested(10, 10000);
+            yield return PlainObject(1000);
+            yield return Collections(100, 1000);
+            yield return Collections(1000, 10);
+            yield return Nested(10, 1000);
         }
 
         private static TestCase PlainObject(int iterationsCount)

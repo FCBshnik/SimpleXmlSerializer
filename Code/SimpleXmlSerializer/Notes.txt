@@ -4,17 +4,25 @@ Analyze:
 - instance of type is tree too but with values
 
 Future features:
-- Think about inheritance (as called known types)
-- Validation
+- Structures!
+- Add support for DataCollectionAttribute
+- DateTimeOffset
 - Add cycling protection
+- Add strategies to handle unknown types
+- Think about inheritance (so called 'known types')
 - Multi dimensional arrays (quad and jagged)
 - Typeless serialization (store full type name in xml) (?)
 - Support of heterogeneous collections (store full type name in xml) (?)
 
 Features:
-- Built-in serialization IList, ICollection, IEnumerable, IDictionary and theirs generic analogs
-- Support Xml* attributes to provide element names
-- Support Data* attributes to provide element names
+- Serialization of primitive types: bool, int, long, float, double, decimal, string, TimeSpan, DateTime
+- Serialization of collection types: Array, IList, ICollection, IEnumerable, IDictionary and theirs generic analogs
+- Serialization of complex types
+- Serialization of enum types
+- Serialization of nullable types
+- Support of Xml* attributes to provide element names (XmlRoot, XmlElement, XmlArray, XmlArrayItem, XmlAttribute)
+- Support of Data* attributes to provide element names (DataContract, DataMember)
+- Naming conventions
 - Extensibility point for custom serialization of values of specified type
 - Extensibility point for custom serialization of values of specified type as primitives
 

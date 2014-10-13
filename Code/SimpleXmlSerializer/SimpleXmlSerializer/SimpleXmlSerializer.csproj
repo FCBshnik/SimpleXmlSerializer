@@ -59,9 +59,9 @@
     <Compile Include="Core\Complex\IPropertiesSelector.cs" />
     <Compile Include="Core\Naming\NodeName.cs" />
     <Compile Include="Core\Naming\XmlAttributesNameProvider.cs" />
-    <Compile Include="Core\Naming\CamelCaseNamingConvention.cs" />
-    <Compile Include="Core\Naming\INamingConvention.cs" />
-    <Compile Include="Core\Naming\NoNamingConvention.cs" />
+    <Compile Include="Core\Naming\Conventions\CamelCaseNamingConvention.cs" />
+    <Compile Include="Core\Naming\Conventions\INamingConvention.cs" />
+    <Compile Include="Core\Naming\Conventions\NoNamingConvention.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\ComplexNode.cs" />
     <Compile Include="Core\Nodes\CustomNode.cs" />

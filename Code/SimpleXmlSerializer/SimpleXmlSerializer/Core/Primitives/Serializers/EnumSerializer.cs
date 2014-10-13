@@ -14,7 +14,6 @@ namespace SimpleXmlSerializer.Core.Serializers
         public string Serialize(object value)
         {
             var obj = (Enum) value;
-
             return obj.ToString();
         }
 

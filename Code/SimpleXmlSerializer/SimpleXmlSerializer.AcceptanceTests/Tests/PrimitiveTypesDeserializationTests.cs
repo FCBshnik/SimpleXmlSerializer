@@ -58,7 +58,6 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         private void DeserializeAndAssert(object expected)
         {
             var path = Path.Combine(AssetsDirectory, expected.GetType().Name.ToLowerInvariant() + ".xml");
-
             serializer.DeserializeAndAssertObject(expected, path);
         }
     }
