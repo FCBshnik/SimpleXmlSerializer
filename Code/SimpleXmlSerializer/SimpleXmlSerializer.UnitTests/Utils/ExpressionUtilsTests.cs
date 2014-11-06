@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.UnitTests.Utils
     public class ExpressionUtilsTests
     {
         [TestMethod]
-        public void GetFactory_TypeWithParameterlessConstructor_RetunrsCorrectFunc()
+        public void GetFactory_TypeWithParameterlessConstructor_ReturnsCorrectFunc()
         {
             var factory = ExpressionUtils.GetFactory(typeof(TestEntity));
             var instance = factory();
@@ -16,7 +16,7 @@ namespace SimpleXmlSerializer.UnitTests.Utils
         }
 
         [TestMethod]
-        public void GetPropertyGetter_PropertyOfReferenceType_RetunrsCorrectFunc()
+        public void GetPropertyGetter_PropertyOfReferenceType_ReturnsCorrectFunc()
         {
             var propertyInfo = typeof(TestEntity).GetProperty("Name");
 
@@ -27,7 +27,7 @@ namespace SimpleXmlSerializer.UnitTests.Utils
         }
 
         [TestMethod]
-        public void GetPropertyGetter_PropertyOfValueType_RetunrsCorrectFunc()
+        public void GetPropertyGetter_PropertyOfValueType_ReturnsCorrectFunc()
         {
             var propertyInfo = typeof(TestEntity).GetProperty("Age");
 

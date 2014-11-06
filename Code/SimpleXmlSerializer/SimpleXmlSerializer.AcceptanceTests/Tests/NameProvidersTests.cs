@@ -11,77 +11,40 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         private const string AssetsDirectory = "Assets\\NameProviders";
 
         [TestMethod]
-        public void Serialize_DefaultNameProvider()
+        public void DefaultNameProvider()
         {
             var serializer = new XmlSerializer();
 
-            SerializeAndAssert(serializer, Clubs.Barca, "default");
+            ActAndAssert(serializer, Clubs.Barca, "default");
         }
 
         [TestMethod]
-        public void Deserialize_DefaultNameProvider()
-        {
-            var serializer = new XmlSerializer();
-
-            DeserializeAndAssert(serializer, Clubs.Barca, "default");
-        }
-
-        [TestMethod]
-        public void Serialize_XmlAttributesNameProvider()
-        {
-            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
-
-            var serializer = new XmlSerializer(settings);
-
-            SerializeAndAssert(serializer, Clubs.Barca, "xmlAttributes");
-        }
-
-        [TestMethod]
-        public void Deserialize_XmlAttributesNameProvider()
+        public void XmlAttributesNameProvider()
         {
             var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
             var serializer = new XmlSerializer(settings);
 
-            var expected = Clubs.Barca;
-            expected.President = null;
-
-            DeserializeAndAssert(serializer, expected, "xmlAttributes");
+            var club = Clubs.Barca;
+            club.President = null;
+            ActAndAssert(serializer, club, "xmlAttributes");
         }
 
         [TestMethod]
-        public void Serialize_DataAttributesNameProvider()
-        {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
-
-            var serializer = new XmlSerializer(settings);
-
-            SerializeAndAssert(serializer, Clubs.Barca, "dataAttributes");
-        }
-
-        [TestMethod]
-        public void Deserialize_DataAttributesNameProvider()
+        public void DataAttributesNameProvider()
         {
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             var serializer = new XmlSerializer(settings);
 
-            var expected = Clubs.Barca;
-            expected.President = null;
-
-            DeserializeAndAssert(serializer, expected, "dataAttributes");
+            var club = Clubs.Barca;
+            club.President = null;
+            ActAndAssert(serializer, club, "dataAttributes");
         }
 
-        private void SerializeAndAssert(XmlSerializer serializer, object obj, string fileName)
+        private static void ActAndAssert(XmlSerializer serializer, object obj, string fileName)
         {
             var path = Path.Combine(AssetsDirectory, fileName + ".xml");
-
-            serializer.SerializeAndAssertObject(obj, path);
-        }
-
-        private void DeserializeAndAssert(XmlSerializer serializer, object expected, string fileName)
-        {
-            var path = Path.Combine(AssetsDirectory, fileName + ".xml");
-
-            serializer.DeserializeAndAssertObject(expected, path);
+            serializer.SerializeAndAssert(obj, path);
+            serializer.DeserializeAndAssert(obj, path);
         }
     }
 }

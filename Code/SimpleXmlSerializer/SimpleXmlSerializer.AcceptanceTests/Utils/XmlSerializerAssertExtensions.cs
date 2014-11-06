@@ -6,7 +6,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
 {
     public static class XmlSerializerAssertExtensions
     {
-        public static void DeserializeAndAssertObject(this XmlSerializer serializer, object expected, string xmlPath)
+        public static void DeserializeAndAssert(this XmlSerializer serializer, object expected, string xmlPath)
         {
             var xml = File.ReadAllText(xmlPath);
 
@@ -15,7 +15,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
             ObjectAssert.AreEqual(expected, actual);
         }
 
-        public static void SerializeAndAssertObject(this XmlSerializer serializer, object obj, string expectedXmlPath)
+        public static void SerializeAndAssert(this XmlSerializer serializer, object obj, string expectedXmlPath)
         {
             var expected = File.ReadAllText(expectedXmlPath);
 

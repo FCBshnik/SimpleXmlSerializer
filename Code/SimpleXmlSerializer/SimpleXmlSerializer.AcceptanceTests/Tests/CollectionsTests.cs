@@ -7,58 +7,54 @@ using SimpleXmlSerializer.AcceptanceTests.Utils;
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class CollectionsDeserializationTests
+    public class CollectionsTests
     {
         private const string AssetsDirectory = "Assets\\Collections";
 
         private static readonly XmlSerializer serializer = new XmlSerializer();
 
         [TestMethod]
-        public void Deserialize_ListOfPrimitives()
+        public void ListOfPrimitives()
         {
             var collection = new List<string> { "One", "Two" };
 
-            DeserializeAndAssert(collection, "collectionOfPrimitives");
+            ActAndAssert(collection, "collectionOfPrimitives");
         }
         
         [TestMethod]
-        public void Deserialize_ArrayOfPrimitives()
+        public void ArrayOfPrimitives()
         {
             var collection = new[] { "One", "Two" };
 
-            DeserializeAndAssert(collection, "collectionOfPrimitives");
+            ActAndAssert(collection, "collectionOfPrimitives");
         }
         
         [TestMethod]
-        public void Deserialize_DictionaryOfPrimitives()
+        public void DictionaryOfPrimitives()
         {
-            var collection = new Dictionary<int, string> { {1, "One"}, {2,"Two"} };
+            var collection = new Dictionary<int, string> { {1, "One"}, {2, "Two"} };
 
-            DeserializeAndAssert(collection, "dictionaryOfPrimitives");
+            ActAndAssert(collection, "dictionaryOfPrimitives");
         }
 
         [TestMethod]
-        public void Deserialize_ListOfComplexes()
+        public void ListOfComplexes()
         {
-            var players = new List<Player>
-                {
-                    Players.Xavi,
-                    Players.Iniesta,
-                };
+            var players = new List<Player> { Players.Xavi, Players.Iniesta, };
 
-            DeserializeAndAssert(players, "collectionOfComplexes");
+            ActAndAssert(players, "collectionOfComplexes");
         }
 
         [TestMethod]
-        public void Deserialize_ArrayOfComplexes()
+        public void ArrayOfComplexes()
         {
-            var collection = new[] { Players.Xavi, Players.Iniesta };
+            var players = new[] { Players.Xavi, Players.Iniesta };
 
-            DeserializeAndAssert(collection, "collectionOfComplexes");
+            ActAndAssert(players, "collectionOfComplexes");
         }
 
         [TestMethod]
-        public void Deserialize_DictionaryOfComplexes()
+        public void DictionaryOfComplexes()
         {
             var players = new Dictionary<string, Player>
                 {
@@ -66,12 +62,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                     { "Iniesta", Players.Iniesta }
                 };
 
-            DeserializeAndAssert(players, "dictionaryOfComplexes");
+            ActAndAssert(players, "dictionaryOfComplexes");
         }
 
-
         [TestMethod]
-        public void Deserialize_ListOfCollections()
+        public void ListOfCollections()
         {
             var collection = new List<IEnumerable<string>>
                 {
@@ -79,11 +74,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                     new List<string> { "Three", "Four" }
                 };
 
-            DeserializeAndAssert(collection, "collectionOfCollections");
+            ActAndAssert(collection, "collectionOfCollections");
         }
 
         [TestMethod]
-        public void Deserialize_ArrayOfCollections()
+        public void ArrayOfCollections()
         {
             var collection = new IEnumerable<string>[]
                 {
@@ -91,11 +86,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                     new List<string> { "Three", "Four" }
                 };
 
-            DeserializeAndAssert(collection, "collectionOfCollections");
+            ActAndAssert(collection, "collectionOfCollections");
         }
 
         [TestMethod]
-        public void Deserialize_DictionaryOfCollections()
+        public void DictionaryOfCollections()
         {
             var collection = new Dictionary<int, IEnumerable<string>>
                 {
@@ -103,13 +98,13 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                     { 2, new List<string> { "Three", "Four" } }
                 };
 
-            DeserializeAndAssert(collection, "dictionaryOfCollections");
+            ActAndAssert(collection, "dictionaryOfCollections");
         }
 
         [TestMethod]
-        public void Deserialize_CollectionOfDictionaries()
+        public void CollectionOfDictionaries()
         {
-            var collection = new[]
+            var collection = new []
             {
                 new Dictionary<int, string>
                     {
@@ -123,11 +118,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                     }
             };
 
-            DeserializeAndAssert(collection, "collectionOfDictionaries");
+            ActAndAssert(collection, "collectionOfDictionaries");
         }
 
         [TestMethod]
-        public void Deserialize_DictionaryOfDictionaries()
+        public void DictionaryOfDictionaries()
         {
             var dictionary = new Dictionary<string, Dictionary<int, string>>
                 {
@@ -135,14 +130,14 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                     { "second", new Dictionary<int, string> { { 3, "Three" },  { 4, "Four" } } },
                 };
 
-            DeserializeAndAssert(dictionary, "dictionaryOfDictionaries");
+            ActAndAssert(dictionary, "dictionaryOfDictionaries");
         }
 
-        private void DeserializeAndAssert(object expected, string fileName)
+        private static void ActAndAssert(object obj, string fileName)
         {
             var path = Path.Combine(AssetsDirectory, fileName.ToLowerInvariant() + ".xml");
-
-            serializer.DeserializeAndAssertObject(expected, path);
+            serializer.SerializeAndAssert(obj, path);
+            serializer.DeserializeAndAssert(obj, path);
         }
     }
 }
