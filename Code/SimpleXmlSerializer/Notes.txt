@@ -3,9 +3,11 @@ Analyze:
 - type is tree where each node is one of meta types
 - instance of type is tree too but with values
 
-Future features:
+Features todo:
 - Structures!
 - Add support for DataCollectionAttribute
+- Handling null values
+- Handling of unknown elements while deserialize (add settings).
 - DateTimeOffset
 - Add cycling protection
 - Add strategies to handle unknown types
@@ -28,6 +30,5 @@ Features:
 
 Notes:
 - There is may be no invariance when serialize/deserialize collection with null items.
-- Add settings to control handling of unknown elements.
 - Add extension to serialize into file.
 - Add extension to serialize into Stream.
