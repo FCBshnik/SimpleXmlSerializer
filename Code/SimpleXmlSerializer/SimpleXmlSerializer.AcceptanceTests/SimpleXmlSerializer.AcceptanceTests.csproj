@@ -41,9 +41,9 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Tests\PrimitiveTypesDeserializationTests.cs" />
-    <Compile Include="Tests\CollectionTypesDeserializationTests.cs" />
-    <Compile Include="Tests\ComplexTypesDeserializationTests.cs" />
+    <Compile Include="Tests\PrimitivesDeserializationTests.cs" />
+    <Compile Include="Tests\CollectionsDeserializationTests.cs" />
+    <Compile Include="Tests\ComplexesDeserializationTests.cs" />
     <Compile Include="Dto\Football\Club.cs" />
     <Compile Include="Dto\Football\Clubs.cs" />
     <Compile Include="Dto\Football\Coach.cs" />
@@ -56,9 +56,9 @@
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Utils\ObjectAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\CollectionTypesSerializationTests.cs" />
-    <Compile Include="Tests\ComplexTypesSerializationTests.cs" />
-    <Compile Include="Tests\PrimitiveTypesSerializationTests.cs" />
+    <Compile Include="Tests\CollectionsSerializationTests.cs" />
+    <Compile Include="Tests\ComplexesSerializationTests.cs" />
+    <Compile Include="Tests\PrimitivesSerializationTests.cs" />
     <Compile Include="Utils\XmlSerializerAssertExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

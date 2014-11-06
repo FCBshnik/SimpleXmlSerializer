@@ -7,7 +7,7 @@ using SimpleXmlSerializer.AcceptanceTests.Utils;
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class PrimitiveTypesDeserializationTests
+    public class PrimitivesDeserializationTests
     {
         private const string AssetsDirectory = "Assets\\Primitives";
 

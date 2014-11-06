@@ -6,7 +6,7 @@ using SimpleXmlSerializer.AcceptanceTests.Utils;
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class ComplexTypesDeserializationTests
+    public class ComplexesDeserializationTests
     {
         private const string AssetsDirectory = "Assets\\Complex";
 
