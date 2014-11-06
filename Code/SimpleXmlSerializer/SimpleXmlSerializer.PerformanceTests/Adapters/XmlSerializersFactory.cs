@@ -34,5 +34,10 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
                 }
             }
         }
+
+        public static IEnumerable<IXmlSerializerAdapter> CreateSimpleSerializer(Type type)
+        {
+            yield return new SimpleXmlSerializerAdapter(type);
+        }
     }
 }

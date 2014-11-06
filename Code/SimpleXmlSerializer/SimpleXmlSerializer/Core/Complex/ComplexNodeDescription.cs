@@ -15,5 +15,7 @@ namespace SimpleXmlSerializer.Core
         public IEnumerable<PropertyInfo> Properties { get; private set; }
 
         public Func<IDictionary<PropertyInfo, object>, object> Factory { get; private set; }
+
+        public Func<object, PropertyInfo, object> Getter { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace SimpleXmlSerializer.PerformanceTests.TestCases
         public static IEnumerable<TestCase> CreateTestCases()
         {
             yield return PlainObject(1000);
-            yield return Collections(100, 1000);
+            yield return Collections(10, 1000);
             yield return Collections(1000, 10);
             yield return Nested(10, 1000);
         }
@@ -22,7 +22,7 @@ namespace SimpleXmlSerializer.PerformanceTests.TestCases
                 {
                     Name = "Plain object with primitive properties",
                     ObjectToSerialize = objectToSerialize,
-                    Serializers = XmlSerializersFactory.CreateSerializers(objectToSerialize.GetType()).ToList(),
+                    Serializers = CreateSerializers(objectToSerialize),
                     IterationsCount = iterationsCount
                 };
         }
@@ -35,7 +35,7 @@ namespace SimpleXmlSerializer.PerformanceTests.TestCases
             {
                 Name = string.Format("Object with collections with {0} elements", elementsCount),
                 ObjectToSerialize = objectToSerialize,
-                Serializers = XmlSerializersFactory.CreateSerializers(objectToSerialize.GetType()).ToList(),
+                Serializers = CreateSerializers(objectToSerialize),
                 IterationsCount = iterationsCount
             };
         }
@@ -48,9 +48,14 @@ namespace SimpleXmlSerializer.PerformanceTests.TestCases
             {
                 Name = string.Format("Nested object with nesting level {0}", nestingLevel),
                 ObjectToSerialize = objectToSerialize,
-                Serializers = XmlSerializersFactory.CreateSerializers(objectToSerialize.GetType()).ToList(),
+                Serializers = CreateSerializers(objectToSerialize),
                 IterationsCount = iterationsCount
             };
+        }
+
+        private static List<IXmlSerializerAdapter> CreateSerializers(object objectToSerialize)
+        {
+            return XmlSerializersFactory.CreateSerializers(objectToSerialize.GetType()).ToList();
         }
     }
 }

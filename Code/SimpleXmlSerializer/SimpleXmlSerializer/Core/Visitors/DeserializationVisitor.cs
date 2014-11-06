@@ -14,7 +14,8 @@ namespace SimpleXmlSerializer.Core
         private readonly XmlSerializerSettings settings;
         private readonly XmlReader xmlReader;
 
-        public DeserializationVisitor(XmlReader xmlReader, XmlSerializerSettings settings) : base(settings)
+        public DeserializationVisitor(XmlReader xmlReader, XmlSerializerSettings settings, IDictionary<Type, INode> nodesCache)
+            : base(settings, nodesCache)
         {
             this.xmlReader = xmlReader;
             this.settings = settings;

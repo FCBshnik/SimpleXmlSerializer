@@ -20,5 +20,10 @@ namespace SimpleXmlSerializer.Core
         {
             visitor.Visit(this);
         }
+
+        public object Clone()
+        {
+            return new PrimitiveNode(Description);
+        }
     }
 }

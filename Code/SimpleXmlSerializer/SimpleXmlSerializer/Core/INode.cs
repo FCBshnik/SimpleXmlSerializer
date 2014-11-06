@@ -1,6 +1,8 @@
-﻿namespace SimpleXmlSerializer.Core
+﻿using System;
+
+namespace SimpleXmlSerializer.Core
 {
-    public interface INode
+    public interface INode : ICloneable
     {
         object Value { get; set; }
 

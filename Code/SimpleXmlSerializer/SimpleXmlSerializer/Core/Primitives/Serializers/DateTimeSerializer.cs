@@ -7,7 +7,6 @@ namespace SimpleXmlSerializer.Core.Serializers
         public string Serialize(object obj)
         {
             var value = (DateTime)obj;
-
             return value.ToUniversalTime().ToString("o");
         }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml;
 using SimpleXmlSerializer.Extensions;
@@ -8,13 +10,12 @@ namespace SimpleXmlSerializer.Core
 {
     internal class SerializationVisitor : NodeVisitor, INodeVisitor
     {
-        private readonly XmlSerializerSettings settings;
         private readonly XmlWriter xmlWriter;
 
-        public SerializationVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings) : base(settings)
+        public SerializationVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings, IDictionary<Type, INode> nodesCache)
+            : base(settings, nodesCache)
         {
             this.xmlWriter = xmlWriter;
-            this.settings = settings;
         }
 
         public void Visit(object value)
@@ -22,7 +23,7 @@ namespace SimpleXmlSerializer.Core
             var valueType = value.GetType();
 
             var node = GetNode(valueType);
-            var nodeName = settings.NameProvider.GetNodeName(valueType);
+            var nodeName = GetNodeName(valueType);
             node.Value = value;
             node.Name = nodeName;
 
@@ -57,8 +58,9 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var itemNodeName = settings.NameProvider.GetNodeName(node.Description.ItemType);
+            var itemNodeName = GetNodeName(node.Description.ItemType);
 
+            // todo: deal with nulls
             foreach (var item in ((IEnumerable)node.Value).SkipNulls())
             {
                 // note: passing second parameter to NodeName ctor is not clear
@@ -78,7 +80,7 @@ namespace SimpleXmlSerializer.Core
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
             var properties = node.Description.Properties
-                .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
+                .ToDictionary(GetNodeName, pi => pi);
 
             // some properties may be presented as attributes and as element
             // here we give precedence to attributes
@@ -90,17 +92,17 @@ namespace SimpleXmlSerializer.Core
             foreach (var pair in properties)
             {
                 var propertyInfo = pair.Value;
-                var propertyValue = propertyInfo.GetValue(node.Value, null);
+                var propertyValue = node.Description.Getter(node.Value, propertyInfo);
                 if (propertyValue == null)
                 {
                     continue;
                 }
 
-                var propertyNodeName = settings.NameProvider.GetNodeName(propertyInfo);
+                var propertyNodeName = GetNodeName(propertyInfo);
                 var propertyNode = GetNode(propertyInfo.PropertyType);
                 propertyNode.Value = propertyValue;
                 propertyNode.Name = propertyNodeName;
-                
+
                 propertyNode.Accept(this);
             }
 

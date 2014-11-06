@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using SimpleXmlSerializer.Core;
 using SimpleXmlSerializer.Utils;
@@ -8,6 +9,7 @@ namespace SimpleXmlSerializer
     public class XmlSerializer
     {
         private readonly XmlSerializerSettings settings;
+        private readonly IDictionary<Type, INode> nodesCache = new Dictionary<Type, INode>();
 
         public XmlSerializer() : this(new XmlSerializerSettingsBuilder().GetSettings())
         {
@@ -25,7 +27,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(obj, "obj");
             Preconditions.NotNull(xmlWriter, "xmlWriter");
 
-            var visitor = new SerializationVisitor(xmlWriter, settings);
+            var visitor = new SerializationVisitor(xmlWriter, settings, nodesCache);
             visitor.Visit(obj);
         }
 
@@ -34,7 +36,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(type, "type");
             Preconditions.NotNull(xmlReader, "xmlReader");
 
-            var visitor = new DeserializationVisitor(xmlReader, settings);
+            var visitor = new DeserializationVisitor(xmlReader, settings, nodesCache);
             return visitor.Visit(type);
         }
     }

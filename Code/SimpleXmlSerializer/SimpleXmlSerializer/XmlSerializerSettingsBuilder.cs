@@ -34,9 +34,9 @@ namespace SimpleXmlSerializer
 
             return new XmlSerializerSettings(
                 new CachingNameProvider(nameProvider),
-                new CachingPrimitiveNodeProvider(primitiveProvider),
-                new CachingCollectionNodeProvider(new CollectionNodeProvider()), 
-                new CachingComplexNodeProvider(new ComplexNodeProvider(propertiesSelector)),
+                primitiveProvider,
+                new CollectionNodeProvider(), 
+                new ComplexNodeProvider(propertiesSelector),
                 customProvider);
         }
 
