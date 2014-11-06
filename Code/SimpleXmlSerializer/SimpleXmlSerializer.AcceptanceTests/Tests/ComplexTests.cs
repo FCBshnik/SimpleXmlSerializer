@@ -1,17 +1,11 @@
-﻿using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
-using SimpleXmlSerializer.AcceptanceTests.Utils;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class ComplexTests
+    public class ComplexTests : TestsBase
     {
-        private const string AssetsDirectory = "Assets\\Complex";
-
-        private static readonly XmlSerializer serializer = new XmlSerializer();
-
         [TestMethod]
         public void ComplexWithPrimitives()
         {
@@ -34,13 +28,6 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         public void ComplexWithComplexes()
         {
             ActAndAssert(Clubs.Barca, "complexWithComplexes");
-        }
-
-        private static void ActAndAssert(object obj, string fileName)
-        {
-            var path = Path.Combine(AssetsDirectory, fileName + ".xml");
-            serializer.SerializeAndAssert(obj, path);
-            serializer.DeserializeAndAssert(obj, path);
         }
     }
 }

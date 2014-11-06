@@ -1,18 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Utils;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class PrimitivesTests
+    public class PrimitivesTests : TestsBase
     {
-        private const string AssetsDirectory = "Assets\\Primitives";
-
-        private static readonly XmlSerializer serializer = new XmlSerializer();
-
         [TestMethod]
         public void String()
         {
@@ -53,13 +47,6 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         public void Enum()
         {
             ActAndAssert(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty);
-        }
-
-        private static void ActAndAssert(object obj)
-        {
-            var path = Path.Combine(AssetsDirectory, obj.GetType().Name.ToLowerInvariant() + ".xml");
-            serializer.SerializeAndAssert(obj, path);
-            serializer.DeserializeAndAssert(obj, path);
         }
     }
 }

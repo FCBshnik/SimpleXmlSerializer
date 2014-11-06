@@ -1,18 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
-using SimpleXmlSerializer.AcceptanceTests.Utils;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class CollectionsTests
+    public class CollectionsTests : TestsBase
     {
-        private const string AssetsDirectory = "Assets\\Collections";
-
-        private static readonly XmlSerializer serializer = new XmlSerializer();
-
         [TestMethod]
         public void ListOfPrimitives()
         {
@@ -131,13 +125,6 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                 };
 
             ActAndAssert(dictionary, "dictionaryOfDictionaries");
-        }
-
-        private static void ActAndAssert(object obj, string fileName)
-        {
-            var path = Path.Combine(AssetsDirectory, fileName.ToLowerInvariant() + ".xml");
-            serializer.SerializeAndAssert(obj, path);
-            serializer.DeserializeAndAssert(obj, path);
         }
     }
 }
