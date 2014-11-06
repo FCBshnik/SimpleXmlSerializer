@@ -2,7 +2,7 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    public class CustomNode : INode
+    internal class CustomNode : INode
     {
         public CustomNode(CustomNodeDescription description)
         {

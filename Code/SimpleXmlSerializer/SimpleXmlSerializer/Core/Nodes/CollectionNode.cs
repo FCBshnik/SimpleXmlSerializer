@@ -2,7 +2,7 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    public class CollectionNode : INode
+    internal class CollectionNode : INode
     {
         public CollectionNode(CollectionNodeDescription description)
         {

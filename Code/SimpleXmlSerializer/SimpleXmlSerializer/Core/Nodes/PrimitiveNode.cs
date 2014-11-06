@@ -2,7 +2,7 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    public class PrimitiveNode : INode
+    internal class PrimitiveNode : INode
     {
         public PrimitiveNode(PrimitiveNodeDescription description)
         {
