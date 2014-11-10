@@ -41,14 +41,9 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Dto\Football\Club.cs" />
-    <Compile Include="Dto\Football\Clubs.cs" />
-    <Compile Include="Dto\Football\Coach.cs" />
-    <Compile Include="Dto\Football\Coaches.cs" />
-    <Compile Include="Dto\Football\Player.cs" />
-    <Compile Include="Dto\Football\Players.cs" />
-    <Compile Include="Dto\Football\Team.cs" />
-    <Compile Include="Dto\Football\Teams.cs" />
+    <Compile Include="Dto\ComplexWithCollections.cs" />
+    <Compile Include="Dto\ComplexWithComplexes.cs" />
+    <Compile Include="Dto\ComplexWithPrimitives.cs" />
     <Compile Include="Tests\FeaturesTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Tests\TestsBase.cs" />
@@ -95,9 +90,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Complex\complexWithComplexes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Complex\complexWithNullables.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Complex\complexWithPrimitives.xml">

@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
@@ -9,25 +8,19 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void ComplexWithPrimitives()
         {
-            ActAndAssert(Players.Xavi, "complexWithPrimitives");
-        }
-
-        [TestMethod]
-        public void ComplexWithNullables()
-        {
-            ActAndAssert(Coaches.Unknown, "complexWithNullables");
+            ActAndAssert(Dto.ComplexWithPrimitives.One, "complexWithPrimitives");
         }
 
         [TestMethod]
         public void ComplexWithCollections()
         {
-            ActAndAssert(Teams.Barca, "complexWithCollections");
+            ActAndAssert(Dto.ComplexWithCollections.Numbers, "complexWithCollections");
         }
 
         [TestMethod]
         public void ComplexWithComplexes()
         {
-            ActAndAssert(Clubs.Barca, "complexWithComplexes");
+            ActAndAssert(Dto.ComplexWithComplexes.Numbers, "complexWithComplexes");
         }
     }
 }

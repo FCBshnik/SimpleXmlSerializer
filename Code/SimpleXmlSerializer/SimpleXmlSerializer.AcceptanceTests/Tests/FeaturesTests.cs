@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
+using SimpleXmlSerializer.AcceptanceTests.Dto;
 using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
@@ -15,27 +15,27 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().MapPrimitivesToAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(Clubs.Barca, "primitivesToAttributes");
+            ActAndAssert(ComplexWithComplexes.Numbers, "primitivesToAttributes");
         }
 
         [TestMethod]
         public void CustomSerializer()
         {
             var settings = new XmlSerializerSettingsBuilder()
-                .AddCustomSerializer(typeof(Coach), new CoachCustomSerializer())
+                .AddCustomSerializer(typeof(ComplexWithPrimitives), new MyCustomSerializer())
                 .GetSettings();
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(Clubs.Barca, "customSerializer");
+            ActAndAssert(ComplexWithComplexes.Numbers, "customSerializer");
         }
         
-        public class CoachCustomSerializer : ICustomSerializer
+        public class MyCustomSerializer : ICustomSerializer
         {
             public void Serialize(object value, XmlWriter xmlWriter)
             {
-                var coach = (Coach)value;
+                var complexWithPrimitives = (ComplexWithPrimitives)value;
 
-                xmlWriter.WriteValue(string.Format("{0};{1}", coach.Name, coach.Age));
+                xmlWriter.WriteValue(string.Format("{0};{1}", complexWithPrimitives.String, complexWithPrimitives.Int));
             }
 
             public object Deserialize(XmlReader xmlReader)
@@ -44,7 +44,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
                 var parts = serializedValue.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
-                return new Coach { Name = parts[0], Age = int.Parse(parts[1]) };
+                return new ComplexWithPrimitives { String = parts[0], Int = int.Parse(parts[1]) };
             }
         }
     }

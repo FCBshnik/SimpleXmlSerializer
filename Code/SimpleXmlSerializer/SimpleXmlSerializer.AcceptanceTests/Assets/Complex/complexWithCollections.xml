@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<team>
-  <midfielders>
+<complexWithCollections>
+  <collection>
+    <add>One</add>
+    <add>Two</add>
+  </collection>
+  <dictionary>
     <add>
-      <name>Xavi</name>
-      <number>6</number>
+      <key>One</key>
+      <value>1</value>
     </add>
     <add>
-      <name>Iniesta</name>
-      <number>8</number>
+      <key>Two</key>
+      <value>2</value>
     </add>
-  </midfielders>
-</team>
+  </dictionary>
+</complexWithCollections>

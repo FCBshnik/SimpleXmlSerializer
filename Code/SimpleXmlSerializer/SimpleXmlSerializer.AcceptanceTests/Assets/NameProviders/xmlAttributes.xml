@@ -1,20 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<footballClub>
-  <shortName>Barcelona</shortName>
-  <players>
-    <bestMidfielders>
-      <midfielder>
-        <shortName>Xavi</shortName>
-        <shortNumber>6</shortNumber>
-      </midfielder>
-      <midfielder>
-        <shortName>Iniesta</shortName>
-        <shortNumber>8</shortNumber>
-      </midfielder>
-    </bestMidfielders>
-  </players>
-  <headCoach age="51">
-    <shortName>Martino</shortName>
-  </headCoach>
-  <founded>1899-11-29T00:00:00.0000000Z</founded>
-</footballClub>
+<xmlComplexWithComplexes>
+  <xmlOne>
+    <xmlString>One</xmlString>
+    <xmlInt>1</xmlInt>
+  </xmlOne>
+  <xmlTwo>
+    <xmlString>Two</xmlString>
+    <xmlInt>2</xmlInt>
+  </xmlTwo>
+</xmlComplexWithComplexes>

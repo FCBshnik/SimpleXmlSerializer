@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
+using SimpleXmlSerializer.AcceptanceTests.Dto;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
@@ -11,7 +11,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         {
             serializer = new XmlSerializer();
 
-            ActAndAssert(Clubs.Barca, "default");
+            ActAndAssert(ComplexWithComplexes.Numbers, "default");
         }
 
         [TestMethod]
@@ -20,9 +20,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            var club = Clubs.Barca;
-            club.President = null;
-            ActAndAssert(club, "xmlAttributes");
+            ActAndAssert(ComplexWithComplexes.Numbers, "xmlAttributes");
         }
 
         [TestMethod]
@@ -31,9 +29,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            var club = Clubs.Barca;
-            club.President = null;
-            ActAndAssert(club, "dataAttributes");
+            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributes");
         }
     }
 }

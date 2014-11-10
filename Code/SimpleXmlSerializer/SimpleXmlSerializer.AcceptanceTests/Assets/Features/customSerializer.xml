@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<club>
-  <name>Barcelona</name>
-  <team>
-    <midfielders>
-      <add>
-        <name>Xavi</name>
-        <number>6</number>
-      </add>
-      <add>
-        <name>Iniesta</name>
-        <number>8</number>
-      </add>
-    </midfielders>
-  </team>
-  <coach>Martino;51</coach>
-  <founded>1899-11-29T00:00:00.0000000Z</founded>
-  <president>Josep Maria Bartomeu</president>
-</club>
+<complexWithComplexes>
+  <one>One;1</one>
+  <two>Two;2</two>
+</complexWithComplexes>

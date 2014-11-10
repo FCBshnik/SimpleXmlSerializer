@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Dto.Football;
+using SimpleXmlSerializer.AcceptanceTests.Dto;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
@@ -26,7 +26,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DictionaryOfPrimitives()
         {
-            var collection = new Dictionary<int, string> { {1, "One"}, {2, "Two"} };
+            var collection = new Dictionary<int, string> { { 1, "One" }, { 2, "Two" } };
 
             ActAndAssert(collection, "dictionaryOfPrimitives");
         }
@@ -34,29 +34,29 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void ListOfComplexes()
         {
-            var players = new List<Player> { Players.Xavi, Players.Iniesta, };
+            var collection = new List<ComplexWithPrimitives> { ComplexWithPrimitives.One, ComplexWithPrimitives.Two };
 
-            ActAndAssert(players, "collectionOfComplexes");
+            ActAndAssert(collection, "collectionOfComplexes");
         }
 
         [TestMethod]
         public void ArrayOfComplexes()
         {
-            var players = new[] { Players.Xavi, Players.Iniesta };
+            var collection = new[] { ComplexWithPrimitives.One, ComplexWithPrimitives.Two };
 
-            ActAndAssert(players, "collectionOfComplexes");
+            ActAndAssert(collection, "collectionOfComplexes");
         }
 
         [TestMethod]
         public void DictionaryOfComplexes()
         {
-            var players = new Dictionary<string, Player>
+            var dictionary = new Dictionary<string, ComplexWithPrimitives>
                 {
-                    { "Xavi", Players.Xavi }, 
-                    { "Iniesta", Players.Iniesta }
+                    { "One", ComplexWithPrimitives.One }, 
+                    { "Two", ComplexWithPrimitives.Two }
                 };
 
-            ActAndAssert(players, "dictionaryOfComplexes");
+            ActAndAssert(dictionary, "dictionaryOfComplexes");
         }
 
         [TestMethod]

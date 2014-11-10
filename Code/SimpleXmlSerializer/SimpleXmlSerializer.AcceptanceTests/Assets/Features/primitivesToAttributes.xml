@@ -1,10 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<club name="Barcelona" founded="1899-11-29T00:00:00.0000000Z" president="Josep Maria Bartomeu">
-  <team>
-    <midfielders>
-      <add name="Xavi" number="6" />
-      <add name="Iniesta" number="8" />
-    </midfielders>
-  </team>
-  <coach name="Martino" age="51" />
-</club>
+<complexWithComplexes>
+  <one string="One" int="1" />
+  <two string="Two" int="2" />
+</complexWithComplexes>

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <collection>
   <add>
-    <key>Xavi</key>
+    <key>One</key>
     <value>
-      <name>Xavi</name>
-      <number>6</number>
+      <string>One</string>
+      <int>1</int>
     </value>
   </add>
   <add>
-    <key>Iniesta</key>
+    <key>Two</key>
     <value>
-      <name>Iniesta</name>
-      <number>8</number>
+      <string>Two</string>
+      <int>2</int>
     </value>
   </add>
 </collection>

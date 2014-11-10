@@ -1,21 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<soccerClub>
-  <alias>Barcelona</alias>
-  <stuff>
-    <players>
-      <add>
-        <alias>Xavi</alias>
-        <digit>6</digit>
-      </add>
-      <add>
-        <alias>Iniesta</alias>
-        <digit>8</digit>
-      </add>
-    </players>
-  </stuff>
-  <trainer>
-    <alias>Martino</alias>
-    <numberOfYears>51</numberOfYears>
-  </trainer>
-  <founded>1899-11-29T00:00:00.0000000Z</founded>
-</soccerClub>
+<dcComplexWithComplexes>
+  <dcOne>
+    <dcString>One</dcString>
+    <dcInt>1</dcInt>
+  </dcOne>
+  <dcTwo>
+    <dcString>Two</dcString>
+    <dcInt>2</dcInt>
+  </dcTwo>
+</dcComplexWithComplexes>

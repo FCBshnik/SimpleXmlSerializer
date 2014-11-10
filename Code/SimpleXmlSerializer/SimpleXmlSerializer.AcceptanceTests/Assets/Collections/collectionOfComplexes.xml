@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <collection>
   <add>
-    <name>Xavi</name>
-    <number>6</number>
+    <string>One</string>
+    <int>1</int>
   </add>
   <add>
-    <name>Iniesta</name>
-    <number>8</number>
+    <string>Two</string>
+    <int>2</int>
   </add>
 </collection>
