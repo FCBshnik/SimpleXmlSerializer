@@ -18,9 +18,24 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void ComplexWithEmptyCollections()
+        {
+            ActAndAssert(Dto.ComplexWithCollections.Empties, "complexWithEmptyCollections");
+        }
+
+        [TestMethod]
         public void ComplexWithComplexes()
         {
             ActAndAssert(Dto.ComplexWithComplexes.Numbers, "complexWithComplexes");
+        }
+
+        [TestMethod]
+        public void ComplexWithNull()
+        {
+            var numbers = Dto.ComplexWithComplexes.Numbers;
+            numbers.One = null;
+
+            ActAndAssert(numbers, "complexWithNull");
         }
     }
 }

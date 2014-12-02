@@ -25,5 +25,10 @@ namespace SimpleXmlSerializer.Core
         {
             return new CollectionNode(Description);
         }
+
+        public override string ToString()
+        {
+            return string.Format("Collection: {0}", Name);
+        }
     }
 }

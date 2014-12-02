@@ -25,5 +25,10 @@ namespace SimpleXmlSerializer.Core
         {
             return new ComplexNode(Description);
         }
+
+        public override string ToString()
+        {
+            return string.Format("Complex: {0}", Name);
+        }
     }
 }

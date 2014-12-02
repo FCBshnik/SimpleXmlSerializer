@@ -27,6 +27,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(obj, "obj");
             Preconditions.NotNull(xmlWriter, "xmlWriter");
 
+            // todo: get rid of nodes cache
             var visitor = new SerializationVisitor(xmlWriter, settings, nodesCache);
             visitor.Visit(obj);
         }
@@ -36,6 +37,7 @@ namespace SimpleXmlSerializer
             Preconditions.NotNull(type, "type");
             Preconditions.NotNull(xmlReader, "xmlReader");
 
+            // todo: get rid of nodes cache
             var visitor = new DeserializationVisitor(xmlReader, settings, nodesCache);
             return visitor.Visit(type);
         }

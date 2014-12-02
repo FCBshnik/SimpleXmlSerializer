@@ -46,7 +46,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void Enum()
         {
-            ActAndAssert(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty);
+            ActAndAssert(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty, "enum");
         }
     }
 }

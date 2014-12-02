@@ -8,9 +8,17 @@ namespace SimpleXmlSerializer.Core
         private const string CollectionName = "collection";
         private const string CollectionItemName = "add";
 
-        private readonly INamingConvention namingConvention = new CamelCaseNamingConvention();
+        private readonly INamingConvention namingConvention;
+        private readonly ICollectionNodeProvider collectionProvider;
 
-        private readonly ICollectionNodeProvider collectionProvider = new CollectionNodeProvider();
+        public NameProvider(INamingConvention namingConvention, ICollectionNodeProvider collectionProvider)
+        {
+            if (namingConvention == null) throw new ArgumentNullException("namingConvention");
+            if (collectionProvider == null) throw new ArgumentNullException("collectionProvider");
+
+            this.namingConvention = namingConvention;
+            this.collectionProvider = collectionProvider;
+        }
 
         public NodeName GetNodeName(Type type)
         {

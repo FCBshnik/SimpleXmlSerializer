@@ -18,7 +18,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
 
             if (expected == null || actual == null)
             {
-                Assert.Fail("Expected:\r\n {0} \r\nActual:\r\n{1}", expected, actual);
+                Assert.Fail("Expected:\r\n {0} \r\nActual:\r\n{1}", expected ?? "[NULL]", actual ?? "[NULL]");
             }
 
             if (ReferenceEquals(expected, actual))
@@ -31,7 +31,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
 
             if (expectedCollection != null && actualCollection != null)
             {
-                Assert.AreEqual(expectedCollection.Count, actualCollection.Count);
+                Assert.AreEqual(expectedCollection.Count, actualCollection.Count, "Count of collection elements does not match");
 
                 var expectedList = new ArrayList(expectedCollection);
                 var actualList = new ArrayList(actualCollection);
@@ -52,7 +52,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Utils
                 var equalsMethod = expectedType.GetMethod("Equals", BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public, null, new[]{ typeof(object) }, null);
                 if (equalsMethod != null)
                 {
-                    Assert.IsTrue((bool) equalsMethod.Invoke(expected, new[] { actual }), "Expected:\r\n {0} \r\nActual:\r\n{1}", expected, actual);
+                    Assert.IsTrue((bool)equalsMethod.Invoke(expected, new[] { actual }), "Expected:\r\n {0} \r\nActual:\r\n{1}", expected, actual);
                     return;
                 }
 

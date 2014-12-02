@@ -9,6 +9,12 @@ namespace SimpleXmlSerializer.Core
     {
         public NodeName GetNodeName(Type type)
         {
+            var collAttr = type.FindAttribute<CollectionDataContractAttribute>();
+            if (collAttr != null)
+            {
+                return new NodeName(collAttr.Name, collAttr.ItemName);
+            }
+
             var attr = type.FindAttribute<DataContractAttribute>();
             if (attr != null)
             {

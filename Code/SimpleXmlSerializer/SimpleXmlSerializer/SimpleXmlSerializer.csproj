@@ -39,8 +39,12 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Collections\ArrayCollectionNodeProvider.cs" />
     <Compile Include="Core\Collections\CollectionNodeDescription.cs" />
     <Compile Include="Core\Collections\CollectionNodeProvider.cs" />
+    <Compile Include="Core\Collections\CompositeCollectionNodeProvider.cs" />
+    <Compile Include="Core\Collections\DataAttributeCollectionProvider.cs" />
+    <Compile Include="Core\Collections\DictionaryCollectionNodeProvider.cs" />
     <Compile Include="Core\Collections\ICollectionNodeProvider.cs" />
     <Compile Include="Core\Complex\ComplexNodeDescription.cs" />
     <Compile Include="Core\Complex\ComplexNodeProvider.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="Core\Primitives\Serializers\StringSerializer.cs" />
     <Compile Include="Core\Visitors\NodeVisitor.cs" />
     <Compile Include="Utils\ExpressionUtils.cs" />
+    <Compile Include="Utils\TypeUtils.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="XmlSerializerSettings.cs" />
     <Compile Include="XmlSerializerSettingsBuilder.cs" />

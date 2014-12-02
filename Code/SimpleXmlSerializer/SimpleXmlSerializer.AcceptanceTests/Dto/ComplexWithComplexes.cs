@@ -7,10 +7,17 @@ namespace SimpleXmlSerializer.AcceptanceTests.Dto
     [XmlRoot(ElementName = "xmlComplexWithComplexes")]
     public class ComplexWithComplexes
     {
-        public static readonly ComplexWithComplexes Numbers = new ComplexWithComplexes
+        public static ComplexWithComplexes Numbers
+        {
+            get
             {
-                One = ComplexWithPrimitives.One, Two = ComplexWithPrimitives.Two
-            };
+                return new ComplexWithComplexes
+                    {
+                        One = ComplexWithPrimitives.One,
+                        Two = ComplexWithPrimitives.Two
+                    };
+            }
+        }
 
         [DataMember(Name = "dcOne")]
         [XmlElement(ElementName = "xmlOne")]

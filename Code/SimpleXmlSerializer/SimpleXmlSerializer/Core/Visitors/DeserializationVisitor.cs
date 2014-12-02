@@ -42,8 +42,17 @@ namespace SimpleXmlSerializer.Core
         {
             if (node.Name.IsElement)
             {
-                var serializedValue = xmlReader.ReadElementString();
-                node.Value = node.Description.Serializer.Deserialize(serializedValue);
+                // distinguish nodes without value (about which indicates IsEmptyElement)
+                // and nodes with some value (even if this value is empty string),
+                if (xmlReader.IsEmptyElement)
+                {
+                    node.Value = null;
+                }
+                else
+                {
+                    var serializedValue = xmlReader.ReadElementString();
+                    node.Value = node.Description.Serializer.Deserialize(serializedValue);
+                }
             }
             else if (node.Name.IsAttribute)
             {
@@ -58,11 +67,10 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(CollectionNode node)
         {
+            var items = new ArrayList();
+
             if (xmlReader.ReadToDescendant(node.Name.ItemName))
             {
-                // todo: think about boxing
-                var items = new ArrayList();
-
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
@@ -72,13 +80,14 @@ namespace SimpleXmlSerializer.Core
 
                 do
                 {
+                    // todo: think about boxing
                     itemNode.Accept(this);
                     items.Add(itemNode.Value);
 
                 } while (xmlReader.ReadToNextSibling(node.Name.ItemName));
-
-                node.Value = node.Description.Factory(items);
             }
+
+            node.Value = node.Description.Factory(items);
         }
 
         public void Visit(ComplexNode node)

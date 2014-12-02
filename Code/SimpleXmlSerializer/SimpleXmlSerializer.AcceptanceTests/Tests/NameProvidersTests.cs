@@ -31,5 +31,41 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributes");
         }
+
+        [TestMethod]
+        public void CollectionDataAttributeForCollection()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(CustomCollection.Numbers, "collectionDataAttributeForCollection");
+        }
+
+        [TestMethod]
+        public void CollectionDataAttributeForGenericCollection()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(CustomGenericCollection<string>.Numbers, "collectionDataAttributeForCollection");
+        }
+
+        [TestMethod]
+        public void CollectionDataAttributeForDictionary()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(CustomDictionary.Numbers, "collectionDataAttributeForDictionary");
+        }
+
+        [TestMethod]
+        public void CollectionDataAttributeForGenericDictionary()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(CustomGenericDictionary<string, string>.Numbers, "collectionDataAttributeForDictionary");
+        }
     }
 }

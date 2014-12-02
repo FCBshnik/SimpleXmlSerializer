@@ -19,6 +19,17 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void PrimitivesToAttributesWithNull()
+        {
+            var settings = new XmlSerializerSettingsBuilder().MapPrimitivesToAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            var numbers = ComplexWithComplexes.Numbers;
+            numbers.Two.String = null;
+            ActAndAssert(numbers, "primitivesToAttributesWithNull");
+        }
+
+        [TestMethod]
         public void CustomSerializer()
         {
             var settings = new XmlSerializerSettingsBuilder()

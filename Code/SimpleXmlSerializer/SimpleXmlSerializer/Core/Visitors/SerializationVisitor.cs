@@ -61,7 +61,7 @@ namespace SimpleXmlSerializer.Core
             var itemNodeName = GetNodeName(node.Description.ItemType);
 
             // todo: deal with nulls
-            foreach (var item in ((IEnumerable)node.Value).SkipNulls())
+            foreach (var item in ((IEnumerable)node.Value))
             {
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does

@@ -19,7 +19,10 @@ namespace SimpleXmlSerializer.Core
         public ComplexNodeDescription GetDescription(Type type)
         {
             var properties = propertiesSelector.SelectProperties(type).ToList();
+            var getters = properties.ToDictionary(p => p, ExpressionUtils.GetPropertyGetter);
 
+            // todo: use compiled ctor
+            // todo: handle all parameterless types
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
             {
                 var genericArguments = type.GetGenericArguments();
@@ -31,19 +34,18 @@ namespace SimpleXmlSerializer.Core
 
                 return new ComplexNodeDescription(properties, ps => CreateKeyValuePair(ctor, ps))
                     {
-                        Getter = (obj, pi) => pi.GetValue(obj, null)
+                        Getter = (obj, pi) => getters[pi](obj)
                     };
             }
 
             var ctorFunc = ExpressionUtils.GetFactory(type);
-            var getters = properties.ToDictionary(p => p, ExpressionUtils.GetPropertyGetter);
             return new ComplexNodeDescription(properties, ps => CreateObject(ps, ctorFunc))
                 {
                     Getter = (obj, pi) => getters[pi](obj)
                 };
         }
 
-        private static object CreateObject(IDictionary<PropertyInfo, object> properties, Func<object> ctor)
+        private static object CreateObject(IEnumerable<KeyValuePair<PropertyInfo, object>> properties, Func<object> ctor)
         {
             var value = ctor();
             foreach (var pair in properties)
@@ -54,7 +56,7 @@ namespace SimpleXmlSerializer.Core
             return value;
         }
 
-        private static object CreateKeyValuePair(ConstructorInfo ctor, IDictionary<PropertyInfo, object> properties)
+        private static object CreateKeyValuePair(ConstructorInfo ctor, IEnumerable<KeyValuePair<PropertyInfo, object>> properties)
         {
             return ctor.Invoke(properties.Select(p => p.Value).ToArray());
         }

@@ -25,5 +25,10 @@ namespace SimpleXmlSerializer.Core
         {
             return new PrimitiveNode(Description);
         }
+
+        public override string ToString()
+        {
+            return string.Format("Primitive: {0}", Name);
+        }
     }
 }

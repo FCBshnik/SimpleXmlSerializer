@@ -14,6 +14,22 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             ActAndAssert(collection, "collectionOfPrimitives");
         }
+
+        [TestMethod]
+        public void ListOfNulls()
+        {
+            var collection = new List<string> { null, null };
+
+            ActAndAssert(collection, "collectionOfNulls");
+        }
+
+        [TestMethod]
+        public void ListOfEmpties()
+        {
+            var collection = new List<string> { string.Empty, string.Empty };
+
+            ActAndAssert(collection, "collectionOfEmpties");
+        }
         
         [TestMethod]
         public void ArrayOfPrimitives()
@@ -69,6 +85,18 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
                 };
 
             ActAndAssert(collection, "collectionOfCollections");
+        }
+
+        [TestMethod]
+        public void ListOfEmptyCollections()
+        {
+            var collection = new List<IEnumerable<string>>
+                {
+                    new List<string>(),
+                    new List<string>()
+                };
+
+            ActAndAssert(collection, "collectionOfEmptyCollections");
         }
 
         [TestMethod]

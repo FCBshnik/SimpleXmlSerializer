@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cdcCustomDictionary>
+  <cdcAdd>
+    <key>One</key>
+    <value>1</value>
+  </cdcAdd>
+  <cdcAdd>
+    <key>Two</key>
+    <value>2</value>
+  </cdcAdd>
+</cdcCustomDictionary>

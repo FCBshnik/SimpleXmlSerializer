@@ -43,7 +43,12 @@
     </Compile>
     <Compile Include="Dto\ComplexWithCollections.cs" />
     <Compile Include="Dto\ComplexWithComplexes.cs" />
+    <Compile Include="Dto\ComplexWithCustomCollections.cs" />
     <Compile Include="Dto\ComplexWithPrimitives.cs" />
+    <Compile Include="Dto\CustomGenericDictionary.cs" />
+    <Compile Include="Dto\CustomGenericCollection.cs" />
+    <Compile Include="Dto\CustomDictionary.cs" />
+    <Compile Include="Dto\CustomCollection.cs" />
     <Compile Include="Tests\FeaturesTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Tests\TestsBase.cs" />
@@ -63,6 +68,15 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\Collections\collectionOfDictionaries.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Collections\collectionOfEmptyCollections.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Collections\collectionOfNulls.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Collections\collectionOfEmpties.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Collections\dictionaryOfDictionaries.xml">
@@ -95,10 +109,25 @@
     <Content Include="Assets\Complex\complexWithPrimitives.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Complex\complexWithNull.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Complex\complexWithEmptyCollections.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Features\primitivesToAttributesWithNull.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Features\primitivesToAttributes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Features\customSerializer.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\collectionDataAttributeForCollection.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\collectionDataAttributeForDictionary.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\default.xml">
@@ -113,7 +142,7 @@
     <Content Include="Assets\Primitives\boolean.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Primitives\bindingflags.xml">
+    <Content Include="Assets\Primitives\enum.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\int64.xml">

@@ -25,5 +25,10 @@ namespace SimpleXmlSerializer.Core
         {
             return new CustomNode(Description);
         }
+
+        public override string ToString()
+        {
+            return string.Format("Custom: {0}", Name);
+        }
     }
 }
