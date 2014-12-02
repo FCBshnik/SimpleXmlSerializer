@@ -13,7 +13,7 @@ namespace SimpleXmlSerializer.Core
         {
             return type.GetProperties(BindingFlags.Instance | BindingFlags.Public |
                 BindingFlags.SetProperty | BindingFlags.GetProperty)
-                .Where(pi => !pi.HasAttribute<IgnoreDataMemberAttribute>());
+                .Where(pi => !pi.HasAttribute<IgnoreDataMemberAttribute>() && pi.HasAttribute<DataMemberAttribute>());
         }
     }
 }

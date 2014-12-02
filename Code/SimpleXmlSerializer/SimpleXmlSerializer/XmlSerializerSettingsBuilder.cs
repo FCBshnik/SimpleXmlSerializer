@@ -8,12 +8,12 @@ namespace SimpleXmlSerializer
 {
     public class XmlSerializerSettingsBuilder
     {
+        private IFormatProvider internalFormatProvider = CultureInfo.InvariantCulture;
+
         // todo: use composite properties selector
         private IPropertiesSelector propertiesSelector = new PropertiesSelector();
 
         private readonly CustomNodeProvider customProvider = new CustomNodeProvider();
-
-        private IFormatProvider internalFormatProvider = CultureInfo.InvariantCulture;
 
         private readonly PrimitiveNodeProvider primitiveProvider;
 
@@ -70,7 +70,7 @@ namespace SimpleXmlSerializer
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
             nameProviders.Prepend(new XmlAttributesNameProvider());
-            propertiesSelector = new XmlAttributesPropertiesSelector();
+            propertiesSelector = new SpecialPropertiesSelector(new PropertiesSelector(), new XmlAttributesPropertiesSelector());
             return this;
         }
 
@@ -78,7 +78,7 @@ namespace SimpleXmlSerializer
         {
             nameProviders.Prepend(new DataAttributesNameProvider());
             collectionProviders.Prepend(new DataAttributeCollectionProvider());
-            propertiesSelector = new XmlAttributesPropertiesSelector();
+            propertiesSelector = new SpecialPropertiesSelector(new PropertiesSelector(), new DataAttributesPropertiesSelector());
             return this;
         }
 

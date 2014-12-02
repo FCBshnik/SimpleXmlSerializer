@@ -50,6 +50,7 @@
     <Compile Include="Core\Complex\ComplexNodeProvider.cs" />
     <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />
     <Compile Include="Core\Complex\IComplexNodeProvider.cs" />
+    <Compile Include="Core\Complex\SpecialPropertiesSelector.cs" />
     <Compile Include="Core\Complex\XmlAttributesPropertiesSelector.cs" />
     <Compile Include="Core\Custom\CustomNodeDescription.cs" />
     <Compile Include="Core\Custom\CustomNodeProvider.cs" />
