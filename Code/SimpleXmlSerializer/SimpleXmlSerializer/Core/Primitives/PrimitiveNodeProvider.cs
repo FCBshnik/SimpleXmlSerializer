@@ -13,7 +13,9 @@ namespace SimpleXmlSerializer.Core
         {
             primitiveSerializers = new Dictionary<Type, IPrimitiveSerializer>
                 {
+                    { typeof(char), new CharSerializer() },
                     { typeof(string), new StringSerializer() },
+                    { typeof(byte), new ByteSerializer(formatProvider) },
                     { typeof(int), new IntSerializer(formatProvider) },
                     { typeof(long), new LongSerializer(formatProvider) },
                     { typeof(float), new FloatSerializer(formatProvider) },

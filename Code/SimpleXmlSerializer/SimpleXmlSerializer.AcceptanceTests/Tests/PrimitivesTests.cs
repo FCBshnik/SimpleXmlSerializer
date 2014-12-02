@@ -8,9 +8,21 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
     public class PrimitivesTests : TestsBase
     {
         [TestMethod]
+        public void Char()
+        {
+            ActAndAssert('v');
+        }
+
+        [TestMethod]
         public void String()
         {
             ActAndAssert("value");
+        }
+
+        [TestMethod]
+        public void Byte()
+        {
+            ActAndAssert((byte)13);
         }
 
         [TestMethod]

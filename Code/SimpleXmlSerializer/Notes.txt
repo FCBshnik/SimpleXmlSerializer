@@ -7,7 +7,6 @@ Features todo:
 - Structures!
 - Strong identify what types should be serialized (marked with Serialize or Data attributes or smth else)
 - Handling of unknown elements while deserialize (add settings).
-- DateTimeOffset
 - NameValueCollection
 - Add cycling protection
 - Add strategies to handle unknown types
@@ -17,7 +16,7 @@ Features todo:
 - Support of heterogeneous collections (store full type name in xml) (?)
 
 Features:
-- Serialization of primitive types: bool, int, long, float, double, decimal, string, TimeSpan, DateTime
+- Serialization of primitive types: bool, int, long, float, double, decimal, string, TimeSpan, DateTime, DateTimeOffset
 - Serialization of collection types: Array, IList, ICollection, IEnumerable, IDictionary and theirs generic analogs
 - Serialization of complex types
 - Serialization of enum types
