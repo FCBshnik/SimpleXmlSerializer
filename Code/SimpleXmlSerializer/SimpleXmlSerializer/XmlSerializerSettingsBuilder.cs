@@ -98,7 +98,7 @@ namespace SimpleXmlSerializer
             return this;
         }
 
-        public XmlSerializerSettingsBuilder WithFormatProvider(IFormatProvider formatProvider)
+        public XmlSerializerSettingsBuilder UseFormatProvider(IFormatProvider formatProvider)
         {
             this.formatProvider = formatProvider;
             return this;
