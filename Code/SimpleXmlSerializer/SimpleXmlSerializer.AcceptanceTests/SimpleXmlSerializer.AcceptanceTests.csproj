@@ -124,10 +124,13 @@
     <Content Include="Assets\Features\customSerializer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\collectionDataAttributeForCollection.xml">
+    <Content Include="Assets\NameProviders\collectionDataAttributeForCollectionType.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\collectionDataAttributeForDictionary.xml">
+    <Content Include="Assets\NameProviders\collectionDataAttributeForDictionaryType.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\collectionDataAttributeForProperties.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\default.xml">

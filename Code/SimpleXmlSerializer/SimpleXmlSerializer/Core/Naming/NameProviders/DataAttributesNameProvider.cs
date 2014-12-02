@@ -27,9 +27,22 @@ namespace SimpleXmlSerializer.Core
         public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
             var attr = propertyInfo.FindAttribute<DataMemberAttribute>();
+            var collAttr = propertyInfo.PropertyType.FindAttribute<CollectionDataContractAttribute>();
+
+            // give precedence to DataMemberAttribute
             if (attr != null)
             {
+                if (collAttr != null)
+                {
+                    return new NodeName(attr.Name, collAttr.ItemName);
+                }
+
                 return new NodeName(attr.Name);
+            }
+
+            if (collAttr != null)
+            {
+                return new NodeName(collAttr.Name, collAttr.ItemName);
             }
 
             return NodeName.Empty;

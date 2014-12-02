@@ -38,7 +38,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(CustomCollection.Numbers, "collectionDataAttributeForCollection");
+            ActAndAssert(CustomCollection.Numbers, "collectionDataAttributeForCollectionType");
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(CustomGenericCollection<string>.Numbers, "collectionDataAttributeForCollection");
+            ActAndAssert(CustomGenericCollection<string>.Numbers, "collectionDataAttributeForCollectionType");
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(CustomDictionary.Numbers, "collectionDataAttributeForDictionary");
+            ActAndAssert(CustomDictionary.Numbers, "collectionDataAttributeForDictionaryType");
         }
 
         [TestMethod]
@@ -65,7 +65,16 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(CustomGenericDictionary<string, string>.Numbers, "collectionDataAttributeForDictionary");
+            ActAndAssert(CustomGenericDictionary<string, string>.Numbers, "collectionDataAttributeForDictionaryType");
+        }
+
+        [TestMethod]
+        public void CollectionDataAttributeForProperties()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithCustomCollections.Numbers, "collectionDataAttributeForProperties");
         }
     }
 }
