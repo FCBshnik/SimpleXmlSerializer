@@ -61,8 +61,7 @@ namespace SimpleXmlSerializer
                 customProvider);
         }
 
-        // todo: rename to "SerializePri..."
-        public XmlSerializerSettingsBuilder MapPrimitivesToAttributes()
+        public XmlSerializerSettingsBuilder SerializePrimitivesToAttributes()
         {
             mapPrimitivesToAttributes = true;
             return this;
