@@ -5,7 +5,6 @@ Analyze:
 
 Features todo:
 - Structures!
-- Add support for DataCollectionAttribute
 - Strong identify what types should be serialized (marked with Serialize or Data attributes or smth else)
 - Handling of unknown elements while deserialize (add settings).
 - DateTimeOffset
@@ -24,7 +23,7 @@ Features:
 - Serialization of enum types
 - Serialization of nullable types
 - Support of Xml* attributes to provide element names (XmlRoot, XmlElement, XmlArray, XmlArrayItem, XmlAttribute)
-- Support of Data* attributes to provide element names (DataContract, DataMember)
+- Support of Data* attributes to provide element names (DataContract, DataMember, DataCollectionAttribute)
 - Naming conventions
 - Extensibility point for custom serialization of values of specified type
 - Extensibility point for custom serialization of values of specified type as primitives

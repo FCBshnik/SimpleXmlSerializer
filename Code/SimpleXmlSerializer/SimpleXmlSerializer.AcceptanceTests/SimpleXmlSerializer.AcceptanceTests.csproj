@@ -142,6 +142,9 @@
     <Content Include="Assets\Primitives\boolean.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Primitives\datetimeoffset.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Primitives\enum.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

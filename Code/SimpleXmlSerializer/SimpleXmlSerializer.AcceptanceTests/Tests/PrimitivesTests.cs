@@ -44,6 +44,12 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void DateTimeOffset()
+        {
+            ActAndAssert(new DateTimeOffset(2001, 02, 03, 04, 05, 06, 07, System.TimeSpan.FromMinutes(1)));
+        }
+
+        [TestMethod]
         public void Enum()
         {
             ActAndAssert(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty, "enum");

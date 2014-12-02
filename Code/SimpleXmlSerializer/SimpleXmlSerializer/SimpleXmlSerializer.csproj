@@ -70,6 +70,7 @@
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\ComplexNode.cs" />
     <Compile Include="Core\Nodes\CustomNode.cs" />
+    <Compile Include="Core\Primitives\Serializers\DateTimeOffsetSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DecimalSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DoubleSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\FloatSerializer.cs" />

@@ -20,8 +20,9 @@ namespace SimpleXmlSerializer.Core
                     { typeof(double), new DoubleSerializer(formatProvider) },
                     { typeof(decimal), new DecimalSerializer(formatProvider) },
                     { typeof(bool), new BoolSerializer() },
-                    { typeof(DateTime), new DateTimeSerializer() },
                     { typeof(TimeSpan), new TimeSpanSerializer() },
+                    { typeof(DateTime), new DateTimeSerializer() },
+                    { typeof(DateTimeOffset), new DateTimeOffsetSerializer() },
                 };
         }
 
