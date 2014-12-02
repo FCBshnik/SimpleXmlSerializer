@@ -133,6 +133,12 @@
     <Content Include="Assets\NameProviders\collectionDataAttributeForProperties.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\NameProviders\xmlAttributesWithPrimitivesToAttributes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\dataAttributesWithPrimitivesToAttributes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\NameProviders\default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

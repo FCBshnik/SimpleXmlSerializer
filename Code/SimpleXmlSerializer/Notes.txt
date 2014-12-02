@@ -6,6 +6,8 @@ Analyze:
 Features todo:
 - Strong identify what types should be serialized (marked with Serialize or Data attributes or smth else)
 - Handling of unknown elements while deserialize (add settings).
+- Extend serialization settings to specify properties order when serializing
+- Validate case when nodes have same names
 - Add protection circular type reference
 - Add strategies to handle unknown types
 - Think about inheritance (so called 'known types')

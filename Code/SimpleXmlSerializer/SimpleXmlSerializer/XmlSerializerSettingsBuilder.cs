@@ -8,9 +8,8 @@ namespace SimpleXmlSerializer
 {
     public class XmlSerializerSettingsBuilder
     {
-        private IFormatProvider internalFormatProvider = CultureInfo.InvariantCulture;
+        private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
 
-        // todo: use composite properties selector
         private IPropertiesSelector propertiesSelector = new PropertiesSelector();
 
         private readonly CustomNodeProvider customProvider = new CustomNodeProvider();
@@ -19,7 +18,7 @@ namespace SimpleXmlSerializer
 
         private readonly List<ICollectionNodeProvider> collectionProviders = new List<ICollectionNodeProvider>();
 
-        private readonly List<INameProvider> nameProviders = new List<INameProvider>();
+        private INameProvider nameProvider;
 
         private readonly Dictionary<Type, IPrimitiveSerializer> primitiveSerializers = new Dictionary<Type, IPrimitiveSerializer>();
 
@@ -27,7 +26,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettingsBuilder()
         {
-            primitiveProvider = new PrimitiveNodeProvider(internalFormatProvider);
+            primitiveProvider = new PrimitiveNodeProvider(formatProvider);
 
             collectionProviders.Add(new DictionaryCollectionNodeProvider());
             collectionProviders.Add(new ArrayCollectionNodeProvider());
@@ -43,19 +42,24 @@ namespace SimpleXmlSerializer
 
             var collectionProvider = new CompositeCollectionNodeProvider(collectionProviders);
 
-            INameProvider nameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider);
+            var defaultNameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider);
+            if (nameProvider != null)
+            {
+                nameProvider = new CompositeNameProvider(new[] {nameProvider, defaultNameProvider});
+            }
+            else
+            {
+                nameProvider = defaultNameProvider;
+            }
+
             if (mapPrimitivesToAttributes)
             {
-                // todo: cache primitive provider
                 nameProvider = new PrimitiveToAttributeNameProvider(nameProvider, primitiveProvider);
             }
 
-            nameProviders.Add(nameProvider);
-            nameProvider = new CompositeNameProvider(nameProviders);
-
             return new XmlSerializerSettings(
                 new CachingNameProvider(nameProvider),
-                primitiveProvider, // todo: cache primitive provider
+                primitiveProvider, 
                 collectionProvider, 
                 new ComplexNodeProvider(propertiesSelector),
                 customProvider);
@@ -69,14 +73,14 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
-            nameProviders.Prepend(new XmlAttributesNameProvider());
+            nameProvider = new XmlAttributesNameProvider();
             propertiesSelector = new SpecialPropertiesSelector(new PropertiesSelector(), new XmlAttributesPropertiesSelector());
             return this;
         }
 
         public XmlSerializerSettingsBuilder UseDataAttributes()
         {
-            nameProviders.Prepend(new DataAttributesNameProvider());
+            nameProvider = new DataAttributesNameProvider();
             collectionProviders.Prepend(new DataAttributeCollectionProvider());
             propertiesSelector = new SpecialPropertiesSelector(new PropertiesSelector(), new DataAttributesPropertiesSelector());
             return this;
@@ -96,7 +100,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettingsBuilder WithFormatProvider(IFormatProvider formatProvider)
         {
-            internalFormatProvider = formatProvider;
+            this.formatProvider = formatProvider;
             return this;
         }
     }

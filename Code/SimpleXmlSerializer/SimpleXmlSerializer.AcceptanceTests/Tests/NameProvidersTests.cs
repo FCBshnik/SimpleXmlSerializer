@@ -24,12 +24,38 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void XmlAttributesNameProviderWithPrimitivesToAttributes()
+        {
+            var settings = new XmlSerializerSettingsBuilder()
+                .UseXmlAttributes()
+                .SerializePrimitivesToAttributes()
+                .GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithComplexes.Numbers, "xmlAttributesWithPrimitivesToAttributes");
+        }
+
+        [TestMethod]
         public void DataAttributesNameProvider()
         {
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             serializer = new XmlSerializer(settings);
 
             ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributes");
+        }
+
+        [TestMethod]
+        public void DataAttributesNameProviderWithPrimitivesToAttributes()
+        {
+            var settings = new XmlSerializerSettingsBuilder()
+                .UseDataAttributes()
+                .SerializePrimitivesToAttributes()
+                .GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributesWithPrimitivesToAttributes");
         }
 
         [TestMethod]

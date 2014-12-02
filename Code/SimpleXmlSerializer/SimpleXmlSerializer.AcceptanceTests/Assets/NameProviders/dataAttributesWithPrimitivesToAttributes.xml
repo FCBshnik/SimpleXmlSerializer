@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dcComplexWithComplexes>
+  <dcOne dcString="One" dcInt="1" />
+  <dcTwo dcString="Two" dcInt="2" />
+</dcComplexWithComplexes>
