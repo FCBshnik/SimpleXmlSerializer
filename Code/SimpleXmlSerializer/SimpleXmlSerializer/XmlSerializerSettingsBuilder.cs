@@ -6,11 +6,15 @@ using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer
 {
+    /// <summary>
+    /// Responsible to tune up/customize serialization process. 
+    /// Produces instance of <see cref="XmlSerializerSettings"/>.
+    /// </summary>
     public class XmlSerializerSettingsBuilder
     {
         private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
 
-        private IPropertiesSelector propertiesSelector = new PropertiesSelector();
+        private IPropertiesSelector propertiesSelector = new PublicPropertiesSelector();
 
         private readonly CustomNodeProvider customProvider = new CustomNodeProvider();
 
@@ -19,8 +23,6 @@ namespace SimpleXmlSerializer
         private readonly List<ICollectionNodeProvider> collectionProviders = new List<ICollectionNodeProvider>();
 
         private INameProvider nameProvider;
-
-        private readonly Dictionary<Type, IPrimitiveSerializer> primitiveSerializers = new Dictionary<Type, IPrimitiveSerializer>();
 
         private bool mapPrimitivesToAttributes;
 
@@ -35,17 +37,12 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettings GetSettings()
         {
-            foreach (var type in primitiveSerializers.Keys)
-            {
-                primitiveProvider.SetPrimitiveSerializer(type, primitiveSerializers[type]);
-            }
-
             var collectionProvider = new CompositeCollectionNodeProvider(collectionProviders);
 
             var defaultNameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider);
             if (nameProvider != null)
             {
-                nameProvider = new CompositeNameProvider(new[] {nameProvider, defaultNameProvider});
+                nameProvider = new CompositeNameProvider(new[] { nameProvider, defaultNameProvider });
             }
             else
             {
@@ -65,24 +62,33 @@ namespace SimpleXmlSerializer
                 customProvider);
         }
 
+        /// <summary>
+        /// Specifies to serialize primitive types to attributes.
+        /// </summary>
         public XmlSerializerSettingsBuilder SerializePrimitivesToAttributes()
         {
             mapPrimitivesToAttributes = true;
             return this;
         }
 
+        /// <summary>
+        /// Specifies to use xml* attributes.
+        /// </summary>
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
             nameProvider = new XmlAttributesNameProvider();
-            propertiesSelector = new SpecialPropertiesSelector(new PropertiesSelector(), new XmlAttributesPropertiesSelector());
+            propertiesSelector = new SpecialPropertiesSelector(new PublicPropertiesSelector(), new XmlAttributesPropertiesSelector());
             return this;
         }
 
+        /// <summary>
+        /// Specifies to use data contract attributes.
+        /// </summary>
         public XmlSerializerSettingsBuilder UseDataAttributes()
         {
             nameProvider = new DataAttributesNameProvider();
             collectionProviders.Prepend(new DataAttributeCollectionProvider());
-            propertiesSelector = new SpecialPropertiesSelector(new PropertiesSelector(), new DataAttributesPropertiesSelector());
+            propertiesSelector = new SpecialPropertiesSelector(new PublicPropertiesSelector(), new DataAttributesPropertiesSelector());
             return this;
         }
 
@@ -94,7 +100,7 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettingsBuilder AddPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
         {
-            primitiveSerializers[type] = primitiveSerializer;
+            primitiveProvider.SetPrimitiveSerializer(type, primitiveSerializer);
             return this;
         }
 

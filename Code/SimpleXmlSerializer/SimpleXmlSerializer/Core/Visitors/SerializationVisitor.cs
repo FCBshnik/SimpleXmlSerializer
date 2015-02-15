@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Runtime.Serialization;
 using System.Xml;
-using SimpleXmlSerializer.Extensions;
 using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    internal class SerializationVisitor : NodeVisitor, INodeVisitor
+    internal class SerializationVisitor : INodeVisitor
     {
         private readonly XmlWriter xmlWriter;
+        private readonly NodeDetector nodeDetector;
 
-        public SerializationVisitor(XmlWriter xmlWriter, XmlSerializerSettings settings, IDictionary<Type, INode> nodesCache)
-            : base(settings, nodesCache)
+        public SerializationVisitor(XmlWriter xmlWriter, NodeDetector nodeDetector)
         {
             this.xmlWriter = xmlWriter;
+            this.nodeDetector = nodeDetector;
         }
 
         public void Visit(object value)
         {
             var valueType = value.GetType();
 
-            var node = GetNode(valueType);
-            var nodeName = GetNodeName(valueType);
+            var node = nodeDetector.GetNode(valueType);
+            var nodeName = nodeDetector.GetNodeName(valueType);
             node.Value = value;
             node.Name = nodeName;
 
@@ -58,7 +56,7 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var itemNodeName = GetNodeName(node.Description.ItemType);
+            var itemNodeName = nodeDetector.GetNodeName(node.Description.ItemType);
 
             // todo: deal with nulls
             foreach (var item in ((IEnumerable)node.Value))
@@ -66,7 +64,7 @@ namespace SimpleXmlSerializer.Core
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
-                var itemNode = GetNode(node.Description.ItemType);
+                var itemNode = nodeDetector.GetNode(node.Description.ItemType);
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
                 itemNode.Value = item;
                 itemNode.Accept(this);
@@ -80,7 +78,7 @@ namespace SimpleXmlSerializer.Core
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
             var properties = node.Description.Properties
-                .ToDictionary(GetNodeName, pi => pi);
+                .ToDictionary(nodeDetector.GetNodeName, pi => pi);
 
             // some properties may be presented as attributes and as element
             // here we give precedence to attributes
@@ -98,8 +96,8 @@ namespace SimpleXmlSerializer.Core
                     continue;
                 }
 
-                var propertyNodeName = GetNodeName(propertyInfo);
-                var propertyNode = GetNode(propertyInfo.PropertyType);
+                var propertyNodeName = nodeDetector.GetNodeName(propertyInfo);
+                var propertyNode = nodeDetector.GetNode(propertyInfo.PropertyType);
                 propertyNode.Value = propertyValue;
                 propertyNode.Name = propertyNodeName;
 

@@ -9,25 +9,24 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Core
 {
-    internal class DeserializationVisitor : NodeVisitor, INodeVisitor
+    internal class DeserializationVisitor : INodeVisitor
     {
-        private readonly XmlSerializerSettings settings;
         private readonly XmlReader xmlReader;
+        private readonly NodeDetector nodeDetector;
 
-        public DeserializationVisitor(XmlReader xmlReader, XmlSerializerSettings settings, IDictionary<Type, INode> nodesCache)
-            : base(settings, nodesCache)
+        public DeserializationVisitor(XmlReader xmlReader, NodeDetector nodeDetector)
         {
             this.xmlReader = xmlReader;
-            this.settings = settings;
+            this.nodeDetector = nodeDetector;
         }
 
         public object Visit(Type type)
         {
-            var nodeName = settings.NameProvider.GetNodeName(type);
+            var nodeName = nodeDetector.GetNodeName(type);
 
             if (xmlReader.ReadToNextSibling(nodeName.ElementName))
             {
-                var node = GetNode(type);
+                var node = nodeDetector.GetNode(type);
                 node.Name = nodeName;
                 
                 node.Accept(this);
@@ -74,8 +73,8 @@ namespace SimpleXmlSerializer.Core
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
-                var itemNode = GetNode(node.Description.ItemType);
-                var itemNodeName = settings.NameProvider.GetNodeName(node.Description.ItemType);
+                var itemNode = nodeDetector.GetNode(node.Description.ItemType);
+                var itemNodeName = nodeDetector.GetNodeName(node.Description.ItemType);
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
 
                 do
@@ -95,7 +94,7 @@ namespace SimpleXmlSerializer.Core
             var propertyValues = new Dictionary<PropertyInfo, object>();
 
             var names = node.Description.Properties
-                .ToDictionary(pi => settings.NameProvider.GetNodeName(pi), pi => pi);
+                .ToDictionary(pi => nodeDetector.GetNodeName(pi), pi => pi);
 
             // first deserialize from attributes of current element
             if (xmlReader.MoveToFirstAttribute())
@@ -109,8 +108,8 @@ namespace SimpleXmlSerializer.Core
                     PropertyInfo propertyInfo;
                     if (attributesNames.TryGetValue(xmlReader.LocalName, out propertyInfo))
                     {
-                        var propertyNode = GetNode(propertyInfo.PropertyType);
-                        var propertyNodeName = settings.NameProvider.GetNodeName(propertyInfo);
+                        var propertyNode = nodeDetector.GetNode(propertyInfo.PropertyType);
+                        var propertyNodeName = nodeDetector.GetNodeName(propertyInfo);
                         propertyNode.Name = propertyNodeName;
 
                         propertyNode.Accept(this);
@@ -134,8 +133,8 @@ namespace SimpleXmlSerializer.Core
                     PropertyInfo propertyInfo;
                     if (elementsNames.TryGetValue(xmlReader.LocalName, out propertyInfo))
                     {
-                        var propertyNode = GetNode(propertyInfo.PropertyType);
-                        var propertyNodeName = settings.NameProvider.GetNodeName(propertyInfo);
+                        var propertyNode = nodeDetector.GetNode(propertyInfo.PropertyType);
+                        var propertyNodeName = nodeDetector.GetNodeName(propertyInfo);
                         propertyNode.Name = propertyNodeName;
 
                         propertyNode.Accept(this);

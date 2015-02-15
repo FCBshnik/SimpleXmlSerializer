@@ -1,5 +1,8 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Represents name (element or attribute name) of node of object's graph in xml.
+    /// </summary>
     public class NodeName
     {
         public NodeName(string elementName) : this(elementName, string.Empty, string.Empty)
@@ -23,16 +26,25 @@
 
         public string AttributeName { get; private set; }
 
+        /// <summary>
+        /// Indicates if current node name is element name.
+        /// </summary>
         public bool IsElement
         {
             get { return !string.IsNullOrEmpty(ElementName); }
         }
 
+        /// <summary>
+        /// Indicates if current node name is attribute name.
+        /// </summary>
         public bool IsAttribute
         {
             get { return !string.IsNullOrEmpty(AttributeName); }
         }
 
+        /// <summary>
+        /// Indicates if current node name is name for item within collection.
+        /// </summary>
         public bool IsItem
         {
             get { return !string.IsNullOrEmpty(ItemName); }

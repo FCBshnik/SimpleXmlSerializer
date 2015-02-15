@@ -68,6 +68,7 @@
     <Compile Include="Core\Naming\Conventions\CamelCaseNamingConvention.cs" />
     <Compile Include="Core\Naming\INamingConvention.cs" />
     <Compile Include="Core\Naming\Conventions\NoNamingConvention.cs" />
+    <Compile Include="Core\NodeDetector.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\ComplexNode.cs" />
     <Compile Include="Core\Nodes\CustomNode.cs" />
@@ -90,11 +91,10 @@
     <Compile Include="Core\Primitives\Serializers\DateTimeSerializer.cs" />
     <Compile Include="Core\Primitives\IPrimitiveSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\TimeSpanSerializer.cs" />
-    <Compile Include="Core\Complex\PropertiesSelector.cs" />
+    <Compile Include="Core\Complex\PublicPropertiesSelector.cs" />
     <Compile Include="Core\Primitives\Serializers\BoolSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\IntSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\StringSerializer.cs" />
-    <Compile Include="Core\Visitors\NodeVisitor.cs" />
     <Compile Include="Utils\ExpressionUtils.cs" />
     <Compile Include="Utils\TypeUtils.cs" />
     <Compile Include="XmlSerializer.cs" />

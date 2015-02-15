@@ -7,6 +7,8 @@ namespace SimpleXmlSerializer.PerformanceTests.Cmd
 {
     public class Program
     {
+        private static readonly string sectionSeparator = string.Concat(Enumerable.Repeat("-", 50));
+
         public static void Main(string[] args)
         {
             var testSuite = new TestSuite
@@ -14,13 +16,14 @@ namespace SimpleXmlSerializer.PerformanceTests.Cmd
                     TestCases = TestCasesFactory.CreateTestCases()
                 };
 
+            Console.WriteLine("Executing tests...");
             var testSuiteExecutor = new TestSuiteExecutor();
             var testSuiteResult = testSuiteExecutor.ExecuteTestSuite(testSuite);
 
             foreach (var item in testSuiteResult.TestCaseResults)
             {
                 Console.WriteLine(item);
-                Console.WriteLine(string.Concat(Enumerable.Repeat("-", 50)));
+                Console.WriteLine(sectionSeparator);
             }
 
             Console.WriteLine("Done.");

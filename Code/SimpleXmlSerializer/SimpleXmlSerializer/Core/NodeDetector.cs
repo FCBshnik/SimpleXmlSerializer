@@ -4,18 +4,17 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    internal abstract class NodeVisitor
+    internal class NodeDetector
     {
         private readonly XmlSerializerSettings settings;
-        private readonly IDictionary<Type, INode> nodesCache;
+        private readonly IDictionary<Type, INode> nodesCache = new Dictionary<Type, INode>();
 
-        protected NodeVisitor(XmlSerializerSettings settings, IDictionary<Type, INode> nodesCache)
+        public NodeDetector(XmlSerializerSettings settings)
         {
             this.settings = settings;
-            this.nodesCache = nodesCache;
         }
 
-        protected virtual INode GetNode(Type type)
+        public virtual INode GetNode(Type type)
         {
             if (nodesCache.ContainsKey(type))
             {
@@ -49,12 +48,12 @@ namespace SimpleXmlSerializer.Core
             return (INode)node.Clone();
         }
 
-        protected NodeName GetNodeName(Type type)
+        public NodeName GetNodeName(Type type)
         {
             return settings.NameProvider.GetNodeName(type);
         }
 
-        protected NodeName GetNodeName(PropertyInfo propertyInfo)
+        public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
             return settings.NameProvider.GetNodeName(propertyInfo);
         }

@@ -4,7 +4,10 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class PropertiesSelector : IPropertiesSelector
+    /// <summary>
+    /// The implementation of <see cref="IPropertiesSelector"/> which returns all writable public instance properties of type.
+    /// </summary>
+    public class PublicPropertiesSelector : IPropertiesSelector
     {
         public IEnumerable<PropertyInfo> SelectProperties(Type type)
         {

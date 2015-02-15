@@ -2,6 +2,9 @@
 
 namespace SimpleXmlSerializer
 {
+    /// <summary>
+    /// Contains serialization settings. This class is read only.
+    /// </summary>
     public class XmlSerializerSettings
     {
         private readonly INameProvider nameProvider;
