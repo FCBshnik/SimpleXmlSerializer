@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<complexWithPrimitives>
+  <string>One</string>
+  <unknownElement>unknownElement</unknownElement>
+  <int>1</int>
+</complexWithPrimitives>

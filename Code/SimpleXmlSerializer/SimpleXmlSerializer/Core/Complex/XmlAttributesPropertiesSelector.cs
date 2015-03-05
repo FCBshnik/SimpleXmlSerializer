@@ -7,6 +7,11 @@ using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// The implementation of <see cref="IPropertiesSelector"/> which 
+    /// returns all read/write public instance properties of type
+    /// accordingly with xml* attributes.
+    /// </summary>
     public class XmlAttributesPropertiesSelector : IPropertiesSelector
     {
         public IEnumerable<PropertyInfo> SelectProperties(Type type)

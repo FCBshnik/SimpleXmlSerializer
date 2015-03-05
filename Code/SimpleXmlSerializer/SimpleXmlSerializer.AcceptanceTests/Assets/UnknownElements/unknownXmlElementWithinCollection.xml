@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<collection>
+  <add>One</add>
+  <unknownElement>unknownElement</unknownElement>
+  <add>Two</add>
+</collection>

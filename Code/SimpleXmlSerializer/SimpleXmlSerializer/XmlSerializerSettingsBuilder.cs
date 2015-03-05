@@ -77,7 +77,7 @@ namespace SimpleXmlSerializer
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
             nameProvider = new XmlAttributesNameProvider();
-            propertiesSelector = new SpecialPropertiesSelector(new PublicPropertiesSelector(), new XmlAttributesPropertiesSelector());
+            propertiesSelector = new KeyValuePairPropertiesSelector(new XmlAttributesPropertiesSelector());
             return this;
         }
 
@@ -88,7 +88,7 @@ namespace SimpleXmlSerializer
         {
             nameProvider = new DataAttributesNameProvider();
             collectionProviders.Prepend(new DataAttributeCollectionProvider());
-            propertiesSelector = new SpecialPropertiesSelector(new PublicPropertiesSelector(), new DataAttributesPropertiesSelector());
+            propertiesSelector = new KeyValuePairPropertiesSelector(new DataAttributesPropertiesSelector());
             return this;
         }
 

@@ -4,12 +4,15 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    internal class NodeDetector
+    /// <summary>
+    /// Responsible to provide and cache info about object graph.
+    /// </summary>
+    internal class NodeProvider
     {
         private readonly XmlSerializerSettings settings;
         private readonly IDictionary<Type, INode> nodesCache = new Dictionary<Type, INode>();
 
-        public NodeDetector(XmlSerializerSettings settings)
+        public NodeProvider(XmlSerializerSettings settings)
         {
             this.settings = settings;
         }

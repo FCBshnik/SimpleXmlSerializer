@@ -5,7 +5,7 @@ using System.Reflection;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Responsible to provide properties of type which should be serialized.
+    /// Responsible to provide list of type properties to serialize.
     /// </summary>
     public interface IPropertiesSelector
     {

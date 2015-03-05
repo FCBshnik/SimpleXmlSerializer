@@ -3,6 +3,9 @@ using System.Collections;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Represents information how to serialize collection type.
+    /// </summary>
     public class CollectionNodeDescription
     {
         public CollectionNodeDescription(Type itemType, Func<IList, object> factory)

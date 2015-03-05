@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Extensions
@@ -8,6 +9,11 @@ namespace SimpleXmlSerializer.Extensions
         public static bool ReadToDescendant(this XmlReader xmlReader)
         {
             Preconditions.NotNull(xmlReader, "xmlReader");
+
+            if (xmlReader.NodeType != XmlNodeType.Element)
+            {
+                throw new InvalidOperationException(string.Format("Current node type must be '{0}'", XmlNodeType.Element));
+            }
 
             var depth = xmlReader.Depth;
 

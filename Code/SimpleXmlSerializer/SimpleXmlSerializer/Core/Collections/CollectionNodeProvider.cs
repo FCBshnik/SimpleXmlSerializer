@@ -6,15 +6,18 @@ using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Defines which types should be serialized as collection.
+    /// </summary>
     public class CollectionNodeProvider : ICollectionNodeProvider
     {
         // todo: non-generic collection
         private static readonly HashSet<Type> collectionTypes = new HashSet<Type>
             {
-                typeof(IEnumerable<>), 
-                typeof(ICollection<>), 
+                typeof(IEnumerable<>),
+                typeof(ICollection<>),
                 typeof(Collection<>),
-                typeof(IList<>), 
+                typeof(IList<>),
                 typeof(List<>)
             };
 

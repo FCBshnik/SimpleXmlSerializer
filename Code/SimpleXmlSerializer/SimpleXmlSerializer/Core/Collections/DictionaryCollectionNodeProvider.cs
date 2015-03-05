@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Provides info how to serialize dictionary types.
+    /// </summary>
     public class DictionaryCollectionNodeProvider : ICollectionNodeProvider
     {
         // todo: non-generic dictionary

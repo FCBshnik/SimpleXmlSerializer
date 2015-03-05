@@ -49,9 +49,11 @@
     <Compile Include="Dto\CustomGenericCollection.cs" />
     <Compile Include="Dto\CustomDictionary.cs" />
     <Compile Include="Dto\CustomCollection.cs" />
-    <Compile Include="Tests\FeaturesTests.cs" />
+    <Compile Include="Tests\CustomSerializersTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
+    <Compile Include="Tests\PrimitivesToAttributesTests.cs" />
     <Compile Include="Tests\TestsBase.cs" />
+    <Compile Include="Tests\UnknownElementsTests.cs" />
     <Compile Include="Utils\ObjectAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\CollectionsTests.cs" />
@@ -115,13 +117,7 @@
     <Content Include="Assets\Complex\complexWithEmptyCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Features\primitivesToAttributesWithNull.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Features\primitivesToAttributes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Features\customSerializer.xml">
+    <Content Include="Assets\CustomSerializers\customSerializer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\collectionDataAttributeForCollectionType.xml">
@@ -146,6 +142,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\dataAttributes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\PrimitivesToAttributes\primitivesToAttributes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\PrimitivesToAttributes\primitivesToAttributesWithNull.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\boolean.xml">
@@ -176,6 +178,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\string.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\UnknownElements\unknownXmlElementWithinCollection.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\UnknownElements\unknownXmlAttribute.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\UnknownElements\unknownXmlElement.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

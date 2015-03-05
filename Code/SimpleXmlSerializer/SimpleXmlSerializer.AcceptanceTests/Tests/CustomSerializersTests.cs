@@ -7,28 +7,8 @@ using SimpleXmlSerializer.Core;
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
     [TestClass]
-    public class FeaturesTests : TestsBase
+    public class CustomSerializersTests : TestsBase
     {
-        [TestMethod]
-        public void PrimitivesToAttributes()
-        {
-            var settings = new XmlSerializerSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
-            serializer = new XmlSerializer(settings);
-
-            ActAndAssert(ComplexWithComplexes.Numbers, "primitivesToAttributes");
-        }
-
-        [TestMethod]
-        public void PrimitivesToAttributesWithNull()
-        {
-            var settings = new XmlSerializerSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
-            serializer = new XmlSerializer(settings);
-
-            var numbers = ComplexWithComplexes.Numbers;
-            numbers.Two.String = null;
-            ActAndAssert(numbers, "primitivesToAttributesWithNull");
-        }
-
         [TestMethod]
         public void CustomSerializer()
         {
@@ -39,7 +19,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             ActAndAssert(ComplexWithComplexes.Numbers, "customSerializer");
         }
-        
+
         public class MyCustomSerializer : ICustomSerializer
         {
             public void Serialize(object value, XmlWriter xmlWriter)

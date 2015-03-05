@@ -1,5 +1,8 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Represents information how to serialize custom type.
+    /// </summary>
     public class CustomNodeDescription
     {
         public CustomNodeDescription(ICustomSerializer serializer)

@@ -4,26 +4,24 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    // hack to not skip KeyValuePair properties which do not have serialization attributes
-    internal class SpecialPropertiesSelector : IPropertiesSelector
+    internal class KeyValuePairPropertiesSelector : IPropertiesSelector
     {
         private readonly IPropertiesSelector defaultSelector;
-        private readonly IPropertiesSelector selector;
+        private readonly IPropertiesSelector selector = new PublicPropertiesSelector();
 
-        public SpecialPropertiesSelector(IPropertiesSelector defaultSelector, IPropertiesSelector selector)
+        public KeyValuePairPropertiesSelector(IPropertiesSelector defaultSelector)
         {
             this.defaultSelector = defaultSelector;
-            this.selector = selector;
         }
 
         public IEnumerable<PropertyInfo> SelectProperties(Type type)
         {
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
             {
-                return defaultSelector.SelectProperties(type);
+                return selector.SelectProperties(type);
             }
 
-            return selector.SelectProperties(type);
+            return defaultSelector.SelectProperties(type);
         }
     }
 }

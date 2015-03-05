@@ -4,13 +4,13 @@ Analyze:
 - instance of type is tree too but with values
 
 Features todo:
-- Strong identify what types and properties should be serialized (marked with Serializable or Data attributes or smth else)
 - Handling of unknown elements while deserialize (add settings).
 - Extend serialization settings to specify properties order when serializing
 - Validate case when nodes have same names
 - Add protection circular type reference
 - Add strategies to handle unknown types
 - Think about inheritance (so called 'known types')
+- Use XmlReader ReadSubTree method for custom serializers
 - Multi dimensional arrays (quad and jagged)
 - Add settings to ignore specified types to be serialized
 - Typeless serialization (store full type name in xml) (?)

@@ -12,21 +12,23 @@ namespace SimpleXmlSerializer.Core
     internal class DeserializationVisitor : INodeVisitor
     {
         private readonly XmlReader xmlReader;
-        private readonly NodeDetector nodeDetector;
+        private readonly XmlSerializerSettings settings;
+        private readonly NodeProvider nodeProvider;
 
-        public DeserializationVisitor(XmlReader xmlReader, NodeDetector nodeDetector)
+        public DeserializationVisitor(XmlReader xmlReader, XmlSerializerSettings settings, NodeProvider nodeProvider)
         {
             this.xmlReader = xmlReader;
-            this.nodeDetector = nodeDetector;
+            this.nodeProvider = nodeProvider;
+            this.settings = settings;
         }
 
         public object Visit(Type type)
         {
-            var nodeName = nodeDetector.GetNodeName(type);
+            var nodeName = nodeProvider.GetNodeName(type);
 
             if (xmlReader.ReadToNextSibling(nodeName.ElementName))
             {
-                var node = nodeDetector.GetNode(type);
+                var node = nodeProvider.GetNode(type);
                 node.Name = nodeName;
                 
                 node.Accept(this);
@@ -73,8 +75,8 @@ namespace SimpleXmlSerializer.Core
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
-                var itemNode = nodeDetector.GetNode(node.Description.ItemType);
-                var itemNodeName = nodeDetector.GetNodeName(node.Description.ItemType);
+                var itemNode = nodeProvider.GetNode(node.Description.ItemType);
+                var itemNodeName = nodeProvider.GetNodeName(node.Description.ItemType);
                 itemNode.Name = new NodeName(node.Name.ItemName, itemNodeName.ItemName);
 
                 do
@@ -91,25 +93,30 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(ComplexNode node)
         {
+            // map of deserialized child values for current element
             var propertyValues = new Dictionary<PropertyInfo, object>();
 
+            // get all properties by their name
             var names = node.Description.Properties
-                .ToDictionary(pi => nodeDetector.GetNodeName(pi), pi => pi);
+                .ToDictionary(pi => nodeProvider.GetNodeName(pi), pi => pi);
 
             // first deserialize from attributes of current element
+            // go to first attribute of current element
             if (xmlReader.MoveToFirstAttribute())
             {
+                // get properties mapped to attributes
                 var attributesNames = names
                     .Where(p => p.Key.IsAttribute)
                     .ToDictionary(p => p.Key.AttributeName, p => p.Value);
 
+                // iterate through all attributes of current element
                 do
                 {
                     PropertyInfo propertyInfo;
                     if (attributesNames.TryGetValue(xmlReader.LocalName, out propertyInfo))
                     {
-                        var propertyNode = nodeDetector.GetNode(propertyInfo.PropertyType);
-                        var propertyNodeName = nodeDetector.GetNodeName(propertyInfo);
+                        var propertyNode = nodeProvider.GetNode(propertyInfo.PropertyType);
+                        var propertyNodeName = nodeProvider.GetNodeName(propertyInfo);
                         propertyNode.Name = propertyNodeName;
 
                         propertyNode.Accept(this);
@@ -133,8 +140,8 @@ namespace SimpleXmlSerializer.Core
                     PropertyInfo propertyInfo;
                     if (elementsNames.TryGetValue(xmlReader.LocalName, out propertyInfo))
                     {
-                        var propertyNode = nodeDetector.GetNode(propertyInfo.PropertyType);
-                        var propertyNodeName = nodeDetector.GetNodeName(propertyInfo);
+                        var propertyNode = nodeProvider.GetNode(propertyInfo.PropertyType);
+                        var propertyNodeName = nodeProvider.GetNodeName(propertyInfo);
                         propertyNode.Name = propertyNodeName;
 
                         propertyNode.Accept(this);

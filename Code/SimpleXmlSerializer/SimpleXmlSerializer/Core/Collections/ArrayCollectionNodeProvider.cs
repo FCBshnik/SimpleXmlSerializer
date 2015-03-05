@@ -3,24 +3,22 @@ using System.Collections;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Provides info how to serialize array types.
+    /// </summary>
     public class ArrayCollectionNodeProvider : ICollectionNodeProvider
     {
         public bool TryGetDescription(Type type, out CollectionNodeDescription collectionDescription)
         {
             if (type.IsArray)
             {
-                collectionDescription = GetArrayDescription(type);
+                var itemType = type.GetElementType();
+                collectionDescription = new CollectionNodeDescription(itemType, items => CreateArray(items, itemType));
                 return true;
             }
 
             collectionDescription = null;
             return false;
-        }
-
-        private static CollectionNodeDescription GetArrayDescription(Type collectionType)
-        {
-            var itemType = collectionType.GetElementType();
-            return new CollectionNodeDescription(itemType, items => CreateArray(items, itemType));
         }
 
         private static object CreateArray(ICollection items, Type itemType)

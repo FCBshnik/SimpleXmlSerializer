@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Represents information how to serialize complex type.
+    /// </summary>
     public class ComplexNodeDescription
     {
         public ComplexNodeDescription(IEnumerable<PropertyInfo> properties, Func<IDictionary<PropertyInfo, object>, object> factory)

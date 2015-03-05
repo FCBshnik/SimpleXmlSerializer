@@ -19,14 +19,30 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
         protected void ActAndAssert(object obj, string fileName)
         {
-            var path = Path.Combine(AssetsDirectory, fileName.ToLowerInvariant() + ".xml");
+            SerializeAndAssert(obj, fileName);
+            DeserializeAndAssert(obj, fileName);
+        }
+
+        protected void SerializeAndAssert(object obj, string fileName)
+        {
+            var path = GetXmlFilePath(fileName);
             serializer.SerializeAndAssert(obj, path);
+        }
+
+        protected void DeserializeAndAssert(object obj, string fileName)
+        {
+            var path = GetXmlFilePath(fileName);
             serializer.DeserializeAndAssert(obj, path);
         }
 
         protected void ActAndAssert(object obj)
         {
             ActAndAssert(obj, obj.GetType().Name.ToLowerInvariant());
+        }
+
+        private string GetXmlFilePath(string fileName)
+        {
+            return Path.Combine(AssetsDirectory, fileName.ToLowerInvariant() + ".xml");
         }
     }
 }
