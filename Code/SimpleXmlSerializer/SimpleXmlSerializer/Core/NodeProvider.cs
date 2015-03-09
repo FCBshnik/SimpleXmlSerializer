@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -59,6 +61,31 @@ namespace SimpleXmlSerializer.Core
         public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
             return settings.NameProvider.GetNodeName(propertyInfo);
+        }
+
+        public IDictionary<NodeName, PropertyInfo> GetNodeNames(IEnumerable<PropertyInfo> properties)
+        {
+            var nodeNames = properties.ToDictionary(GetNodeName, pi => pi);
+
+            var conflictedElementNames = nodeNames.Keys
+                .Where(n => n.IsElement)
+                .GroupBy(n => n.ElementName)
+                .FirstOrDefault(gr => gr.Count() > 1);
+            if (conflictedElementNames != null)
+            {
+                throw new SerializationException(string.Format("There are multiply properties with the same element name '{0}'", conflictedElementNames.Key));
+            }
+
+            var conflictedAttributeNames = nodeNames.Keys
+                .Where(n => n.IsAttribute)
+                .GroupBy(n => n.AttributeName)
+                .FirstOrDefault(gr => gr.Count() > 1);
+            if (conflictedAttributeNames != null)
+            {
+                throw new SerializationException(string.Format("There are multiply properties with the same attribute name '{0}'", conflictedAttributeNames.Key));
+            }
+
+            return nodeNames;
         }
     }
 }

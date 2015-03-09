@@ -19,7 +19,7 @@ namespace SimpleXmlSerializer.Core
             return type.GetProperties(BindingFlags.Instance | BindingFlags.Public |
                 BindingFlags.SetProperty | BindingFlags.GetProperty)
                 .Where(pi => !pi.HasAttribute<XmlIgnoreAttribute>() && (
-                    pi.HasAttribute<XmlElementAttribute>() || pi.HasAttribute<XmlArrayAttribute>()));
+                    pi.HasAttribute<XmlElementAttribute>() || pi.HasAttribute<XmlArrayAttribute>()));;
         }
     }
 }

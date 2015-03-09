@@ -4,8 +4,9 @@ Analyze:
 - instance of type is tree too but with values
 
 Features todo:
-- Handling of unknown elements while deserialize (add settings).
-- Extend serialization settings to specify properties order when serializing
+- Handle conflict element names (specified by attributes)
+- Deal with XmlArray and XmlArrayItemAttributes
+- Use order from various serialization attributes
 - Validate case when nodes have same names
 - Add protection circular type reference
 - Add strategies to handle unknown types

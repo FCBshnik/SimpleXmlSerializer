@@ -42,9 +42,11 @@
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Dto\ComplexWithCollections.cs" />
+    <Compile Include="Dto\ComplexWithCollectionsXmlArrayAttrs.cs" />
     <Compile Include="Dto\ComplexWithComplexes.cs" />
     <Compile Include="Dto\ComplexWithCustomCollections.cs" />
     <Compile Include="Dto\ComplexWithPrimitives.cs" />
+    <Compile Include="Dto\ComplexWithPrimitivesConflictElementNames.cs" />
     <Compile Include="Dto\CustomGenericDictionary.cs" />
     <Compile Include="Dto\CustomGenericCollection.cs" />
     <Compile Include="Dto\CustomDictionary.cs" />
@@ -129,7 +131,10 @@
     <Content Include="Assets\NameProviders\collectionDataAttributeForProperties.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\xmlAttributesWithPrimitivesToAttributes.xml">
+    <Content Include="Assets\NameProviders\xmlAttributes_xmlArrayAttributes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\xmlAttributes_primitivesToAttributes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\dataAttributesWithPrimitivesToAttributes.xml">

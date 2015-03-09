@@ -97,8 +97,7 @@ namespace SimpleXmlSerializer.Core
             var propertyValues = new Dictionary<PropertyInfo, object>();
 
             // get all properties by their name
-            var names = node.Description.Properties
-                .ToDictionary(pi => nodeProvider.GetNodeName(pi), pi => pi);
+            var names = nodeProvider.GetNodeNames(node.Description.Properties);
 
             // first deserialize from attributes of current element
             // go to first attribute of current element

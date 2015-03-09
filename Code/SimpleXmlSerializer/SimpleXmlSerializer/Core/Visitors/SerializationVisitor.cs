@@ -77,8 +77,7 @@ namespace SimpleXmlSerializer.Core
         {
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
-            var properties = node.Description.Properties
-                .ToDictionary(nodeProvider.GetNodeName, pi => pi);
+            var properties = nodeProvider.GetNodeNames(node.Description.Properties);
 
             // some properties may be presented as attributes and as element
             // here we give precedence to attributes

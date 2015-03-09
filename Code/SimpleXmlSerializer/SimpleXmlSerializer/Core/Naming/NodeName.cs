@@ -43,7 +43,7 @@
         }
 
         /// <summary>
-        /// Indicates if current node name is name for item within collection.
+        /// Indicates if current node name has name for item within collection.
         /// </summary>
         public bool IsItem
         {

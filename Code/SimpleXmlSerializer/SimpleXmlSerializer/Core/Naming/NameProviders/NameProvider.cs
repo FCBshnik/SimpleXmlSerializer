@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Provides xml element and attribute names based on type information or property information.
+    /// </summary>
     public class NameProvider : INameProvider
     {
         private const string CollectionName = "collection";
@@ -27,6 +30,7 @@ namespace SimpleXmlSerializer.Core
 
             CollectionNodeDescription collectionDescription;
 
+            // if it is collection type
             if (collectionProvider.TryGetDescription(type, out collectionDescription))
             {
                 name = CollectionName;
@@ -34,6 +38,7 @@ namespace SimpleXmlSerializer.Core
             }
             else if (type.IsGenericType)
             {
+                // if generic type, cut of 'generic' part of type name
                 name = type.Name.Substring(0, type.Name.IndexOf('`'));
             }
 
@@ -49,6 +54,7 @@ namespace SimpleXmlSerializer.Core
 
             CollectionNodeDescription collectionDescription;
 
+            // if type of property is collection, then additionally provide item name
             if (collectionProvider.TryGetDescription(propertyInfo.PropertyType, out collectionDescription))
             {
                 itemName = CollectionItemName;

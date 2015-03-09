@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Runtime.Serialization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.AcceptanceTests.Dto;
+using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
@@ -24,7 +26,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
-        public void XmlAttributesNameProviderWithPrimitivesToAttributes()
+        public void XmlAttributesNameProvider_PrimitivesToAttributes()
         {
             var settings = new XmlSerializerSettingsBuilder()
                 .UseXmlAttributes()
@@ -33,7 +35,61 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "xmlAttributesWithPrimitivesToAttributes");
+            ActAndAssert(ComplexWithComplexes.Numbers, "xmlAttributes_primitivesToAttributes");
+        }
+
+        [TestMethod]
+        public void XmlAttributesNameProvider_XmlArrayAttributes()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithCollectionsXmlArrayAttrs.Numbers, "xmlAttributes_xmlArrayAttributes");
+        }
+
+        [ExpectedException(typeof(SerializationException))]
+        [TestMethod]
+        public void XmlAttributesNameProvider_Serialize_ConflictElementsNames()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+        }
+
+        [ExpectedException(typeof(SerializationException))]
+        [TestMethod]
+        public void XmlAttributesNameProvider_Serialize_ConflictAttributesNames()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().SerializePrimitivesToAttributes().GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+        }
+
+        [ExpectedException(typeof(SerializationException))]
+        [TestMethod]
+        public void DataAttributesNameProvider_Serialize_ConflictElementsNames()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+        }
+
+        [ExpectedException(typeof(SerializationException))]
+        [TestMethod]
+        public void DataAttributesNameProvider_Serialize_ConflictAttributesNames()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().SerializePrimitivesToAttributes().GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
         }
 
         [TestMethod]
