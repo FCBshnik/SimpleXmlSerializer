@@ -16,9 +16,15 @@ namespace SimpleXmlSerializer.Core
     {
         public IEnumerable<PropertyInfo> SelectProperties(Type type)
         {
-            return type.GetProperties(BindingFlags.Instance | BindingFlags.Public |
-                BindingFlags.SetProperty | BindingFlags.GetProperty)
-                .Where(pi => !pi.HasAttribute<IgnoreDataMemberAttribute>() && pi.HasAttribute<DataMemberAttribute>());
+            return type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty)
+                .Where(pi => !pi.HasAttribute<IgnoreDataMemberAttribute>())
+                .Select(pi => new
+                    {
+                        Property = pi, DataMemberAttr = pi.FindAttribute<DataMemberAttribute>()
+                    })
+                .Where(p => p.DataMemberAttr != null)
+                .OrderBy(p => p.DataMemberAttr.Order)
+                .Select(p => p.Property);
         }
     }
 }

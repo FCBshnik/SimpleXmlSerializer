@@ -47,6 +47,7 @@
     <Compile Include="Dto\ComplexWithCustomCollections.cs" />
     <Compile Include="Dto\ComplexWithPrimitives.cs" />
     <Compile Include="Dto\ComplexWithPrimitivesConflictElementNames.cs" />
+    <Compile Include="Dto\ComplexWithPrimitivesOrder.cs" />
     <Compile Include="Dto\CustomGenericDictionary.cs" />
     <Compile Include="Dto\CustomGenericCollection.cs" />
     <Compile Include="Dto\CustomDictionary.cs" />
@@ -129,6 +130,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\collectionDataAttributeForProperties.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\dataAttributes_order.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\NameProviders\xmlAttributes_order.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\xmlAttributes_xmlArrayAttributes.xml">

@@ -4,8 +4,6 @@ Analyze:
 - instance of type is tree too but with values
 
 Features todo:
-- Handle conflict element names (specified by attributes)
-- Deal with XmlArray and XmlArrayItemAttributes
 - Use order from various serialization attributes
 - Validate case when nodes have same names
 - Add protection circular type reference

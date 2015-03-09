@@ -26,6 +26,15 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void XmlAttributesNameProvider_Order()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithPrimitivesOrder.One, "xmlAttributes_order");
+        }
+
+        [TestMethod]
         public void XmlAttributesNameProvider_PrimitivesToAttributes()
         {
             var settings = new XmlSerializerSettingsBuilder()
@@ -70,6 +79,37 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
         }
 
+        [TestMethod]
+        public void DataAttributesNameProvider()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributes");
+        }
+
+        [TestMethod]
+        public void DataAttributesNameProvider_Order()
+        {
+            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithPrimitivesOrder.One, "dataAttributes_order");
+        }
+
+        [TestMethod]
+        public void DataAttributesNameProviderWithPrimitivesToAttributes()
+        {
+            var settings = new XmlSerializerSettingsBuilder()
+                .UseDataAttributes()
+                .SerializePrimitivesToAttributes()
+                .GetSettings();
+
+            serializer = new XmlSerializer(settings);
+
+            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributesWithPrimitivesToAttributes");
+        }
+
         [ExpectedException(typeof(SerializationException))]
         [TestMethod]
         public void DataAttributesNameProvider_Serialize_ConflictElementsNames()
@@ -90,28 +130,6 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             serializer = new XmlSerializer(settings);
 
             serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
-        }
-
-        [TestMethod]
-        public void DataAttributesNameProvider()
-        {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
-            serializer = new XmlSerializer(settings);
-
-            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributes");
-        }
-
-        [TestMethod]
-        public void DataAttributesNameProviderWithPrimitivesToAttributes()
-        {
-            var settings = new XmlSerializerSettingsBuilder()
-                .UseDataAttributes()
-                .SerializePrimitivesToAttributes()
-                .GetSettings();
-
-            serializer = new XmlSerializer(settings);
-
-            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributesWithPrimitivesToAttributes");
         }
 
         [TestMethod]
