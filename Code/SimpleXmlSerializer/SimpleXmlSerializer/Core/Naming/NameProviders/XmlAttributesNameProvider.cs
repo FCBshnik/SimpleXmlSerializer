@@ -12,7 +12,7 @@ namespace SimpleXmlSerializer.Core
             var xmlRootAttr = type.FindAttribute<XmlRootAttribute>();
             if (xmlRootAttr != null)
             {
-                return new NodeName(xmlRootAttr.ElementName, string.Empty);
+                return new NodeName(xmlRootAttr.ElementName);
             }
 
             return NodeName.Empty;
@@ -20,27 +20,35 @@ namespace SimpleXmlSerializer.Core
 
         public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
+            var elementName = string.Empty;
+            var attributeName = string.Empty;
+            var itemName = string.Empty;
+
             var xmlElementAttr = propertyInfo.FindAttribute<XmlElementAttribute>();
             if (xmlElementAttr != null)
             {
-                return new NodeName(xmlElementAttr.ElementName);
+                elementName = xmlElementAttr.ElementName;
             }
 
             var xmlArrayAttr = propertyInfo.FindAttribute<XmlArrayAttribute>();
-            var xmlArrayItemAttr = propertyInfo.FindAttribute<XmlArrayItemAttribute>();
             if (xmlArrayAttr != null)
             {
-                var itemName = xmlArrayItemAttr != null ? xmlArrayItemAttr.ElementName : string.Empty;
-                return new NodeName(xmlArrayAttr.ElementName, itemName);
+                elementName = xmlArrayAttr.ElementName;
+            }
+
+            var xmlArrayItemAttr = propertyInfo.FindAttribute<XmlArrayItemAttribute>();
+            if (xmlArrayItemAttr != null)
+            {
+                itemName = xmlArrayItemAttr.ElementName;
             }
 
             var xmlAttributeAttr = propertyInfo.FindAttribute<XmlAttributeAttribute>();
             if (xmlAttributeAttr != null)
             {
-                return new NodeName(string.Empty, string.Empty, xmlAttributeAttr.AttributeName);
+                attributeName = xmlAttributeAttr.AttributeName;
             }
 
-            return NodeName.Empty;
+            return new NodeName(elementName, itemName, attributeName);
         }
     }
 }

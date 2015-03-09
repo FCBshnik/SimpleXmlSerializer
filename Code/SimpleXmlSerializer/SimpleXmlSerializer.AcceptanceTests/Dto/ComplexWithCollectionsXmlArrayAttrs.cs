@@ -15,23 +15,19 @@ namespace SimpleXmlSerializer.AcceptanceTests.Dto
                     Collection1 = new List<string> { "One", "Two" },
                     Collection2 = new List<string> { "Three", "Four" },
                     Collection3 = new List<string> { "Five", "Six" },
-                    Collection4= new List<string> { "Seven", "Eight" },
                 };
             }
         }
 
-        [XmlArray(ElementName = "xmlCollection")]
+        [XmlArray(ElementName = "xmlCollection1")]
         [XmlArrayItem(ElementName = "xmlAdd")]
         public IEnumerable<string> Collection1 { get; set; }
 
-        [XmlArray(ElementName = "xmlCollection")]
+        [XmlArray(ElementName = "xmlCollection2")]
         public IEnumerable<string> Collection2 { get; set; }
 
-        [XmlElement("xmlCollection")]
+        [XmlElement("xmlCollection3")]
         [XmlArrayItem(ElementName = "xmlAdd")]
         public IEnumerable<string> Collection3 { get; set; }
-
-        [XmlArrayItem(ElementName = "xmlAdd")]
-        public IEnumerable<string> Collection4 { get; set; }
     }
 }

@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xmlComplexWithCollections>
-  <xmlCollection>
+  <xmlCollection1>
     <xmlAdd>One</xmlAdd>
     <xmlAdd>Two</xmlAdd>
-  </xmlCollection>
-  <xmlCollection>
+  </xmlCollection1>
+  <xmlCollection2>
     <add>Three</add>
     <add>Four</add>
-  </xmlCollection>
-  <xmlCollection>
-    <xmlAdd>Three</xmlAdd>
-    <xmlAdd>Four</xmlAdd>
-  </xmlCollection>
+  </xmlCollection2>
+  <xmlCollection3>
+    <xmlAdd>Five</xmlAdd>
+    <xmlAdd>Six</xmlAdd>
+  </xmlCollection3>
 </xmlComplexWithCollections>
