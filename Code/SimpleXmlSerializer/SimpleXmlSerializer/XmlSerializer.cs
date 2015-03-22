@@ -16,19 +16,19 @@ namespace SimpleXmlSerializer
 
         public XmlSerializer(XmlSerializerSettings settings)
         {
-            this.settings = settings;
             Preconditions.NotNull(settings, "settings");
 
+            this.settings = settings;
             nodeProvider = new NodeProvider(settings);
         }
 
-        public void Serialize(object obj, XmlWriter xmlWriter)
+        public void Serialize(object value, XmlWriter xmlWriter)
         {
-            Preconditions.NotNull(obj, "obj");
+            Preconditions.NotNull(value, "value");
             Preconditions.NotNull(xmlWriter, "xmlWriter");
 
             var visitor = new SerializationVisitor(xmlWriter, nodeProvider);
-            visitor.Visit(obj);
+            visitor.Visit(value);
         }
 
         public object Deserialize(Type type, XmlReader xmlReader)

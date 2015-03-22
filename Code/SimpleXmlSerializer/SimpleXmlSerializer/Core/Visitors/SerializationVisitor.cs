@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace SimpleXmlSerializer.Core
     {
         private readonly XmlWriter xmlWriter;
         private readonly NodeProvider nodeProvider;
+        private readonly HashSet<object> visitedNodeValues = new HashSet<object>();
 
         public SerializationVisitor(XmlWriter xmlWriter, NodeProvider nodeProvider)
         {
@@ -28,12 +30,13 @@ namespace SimpleXmlSerializer.Core
             xmlWriter.WriteStartDocument();
             node.Accept(this);
             xmlWriter.WriteEndDocument();
-
             xmlWriter.Flush();
         }
 
         public void Visit(PrimitiveNode node)
         {
+            OnVisitNode(node);
+
             var value = node.Description.Serializer.Serialize(node.Value);
 
             if (node.Name.IsElement)
@@ -54,6 +57,8 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(CollectionNode node)
         {
+            OnVisitNode(node);
+
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
             var itemNodeName = nodeProvider.GetNodeName(node.Description.ItemType);
@@ -75,6 +80,8 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(ComplexNode node)
         {
+            OnVisitNode(node);
+
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
             var properties = nodeProvider.GetNodeNames(node.Description.Properties);
@@ -108,12 +115,40 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(CustomNode node)
         {
+            OnVisitNode(node);
+
             xmlWriter.WriteStartElement(node.Name.ElementName);
 
             // todo: somehow validate custom serializer
             node.Description.Serializer.Serialize(node.Value, xmlWriter);
 
             xmlWriter.WriteEndElement();
+        }
+
+        private void OnVisitNode(INode node)
+        {
+            TrackCircularDependency(node);
+        }
+
+        private void TrackCircularDependency(INode node)
+        {
+            if (node.Value == null)
+            {
+                return;
+            }
+
+            var valueType = node.Value.GetType();
+            if (valueType.IsValueType || valueType == typeof(string))
+            {
+                return;
+            }
+
+            if (visitedNodeValues.Contains(node.Value))
+            {
+                throw new SerializationException("There is circular dependency in object graph");
+            }
+
+            visitedNodeValues.Add(node.Value);
         }
     }
 }

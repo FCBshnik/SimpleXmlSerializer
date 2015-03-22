@@ -41,6 +41,7 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Dto\ComplexWithCicularDependency.cs" />
     <Compile Include="Dto\ComplexWithCollections.cs" />
     <Compile Include="Dto\ComplexWithCollectionsXmlArrayAttrs.cs" />
     <Compile Include="Dto\ComplexWithComplexes.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Dto\CustomGenericCollection.cs" />
     <Compile Include="Dto\CustomDictionary.cs" />
     <Compile Include="Dto\CustomCollection.cs" />
+    <Compile Include="Tests\CurcularDependencyTests.cs" />
     <Compile Include="Tests\CustomSerializersTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Tests\PrimitivesToAttributesTests.cs" />

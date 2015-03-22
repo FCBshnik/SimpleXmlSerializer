@@ -72,7 +72,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to use xml* attributes.
+        /// Specifies to use Xml* attributes.
         /// </summary>
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
@@ -98,7 +98,7 @@ namespace SimpleXmlSerializer
             return this;
         }
 
-        public XmlSerializerSettingsBuilder AddPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
+        public XmlSerializerSettingsBuilder SetPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
         {
             primitiveProvider.SetPrimitiveSerializer(type, primitiveSerializer);
             return this;

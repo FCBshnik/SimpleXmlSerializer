@@ -1,19 +1,9 @@
-Analyze:
-- meta types: primitive, complex, collection
-- type is tree where each node is one of meta types
-- instance of type is tree too but with values
-
 Features todo:
-- Use order from various serialization attributes
-- Validate case when nodes have same names
-- Add protection circular type reference
 - Add strategies to handle unknown types
+- Add support for type serialization: Uri, NameValueCollection
 - Think about inheritance (so called 'known types')
 - Use XmlReader ReadSubTree method for custom serializers
-- Multi dimensional arrays (quad and jagged)
 - Add settings to ignore specified types to be serialized
-- Typeless serialization (store full type name in xml) (?)
-- Support of heterogeneous collections (store full type name in xml) (?)
 - Add extensibility point via 'type adapter' (like surrogates in .net built in xml serialization)
 
 Features:

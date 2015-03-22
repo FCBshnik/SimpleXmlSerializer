@@ -73,7 +73,7 @@ namespace SimpleXmlSerializer.Core
                 .FirstOrDefault(gr => gr.Count() > 1);
             if (conflictedElementNames != null)
             {
-                throw new SerializationException(string.Format("There are multiply properties with the same element name '{0}'", conflictedElementNames.Key));
+                throw new SerializationException(string.Format("There are multiply properties with element name '{0}'", conflictedElementNames.Key));
             }
 
             var conflictedAttributeNames = nodeNames.Keys
@@ -82,7 +82,7 @@ namespace SimpleXmlSerializer.Core
                 .FirstOrDefault(gr => gr.Count() > 1);
             if (conflictedAttributeNames != null)
             {
-                throw new SerializationException(string.Format("There are multiply properties with the same attribute name '{0}'", conflictedAttributeNames.Key));
+                throw new SerializationException(string.Format("There are multiply properties with attribute name '{0}'", conflictedAttributeNames.Key));
             }
 
             return nodeNames;
