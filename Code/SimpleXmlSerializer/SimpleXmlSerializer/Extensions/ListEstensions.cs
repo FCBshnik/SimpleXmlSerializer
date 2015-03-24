@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SimpleXmlSerializer.Extensions
 {
-    public static class ListEstensions
+    internal static class ListEstensions
     {
         public static void AddRange(this IList list, IEnumerable items)
         {

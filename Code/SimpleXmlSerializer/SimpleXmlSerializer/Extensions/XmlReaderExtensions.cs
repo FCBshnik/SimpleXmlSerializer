@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Xml;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Extensions
 {
-    public static class XmlReaderExtensions
+    internal static class XmlReaderExtensions
     {
         public static bool ReadToDescendant(this XmlReader xmlReader)
         {

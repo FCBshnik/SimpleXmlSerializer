@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Extensions
 {
-    public static class EnumerableExtenstions
+    internal static class EnumerableExtenstions
     {
         public static IEnumerable SkipNulls(this IEnumerable collection)
         {

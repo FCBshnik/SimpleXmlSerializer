@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml;
 using SimpleXmlSerializer.Core;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer
 {
@@ -17,9 +16,7 @@ namespace SimpleXmlSerializer
         public XmlSerializer(XmlSerializerSettings settings)
         {
             if (settings == null)
-            {
                 throw new ArgumentNullException("settings");
-            }
 
             this.settings = settings;
             nodeProvider = new NodeProvider(settings);
@@ -28,13 +25,9 @@ namespace SimpleXmlSerializer
         public void Serialize(object value, XmlWriter xmlWriter)
         {
             if (value == null)
-            {
                 throw new ArgumentNullException("value");
-            }
             if (xmlWriter == null)
-            {
                 throw new ArgumentNullException("xmlWriter");
-            }
 
             var visitor = new SerializationVisitor(xmlWriter, nodeProvider);
             visitor.Visit(value);
@@ -43,13 +36,9 @@ namespace SimpleXmlSerializer
         public object Deserialize(Type type, XmlReader xmlReader)
         {
             if (type == null)
-            {
                 throw new ArgumentNullException("type");
-            }
             if (xmlReader == null)
-            {
                 throw new ArgumentNullException("xmlReader");
-            }
 
             var visitor = new DeserializationVisitor(xmlReader, settings, nodeProvider);
             return visitor.Visit(type);

@@ -56,6 +56,7 @@
     <Compile Include="Tests\CurcularDependencyTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Tests\PrimitivesToAttributesTests.cs" />
+    <Compile Include="Tests\SerializeToFileTests.cs" />
     <Compile Include="Tests\TestsBase.cs" />
     <Compile Include="Tests\UnknownElementsTests.cs" />
     <Compile Include="Utils\ObjectAssert.cs" />
@@ -188,6 +189,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\string.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SerializeToFile\obj.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\UnknownElements\unknownXmlElementWithinCollection.xml">

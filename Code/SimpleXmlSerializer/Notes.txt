@@ -20,4 +20,3 @@ Features:
 
 Notes:
 - Add extension to serialize into file.
-- Add extension to serialize into Stream.

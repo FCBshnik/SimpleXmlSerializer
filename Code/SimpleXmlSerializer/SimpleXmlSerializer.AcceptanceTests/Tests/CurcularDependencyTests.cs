@@ -12,9 +12,9 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void ThrowsWhenCucrularDependencyIsDetected()
         {
-            serializer = new XmlSerializer();
+            Serializer = new XmlSerializer();
 
-            serializer.SerializeToString(ComplexWithCicularDependency.Create());
+            Serializer.SerializeToString(ComplexWithCicularDependency.Create());
         }
     }
 }

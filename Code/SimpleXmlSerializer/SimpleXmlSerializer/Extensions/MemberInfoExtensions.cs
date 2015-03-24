@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Extensions
 {
-    public static class MemberInfoExtensions
+    internal static class MemberInfoExtensions
     {
         public static TAttribute FindAttribute<TAttribute>(this MemberInfo memberInfo, bool inherited = false) where TAttribute : Attribute
         {

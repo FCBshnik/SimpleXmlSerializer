@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
     [TestClass]
     public class TestsBase
     {
-        protected XmlSerializer serializer = new XmlSerializer();
+        private XmlSerializer serializer = new XmlSerializer();
 
         public string AssetsDirectory
         {
@@ -15,6 +15,12 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             {
                 return string.Format("Assets\\{0}", GetType().Name.Replace("Tests", string.Empty));
             }
+        }
+
+        public XmlSerializer Serializer
+        {
+            get { return serializer; }
+            set { serializer = value; }
         }
 
         protected void ActAndAssert(object obj, string fileName)
@@ -26,13 +32,13 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         protected void SerializeAndAssert(object obj, string fileName)
         {
             var path = GetXmlFilePath(fileName);
-            serializer.SerializeAndAssert(obj, path);
+            Serializer.SerializeAndAssert(obj, path);
         }
 
         protected void DeserializeAndAssert(object obj, string fileName)
         {
             var path = GetXmlFilePath(fileName);
-            serializer.DeserializeAndAssert(obj, path);
+            Serializer.DeserializeAndAssert(obj, path);
         }
 
         protected void ActAndAssert(object obj)
@@ -40,7 +46,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             ActAndAssert(obj, obj.GetType().Name.ToLowerInvariant());
         }
 
-        private string GetXmlFilePath(string fileName)
+        protected string GetXmlFilePath(string fileName)
         {
             return Path.Combine(AssetsDirectory, fileName.ToLowerInvariant() + ".xml");
         }
