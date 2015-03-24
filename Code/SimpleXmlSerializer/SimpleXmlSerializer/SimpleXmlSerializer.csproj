@@ -73,6 +73,7 @@
     <Compile Include="Core\Primitives\Serializers\DecimalSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DoubleSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\FloatSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\UriSerializer.cs" />
     <Compile Include="Core\Visitors\DeserializationVisitor.cs" />
     <Compile Include="Core\INode.cs" />
     <Compile Include="Core\INodeVisitor.cs" />

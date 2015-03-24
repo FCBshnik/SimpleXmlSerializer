@@ -66,5 +66,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         {
             ActAndAssert(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty, "enum");
         }
+
+        [TestMethod]
+        public void Uri()
+        {
+            ActAndAssert(new Uri("http://hostname/path?key1=value1&key2=value2"), "uri");
+        }
     }
 }

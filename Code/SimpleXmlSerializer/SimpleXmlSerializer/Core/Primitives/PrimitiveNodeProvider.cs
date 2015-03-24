@@ -25,6 +25,7 @@ namespace SimpleXmlSerializer.Core
                     { typeof(TimeSpan), new TimeSpanSerializer() },
                     { typeof(DateTime), new DateTimeSerializer() },
                     { typeof(DateTimeOffset), new DateTimeOffsetSerializer() },
+                    { typeof(Uri), new UriSerializer() },
                 };
         }
 
