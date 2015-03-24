@@ -4,12 +4,16 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Utils
 {
-    public class ExpressionUtils
+    internal class ExpressionUtils
     {
         public static Func<object> GetFactory(Type type)
         {
             var newExpression = Expression.New(type);
-            return Expression.Lambda<Func<object>>(newExpression).Compile();
+            if(!type.IsValueType)
+                return Expression.Lambda<Func<object>>(newExpression).Compile();
+
+            var conversionExpression = Expression.Convert(newExpression, typeof(object));
+            return Expression.Lambda<Func<object>>(conversionExpression).Compile();
         }
 
         public static Func<object, object> GetPropertyGetter(PropertyInfo propertyInfo)

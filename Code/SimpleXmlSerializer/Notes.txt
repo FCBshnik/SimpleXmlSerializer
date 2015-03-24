@@ -1,5 +1,4 @@
 Features todo:
-- Add strategies to handle unknown types
 - Add support for type serialization: Uri, NameValueCollection
 - Think about inheritance (so called 'known types')
 - Use XmlReader ReadSubTree method for custom serializers
@@ -19,4 +18,3 @@ Features:
 - Extensibility point for custom serialization of values of specified type as primitives
 
 Notes:
-- Add extension to serialize into file.
