@@ -16,7 +16,10 @@ namespace SimpleXmlSerializer
 
         public XmlSerializer(XmlSerializerSettings settings)
         {
-            Preconditions.NotNull(settings, "settings");
+            if (settings == null)
+            {
+                throw new ArgumentNullException("settings");
+            }
 
             this.settings = settings;
             nodeProvider = new NodeProvider(settings);
@@ -24,8 +27,14 @@ namespace SimpleXmlSerializer
 
         public void Serialize(object value, XmlWriter xmlWriter)
         {
-            Preconditions.NotNull(value, "value");
-            Preconditions.NotNull(xmlWriter, "xmlWriter");
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+            if (xmlWriter == null)
+            {
+                throw new ArgumentNullException("xmlWriter");
+            }
 
             var visitor = new SerializationVisitor(xmlWriter, nodeProvider);
             visitor.Visit(value);
@@ -33,8 +42,14 @@ namespace SimpleXmlSerializer
 
         public object Deserialize(Type type, XmlReader xmlReader)
         {
-            Preconditions.NotNull(type, "type");
-            Preconditions.NotNull(xmlReader, "xmlReader");
+            if (type == null)
+            {
+                throw new ArgumentNullException("type");
+            }
+            if (xmlReader == null)
+            {
+                throw new ArgumentNullException("xmlReader");
+            }
 
             var visitor = new DeserializationVisitor(xmlReader, settings, nodeProvider);
             return visitor.Visit(type);

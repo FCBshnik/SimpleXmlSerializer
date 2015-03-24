@@ -1,4 +1,5 @@
-﻿using SimpleXmlSerializer.Utils;
+﻿using System;
+using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -6,7 +7,10 @@ namespace SimpleXmlSerializer.Core
     {
         public string NormalizeName(string name)
         {
-            Preconditions.NotEmpty(name, "name");
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Value can not be empty.", "name");
+            }
 
             var firstLetter = name.Substring(0, 1);
 

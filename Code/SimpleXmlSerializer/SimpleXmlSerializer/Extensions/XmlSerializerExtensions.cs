@@ -10,7 +10,8 @@ namespace SimpleXmlSerializer.Extensions
     {
          public static string SerializeToString(this XmlSerializer xmlSerializer, object obj)
          {
-             Preconditions.NotNull(xmlSerializer, "xmlSerializer");
+             if (xmlSerializer == null)
+                 throw new ArgumentNullException("xmlSerializer");
 
              var stringWriter = new StringWriterWithEncoding(Encoding.UTF8);
              var settings = new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 };
@@ -25,9 +26,12 @@ namespace SimpleXmlSerializer.Extensions
 
          public static object DeserializeFromString(this XmlSerializer xmlSerializer, Type type, string xml)
          {
-             Preconditions.NotNull(xmlSerializer, "xmlSerializer");
-             Preconditions.NotNull(type, "type");
-             Preconditions.NotNull(xml, "xml");
+             if (xmlSerializer == null)
+                 throw new ArgumentNullException("xmlSerializer");
+             if (type == null)
+                 throw new ArgumentNullException("type");
+             if (xml == null)
+                 throw new ArgumentNullException("xml");
 
              using (var stringReader = new StringReader(xml))
              {
@@ -40,8 +44,9 @@ namespace SimpleXmlSerializer.Extensions
 
          public static void SerializeToStream(this XmlSerializer xmlSerializer, object obj, Stream outputStream)
          {
-             Preconditions.NotNull(xmlSerializer, "xmlSerializer");
-             
+             if (xmlSerializer == null)
+                 throw new ArgumentNullException("xmlSerializer");
+
              var settings = new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 };
 
              using (var xmlWriter = XmlWriter.Create(outputStream, settings))
@@ -52,8 +57,10 @@ namespace SimpleXmlSerializer.Extensions
 
          public static object DeserializeFromStream(this XmlSerializer xmlSerializer, Type type, Stream inputStream)
          {
-             Preconditions.NotNull(xmlSerializer, "xmlSerializer");
-             Preconditions.NotNull(type, "type");
+             if (xmlSerializer == null)
+                 throw new ArgumentNullException("xmlSerializer");
+             if (type == null)
+                 throw new ArgumentNullException("type");
 
              using (var xmlReader = XmlReader.Create(inputStream))
              {

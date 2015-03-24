@@ -8,7 +8,10 @@ namespace SimpleXmlSerializer.Extensions
     {
         public static bool ReadToDescendant(this XmlReader xmlReader)
         {
-            Preconditions.NotNull(xmlReader, "xmlReader");
+            if (xmlReader == null)
+            {
+                throw new ArgumentNullException("xmlReader");
+            }
 
             if (xmlReader.NodeType != XmlNodeType.Element)
             {
@@ -35,7 +38,10 @@ namespace SimpleXmlSerializer.Extensions
 
         public static bool ReadToNextSibling(this XmlReader xmlReader)
         {
-            Preconditions.NotNull(xmlReader, "xmlReader");
+            if (xmlReader == null)
+            {
+                throw new ArgumentNullException("xmlReader");
+            }
 
             var depth = xmlReader.Depth;
 

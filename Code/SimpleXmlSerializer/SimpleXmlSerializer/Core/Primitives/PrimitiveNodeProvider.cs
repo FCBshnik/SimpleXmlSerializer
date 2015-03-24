@@ -58,8 +58,14 @@ namespace SimpleXmlSerializer.Core
 
         public void SetPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
         {
-            Preconditions.NotNull(type, "type");
-            Preconditions.NotNull(primitiveSerializer, "primitiveSerializer");
+            if (type == null)
+            {
+                throw new ArgumentNullException("type");
+            }
+            if (primitiveSerializer == null)
+            {
+                throw new ArgumentNullException("primitiveSerializer");
+            }
 
             primitiveSerializers[type] = primitiveSerializer;
         }

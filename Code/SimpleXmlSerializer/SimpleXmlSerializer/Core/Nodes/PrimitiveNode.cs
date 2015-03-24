@@ -1,4 +1,5 @@
-﻿using SimpleXmlSerializer.Utils;
+﻿using System;
+using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -6,7 +7,10 @@ namespace SimpleXmlSerializer.Core
     {
         public PrimitiveNode(PrimitiveNodeDescription description)
         {
-            Preconditions.NotNull(description, "description");
+            if (description == null)
+            {
+                throw new ArgumentNullException("description");
+            }
             Description = description;
         }
 

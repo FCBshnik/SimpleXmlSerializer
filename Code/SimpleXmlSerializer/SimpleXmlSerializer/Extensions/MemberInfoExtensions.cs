@@ -9,7 +9,10 @@ namespace SimpleXmlSerializer.Extensions
     {
         public static TAttribute FindAttribute<TAttribute>(this MemberInfo memberInfo, bool inherited = false) where TAttribute : Attribute
         {
-            Preconditions.NotNull(memberInfo, "memberInfo");
+            if (memberInfo == null)
+            {
+                throw new ArgumentNullException("memberInfo");
+            }
             return memberInfo.GetCustomAttributes(inherited).OfType<TAttribute>().FirstOrDefault();
         }
 
