@@ -113,18 +113,6 @@ namespace SimpleXmlSerializer.Core
             xmlWriter.WriteEndElement();
         }
 
-        public void Visit(CustomNode node)
-        {
-            OnVisitNode(node);
-
-            xmlWriter.WriteStartElement(node.Name.ElementName);
-
-            // todo: somehow validate custom serializer
-            node.Description.Serializer.Serialize(node.Value, xmlWriter);
-
-            xmlWriter.WriteEndElement();
-        }
-
         private void OnVisitNode(INode node)
         {
             TrackCircularDependency(node);

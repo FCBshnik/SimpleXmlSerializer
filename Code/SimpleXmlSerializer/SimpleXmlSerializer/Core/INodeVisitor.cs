@@ -2,8 +2,6 @@
 {
     internal interface INodeVisitor
     {
-        void Visit(CustomNode node);
-
         void Visit(PrimitiveNode node);
 
         void Visit(CollectionNode node);

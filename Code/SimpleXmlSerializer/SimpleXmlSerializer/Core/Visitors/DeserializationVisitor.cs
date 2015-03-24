@@ -152,10 +152,5 @@ namespace SimpleXmlSerializer.Core
 
             node.Value = node.Description.Factory(propertyValues);
         }
-
-        public void Visit(CustomNode node)
-        {
-            node.Value = node.Description.Serializer.Deserialize(xmlReader);
-        }
     }
 }

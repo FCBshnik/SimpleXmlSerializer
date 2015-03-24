@@ -27,15 +27,10 @@ namespace SimpleXmlSerializer.Core
             }
 
             INode node;
-            CustomNodeDescription customNodeDescription;
             PrimitiveNodeDescription primitiveNodeDescription;
             CollectionNodeDescription collectionNodeDescription;
 
-            if (settings.CustomProvider.TryGetDescription(type, out customNodeDescription))
-            {
-                node = new CustomNode(customNodeDescription);
-            }
-            else if (settings.PrimitiveProvider.TryGetDescription(type, out primitiveNodeDescription))
+            if (settings.PrimitiveProvider.TryGetDescription(type, out primitiveNodeDescription))
             {
                 node = new PrimitiveNode(primitiveNodeDescription);
             }

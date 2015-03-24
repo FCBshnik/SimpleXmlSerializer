@@ -19,6 +19,5 @@ Features:
 - Extensibility point for custom serialization of values of specified type as primitives
 
 Notes:
-- Consider to remove custom serialization (not primitives)
 - Add extension to serialize into file.
 - Add extension to serialize into Stream.

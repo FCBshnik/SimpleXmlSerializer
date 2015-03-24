@@ -52,10 +52,6 @@
     <Compile Include="Core\Complex\IComplexNodeProvider.cs" />
     <Compile Include="Core\Complex\KeyValuePairPropertiesSelector.cs" />
     <Compile Include="Core\Complex\XmlAttributesPropertiesSelector.cs" />
-    <Compile Include="Core\Custom\CustomNodeDescription.cs" />
-    <Compile Include="Core\Custom\CustomNodeProvider.cs" />
-    <Compile Include="Core\Custom\ICustomNodeProvider.cs" />
-    <Compile Include="Core\Custom\ICustomSerializer.cs" />
     <Compile Include="Core\Naming\NameProviders\CachingNameProvider.cs" />
     <Compile Include="Core\Naming\NameProviders\PrimitiveToAttributeNameProvider.cs" />
     <Compile Include="Core\Naming\NameProviders\CompositeNameProvider.cs" />
@@ -71,7 +67,6 @@
     <Compile Include="Core\NodeProvider.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\ComplexNode.cs" />
-    <Compile Include="Core\Nodes\CustomNode.cs" />
     <Compile Include="Core\Primitives\Serializers\CharSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\ByteSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DateTimeOffsetSerializer.cs" />

@@ -16,8 +16,6 @@ namespace SimpleXmlSerializer
 
         private IPropertiesSelector propertiesSelector = new PublicPropertiesSelector();
 
-        private readonly CustomNodeProvider customProvider = new CustomNodeProvider();
-
         private readonly PrimitiveNodeProvider primitiveProvider;
 
         private readonly List<ICollectionNodeProvider> collectionProviders = new List<ICollectionNodeProvider>();
@@ -58,8 +56,7 @@ namespace SimpleXmlSerializer
                 new CachingNameProvider(nameProvider),
                 primitiveProvider, 
                 collectionProvider, 
-                new ComplexNodeProvider(propertiesSelector),
-                customProvider);
+                new ComplexNodeProvider(propertiesSelector));
         }
 
         /// <summary>
@@ -89,12 +86,6 @@ namespace SimpleXmlSerializer
             nameProvider = new DataAttributesNameProvider();
             collectionProviders.Prepend(new DataAttributeCollectionProvider());
             propertiesSelector = new KeyValuePairPropertiesSelector(new DataAttributesPropertiesSelector());
-            return this;
-        }
-
-        public XmlSerializerSettingsBuilder AddCustomSerializer(Type type, ICustomSerializer customSerializer)
-        {
-            customProvider.AddSerializer(type, customSerializer);
             return this;
         }
 

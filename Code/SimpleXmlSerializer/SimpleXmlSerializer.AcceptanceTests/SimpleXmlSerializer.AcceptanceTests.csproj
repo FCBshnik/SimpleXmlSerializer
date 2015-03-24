@@ -54,7 +54,6 @@
     <Compile Include="Dto\CustomDictionary.cs" />
     <Compile Include="Dto\CustomCollection.cs" />
     <Compile Include="Tests\CurcularDependencyTests.cs" />
-    <Compile Include="Tests\CustomSerializersTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Tests\PrimitivesToAttributesTests.cs" />
     <Compile Include="Tests\TestsBase.cs" />
@@ -120,9 +119,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Complex\complexWithEmptyCollections.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\CustomSerializers\customSerializer.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\collectionDataAttributeForCollectionType.xml">
