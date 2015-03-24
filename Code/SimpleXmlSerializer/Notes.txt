@@ -1,9 +1,4 @@
 Features todo:
-- Add support for type serialization: Uri, NameValueCollection
-- Think about inheritance (so called 'known types')
-- Use XmlReader ReadSubTree method for custom serializers
-- Add settings to ignore specified types to be serialized
-- Add extensibility point via 'type adapter' (like surrogates in .net built in xml serialization)
 
 Features:
 - Serialization of primitive types: bool, byte, int, long, float, double, decimal, char, string, TimeSpan, DateTime, DateTimeOffset
