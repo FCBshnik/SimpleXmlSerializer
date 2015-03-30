@@ -19,7 +19,7 @@ namespace SimpleXmlSerializer.Core
             this.settings = settings;
         }
 
-        public virtual INode GetNode(Type type)
+        public INode GetNode(Type type)
         {
             if (nodesCache.ContainsKey(type))
             {
@@ -81,6 +81,11 @@ namespace SimpleXmlSerializer.Core
             }
 
             return nodeNames;
+        }
+
+        public Type AdjustType(Type type)
+        {
+            return type.IsSubclassOf(typeof(Type)) ? typeof(Type) : type;
         }
     }
 }

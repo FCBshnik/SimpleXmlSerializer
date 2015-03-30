@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using SimpleXmlSerializer.Core.Serializers;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -15,9 +14,14 @@ namespace SimpleXmlSerializer.Core
                 {
                     { typeof(char), new CharSerializer() },
                     { typeof(string), new StringSerializer() },
+                    { typeof(short), new ShortSerializer(formatProvider) },
+                    { typeof(ushort), new UshortSerializer(formatProvider) },
                     { typeof(byte), new ByteSerializer(formatProvider) },
+                    { typeof(sbyte), new SbyteSerializer(formatProvider) },
                     { typeof(int), new IntSerializer(formatProvider) },
+                    { typeof(uint), new UintSerializer(formatProvider) },
                     { typeof(long), new LongSerializer(formatProvider) },
+                    { typeof(ulong), new UlongSerializer(formatProvider) },
                     { typeof(float), new FloatSerializer(formatProvider) },
                     { typeof(double), new DoubleSerializer(formatProvider) },
                     { typeof(decimal), new DecimalSerializer(formatProvider) },
@@ -26,6 +30,8 @@ namespace SimpleXmlSerializer.Core
                     { typeof(DateTime), new DateTimeSerializer() },
                     { typeof(DateTimeOffset), new DateTimeOffsetSerializer() },
                     { typeof(Uri), new UriSerializer() },
+                    { typeof(Guid), new GuidSerializer(string.Empty, formatProvider) },
+                    { typeof(Type), new TypeSerializer() }
                 };
         }
 
@@ -38,19 +44,17 @@ namespace SimpleXmlSerializer.Core
                 return true;
             }
 
+            // handle enum types
             if (type.IsEnum)
             {
                 primitiveDescription = new PrimitiveNodeDescription(new EnumSerializer(type));
                 return true;
             }
 
-            if (type.IsGenericType)
+            // handle nullable types
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
-                var genericTypeDefinition = type.GetGenericTypeDefinition();
-                if (genericTypeDefinition == typeof(Nullable<>))
-                {
-                    return TryGetDescription(type.GetGenericArguments()[0], out primitiveDescription);
-                }
+                return TryGetDescription(type.GetGenericArguments()[0], out primitiveDescription);
             }
 
             primitiveDescription = null;
@@ -60,13 +64,9 @@ namespace SimpleXmlSerializer.Core
         public void SetPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
         {
             if (type == null)
-            {
                 throw new ArgumentNullException("type");
-            }
             if (primitiveSerializer == null)
-            {
                 throw new ArgumentNullException("primitiveSerializer");
-            }
 
             primitiveSerializers[type] = primitiveSerializer;
         }

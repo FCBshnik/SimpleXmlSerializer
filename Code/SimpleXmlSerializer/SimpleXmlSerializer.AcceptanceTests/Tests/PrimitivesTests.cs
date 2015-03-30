@@ -26,15 +26,63 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void Sbyte()
+        {
+            ActAndAssert((sbyte)13);
+        }
+
+        [TestMethod]
+        public void Short()
+        {
+            ActAndAssert((short)13);
+        }
+
+        [TestMethod]
+        public void Ushort()
+        {
+            ActAndAssert((ushort)13);
+        }
+
+        [TestMethod]
         public void Int()
         {
             ActAndAssert(13);
         }
 
         [TestMethod]
+        public void Uint()
+        {
+            ActAndAssert((uint)13);
+        }
+
+        [TestMethod]
         public void Long()
         {
             ActAndAssert(13L);
+        }
+
+        [TestMethod]
+        public void Ulong()
+        {
+            ActAndAssert((ulong)13L);
+        }
+
+        [TestMethod]
+        public void Float()
+        {
+            ActAndAssert(13.13f);
+        }
+
+        [TestMethod]
+        public void Double()
+        {
+            ActAndAssert(13.13d);
+        }
+
+        [TestMethod]
+        public void Decimal()
+        {
+            ActAndAssert(13.13m);
         }
 
         [TestMethod]
@@ -71,6 +119,18 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         public void Uri()
         {
             ActAndAssert(new Uri("http://hostname/path?key1=value1&key2=value2"), "uri");
+        }
+
+        [TestMethod]
+        public void Guid()
+        {
+            ActAndAssert(new Guid("7C5C2522-944D-4561-9F5F-D9D2C19F470A"), "guid");
+        }
+
+        [TestMethod]
+        public void Type()
+        {
+            ActAndAssert(typeof(Type), "type");
         }
     }
 }
