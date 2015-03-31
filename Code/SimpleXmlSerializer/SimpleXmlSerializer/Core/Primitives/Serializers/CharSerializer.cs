@@ -1,5 +1,8 @@
 ﻿namespace SimpleXmlSerializer.Core.Serializers
 {
+    /// <summary>
+    /// Responsible to serialize <see cref="char"/> to string and vice versa.
+    /// </summary>
     public class CharSerializer : IPrimitiveSerializer
     {
         public string Serialize(object obj)
@@ -8,9 +11,9 @@
             return new string(new [] { c });
         }
 
-        public object Deserialize(string value)
+        public object Deserialize(string serializedValue)
         {
-            return value[0];
+            return serializedValue[0];
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using SimpleXmlSerializer.Core;
+using SimpleXmlSerializer.Core.Serializers;
 using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer
@@ -16,7 +17,7 @@ namespace SimpleXmlSerializer
 
         private IPropertiesSelector propertiesSelector = new PublicPropertiesSelector();
 
-        private readonly PrimitiveNodeProvider primitiveProvider;
+        private IPrimitiveTypeProvider primitiveProvider;
 
         private readonly List<ICollectionTypeProvider> collectionProviders = new List<ICollectionTypeProvider>();
 
@@ -24,9 +25,33 @@ namespace SimpleXmlSerializer
 
         private bool mapPrimitivesToAttributes;
 
+        private readonly Dictionary<Type, IPrimitiveSerializer> primitiveSerializers;
+
         public XmlSerializerSettingsBuilder()
         {
-            primitiveProvider = new PrimitiveNodeProvider(formatProvider);
+            primitiveSerializers = new Dictionary<Type, IPrimitiveSerializer>
+                {
+                    { typeof(char), new CharSerializer() },
+                    { typeof(string), new StringSerializer() },
+                    { typeof(short), new ShortSerializer(formatProvider) },
+                    { typeof(ushort), new UshortSerializer(formatProvider) },
+                    { typeof(byte), new ByteSerializer(formatProvider) },
+                    { typeof(sbyte), new SbyteSerializer(formatProvider) },
+                    { typeof(int), new IntSerializer(formatProvider) },
+                    { typeof(uint), new UintSerializer(formatProvider) },
+                    { typeof(long), new LongSerializer(formatProvider) },
+                    { typeof(ulong), new UlongSerializer(formatProvider) },
+                    { typeof(float), new FloatSerializer(formatProvider) },
+                    { typeof(double), new DoubleSerializer(formatProvider) },
+                    { typeof(decimal), new DecimalSerializer(formatProvider) },
+                    { typeof(bool), new BoolSerializer(formatProvider) },
+                    { typeof(TimeSpan), new TimeSpanSerializer() },
+                    { typeof(DateTime), new DateTimeSerializer(formatProvider) },
+                    { typeof(DateTimeOffset), new DateTimeOffsetSerializer(formatProvider) },
+                    { typeof(Uri), new UriSerializer() },
+                    { typeof(Guid), new GuidSerializer(string.Empty, formatProvider) },
+                    { typeof(Type), new TypeSerializer() }
+                };
 
             collectionProviders.Add(new DictionaryCollectionTypeProvider());
             collectionProviders.Add(new ArrayCollectionTypeProvider());
@@ -35,6 +60,17 @@ namespace SimpleXmlSerializer
 
         public XmlSerializerSettings GetSettings()
         {
+            // primitives
+            primitiveProvider = new ChainedPrimitiveTypeProvider(new IPrimitiveTypeProvider[]
+                {
+                    new PrimitiveTypeProvider(primitiveSerializers), new EnumPrimitiveTypeProvider()
+                });
+            primitiveProvider = new ChainedPrimitiveTypeProvider(new IPrimitiveTypeProvider[]
+                {
+                    primitiveProvider, new NullablePrimitiveTypeProvider(primitiveProvider)
+                });
+
+            // collections
             var collectionProvider = new ChainedCollectionTypeProvider(collectionProviders);
 
             var defaultNameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider);
@@ -89,9 +125,14 @@ namespace SimpleXmlSerializer
             return this;
         }
 
-        public XmlSerializerSettingsBuilder SetPrimitiveSerializer(Type type, IPrimitiveSerializer primitiveSerializer)
+        public XmlSerializerSettingsBuilder SetPrimitiveSerializer(Type type, IPrimitiveSerializer serializer)
         {
-            primitiveProvider.SetPrimitiveSerializer(type, primitiveSerializer);
+            if (type == null) 
+                throw new ArgumentNullException("type");
+            if (serializer == null) 
+                throw new ArgumentNullException("serializer");
+
+            primitiveSerializers[type] = serializer;
             return this;
         }
 

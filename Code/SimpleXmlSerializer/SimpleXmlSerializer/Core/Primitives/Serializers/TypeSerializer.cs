@@ -2,6 +2,9 @@
 
 namespace SimpleXmlSerializer.Core.Serializers
 {
+    /// <summary>
+    /// Responsible to serialize <see cref="Type"/> to string and vice versa.
+    /// </summary>
     public class TypeSerializer : IPrimitiveSerializer
     {
         public string Serialize(object value)
@@ -11,9 +14,9 @@ namespace SimpleXmlSerializer.Core.Serializers
             return type.FullName;
         }
 
-        public object Deserialize(string value)
+        public object Deserialize(string serializedValue)
         {
-            return Type.GetType(value);
+            return Type.GetType(serializedValue);
         }
     }
 }

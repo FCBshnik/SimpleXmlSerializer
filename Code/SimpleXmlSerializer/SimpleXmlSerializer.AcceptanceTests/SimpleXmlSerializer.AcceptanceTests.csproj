@@ -170,6 +170,9 @@
     <Content Include="Assets\Primitives\char.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Primitives\nullable.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Primitives\type.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

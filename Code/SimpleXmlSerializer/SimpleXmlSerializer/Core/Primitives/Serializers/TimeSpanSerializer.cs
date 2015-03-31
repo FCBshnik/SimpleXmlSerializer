@@ -2,6 +2,9 @@
 
 namespace SimpleXmlSerializer.Core.Serializers
 {
+    /// <summary>
+    /// Responsible to serialize <see cref="TimeSpan"/> to string and vice versa.
+    /// </summary>
     public class TimeSpanSerializer : IPrimitiveSerializer
     {
         public string Serialize(object obj)
@@ -11,9 +14,9 @@ namespace SimpleXmlSerializer.Core.Serializers
             return value.ToString();
         }
 
-        public object Deserialize(string value)
+        public object Deserialize(string serializedValue)
         {
-            return TimeSpan.Parse(value);
+            return TimeSpan.Parse(serializedValue);
         }
     }
 }

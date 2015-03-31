@@ -10,6 +10,11 @@ namespace SimpleXmlSerializer.Core
     {
         public CollectionTypeDescription(Type itemType, Func<IList, object> factory)
         {
+            if (itemType == null) 
+                throw new ArgumentNullException("itemType");
+            if (factory == null) 
+                throw new ArgumentNullException("factory");
+
             Factory = factory;
             ItemType = itemType;
         }

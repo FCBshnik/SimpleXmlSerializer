@@ -5,7 +5,7 @@ namespace SimpleXmlSerializer.Core
 {
     internal class PrimitiveNode : INode
     {
-        public PrimitiveNode(PrimitiveNodeDescription description)
+        public PrimitiveNode(PrimitiveTypeDescription description)
         {
             if (description == null)
             {
@@ -14,7 +14,7 @@ namespace SimpleXmlSerializer.Core
             Description = description;
         }
 
-        public PrimitiveNodeDescription Description { get; private set; }
+        public PrimitiveTypeDescription Description { get; private set; }
 
         public object Value { get; set; }
 

@@ -1,7 +1,8 @@
 Features todo:
-- support all common types (uint, short, ushort etc, Type, Tuple, Guid) and collections (System.Collection, System.Generic.Collections)
 - unit tests
 - document all public methods
+- clear all work with cultures and formatters
+- ISO standard and others
 
 Features:
 - Serialization of primitive types: bool, byte, int, long, float, double, decimal, char, string, TimeSpan, DateTime, DateTimeOffset

@@ -2,12 +2,18 @@
 
 namespace SimpleXmlSerializer.Core.Serializers
 {
+    /// <summary>
+    /// Responsible to serialize <see cref="ushort"/> to string and vice versa.
+    /// </summary>
     public class UshortSerializer : IPrimitiveSerializer
     {
         private readonly IFormatProvider formatProvider;
 
         public UshortSerializer(IFormatProvider formatProvider)
         {
+            if (formatProvider == null) 
+                throw new ArgumentNullException("formatProvider");
+
             this.formatProvider = formatProvider;
         }
 
@@ -18,9 +24,9 @@ namespace SimpleXmlSerializer.Core.Serializers
             return value.ToString(formatProvider);
         }
 
-        public object Deserialize(string value)
+        public object Deserialize(string serializedValue)
         {
-            return ushort.Parse(value, formatProvider);
+            return ushort.Parse(serializedValue, formatProvider);
         }
     }
 }

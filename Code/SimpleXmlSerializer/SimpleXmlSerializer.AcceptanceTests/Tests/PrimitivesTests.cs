@@ -110,6 +110,12 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
+        public void Nullable()
+        {
+            ActAndAssert(new TypeWithNullableProperties { Int = 13, Enum = BindingFlags.Public }, "nullable");
+        }
+
+        [TestMethod]
         public void Enum()
         {
             ActAndAssert(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty, "enum");
@@ -131,6 +137,13 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         public void Type()
         {
             ActAndAssert(typeof(Type), "type");
+        }
+
+        public class TypeWithNullableProperties
+        {
+            public int? Int { get; set; }
+
+            public BindingFlags? Enum { get; set; }
         }
     }
 }

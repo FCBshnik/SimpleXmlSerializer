@@ -2,12 +2,18 @@
 
 namespace SimpleXmlSerializer.Core.Serializers
 {
+    /// <summary>
+    /// Responsible to serialize <see cref="double"/> to string and vice versa.
+    /// </summary>
     public class DoubleSerializer : IPrimitiveSerializer
     {
         private readonly IFormatProvider formatProvider;
 
         public DoubleSerializer(IFormatProvider formatProvider)
         {
+            if (formatProvider == null) 
+                throw new ArgumentNullException("formatProvider");
+
             this.formatProvider = formatProvider;
         }
 
@@ -18,9 +24,9 @@ namespace SimpleXmlSerializer.Core.Serializers
             return value.ToString(formatProvider);
         }
 
-        public object Deserialize(string value)
+        public object Deserialize(string serializedValue)
         {
-            return double.Parse(value, formatProvider);
+            return double.Parse(serializedValue, formatProvider);
         }
     }
 }

@@ -8,13 +8,13 @@ namespace SimpleXmlSerializer
     public class XmlSerializerSettings
     {
         private readonly INameProvider nameProvider;
-        private readonly IPrimitiveNodeProvider primitiveProvider;
+        private readonly IPrimitiveTypeProvider primitiveProvider;
         private readonly ICollectionTypeProvider collectionProvider;
         private readonly IComplexNodeProvider complexProvider;
 
         public XmlSerializerSettings(
             INameProvider nameProvider, 
-            IPrimitiveNodeProvider primitiveProvider, 
+            IPrimitiveTypeProvider primitiveProvider, 
             ICollectionTypeProvider collectionProvider, 
             IComplexNodeProvider complexProvider)
         {
@@ -29,7 +29,7 @@ namespace SimpleXmlSerializer
             get { return nameProvider; }
         }
 
-        public IPrimitiveNodeProvider PrimitiveProvider
+        public IPrimitiveTypeProvider PrimitiveProvider
         {
             get { return primitiveProvider; }
         }

@@ -67,6 +67,9 @@
     <Compile Include="Core\NodeProvider.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\ComplexNode.cs" />
+    <Compile Include="Core\Primitives\ChainedPrimitiveTypeProvider.cs" />
+    <Compile Include="Core\Primitives\EnumPrimitiveTypeProvider.cs" />
+    <Compile Include="Core\Primitives\NullablePrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\Serializers\CharSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\ByteSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\GuidSerializer.cs" />
@@ -86,9 +89,9 @@
     <Compile Include="Core\INodeVisitor.cs" />
     <Compile Include="Core\Nodes\PrimitiveNode.cs" />
     <Compile Include="Core\Visitors\SerializationVisitor.cs" />
-    <Compile Include="Core\Primitives\IPrimitiveNodeProvider.cs" />
-    <Compile Include="Core\Primitives\PrimitiveNodeDescription.cs" />
-    <Compile Include="Core\Primitives\PrimitiveNodeProvider.cs" />
+    <Compile Include="Core\Primitives\IPrimitiveTypeProvider.cs" />
+    <Compile Include="Core\Primitives\PrimitiveTypeDescription.cs" />
+    <Compile Include="Core\Primitives\PrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\Serializers\EnumSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\LongSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\DateTimeSerializer.cs" />
