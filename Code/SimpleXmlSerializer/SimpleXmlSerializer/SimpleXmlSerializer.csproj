@@ -39,13 +39,13 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\Collections\ArrayCollectionNodeProvider.cs" />
-    <Compile Include="Core\Collections\CollectionNodeDescription.cs" />
-    <Compile Include="Core\Collections\CollectionNodeProvider.cs" />
-    <Compile Include="Core\Collections\CompositeCollectionNodeProvider.cs" />
+    <Compile Include="Core\Collections\ArrayCollectionTypeProvider.cs" />
+    <Compile Include="Core\Collections\CollectionTypeDescription.cs" />
+    <Compile Include="Core\Collections\CollectionTypeProvider.cs" />
+    <Compile Include="Core\Collections\ChainedCollectionTypeProvider.cs" />
     <Compile Include="Core\Collections\DataAttributeCollectionProvider.cs" />
-    <Compile Include="Core\Collections\DictionaryCollectionNodeProvider.cs" />
-    <Compile Include="Core\Collections\ICollectionNodeProvider.cs" />
+    <Compile Include="Core\Collections\DictionaryCollectionTypeProvider.cs" />
+    <Compile Include="Core\Collections\ICollectionTypeProvider.cs" />
     <Compile Include="Core\Complex\ComplexNodeDescription.cs" />
     <Compile Include="Core\Complex\ComplexNodeProvider.cs" />
     <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />
@@ -99,6 +99,7 @@
     <Compile Include="Core\Primitives\Serializers\IntSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\StringSerializer.cs" />
     <Compile Include="Utils\ExpressionUtils.cs" />
+    <Compile Include="Utils\FactoryUtils.cs" />
     <Compile Include="Utils\TypeUtils.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="XmlSerializerSettings.cs" />

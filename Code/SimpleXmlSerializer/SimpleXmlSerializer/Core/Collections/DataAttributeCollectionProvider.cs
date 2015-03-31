@@ -7,53 +7,58 @@ using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class DataAttributeCollectionProvider : ICollectionNodeProvider
+    /// <summary>
+    /// Provides info how to serialize types marked by <see cref="CollectionDataContractAttribute"/> attribute.
+    /// </summary>
+    public class DataAttributeCollectionProvider : ICollectionTypeProvider
     {
-        public bool TryGetDescription(Type type, out CollectionNodeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription)
         {
-            var collAttr = type.FindAttribute<CollectionDataContractAttribute>();
-            if (collAttr != null)
+            var collectionDataContractAttribute = type.FindAttribute<CollectionDataContractAttribute>();
+            if (collectionDataContractAttribute != null)
             {
-                if (TypeUtils.ImplementsGenericInterface(type, typeof(IList<>)))
-                {
-                    var collectionType = TypeUtils.GetImplementedGenericInterface(type, typeof(ICollection<>));
-                    collectionDescription = GetCollectionDescription(collectionType, type);
-                    return true;
-                }
-
                 if (TypeUtils.ImplementsGenericInterface(type, typeof(IDictionary<,>)))
                 {
                     var dictionaryType = TypeUtils.GetImplementedGenericInterface(type, typeof(IDictionary<,>));
                     collectionDescription = GetDictionaryDescription(dictionaryType, type);
                     return true;
                 }
+
+                if (TypeUtils.ImplementsGenericInterface(type, typeof(ICollection<>)))
+                {
+                    var collectionType = TypeUtils.GetImplementedGenericInterface(type, typeof(ICollection<>));
+                    collectionDescription = GetCollectionDescription(collectionType, type);
+                    return true;
+                }
+
+                throw new SerializationException(string.Format("Can not serialize type '{0}' as collection", type));
             }
 
             collectionDescription = null;
             return false;
         }
 
-        private static CollectionNodeDescription GetCollectionDescription(Type collectionType, Type originalType)
+        private static CollectionTypeDescription GetCollectionDescription(Type collectionType, Type originalType)
         {
             var itemType = collectionType.GetGenericArguments()[0];
-            return new CollectionNodeDescription(itemType, items => CreateList(items, originalType));
+            return new CollectionTypeDescription(itemType, items => CreateCollection(items, originalType));
         }
 
-        private static object CreateList(IList items, Type collectionType)
+        private static CollectionTypeDescription GetDictionaryDescription(Type dictionaryType, Type originalType)
+        {
+            var genericArguments = dictionaryType.GetGenericArguments();
+            var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
+            return new CollectionTypeDescription(itemType, items => CreateDictionary(items, genericArguments, originalType));
+        }
+
+        private static object CreateCollection(IEnumerable items, Type collectionType)
         {
             var value = (IList)Activator.CreateInstance(collectionType);
             value.AddRange(items);
             return value;
         }
 
-        private static CollectionNodeDescription GetDictionaryDescription(Type dictionaryType, Type originalType)
-        {
-            var genericArguments = dictionaryType.GetGenericArguments();
-            var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
-            return new CollectionNodeDescription(itemType, items => CreateDictionary(items, genericArguments, originalType));
-        }
-
-        private static object CreateDictionary(ICollection items, Type[] genericArguments, Type originalType)
+        private static object CreateDictionary(IEnumerable items, Type[] genericArguments, Type originalType)
         {
             var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
             var collectionType = typeof(ICollection<>).MakeGenericType(itemType);

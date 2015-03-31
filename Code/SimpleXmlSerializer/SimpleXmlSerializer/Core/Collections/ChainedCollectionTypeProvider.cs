@@ -3,11 +3,15 @@ using System.Collections.Generic;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class CompositeCollectionNodeProvider : ICollectionNodeProvider
+    /// <summary>
+    /// Picks up first <see cref="ICollectionTypeProvider"/> from collection 
+    /// which knows how to serialize type as collection.
+    /// </summary>
+    public class ChainedCollectionTypeProvider : ICollectionTypeProvider
     {
-        private readonly IEnumerable<ICollectionNodeProvider> providers;
+        private readonly IEnumerable<ICollectionTypeProvider> providers;
 
-        public CompositeCollectionNodeProvider(IEnumerable<ICollectionNodeProvider> providers)
+        public ChainedCollectionTypeProvider(IEnumerable<ICollectionTypeProvider> providers)
         {
             if (providers == null)
                 throw new ArgumentNullException("providers");
@@ -15,7 +19,7 @@ namespace SimpleXmlSerializer.Core
             this.providers = providers;
         }
 
-        public bool TryGetDescription(Type type, out CollectionNodeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription)
         {
             foreach (var provider in providers)
             {

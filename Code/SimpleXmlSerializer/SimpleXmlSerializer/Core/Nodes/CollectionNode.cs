@@ -5,7 +5,7 @@ namespace SimpleXmlSerializer.Core
 {
     internal class CollectionNode : INode
     {
-        public CollectionNode(CollectionNodeDescription description)
+        public CollectionNode(CollectionTypeDescription description)
         {
             if (description == null)
             {
@@ -14,7 +14,7 @@ namespace SimpleXmlSerializer.Core
             Description = description;
         }
 
-        public CollectionNodeDescription Description { get; private set; }
+        public CollectionTypeDescription Description { get; private set; }
 
         public object Value { get; set; }
 

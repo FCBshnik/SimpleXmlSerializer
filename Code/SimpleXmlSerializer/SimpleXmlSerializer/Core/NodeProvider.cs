@@ -28,15 +28,15 @@ namespace SimpleXmlSerializer.Core
 
             INode node;
             PrimitiveNodeDescription primitiveNodeDescription;
-            CollectionNodeDescription collectionNodeDescription;
+            CollectionTypeDescription collectionTypeDescription;
 
             if (settings.PrimitiveProvider.TryGetDescription(type, out primitiveNodeDescription))
             {
                 node = new PrimitiveNode(primitiveNodeDescription);
             }
-            else if (settings.CollectionProvider.TryGetDescription(type, out collectionNodeDescription))
+            else if (settings.CollectionProvider.TryGetDescription(type, out collectionTypeDescription))
             {
-                node = new CollectionNode(collectionNodeDescription);
+                node = new CollectionNode(collectionTypeDescription);
             }
             else
             {

@@ -12,9 +12,9 @@ namespace SimpleXmlSerializer.Core
         private const string CollectionItemName = "add";
 
         private readonly INamingConvention namingConvention;
-        private readonly ICollectionNodeProvider collectionProvider;
+        private readonly ICollectionTypeProvider collectionProvider;
 
-        public NameProvider(INamingConvention namingConvention, ICollectionNodeProvider collectionProvider)
+        public NameProvider(INamingConvention namingConvention, ICollectionTypeProvider collectionProvider)
         {
             if (namingConvention == null) throw new ArgumentNullException("namingConvention");
             if (collectionProvider == null) throw new ArgumentNullException("collectionProvider");
@@ -28,7 +28,7 @@ namespace SimpleXmlSerializer.Core
             var name = type.Name;
             var itemName = string.Empty;
 
-            CollectionNodeDescription collectionDescription;
+            CollectionTypeDescription collectionDescription;
 
             // if it is collection type
             if (collectionProvider.TryGetDescription(type, out collectionDescription))
@@ -52,7 +52,7 @@ namespace SimpleXmlSerializer.Core
             var name = namingConvention.NormalizeName(propertyInfo.Name);
             var itemName = string.Empty;
 
-            CollectionNodeDescription collectionDescription;
+            CollectionTypeDescription collectionDescription;
 
             // if type of property is collection, then additionally provide item name
             if (collectionProvider.TryGetDescription(propertyInfo.PropertyType, out collectionDescription))

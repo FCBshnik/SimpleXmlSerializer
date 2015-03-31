@@ -18,7 +18,7 @@ namespace SimpleXmlSerializer
 
         private readonly PrimitiveNodeProvider primitiveProvider;
 
-        private readonly List<ICollectionNodeProvider> collectionProviders = new List<ICollectionNodeProvider>();
+        private readonly List<ICollectionTypeProvider> collectionProviders = new List<ICollectionTypeProvider>();
 
         private INameProvider nameProvider;
 
@@ -28,14 +28,14 @@ namespace SimpleXmlSerializer
         {
             primitiveProvider = new PrimitiveNodeProvider(formatProvider);
 
-            collectionProviders.Add(new DictionaryCollectionNodeProvider());
-            collectionProviders.Add(new ArrayCollectionNodeProvider());
-            collectionProviders.Add(new CollectionNodeProvider());
+            collectionProviders.Add(new DictionaryCollectionTypeProvider());
+            collectionProviders.Add(new ArrayCollectionTypeProvider());
+            collectionProviders.Add(new CollectionTypeProvider());
         }
 
         public XmlSerializerSettings GetSettings()
         {
-            var collectionProvider = new CompositeCollectionNodeProvider(collectionProviders);
+            var collectionProvider = new ChainedCollectionTypeProvider(collectionProviders);
 
             var defaultNameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider);
             if (nameProvider != null)
