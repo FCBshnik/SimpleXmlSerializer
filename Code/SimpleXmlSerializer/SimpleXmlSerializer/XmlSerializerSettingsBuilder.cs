@@ -88,13 +88,17 @@ namespace SimpleXmlSerializer
                 nameProvider = new PrimitiveToAttributeNameProvider(nameProvider, primitiveProvider);
             }
 
-            propertiesSelector = new ChainedPropertiesSelector(new[] { new KeyValuePairPropertiesSelector(), propertiesSelector });
+            var compositeTypeProvider = new ChainedCompositeTypeProvider(new ICompositeTypeProvider []
+                {
+                    new KeyValuePairCompositeTypeProvider(new KeyValuePairPropertiesSelector()),
+                    new CompositeTypeProvider(propertiesSelector)
+                });
 
             return new XmlSerializerSettings(
                 new CachingNameProvider(nameProvider),
                 primitiveProvider,
                 collectionProvider,
-                new CompositeTypeProvider(propertiesSelector));
+                compositeTypeProvider);
         }
 
         /// <summary>

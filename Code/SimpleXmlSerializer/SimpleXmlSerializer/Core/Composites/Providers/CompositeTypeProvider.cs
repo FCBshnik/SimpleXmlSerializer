@@ -27,19 +27,8 @@ namespace SimpleXmlSerializer.Core
         {
             var properties = propertiesSelector.SelectProperties(type).ToList();
             var getters = properties.ToDictionary(p => p, ExpressionUtils.GetPropertyGetter);
-
-            // special handling for KeyValuePair
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
-            {
-                // todo: use compiled ctor
-                var genericArguments = type.GetGenericArguments();
-                var ctor = type.GetConstructor(genericArguments);
-
-                description = new CompositeTypeDescription(properties, ps => CreateObject(ctor, ps), (obj, pi) => getters[pi](obj));
-                return true;
-            }
-
             var ctorFunc = ExpressionUtils.GetFactory(type);
+
             description = new CompositeTypeDescription(properties, ps => CreateObject(ctorFunc, ps), (obj, pi) => getters[pi](obj));
             return true;
         }
@@ -53,11 +42,6 @@ namespace SimpleXmlSerializer.Core
             }
 
             return value;
-        }
-
-        private static object CreateObject(ConstructorInfo ctor, IDictionary<PropertyInfo, object> properties)
-        {
-            return ctor.Invoke(properties.Values.ToArray());
         }
     }
 }

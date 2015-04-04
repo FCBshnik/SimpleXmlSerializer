@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.Core
 {
     /// <summary>
     /// Responsible to always return Key and Value properties for KeyValuePair type.
-    /// For not KeyValuePair types uses specified <see cref="IPropertiesSelector"/>.
+    /// For not KeyValuePair types returns empty list.
     /// </summary>
     internal class KeyValuePairPropertiesSelector : IPropertiesSelector
     {
