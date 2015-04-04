@@ -48,31 +48,31 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
-        public void ListOfComplexes()
+        public void ListOfComposites()
         {
-            var collection = new List<ComplexWithPrimitives> { ComplexWithPrimitives.One, ComplexWithPrimitives.Two };
+            var collection = new List<CompositeWithPrimitives> { CompositeWithPrimitives.One, CompositeWithPrimitives.Two };
 
-            ActAndAssert(collection, "collectionOfComplexes");
+            ActAndAssert(collection, "collectionOfComposites");
         }
 
         [TestMethod]
-        public void ArrayOfComplexes()
+        public void ArrayOfComposites()
         {
-            var collection = new[] { ComplexWithPrimitives.One, ComplexWithPrimitives.Two };
+            var collection = new[] { CompositeWithPrimitives.One, CompositeWithPrimitives.Two };
 
-            ActAndAssert(collection, "collectionOfComplexes");
+            ActAndAssert(collection, "collectionOfComposites");
         }
 
         [TestMethod]
-        public void DictionaryOfComplexes()
+        public void DictionaryOfComposites()
         {
-            var dictionary = new Dictionary<string, ComplexWithPrimitives>
+            var dictionary = new Dictionary<string, CompositeWithPrimitives>
                 {
-                    { "One", ComplexWithPrimitives.One }, 
-                    { "Two", ComplexWithPrimitives.Two }
+                    { "One", CompositeWithPrimitives.One }, 
+                    { "Two", CompositeWithPrimitives.Two }
                 };
 
-            ActAndAssert(dictionary, "dictionaryOfComplexes");
+            ActAndAssert(dictionary, "dictionaryOfComposites");
         }
 
         [TestMethod]

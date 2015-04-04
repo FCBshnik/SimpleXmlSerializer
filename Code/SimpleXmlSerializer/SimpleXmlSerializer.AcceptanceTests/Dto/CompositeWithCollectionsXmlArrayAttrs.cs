@@ -3,14 +3,14 @@ using System.Xml.Serialization;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Dto
 {
-    [XmlRoot(ElementName = "xmlComplexWithCollections")]
-    public class ComplexWithCollectionsXmlArrayAttrs
+    [XmlRoot(ElementName = "xmlCompositeWithCollections")]
+    public class CompositeWithCollectionsXmlArrayAttrs
     {
-        public static ComplexWithCollectionsXmlArrayAttrs Numbers
+        public static CompositeWithCollectionsXmlArrayAttrs Numbers
         {
             get
             {
-                return new ComplexWithCollectionsXmlArrayAttrs
+                return new CompositeWithCollectionsXmlArrayAttrs
                 {
                     Collection1 = new List<string> { "One", "Two" },
                     Collection2 = new List<string> { "Three", "Four" },

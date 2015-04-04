@@ -13,7 +13,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         {
             Serializer = new XmlSerializer();
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "default");
+            ActAndAssert(CompositeWithComposites.Numbers, "default");
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "xmlAttributes");
+            ActAndAssert(CompositeWithComposites.Numbers, "xmlAttributes");
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithPrimitivesOrder.One, "xmlAttributes_order");
+            ActAndAssert(CompositeWithPrimitivesOrder.One, "xmlAttributes_order");
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "xmlAttributes_primitivesToAttributes");
+            ActAndAssert(CompositeWithComposites.Numbers, "xmlAttributes_primitivesToAttributes");
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithCollectionsXmlArrayAttrs.Numbers, "xmlAttributes_xmlArrayAttributes");
+            ActAndAssert(CompositeWithCollectionsXmlArrayAttrs.Numbers, "xmlAttributes_xmlArrayAttributes");
         }
 
         [ExpectedException(typeof(SerializationException))]
@@ -65,7 +65,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            Serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+            Serializer.SerializeToString(CompositeWithPrimitivesConflictElementNames.One);
         }
 
         [ExpectedException(typeof(SerializationException))]
@@ -76,7 +76,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            Serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+            Serializer.SerializeToString(CompositeWithPrimitivesConflictElementNames.One);
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributes");
+            ActAndAssert(CompositeWithComposites.Numbers, "dataAttributes");
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithPrimitivesOrder.One, "dataAttributes_order");
+            ActAndAssert(CompositeWithPrimitivesOrder.One, "dataAttributes_order");
         }
 
         [TestMethod]
@@ -107,7 +107,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "dataAttributesWithPrimitivesToAttributes");
+            ActAndAssert(CompositeWithComposites.Numbers, "dataAttributesWithPrimitivesToAttributes");
         }
 
         [ExpectedException(typeof(SerializationException))]
@@ -118,7 +118,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            Serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+            Serializer.SerializeToString(CompositeWithPrimitivesConflictElementNames.One);
         }
 
         [ExpectedException(typeof(SerializationException))]
@@ -129,7 +129,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
 
             Serializer = new XmlSerializer(settings);
 
-            Serializer.SerializeToString(ComplexWithPrimitivesConflictElementNames.One);
+            Serializer.SerializeToString(CompositeWithPrimitivesConflictElementNames.One);
         }
 
         [TestMethod]
@@ -174,7 +174,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithCustomCollections.Numbers, "collectionDataAttributeForProperties");
+            ActAndAssert(CompositeWithCustomCollections.Numbers, "collectionDataAttributeForProperties");
         }
     }
 }

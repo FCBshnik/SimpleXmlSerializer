@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Responsible to always return Key and Value properties for KeyValuePair type.
+    /// For not KeyValuePair types uses specified <see cref="IPropertiesSelector"/>.
+    /// </summary>
     internal class KeyValuePairPropertiesSelector : IPropertiesSelector
     {
-        private readonly IPropertiesSelector defaultSelector;
         private readonly IPropertiesSelector selector = new PublicPropertiesSelector();
-
-        public KeyValuePairPropertiesSelector(IPropertiesSelector defaultSelector)
-        {
-            this.defaultSelector = defaultSelector;
-        }
 
         public IEnumerable<PropertyInfo> SelectProperties(Type type)
         {
@@ -21,7 +20,7 @@ namespace SimpleXmlSerializer.Core
                 return selector.SelectProperties(type);
             }
 
-            return defaultSelector.SelectProperties(type);
+            return Enumerable.Empty<PropertyInfo>();
         }
     }
 }

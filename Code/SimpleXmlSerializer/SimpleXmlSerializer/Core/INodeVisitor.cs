@@ -6,6 +6,6 @@
 
         void Visit(CollectionNode node);
 
-        void Visit(ComplexNode node);
+        void Visit(CompositeNode node);
     }
 }

@@ -41,14 +41,14 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Dto\ComplexWithCicularDependency.cs" />
-    <Compile Include="Dto\ComplexWithCollections.cs" />
-    <Compile Include="Dto\ComplexWithCollectionsXmlArrayAttrs.cs" />
-    <Compile Include="Dto\ComplexWithComplexes.cs" />
-    <Compile Include="Dto\ComplexWithCustomCollections.cs" />
-    <Compile Include="Dto\ComplexWithPrimitives.cs" />
-    <Compile Include="Dto\ComplexWithPrimitivesConflictElementNames.cs" />
-    <Compile Include="Dto\ComplexWithPrimitivesOrder.cs" />
+    <Compile Include="Dto\CompositeWithCicularDependency.cs" />
+    <Compile Include="Dto\CompositeWithCollections.cs" />
+    <Compile Include="Dto\CompositeWithCollectionsXmlArrayAttrs.cs" />
+    <Compile Include="Dto\CompositeWithComposites.cs" />
+    <Compile Include="Dto\CompositeWithCustomCollections.cs" />
+    <Compile Include="Dto\CompositeWithPrimitives.cs" />
+    <Compile Include="Dto\CompositeWithPrimitivesConflictElementNames.cs" />
+    <Compile Include="Dto\CompositeWithPrimitivesOrder.cs" />
     <Compile Include="Dto\CustomGenericDictionary.cs" />
     <Compile Include="Dto\CustomGenericCollection.cs" />
     <Compile Include="Dto\CustomDictionary.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="Utils\ObjectAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\CollectionsTests.cs" />
-    <Compile Include="Tests\ComplexTests.cs" />
+    <Compile Include="Tests\CompositeTests.cs" />
     <Compile Include="Tests\PrimitivesTests.cs" />
     <Compile Include="Utils\XmlSerializerAssertExtensions.cs" />
   </ItemGroup>
@@ -95,10 +95,10 @@
     <Content Include="Assets\Collections\collectionOfCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\dictionaryOfComplexes.xml">
+    <Content Include="Assets\Collections\dictionaryOfComposites.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Collections\collectionOfComplexes.xml">
+    <Content Include="Assets\Collections\collectionOfComposites.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Collections\dictionaryOfPrimitives.xml">
@@ -107,19 +107,19 @@
     <Content Include="Assets\Collections\collectionOfPrimitives.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\complexWithCollections.xml">
+    <Content Include="Assets\Composite\compositeWithCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\complexWithComplexes.xml">
+    <Content Include="Assets\Composite\compositeWithComposites.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\complexWithPrimitives.xml">
+    <Content Include="Assets\Composite\compositeWithPrimitives.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\complexWithNull.xml">
+    <Content Include="Assets\Composite\compositeWithNull.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Complex\complexWithEmptyCollections.xml">
+    <Content Include="Assets\Composite\compositeWithEmptyCollections.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\collectionDataAttributeForCollectionType.xml">

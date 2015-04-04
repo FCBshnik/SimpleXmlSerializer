@@ -10,7 +10,7 @@ namespace SimpleXmlSerializer.Core
     /// <summary>
     /// The implementation of <see cref="IPropertiesSelector"/> which 
     /// returns all read/write public instance properties of type
-    /// accordingly with data contract attributes.
+    /// based on <see cref="DataMemberAttribute"/> and <see cref="IgnoreDataMemberAttribute"/> attributes.
     /// </summary>
     public class DataAttributesPropertiesSelector : IPropertiesSelector
     {

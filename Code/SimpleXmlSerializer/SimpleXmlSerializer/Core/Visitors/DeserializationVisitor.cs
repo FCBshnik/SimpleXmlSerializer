@@ -93,7 +93,7 @@ namespace SimpleXmlSerializer.Core
             node.Value = node.Description.Factory(items);
         }
 
-        public void Visit(ComplexNode node)
+        public void Visit(CompositeNode node)
         {
             // map of deserialized child values for current element
             var propertyValues = new Dictionary<PropertyInfo, object>();

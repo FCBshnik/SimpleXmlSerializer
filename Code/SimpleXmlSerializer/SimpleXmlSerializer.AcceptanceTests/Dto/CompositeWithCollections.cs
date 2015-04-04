@@ -4,15 +4,15 @@ using System.Xml.Serialization;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Dto
 {
-    [DataContract(Name = "dcComplexWithCollections")]
-    [XmlRoot(ElementName = "xmlComplexWithCollections")]
-    public class ComplexWithCollections
+    [DataContract(Name = "dcCompositeWithCollections")]
+    [XmlRoot(ElementName = "xmlCompositeWithCollections")]
+    public class CompositeWithCollections
     {
-        public static ComplexWithCollections Numbers
+        public static CompositeWithCollections Numbers
         {
             get
             {
-                return new ComplexWithCollections
+                return new CompositeWithCollections
                     {
                         Collection = new List<string> {"One", "Two"},
                         Dictionary = new Dictionary<string, string> {{"One", "1"}, {"Two", "2"}}
@@ -20,11 +20,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Dto
             }
         }
 
-        public static ComplexWithCollections Empties
+        public static CompositeWithCollections Empties
         {
             get
             {
-                return new ComplexWithCollections
+                return new CompositeWithCollections
                 {
                     Collection = new List<string>(),
                     Dictionary = new Dictionary<string, string>()

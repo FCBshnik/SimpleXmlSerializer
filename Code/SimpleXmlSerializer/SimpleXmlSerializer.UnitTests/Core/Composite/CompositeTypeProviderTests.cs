@@ -4,26 +4,28 @@ using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.Core;
 
-namespace SimpleXmlSerializer.UnitTests.Core.Complex
+namespace SimpleXmlSerializer.UnitTests.Core.Composite
 {
     [TestClass]
-    public class ComplexNodeProviderTests
+    public class CompositeTypeProviderTests
     {
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
         public void GetDescription_NoParameterlessCtor_Throws()
         {
-            var provider = new ComplexNodeProvider(new PublicPropertiesSelector());
+            var provider = new CompositeTypeProvider(new PublicPropertiesSelector());
 
-            provider.GetDescription(typeof(ParameterlessCtorType));
+            CompositeTypeDescription description;
+            provider.TryGetDescription(typeof(ParameterlessCtorType), out description);
         }
 
         [TestMethod]
         public void GetDescription_ValueType_ReturnsCorrectFactory()
         {
-            var provider = new ComplexNodeProvider(new PublicPropertiesSelector());
+            var provider = new CompositeTypeProvider(new PublicPropertiesSelector());
 
-            var description = provider.GetDescription(typeof(DateTime));
+            CompositeTypeDescription description;
+            provider.TryGetDescription(typeof(DateTime), out description);
             var actual = description.Factory(new Dictionary<PropertyInfo, object>());
 
             Assert.AreEqual(new DateTime(), actual);
@@ -32,9 +34,10 @@ namespace SimpleXmlSerializer.UnitTests.Core.Complex
         [TestMethod]
         public void GetDescription_ReferenceType_ReturnsCorrectFactory()
         {
-            var provider = new ComplexNodeProvider(new PublicPropertiesSelector());
+            var provider = new CompositeTypeProvider(new PublicPropertiesSelector());
 
-            var description = provider.GetDescription(typeof(ParameterlessType));
+            CompositeTypeDescription description;
+            provider.TryGetDescription(typeof(ParameterlessType), out description);
             var actual = description.Factory(new Dictionary<PropertyInfo, object>());
 
             Assert.IsNotNull(actual);

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<complexWithPrimitives>
+<compositeWithPrimitives>
   <string>One</string>
   <int>1</int>
-</complexWithPrimitives>
+</compositeWithPrimitives>

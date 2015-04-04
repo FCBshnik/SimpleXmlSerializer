@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xmlComplexWithCollections>
+<xmlCompositeWithCollections>
   <xmlCollection1>
     <xmlAdd>One</xmlAdd>
     <xmlAdd>Two</xmlAdd>
@@ -12,4 +12,4 @@
     <xmlAdd>Five</xmlAdd>
     <xmlAdd>Six</xmlAdd>
   </xmlCollection3>
-</xmlComplexWithCollections>
+</xmlCompositeWithCollections>

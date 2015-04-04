@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<complexWithPrimitives unknownAttribute="unknownAttributeName">
+<compositeWithPrimitives unknownAttribute="unknownAttributeName">
   <string unknownAttribute="unknownAttributeName">One</string>
   <int>1</int>
-</complexWithPrimitives>
+</compositeWithPrimitives>

@@ -29,6 +29,7 @@ namespace SimpleXmlSerializer.Core
             INode node;
             PrimitiveTypeDescription primitiveTypeDescription;
             CollectionTypeDescription collectionTypeDescription;
+            CompositeTypeDescription compositeTypeDescription;
 
             if (settings.PrimitiveProvider.TryGetDescription(type, out primitiveTypeDescription))
             {
@@ -38,10 +39,13 @@ namespace SimpleXmlSerializer.Core
             {
                 node = new CollectionNode(collectionTypeDescription);
             }
+            else if (settings.CompositeProvider.TryGetDescription(type, out compositeTypeDescription))
+            {
+                node = new CompositeNode(compositeTypeDescription);
+            }
             else
             {
-                var complexNodeDescription = settings.ComplexProvider.GetDescription(type);
-                node = new ComplexNode(complexNodeDescription);
+                throw new SerializationException(string.Format("Can not serialize type {0}", type));
             }
 
             nodesCache[type] = node;

@@ -1,20 +1,18 @@
 ﻿using System;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
-    internal class ComplexNode : INode
+    internal class CompositeNode : INode
     {
-        public ComplexNode(ComplexNodeDescription description)
+        public CompositeNode(CompositeTypeDescription description)
         {
             if (description == null)
-            {
                 throw new ArgumentNullException("description");
-            }
+
             Description = description;
         }
 
-        public ComplexNodeDescription Description { get; private set; }
+        public CompositeTypeDescription Description { get; private set; }
 
         public object Value { get; set; }
 
@@ -27,12 +25,12 @@ namespace SimpleXmlSerializer.Core
 
         public object Clone()
         {
-            return new ComplexNode(Description);
+            return new CompositeNode(Description);
         }
 
         public override string ToString()
         {
-            return string.Format("Complex: {0}", Name);
+            return string.Format("Name: {0}, Value: {1}", Name, Value);
         }
     }
 }

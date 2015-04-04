@@ -12,7 +12,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            ActAndAssert(ComplexWithComplexes.Numbers, "primitivesToAttributes");
+            ActAndAssert(CompositeWithComposites.Numbers, "primitivesToAttributes");
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             var settings = new XmlSerializerSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
-            var numbers = ComplexWithComplexes.Numbers;
+            var numbers = CompositeWithComposites.Numbers;
             numbers.Two.String = null;
             ActAndAssert(numbers, "primitivesToAttributesWithNull");
         }

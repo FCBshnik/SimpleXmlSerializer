@@ -14,7 +14,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         {
             Serializer = new XmlSerializer();
 
-            Serializer.SerializeToString(ComplexWithCicularDependency.Create());
+            Serializer.SerializeToString(CompositeWithCicularDependency.Create());
         }
     }
 }

@@ -10,7 +10,8 @@ namespace SimpleXmlSerializer.Core
     /// <summary>
     /// The implementation of <see cref="IPropertiesSelector"/> which 
     /// returns all read/write public instance properties of type
-    /// accordingly with xml* attributes.
+    /// based on <see cref="XmlElementAttribute"/>, <see cref="XmlArrayAttribute"/> 
+    /// and <see cref="XmlIgnoreAttribute"/> attributes.
     /// </summary>
     public class XmlAttributesPropertiesSelector : IPropertiesSelector
     {

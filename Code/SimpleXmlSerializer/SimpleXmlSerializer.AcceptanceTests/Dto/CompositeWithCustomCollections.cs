@@ -3,15 +3,15 @@ using System.Xml.Serialization;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Dto
 {
-    [DataContract(Name = "dcComplexWithCustomCollections")]
-    [XmlRoot(ElementName = "xmlComplexWithCustomCollections")]
-    public class ComplexWithCustomCollections
+    [DataContract(Name = "dcCompositeWithCustomCollections")]
+    [XmlRoot(ElementName = "xmlCompositeWithCustomCollections")]
+    public class CompositeWithCustomCollections
     {
-        public static ComplexWithCustomCollections Numbers
+        public static CompositeWithCustomCollections Numbers
         {
             get
             {
-                return new ComplexWithCustomCollections
+                return new CompositeWithCustomCollections
                 {
                     Collection = CustomCollection.Numbers,
                     Dictionary = CustomDictionary.Numbers

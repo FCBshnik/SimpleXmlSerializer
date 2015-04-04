@@ -65,7 +65,7 @@ namespace SimpleXmlSerializer
                 {
                     new PrimitiveTypeProvider(primitiveSerializers), new EnumPrimitiveTypeProvider()
                 });
-            primitiveProvider = new ChainedPrimitiveTypeProvider(new IPrimitiveTypeProvider[]
+            primitiveProvider = new ChainedPrimitiveTypeProvider(new []
                 {
                     primitiveProvider, new NullablePrimitiveTypeProvider(primitiveProvider)
                 });
@@ -88,15 +88,17 @@ namespace SimpleXmlSerializer
                 nameProvider = new PrimitiveToAttributeNameProvider(nameProvider, primitiveProvider);
             }
 
+            propertiesSelector = new ChainedPropertiesSelector(new[] { new KeyValuePairPropertiesSelector(), propertiesSelector });
+
             return new XmlSerializerSettings(
                 new CachingNameProvider(nameProvider),
-                primitiveProvider, 
-                collectionProvider, 
-                new ComplexNodeProvider(propertiesSelector));
+                primitiveProvider,
+                collectionProvider,
+                new CompositeTypeProvider(propertiesSelector));
         }
 
         /// <summary>
-        /// Specifies to serialize primitive types to attributes.
+        /// Specifies to serialize primitives to attributes.
         /// </summary>
         public XmlSerializerSettingsBuilder SerializePrimitivesToAttributes()
         {
@@ -110,7 +112,7 @@ namespace SimpleXmlSerializer
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
             nameProvider = new XmlAttributesNameProvider();
-            propertiesSelector = new KeyValuePairPropertiesSelector(new XmlAttributesPropertiesSelector());
+            propertiesSelector = new XmlAttributesPropertiesSelector();
             return this;
         }
 
@@ -121,23 +123,26 @@ namespace SimpleXmlSerializer
         {
             nameProvider = new DataAttributesNameProvider();
             collectionProviders.Prepend(new DataAttributeCollectionProvider());
-            propertiesSelector = new KeyValuePairPropertiesSelector(new DataAttributesPropertiesSelector());
+            propertiesSelector = new DataAttributesPropertiesSelector();
             return this;
         }
 
         public XmlSerializerSettingsBuilder SetPrimitiveSerializer(Type type, IPrimitiveSerializer serializer)
         {
-            if (type == null) 
+            if (type == null)
                 throw new ArgumentNullException("type");
-            if (serializer == null) 
+            if (serializer == null)
                 throw new ArgumentNullException("serializer");
 
             primitiveSerializers[type] = serializer;
             return this;
         }
 
-        public XmlSerializerSettingsBuilder UseFormatProvider(IFormatProvider formatProvider)
+        public XmlSerializerSettingsBuilder SetFormatProvider(IFormatProvider formatProvider)
         {
+            if (formatProvider == null) 
+                throw new ArgumentNullException("formatProvider");
+
             this.formatProvider = formatProvider;
             return this;
         }

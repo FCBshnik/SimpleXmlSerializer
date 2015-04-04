@@ -3,15 +3,15 @@ using System.Xml.Serialization;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Dto
 {
-    [DataContract(Name = "dcComplexWithPrimitives")]
-    [XmlRoot(ElementName = "xmlComplexWithPrimitives")]
-    public class ComplexWithPrimitivesConflictElementNames
+    [DataContract(Name = "dcCompositeWithPrimitives")]
+    [XmlRoot(ElementName = "xmlCompositeWithPrimitives")]
+    public class CompositeWithPrimitivesConflictElementNames
     {
-        public static ComplexWithPrimitivesConflictElementNames One
+        public static CompositeWithPrimitivesConflictElementNames One
         {
             get
             {
-                return new ComplexWithPrimitivesConflictElementNames { String = "One", Int = 1 };
+                return new CompositeWithPrimitivesConflictElementNames { String = "One", Int = 1 };
             }
         }
 

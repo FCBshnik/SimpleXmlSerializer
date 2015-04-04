@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dcComplexWithComplexes>
+<dcCompositeWithComposites>
   <dcOne>
     <dcString>One</dcString>
     <dcInt>1</dcInt>
@@ -8,4 +8,4 @@
     <dcString>Two</dcString>
     <dcInt>2</dcInt>
   </dcTwo>
-</dcComplexWithComplexes>
+</dcCompositeWithComposites>

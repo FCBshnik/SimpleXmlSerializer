@@ -78,7 +78,7 @@ namespace SimpleXmlSerializer.Core
             xmlWriter.WriteEndElement();
         }
 
-        public void Visit(ComplexNode node)
+        public void Visit(CompositeNode node)
         {
             OnVisitNode(node);
 
@@ -96,7 +96,7 @@ namespace SimpleXmlSerializer.Core
             foreach (var pair in properties)
             {
                 var propertyInfo = pair.Value;
-                var propertyValue = node.Description.Getter(node.Value, propertyInfo);
+                var propertyValue = node.Description.PropertyGetter(node.Value, propertyInfo);
                 if (propertyValue == null)
                 {
                     continue;

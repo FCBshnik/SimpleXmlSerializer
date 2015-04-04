@@ -12,7 +12,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         {
             Serializer = new XmlSerializer();
 
-            DeserializeAndAssert(ComplexWithPrimitives.One, "unknownXmlElement");
+            DeserializeAndAssert(CompositeWithPrimitives.One, "unknownXmlElement");
         }
 
         [TestMethod]
@@ -20,7 +20,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         {
             Serializer = new XmlSerializer();
 
-            DeserializeAndAssert(ComplexWithPrimitives.One, "unknownXmlAttribute");
+            DeserializeAndAssert(CompositeWithPrimitives.One, "unknownXmlAttribute");
         }
 
         [TestMethod]

@@ -6,16 +6,24 @@ using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class ComplexNodeProvider : IComplexNodeProvider
+    /// <summary>
+    /// The implementation of <see cref="ICompositeTypeProvider"/> which uses 
+    /// specified <see cref="IPropertiesSelector"/> to get properties of composite object
+    /// and parameterless constructor (if exists) to create instances of composite types.
+    /// </summary>
+    public class CompositeTypeProvider : ICompositeTypeProvider
     {
         private readonly IPropertiesSelector propertiesSelector;
 
-        public ComplexNodeProvider(IPropertiesSelector propertiesSelector)
+        public CompositeTypeProvider(IPropertiesSelector propertiesSelector)
         {
+            if (propertiesSelector == null) 
+                throw new ArgumentNullException("propertiesSelector");
+
             this.propertiesSelector = propertiesSelector;
         }
 
-        public ComplexNodeDescription GetDescription(Type type)
+        public bool TryGetDescription(Type type, out CompositeTypeDescription description)
         {
             var properties = propertiesSelector.SelectProperties(type).ToList();
             var getters = properties.ToDictionary(p => p, ExpressionUtils.GetPropertyGetter);
@@ -27,20 +35,16 @@ namespace SimpleXmlSerializer.Core
                 var genericArguments = type.GetGenericArguments();
                 var ctor = type.GetConstructor(genericArguments);
 
-                return new ComplexNodeDescription(properties, ps => CreateObject(ctor, ps))
-                    {
-                        Getter = (obj, pi) => getters[pi](obj)
-                    };
+                description = new CompositeTypeDescription(properties, ps => CreateObject(ctor, ps), (obj, pi) => getters[pi](obj));
+                return true;
             }
 
             var ctorFunc = ExpressionUtils.GetFactory(type);
-            return new ComplexNodeDescription(properties, ps => CreateObject(ps, ctorFunc))
-                {
-                    Getter = (obj, pi) => getters[pi](obj)
-                };
+            description = new CompositeTypeDescription(properties, ps => CreateObject(ctorFunc, ps), (obj, pi) => getters[pi](obj));
+            return true;
         }
 
-        private static object CreateObject(IDictionary<PropertyInfo, object> properties, Func<object> ctor)
+        private static object CreateObject(Func<object> ctor, IDictionary<PropertyInfo, object> properties)
         {
             var value = ctor();
             foreach (var propertyInfo in properties.Keys)

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xmlComplexWithComplexes>
+<xmlCompositeWithComposites>
   <xmlOne>
     <xmlString>One</xmlString>
     <xmlInt>1</xmlInt>
@@ -8,4 +8,4 @@
     <xmlString>Two</xmlString>
     <xmlInt>2</xmlInt>
   </xmlTwo>
-</xmlComplexWithComplexes>
+</xmlCompositeWithComposites>

@@ -46,10 +46,12 @@
     <Compile Include="Core\Collections\DataAttributeCollectionProvider.cs" />
     <Compile Include="Core\Collections\DictionaryCollectionTypeProvider.cs" />
     <Compile Include="Core\Collections\ICollectionTypeProvider.cs" />
-    <Compile Include="Core\Complex\ComplexNodeDescription.cs" />
-    <Compile Include="Core\Complex\ComplexNodeProvider.cs" />
+    <Compile Include="Core\Complex\ChainedPropertiesSelector.cs" />
+    <Compile Include="Core\Complex\CompositeTypeDescription.cs" />
+    <Compile Include="Core\Complex\CompositeTypeProvider.cs" />
     <Compile Include="Core\Complex\DataAttributesPropertiesSelector.cs" />
-    <Compile Include="Core\Complex\IComplexNodeProvider.cs" />
+    <Compile Include="Core\Complex\ICompositeTypeProvider.cs" />
+    <Compile Include="Core\Complex\KeyValuePairCompositeTypeProvider.cs" />
     <Compile Include="Core\Complex\KeyValuePairPropertiesSelector.cs" />
     <Compile Include="Core\Complex\XmlAttributesPropertiesSelector.cs" />
     <Compile Include="Core\Naming\NameProviders\CachingNameProvider.cs" />
@@ -66,7 +68,7 @@
     <Compile Include="Core\Naming\Conventions\NoNamingConvention.cs" />
     <Compile Include="Core\NodeProvider.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
-    <Compile Include="Core\Nodes\ComplexNode.cs" />
+    <Compile Include="Core\Nodes\CompositeNode.cs" />
     <Compile Include="Core\Primitives\ChainedPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\EnumPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\NullablePrimitiveTypeProvider.cs" />

@@ -3,23 +3,23 @@ using System.Xml.Serialization;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Dto
 {
-    [DataContract(Name = "dcComplexWithPrimitives")]
-    [XmlRoot(ElementName = "xmlComplexWithPrimitives")]
-    public class ComplexWithPrimitives
+    [DataContract(Name = "dcCompositeWithPrimitives")]
+    [XmlRoot(ElementName = "xmlCompositeWithPrimitives")]
+    public class CompositeWithPrimitives
     {
-        public static ComplexWithPrimitives One
+        public static CompositeWithPrimitives One
         {
             get
             {
-                return new ComplexWithPrimitives { String = "One", Int = 1 };
+                return new CompositeWithPrimitives { String = "One", Int = 1 };
             }
         }
 
-        public static ComplexWithPrimitives Two
+        public static CompositeWithPrimitives Two
         {
             get
             {
-                return new ComplexWithPrimitives { String = "Two", Int = 2 };
+                return new CompositeWithPrimitives { String = "Two", Int = 2 };
             }
         }
 
