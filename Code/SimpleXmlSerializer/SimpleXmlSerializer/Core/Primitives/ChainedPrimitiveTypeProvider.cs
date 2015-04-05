@@ -5,7 +5,7 @@ namespace SimpleXmlSerializer.Core
 {
     /// <summary>
     /// Picks up first <see cref="IPrimitiveTypeProvider"/> from collection 
-    /// which knows how to serialize type as 'primitive'.
+    /// which knows how to serialize specified primitive type.
     /// </summary>
     public class ChainedPrimitiveTypeProvider : IPrimitiveTypeProvider
     {

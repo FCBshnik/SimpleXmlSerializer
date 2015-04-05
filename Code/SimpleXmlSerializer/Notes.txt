@@ -1,4 +1,6 @@
 Features todo:
+- CollectionDataContractAttribute for dictionaries
+- customize name for 'add', 'key' and 'value' hasr coded xml elementt names
 - unit tests
 - document all public methods
 - clear all work with cultures and formatters

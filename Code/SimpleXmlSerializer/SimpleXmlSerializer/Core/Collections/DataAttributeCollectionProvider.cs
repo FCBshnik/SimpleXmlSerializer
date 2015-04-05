@@ -8,7 +8,7 @@ using SimpleXmlSerializer.Utils;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Provides info how to serialize types marked by <see cref="CollectionDataContractAttribute"/> attribute.
+    /// Provides info how to serialize collection types based on <see cref="CollectionDataContractAttribute"/> attribute.
     /// </summary>
     public class DataAttributeCollectionProvider : ICollectionTypeProvider
     {

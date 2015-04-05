@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<compositeWithAllPrimitiveTypes>
+  <char>c</char>
+  <string>13</string>
+  <byte>13</byte>
+  <short>13</short>
+  <int>13</int>
+  <long>13</long>
+  <float>13.13</float>
+  <double>13.13</double>
+  <decimal>13.13</decimal>
+  <bool>True</bool>
+  <timeSpan>1.02:03:04</timeSpan>
+  <dateTime>2001-02-03T04:05:06.0070000Z</dateTime>
+  <dateTimeOffset>2001-02-03T04:04:06.0070000+00:00</dateTimeOffset>
+  <enum>Instance, Public, GetProperty, SetProperty</enum>
+  <uri>http://hostname/path?key1=value1&amp;key2=value2</uri>
+  <guid>7c5c2522-944d-4561-9f5f-d9d2c19f470a</guid>
+  <type>System.Type</type>
+</compositeWithAllPrimitiveTypes>

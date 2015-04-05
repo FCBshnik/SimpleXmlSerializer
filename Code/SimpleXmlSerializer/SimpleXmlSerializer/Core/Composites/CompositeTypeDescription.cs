@@ -5,7 +5,7 @@ using System.Reflection;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Represents info how to serialize composite type.
+    /// Represents info how to serialize composite types.
     /// </summary>
     public class CompositeTypeDescription
     {

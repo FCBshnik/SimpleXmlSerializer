@@ -1,63 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.Serialization;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// The implementation of <see cref="INameProvider"/> which collects and merges
+    /// node name from collection of <see cref="INameProvider"/>. 
+    /// Provider which goes first gets precedence.
+    /// </summary>
     public class CompositeNameProvider : INameProvider
     {
         private readonly IEnumerable<INameProvider> providers;
 
         public CompositeNameProvider(IEnumerable<INameProvider> providers)
         {
+            if (providers == null)
+                throw new ArgumentNullException("providers");
+
             this.providers = providers;
         }
 
         public NodeName GetNodeName(Type type)
         {
-            var resultName = NodeName.Empty;
+            var nodeName = NodeName.Empty;
             foreach (var provider in providers)
             {
-                resultName = Merge(resultName, provider.GetNodeName(type));
+                nodeName = Merge(nodeName, provider.GetNodeName(type));
             }
 
-            if (!IsValid(resultName))
-            {
-                throw new SerializationException();
-            }
-
-            return resultName;
+            return nodeName;
         }
 
         public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
-            var resultName = NodeName.Empty;
+            var nodeName = NodeName.Empty;
             foreach (var provider in providers)
             {
-                resultName = Merge(resultName, provider.GetNodeName(propertyInfo));
+                nodeName = Merge(nodeName, provider.GetNodeName(propertyInfo));
             }
 
-            if (!IsValid(resultName))
-            {
-                throw new SerializationException();
-            }
-
-            return resultName;
+            return nodeName;
         }
 
         private static NodeName Merge(NodeName to, NodeName from)
         {
-            var elementName = (to.IsElement || to.IsAttribute) ? to.ElementName : from.ElementName;
-            var attributeName = (to.IsElement || to.IsAttribute) ? to.AttributeName : from.AttributeName;
-            var itemName = to.IsItem ? to.ItemName : @from.ItemName;
+            var elementName = to.HasElementName ? to.ElementName : from.ElementName;
+            var attributeName = to.HasAttributeName ? to.AttributeName : from.AttributeName;
+            var itemName = to.HastItemName ? to.ItemName : @from.ItemName;
 
             return new NodeName(elementName, itemName, attributeName);
-        }
-
-        private static bool IsValid(NodeName name)
-        {
-            return name.IsElement || name.IsAttribute;
         }
     }
 }

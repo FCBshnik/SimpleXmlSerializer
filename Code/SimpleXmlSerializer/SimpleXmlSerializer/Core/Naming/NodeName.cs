@@ -20,32 +20,41 @@
             AttributeName = attributeName;
         }
 
+        /// <summary>
+        /// Gets xml element name for property.
+        /// </summary>
         public string ElementName { get; private set; }
 
+        /// <summary>
+        /// Gets xml element name for item within collection.
+        /// </summary>
         public string ItemName { get; private set; }
 
+        /// <summary>
+        /// Gets xml attribute name for property.
+        /// </summary>
         public string AttributeName { get; private set; }
 
         /// <summary>
-        /// Indicates if current node name is element name.
+        /// Indicates if <see cref="ElementName"/> is not empty.
         /// </summary>
-        public bool IsElement
+        public bool HasElementName
         {
             get { return !string.IsNullOrEmpty(ElementName); }
         }
 
         /// <summary>
-        /// Indicates if current node name is attribute name.
+        /// Indicates if <see cref="AttributeName"/> is not empty.
         /// </summary>
-        public bool IsAttribute
+        public bool HasAttributeName
         {
             get { return !string.IsNullOrEmpty(AttributeName); }
         }
 
         /// <summary>
-        /// Indicates if current node name has name for item within collection.
+        /// Indicates if <see cref="ItemName"/> is not empty.
         /// </summary>
-        public bool IsItem
+        public bool HastItemName
         {
             get { return !string.IsNullOrEmpty(ItemName); }
         }

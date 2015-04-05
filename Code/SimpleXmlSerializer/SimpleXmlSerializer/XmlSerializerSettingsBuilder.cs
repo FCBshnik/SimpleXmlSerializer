@@ -8,8 +8,7 @@ using SimpleXmlSerializer.Extensions;
 namespace SimpleXmlSerializer
 {
     /// <summary>
-    /// Responsible to tune up/customize serialization process. 
-    /// Produces instance of <see cref="XmlSerializerSettings"/>.
+    /// Responsible to customize serialization process. Produces instance of <see cref="XmlSerializerSettings"/>.
     /// </summary>
     public class XmlSerializerSettingsBuilder
     {

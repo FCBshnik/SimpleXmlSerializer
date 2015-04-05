@@ -5,12 +5,12 @@ using System.Reflection;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Responsible to provide list of properties of composite type to serialize.
+    /// Responsible to provide properties of composite type to serialize.
     /// </summary>
     public interface IPropertiesSelector
     {
         /// <summary>
-        /// Returns list of properties of composite type.
+        /// Returns properties of composite type to serialize.
         /// </summary>
         IEnumerable<PropertyInfo> SelectProperties(Type type);
     }

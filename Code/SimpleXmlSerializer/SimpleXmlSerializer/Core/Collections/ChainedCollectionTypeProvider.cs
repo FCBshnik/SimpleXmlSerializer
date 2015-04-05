@@ -5,7 +5,7 @@ namespace SimpleXmlSerializer.Core
 {
     /// <summary>
     /// Picks up first <see cref="ICollectionTypeProvider"/> from collection 
-    /// which knows how to serialize type as collection.
+    /// which knows how to serialize specified collection type.
     /// </summary>
     public class ChainedCollectionTypeProvider : ICollectionTypeProvider
     {

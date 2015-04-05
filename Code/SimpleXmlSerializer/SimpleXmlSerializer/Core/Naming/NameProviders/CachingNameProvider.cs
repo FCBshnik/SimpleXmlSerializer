@@ -4,15 +4,22 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// The caching decorator over <see cref="INameProvider"/>.
+    /// </summary>
     public class CachingNameProvider : INameProvider
     {
         private readonly Dictionary<Type, NodeName> cacheByType = new Dictionary<Type, NodeName>();
         private readonly Dictionary<PropertyInfo, NodeName> cacheByPropertyInfo = new Dictionary<PropertyInfo, NodeName>();
-        private readonly INameProvider cached;
 
-        public CachingNameProvider(INameProvider cached)
+        private readonly INameProvider provider;
+
+        public CachingNameProvider(INameProvider provider)
         {
-            this.cached = cached;
+            if (provider == null) 
+                throw new ArgumentNullException("provider");
+
+            this.provider = provider;
         }
 
         public NodeName GetNodeName(Type type)
@@ -22,7 +29,7 @@ namespace SimpleXmlSerializer.Core
                 return cacheByType[type];
             }
 
-            var nodeName = cached.GetNodeName(type);
+            var nodeName = provider.GetNodeName(type);
             cacheByType[type] = nodeName;
             return nodeName;
         }
@@ -34,7 +41,7 @@ namespace SimpleXmlSerializer.Core
                 return cacheByPropertyInfo[propertyInfo];
             }
 
-            var nodeName = cached.GetNodeName(propertyInfo);
+            var nodeName = provider.GetNodeName(propertyInfo);
             cacheByPropertyInfo[propertyInfo] = nodeName;
             return nodeName;
         }

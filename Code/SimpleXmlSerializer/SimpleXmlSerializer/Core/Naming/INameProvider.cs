@@ -9,12 +9,12 @@ namespace SimpleXmlSerializer.Core
     public interface INameProvider
     {
         /// <summary>
-        /// Provides xml element or attribute name if property info is available.
+        /// Provides xml element or attribute name by property info.
         /// </summary>
         NodeName GetNodeName(PropertyInfo propertyInfo);
 
         /// <summary>
-        /// Provides xml element or attribute name if only type info is available.
+        /// Provides xml element or attribute name by type.
         /// </summary>
         NodeName GetNodeName(Type type);
     }

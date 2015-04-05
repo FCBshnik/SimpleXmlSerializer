@@ -5,6 +5,10 @@ using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Provides xml element names based on <see cref="DataContractAttribute"/>, <see cref="DataMemberAttribute"/>
+    /// and <see cref="CollectionDataContractAttribute"/> attributes.
+    /// </summary>
     public class DataAttributesNameProvider : INameProvider
     {
         public NodeName GetNodeName(Type type)

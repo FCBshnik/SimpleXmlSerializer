@@ -39,13 +39,13 @@ namespace SimpleXmlSerializer.Core
 
             var value = node.Description.Serializer.Serialize(node.Value);
 
-            if (node.Name.IsElement)
+            if (node.Name.HasElementName)
             {
                 xmlWriter.WriteStartElement(node.Name.ElementName);
                 xmlWriter.WriteValue(value);
                 xmlWriter.WriteEndElement();
             }
-            else if (node.Name.IsAttribute)
+            else if (node.Name.HasAttributeName)
             {
                 xmlWriter.WriteAttributeString(node.Name.AttributeName, value);
             }
@@ -89,8 +89,8 @@ namespace SimpleXmlSerializer.Core
             // some properties may be presented as attributes and as element
             // here we give precedence to attributes
             properties = properties
-                .Where(p => p.Key.IsAttribute)
-                .Concat(properties.Where(p => !p.Key.IsAttribute))
+                .Where(p => p.Key.HasAttributeName)
+                .Concat(properties.Where(p => !p.Key.HasAttributeName))
                 .ToDictionary(p => p.Key, p => p.Value);
 
             foreach (var pair in properties)

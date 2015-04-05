@@ -6,7 +6,6 @@ namespace SimpleXmlSerializer
 {
     public class XmlSerializer
     {
-        private readonly XmlSerializerSettings settings;
         private readonly NodeProvider nodeProvider;
         
         public XmlSerializer() : this(new XmlSerializerSettingsBuilder().GetSettings())
@@ -18,7 +17,6 @@ namespace SimpleXmlSerializer
             if (settings == null)
                 throw new ArgumentNullException("settings");
 
-            this.settings = settings;
             nodeProvider = new NodeProvider(settings);
         }
 
@@ -40,7 +38,7 @@ namespace SimpleXmlSerializer
             if (xmlReader == null)
                 throw new ArgumentNullException("xmlReader");
 
-            var visitor = new DeserializationVisitor(xmlReader, settings, nodeProvider);
+            var visitor = new DeserializationVisitor(xmlReader, nodeProvider);
             return visitor.Visit(type);
         }
     }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Picks up first <see cref="ICompositeTypeProvider"/> from collection 
+    /// which knows how to serialize specified composite type.
+    /// </summary>
     public class ChainedCompositeTypeProvider : ICompositeTypeProvider
     {
         private readonly IEnumerable<ICompositeTypeProvider> providers;

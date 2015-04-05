@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SimpleXmlSerializer.AcceptanceTests.Dto;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Tests
 {
@@ -112,7 +113,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void Nullable()
         {
-            ActAndAssert(new TypeWithNullableProperties { Int = 13, Enum = BindingFlags.Public }, "nullable");
+            ActAndAssert(new CompositeWithNullables { Int = 13, Enum = BindingFlags.Public }, "nullable");
         }
 
         [TestMethod]
@@ -139,11 +140,31 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
             ActAndAssert(typeof(Type), "type");
         }
 
-        public class TypeWithNullableProperties
+        [TestMethod]
+        public void PrimitivesWithinComposite()
         {
-            public int? Int { get; set; }
+            var value = new CompositeWithAllPrimitiveTypes
+                {
+                    Bool = true,
+                    Byte = 13,
+                    Char = 'c',
+                    DateTime = new DateTime(2001, 02, 03, 04, 05, 06, 07, DateTimeKind.Utc),
+                    DateTimeOffset = new DateTimeOffset(2001, 02, 03, 04, 05, 06, 07, System.TimeSpan.FromMinutes(1)),
+                    Decimal = 13.13m,
+                    Double = 13.13d,
+                    Enum = BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.GetProperty,
+                    Float = 13.13f,
+                    Guid = new Guid("7C5C2522-944D-4561-9F5F-D9D2C19F470A"),
+                    Int = 13,
+                    Long = 13,
+                    Short = 13,
+                    String = "13",
+                    TimeSpan = new TimeSpan(1, 2, 3, 4),
+                    Type = typeof(Type),
+                    Uri = new Uri("http://hostname/path?key1=value1&key2=value2"),
+                };
 
-            public BindingFlags? Enum { get; set; }
+            ActAndAssert(value, "primitivesWithinComposite");
         }
     }
 }

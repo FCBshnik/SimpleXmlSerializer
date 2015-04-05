@@ -3,7 +3,7 @@
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Represents info how to serialize 'primitive' type.
+    /// Represents info how to serialize primitive type.
     /// </summary>
     public class PrimitiveTypeDescription
     {
@@ -16,7 +16,7 @@ namespace SimpleXmlSerializer.Core
         }
 
         /// <summary>
-        /// Gets <see cref="IPrimitiveSerializer"/> for current 'primitive' type.
+        /// Gets <see cref="IPrimitiveSerializer"/> for current primitive type.
         /// </summary>
         public IPrimitiveSerializer Serializer { get; private set; }
     }

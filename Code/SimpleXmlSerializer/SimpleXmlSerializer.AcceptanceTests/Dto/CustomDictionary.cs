@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace SimpleXmlSerializer.AcceptanceTests.Dto
 {
-    [CollectionDataContract(Name = "cdcCustomDictionary", ItemName = "cdcAdd")]
+    [CollectionDataContract(Name = "cdcCustomDictionary", ItemName = "cdcAdd", KeyName = "cdcKey", ValueName = "cdcValue")]
     [DataContract(Name = "dcCustomDictionary")]
     [XmlRoot(ElementName = "xmlCustomDictionary")]
     public class CustomDictionary : Dictionary<string, string>

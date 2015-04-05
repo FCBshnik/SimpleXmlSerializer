@@ -1,5 +1,4 @@
 ﻿using System;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {

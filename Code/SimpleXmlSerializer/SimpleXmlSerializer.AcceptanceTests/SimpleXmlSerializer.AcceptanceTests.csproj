@@ -41,11 +41,13 @@
     <Compile Include="..\SolutionAssemblyInfo.cs">
       <Link>Properties\SolutionAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Dto\CompositeWithAllPrimitiveTypes.cs" />
     <Compile Include="Dto\CompositeWithCicularDependency.cs" />
     <Compile Include="Dto\CompositeWithCollections.cs" />
     <Compile Include="Dto\CompositeWithCollectionsXmlArrayAttrs.cs" />
     <Compile Include="Dto\CompositeWithComposites.cs" />
     <Compile Include="Dto\CompositeWithCustomCollections.cs" />
+    <Compile Include="Dto\CompositeWithNullables.cs" />
     <Compile Include="Dto\CompositeWithPrimitives.cs" />
     <Compile Include="Dto\CompositeWithPrimitivesConflictElementNames.cs" />
     <Compile Include="Dto\CompositeWithPrimitivesOrder.cs" />
@@ -168,6 +170,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\char.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Primitives\primitivesWithinComposite.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\nullable.xml">

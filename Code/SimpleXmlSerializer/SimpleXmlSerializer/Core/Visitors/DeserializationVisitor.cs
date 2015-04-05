@@ -12,14 +12,12 @@ namespace SimpleXmlSerializer.Core
     internal class DeserializationVisitor : INodeVisitor
     {
         private readonly XmlReader xmlReader;
-        private readonly XmlSerializerSettings settings;
         private readonly NodeProvider nodeProvider;
 
-        public DeserializationVisitor(XmlReader xmlReader, XmlSerializerSettings settings, NodeProvider nodeProvider)
+        public DeserializationVisitor(XmlReader xmlReader, NodeProvider nodeProvider)
         {
             this.xmlReader = xmlReader;
             this.nodeProvider = nodeProvider;
-            this.settings = settings;
         }
 
         public object Visit(Type type)
@@ -43,7 +41,7 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(PrimitiveNode node)
         {
-            if (node.Name.IsElement)
+            if (node.Name.HasElementName)
             {
                 // distinguish nodes without value (about which indicates IsEmptyElement)
                 // and nodes with some value (even if this value is empty string),
@@ -57,7 +55,7 @@ namespace SimpleXmlSerializer.Core
                     node.Value = node.Description.Serializer.Deserialize(serializedValue);
                 }
             }
-            else if (node.Name.IsAttribute)
+            else if (node.Name.HasAttributeName)
             {
                 var serializedValue = xmlReader.Value;
                 node.Value = node.Description.Serializer.Deserialize(serializedValue);
@@ -107,7 +105,7 @@ namespace SimpleXmlSerializer.Core
             {
                 // get properties mapped to attributes
                 var attributesNames = names
-                    .Where(p => p.Key.IsAttribute)
+                    .Where(p => p.Key.HasAttributeName)
                     .ToDictionary(p => p.Key.AttributeName, p => p.Value);
 
                 // iterate through all attributes of current element
@@ -133,7 +131,7 @@ namespace SimpleXmlSerializer.Core
             if (!xmlReader.IsEmptyElement && xmlReader.ReadToDescendant())
             {
                 var elementsNames = names
-                    .Where(p => p.Key.IsElement)
+                    .Where(p => p.Key.HasElementName)
                     .ToDictionary(p => p.Key.ElementName, p => p.Value);
 
                 do
