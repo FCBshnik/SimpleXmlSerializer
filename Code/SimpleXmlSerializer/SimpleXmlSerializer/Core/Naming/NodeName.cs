@@ -5,15 +5,34 @@
     /// </summary>
     public class NodeName
     {
-        public NodeName(string elementName) : this(elementName, string.Empty, string.Empty)
+        public NodeName(string elementName)
+            : this(elementName, null, null)
         {
         }
 
-        public NodeName(string elementName, string itemName) : this(elementName, itemName, string.Empty)
+        public NodeName(string elementName, string itemName)
+            : this(elementName, itemName, null)
         {
         }
 
         public NodeName(string elementName, string itemName, string attributeName)
+        {
+            ElementName = GetElementName(elementName);
+            ItemName = GetElementName(itemName);
+            AttributeName = GetElementName(attributeName);
+        }
+
+        public NodeName(XmlElementName elementName) 
+            : this(elementName, null, null)
+        {
+        }
+
+        public NodeName(XmlElementName elementName, XmlElementName itemName) 
+            : this(elementName, itemName, null)
+        {
+        }
+
+        public NodeName(XmlElementName elementName, XmlElementName itemName, XmlElementName attributeName)
         {
             ElementName = elementName;
             ItemName = itemName;
@@ -23,24 +42,24 @@
         /// <summary>
         /// Gets xml element name for property.
         /// </summary>
-        public string ElementName { get; private set; }
+        public XmlElementName ElementName { get; private set; }
 
         /// <summary>
         /// Gets xml element name for item within collection.
         /// </summary>
-        public string ItemName { get; private set; }
+        public XmlElementName ItemName { get; private set; }
 
         /// <summary>
         /// Gets xml attribute name for property.
         /// </summary>
-        public string AttributeName { get; private set; }
+        public XmlElementName AttributeName { get; private set; }
 
         /// <summary>
         /// Indicates if <see cref="ElementName"/> is not empty.
         /// </summary>
         public bool HasElementName
         {
-            get { return !string.IsNullOrEmpty(ElementName); }
+            get { return ElementName != null; }
         }
 
         /// <summary>
@@ -48,7 +67,7 @@
         /// </summary>
         public bool HasAttributeName
         {
-            get { return !string.IsNullOrEmpty(AttributeName); }
+            get { return AttributeName != null ; }
         }
 
         /// <summary>
@@ -56,17 +75,22 @@
         /// </summary>
         public bool HastItemName
         {
-            get { return !string.IsNullOrEmpty(ItemName); }
+            get { return ItemName != null; }
         }
 
         public static NodeName Empty
         {
-            get { return new NodeName(string.Empty); }
+            get { return new NodeName((XmlElementName)null); }
         }
 
         public override string ToString()
         {
             return string.Format("ElementName: {0}, AttributeName: {1}, ItemName: {2}", ElementName, AttributeName, ItemName);
+        }
+
+        private static XmlElementName GetElementName(string name)
+        {
+            return XmlElementName.IsValidName(name) ? new XmlElementName(name) : null;
         }
     }
 }

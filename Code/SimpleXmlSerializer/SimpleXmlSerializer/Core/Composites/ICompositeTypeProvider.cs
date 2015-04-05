@@ -3,12 +3,14 @@
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Provides info how to serialize composite types.
+    /// Checks if specified type should be serialized as composite
+    /// and provides info how it should be serialized.
     /// </summary>
     public interface ICompositeTypeProvider
     {
         /// <summary>
-        /// Provides info how to serialize composite types.
+        /// Checks if specified type should be serialized as composite
+        /// and provides info how it should be serialized.
         /// </summary>
         bool TryGetDescription(Type type, out CompositeTypeDescription description);
     }

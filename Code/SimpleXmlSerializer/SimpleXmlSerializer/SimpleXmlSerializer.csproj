@@ -67,6 +67,7 @@
     <Compile Include="Core\Naming\Conventions\CamelCaseNamingConvention.cs" />
     <Compile Include="Core\Naming\INamingConvention.cs" />
     <Compile Include="Core\Naming\Conventions\NoNamingConvention.cs" />
+    <Compile Include="Core\Naming\XmlElementName.cs" />
     <Compile Include="Core\NodeProvider.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\CompositeNode.cs" />

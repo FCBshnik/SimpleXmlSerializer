@@ -1,9 +1,10 @@
-﻿using SimpleXmlSerializer.Core;
+﻿using System;
+using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer
 {
     /// <summary>
-    /// Contains serialization settings. This class is read only.
+    /// Represents xml serializer read only settings.
     /// </summary>
     public class XmlSerializerSettings
     {
@@ -18,6 +19,15 @@ namespace SimpleXmlSerializer
             ICollectionTypeProvider collectionProvider, 
             ICompositeTypeProvider compositeProvider)
         {
+            if (nameProvider == null) 
+                throw new ArgumentNullException("nameProvider");
+            if (primitiveProvider == null) 
+                throw new ArgumentNullException("primitiveProvider");
+            if (collectionProvider == null) 
+                throw new ArgumentNullException("collectionProvider");
+            if (compositeProvider == null) 
+                throw new ArgumentNullException("compositeProvider");
+
             this.nameProvider = nameProvider;
             this.primitiveProvider = primitiveProvider;
             this.collectionProvider = collectionProvider;

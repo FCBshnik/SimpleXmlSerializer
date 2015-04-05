@@ -72,7 +72,7 @@ namespace SimpleXmlSerializer
             // collections
             var collectionProvider = new ChainedCollectionTypeProvider(collectionProviders);
 
-            var defaultNameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider);
+            var defaultNameProvider = new NameProvider(new CamelCaseNamingConvention(), collectionProvider, "collection", "add");
             if (nameProvider != null)
             {
                 nameProvider = new CompositeNameProvider(new[] { nameProvider, defaultNameProvider });
@@ -101,7 +101,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to serialize primitives to attributes.
+        /// Specifies to serialize primitives to xml attributes.
         /// </summary>
         public XmlSerializerSettingsBuilder SerializePrimitivesToAttributes()
         {
@@ -110,7 +110,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to use Xml* attributes.
+        /// Specifies to use xml attributes from <see cref="System.Xml.Serialization"/> namespace.
         /// </summary>
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
@@ -120,7 +120,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to use data contract attributes.
+        /// Specifies to use data contract attributes from <see cref="System.Runtime.Serialization"/> namespace.
         /// </summary>
         public XmlSerializerSettingsBuilder UseDataAttributes()
         {
@@ -130,6 +130,9 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Specifies that type should be serialized as primitive.
+        /// </summary>
         public XmlSerializerSettingsBuilder SetPrimitiveSerializer(Type type, IPrimitiveSerializer serializer)
         {
             if (type == null)
@@ -141,9 +144,12 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Specifies to use specified <see cref="IFormatProvider"/>.
+        /// </summary>
         public XmlSerializerSettingsBuilder SetFormatProvider(IFormatProvider formatProvider)
         {
-            if (formatProvider == null) 
+            if (formatProvider == null)
                 throw new ArgumentNullException("formatProvider");
 
             this.formatProvider = formatProvider;

@@ -20,7 +20,7 @@ namespace SimpleXmlSerializer.Core
 
             if (!name.HasAttributeName && IsPrimitive(type))
             {
-                return new NodeName(string.Empty, string.Empty, name.ElementName);
+                return new NodeName(null, null, name.ElementName);
             }
 
             return name;
@@ -32,7 +32,7 @@ namespace SimpleXmlSerializer.Core
 
             if (!name.HasAttributeName && IsPrimitive(propertyInfo.PropertyType))
             {
-                return new NodeName(string.Empty, string.Empty, name.ElementName);
+                return new NodeName(null, null, name.ElementName);
             }
 
             return name;

@@ -41,13 +41,13 @@ namespace SimpleXmlSerializer.Core
 
             if (node.Name.HasElementName)
             {
-                xmlWriter.WriteStartElement(node.Name.ElementName);
+                xmlWriter.WriteStartElement(node.Name.ElementName.Name);
                 xmlWriter.WriteValue(value);
                 xmlWriter.WriteEndElement();
             }
             else if (node.Name.HasAttributeName)
             {
-                xmlWriter.WriteAttributeString(node.Name.AttributeName, value);
+                xmlWriter.WriteAttributeString(node.Name.AttributeName.Name, value);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace SimpleXmlSerializer.Core
         {
             OnVisitNode(node);
 
-            xmlWriter.WriteStartElement(node.Name.ElementName);
+            xmlWriter.WriteStartElement(node.Name.ElementName.Name);
 
             var itemNodeName = nodeProvider.GetNodeName(node.Description.ItemType);
 
@@ -82,7 +82,7 @@ namespace SimpleXmlSerializer.Core
         {
             OnVisitNode(node);
 
-            xmlWriter.WriteStartElement(node.Name.ElementName);
+            xmlWriter.WriteStartElement(node.Name.ElementName.Name);
 
             var properties = nodeProvider.GetNodeNames(node.Description.Properties);
 

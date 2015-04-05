@@ -68,7 +68,7 @@ namespace SimpleXmlSerializer.Core
 
             var conflictedElementNames = nodeNames.Keys
                 .Where(n => n.HasElementName)
-                .GroupBy(n => n.ElementName)
+                .GroupBy(n => n.ElementName.Name)
                 .FirstOrDefault(gr => gr.Count() > 1);
             if (conflictedElementNames != null)
             {
@@ -77,7 +77,7 @@ namespace SimpleXmlSerializer.Core
 
             var conflictedAttributeNames = nodeNames.Keys
                 .Where(n => n.HasAttributeName)
-                .GroupBy(n => n.AttributeName)
+                .GroupBy(n => n.AttributeName.Name)
                 .FirstOrDefault(gr => gr.Count() > 1);
             if (conflictedAttributeNames != null)
             {

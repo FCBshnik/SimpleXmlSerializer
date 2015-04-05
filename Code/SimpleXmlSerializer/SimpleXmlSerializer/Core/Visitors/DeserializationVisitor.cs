@@ -26,7 +26,7 @@ namespace SimpleXmlSerializer.Core
 
             var nodeName = nodeProvider.GetNodeName(type);
 
-            if (xmlReader.ReadToNextSibling(nodeName.ElementName))
+            if (xmlReader.ReadToNextSibling(nodeName.ElementName.Name))
             {
                 var node = nodeProvider.GetNode(type);
                 node.Name = nodeName;
@@ -70,7 +70,7 @@ namespace SimpleXmlSerializer.Core
         {
             var items = new ArrayList();
 
-            if (xmlReader.ReadToDescendant(node.Name.ItemName))
+            if (xmlReader.ReadToDescendant(node.Name.ItemName.Name))
             {
                 // note: passing second parameter to NodeName ctor is not clear
                 // we pass such parameter for more clear xml output and it does
@@ -85,7 +85,7 @@ namespace SimpleXmlSerializer.Core
                     itemNode.Accept(this);
                     items.Add(itemNode.Value);
 
-                } while (xmlReader.ReadToNextSibling(node.Name.ItemName));
+                } while (xmlReader.ReadToNextSibling(node.Name.ItemName.Name));
             }
 
             node.Value = node.Description.Factory(items);
@@ -106,7 +106,7 @@ namespace SimpleXmlSerializer.Core
                 // get properties mapped to attributes
                 var attributesNames = names
                     .Where(p => p.Key.HasAttributeName)
-                    .ToDictionary(p => p.Key.AttributeName, p => p.Value);
+                    .ToDictionary(p => p.Key.AttributeName.Name, p => p.Value);
 
                 // iterate through all attributes of current element
                 do
@@ -132,7 +132,7 @@ namespace SimpleXmlSerializer.Core
             {
                 var elementsNames = names
                     .Where(p => p.Key.HasElementName)
-                    .ToDictionary(p => p.Key.ElementName, p => p.Value);
+                    .ToDictionary(p => p.Key.ElementName.Name, p => p.Value);
 
                 do
                 {
