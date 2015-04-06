@@ -2,7 +2,6 @@
 
 namespace SimpleXmlSerializer.Core
 {
-    // todo: validate xml element name
     /// <summary>
     /// Represents name for xml element.
     /// </summary>
@@ -30,6 +29,7 @@ namespace SimpleXmlSerializer.Core
 
         public static bool IsValidName(string name)
         {
+            // todo: validate xml element name
             return !string.IsNullOrWhiteSpace(name);
         }
     }

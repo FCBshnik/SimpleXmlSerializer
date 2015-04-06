@@ -29,6 +29,9 @@ namespace SimpleXmlSerializer
         private IPropertiesSelector customPropertiesSelector;
         private readonly List<IPropertiesSelector> extraPropertiesSelectors = new List<IPropertiesSelector>();
 
+        private ICompositeTypeProvider customCompositeTypeProvider;
+        private readonly List<ICompositeTypeProvider> extraCompositeTypeProviders = new List<ICompositeTypeProvider>();
+
         private INameProvider customNameProvider;
         private readonly List<INameProvider> extraNameProviders = new List<INameProvider>();
 
@@ -129,6 +132,24 @@ namespace SimpleXmlSerializer
                 throw new ArgumentNullException("selector");
 
             extraPropertiesSelectors.Add(selector);
+            return this;
+        }
+
+        public XmlSerializerSettingsBuilder SetCompositeTypeProvider(ICompositeTypeProvider provider)
+        {
+            if (provider == null)
+                throw new ArgumentNullException("provider");
+
+            customCompositeTypeProvider = provider;
+            return this;
+        }
+
+        public XmlSerializerSettingsBuilder AddCompositeTypeProvider(ICompositeTypeProvider provider)
+        {
+            if (provider == null)
+                throw new ArgumentNullException("provider");
+
+            extraCompositeTypeProviders.Add(provider);
             return this;
         }
 
@@ -270,11 +291,13 @@ namespace SimpleXmlSerializer
 
         private ICompositeTypeProvider BuildCompositeTypeProvider(IPropertiesSelector propertiesSelector)
         {
-            return new ChainedCompositeTypeProvider(new ICompositeTypeProvider []
-                {
-                    new KeyValuePairCompositeTypeProvider(new KeyValuePairPropertiesSelector()),
-                    new CompositeTypeProvider(propertiesSelector)
-                });
+            if (customCompositeTypeProvider != null)
+            {
+                return customCompositeTypeProvider;
+            }
+
+            var providers = extraCompositeTypeProviders.Concat(GetDefaultCompositeTypeProviders(propertiesSelector)).ToList();
+            return new ChainedCompositeTypeProvider(providers);
         }
 
         private INameProvider BuildNameProvider(IPrimitiveTypeProvider primitiveProvider, ICollectionTypeProvider collectionProvider)
@@ -329,6 +352,12 @@ namespace SimpleXmlSerializer
             yield return new DictionaryCollectionTypeProvider();
             yield return new ArrayCollectionTypeProvider();
             yield return new CollectionTypeProvider();
+        }
+
+        private IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesSelector propertiesSelector)
+        {
+            yield return new KeyValuePairCompositeTypeProvider(new KeyValuePairPropertiesSelector());
+            yield return new CompositeTypeProvider(propertiesSelector);
         }
     }
 }

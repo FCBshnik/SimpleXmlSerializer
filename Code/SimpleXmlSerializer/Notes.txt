@@ -1,9 +1,8 @@
 Features todo:
-- customize name for 'add', 'key' and 'value' hard coded xml elementt names
-- CDATA sections???
+- CDATA sections (use XmlElementAttribute and specify XmlCdataSection to type property)
 - unit tests
 - document all public methods
-- clear all work with cultures and formatters
+- deal with nulls
 - ISO standard and others
 
 Features:

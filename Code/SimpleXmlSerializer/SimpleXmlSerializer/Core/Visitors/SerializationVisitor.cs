@@ -119,25 +119,27 @@ namespace SimpleXmlSerializer.Core
             TrackCircularDependency(node);
         }
 
+        // todo: try extract to separate class
         private void TrackCircularDependency(INode node)
         {
-            if (node.Value == null)
+            var value = node.Value;
+            if (value == null)
             {
                 return;
             }
 
-            var valueType = node.Value.GetType();
+            var valueType = value.GetType();
             if (valueType.IsValueType || valueType == typeof(string))
             {
                 return;
             }
 
-            if (visitedNodeValues.Contains(node.Value))
+            if (visitedNodeValues.Contains(value))
             {
                 throw new SerializationException("There is circular dependency in object graph");
             }
 
-            visitedNodeValues.Add(node.Value);
+            visitedNodeValues.Add(value);
         }
     }
 }
