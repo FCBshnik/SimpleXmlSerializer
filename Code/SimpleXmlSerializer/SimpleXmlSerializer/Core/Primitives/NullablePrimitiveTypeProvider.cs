@@ -3,7 +3,8 @@
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Provides info how to serialize nullable types.
+    /// Provides info how to serialize nullable types. Uses specified <see cref="IPrimitiveTypeProvider"/>
+    /// to provide info how to serialize type underlying nullable type.
     /// </summary>
     public class NullablePrimitiveTypeProvider : IPrimitiveTypeProvider
     {

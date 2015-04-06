@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.Core
 {
     /// <summary>
     /// Returns properties of first <see cref="IPropertiesSelector"/> 
-    /// which returns  not empty list of properties.
+    /// which returns not empty list of properties.
     /// </summary>
     public class ChainedPropertiesSelector : IPropertiesSelector
     {

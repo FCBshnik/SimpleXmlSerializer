@@ -9,7 +9,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void PrimitivesToAttributes()
         {
-            var settings = new XmlSerializerSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
+            var settings = GetSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CompositeWithComposites.Numbers, "primitivesToAttributes");
@@ -18,7 +18,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void PrimitivesToAttributesWithNull()
         {
-            var settings = new XmlSerializerSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
+            var settings = GetSettingsBuilder().SerializePrimitivesToAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             var numbers = CompositeWithComposites.Numbers;

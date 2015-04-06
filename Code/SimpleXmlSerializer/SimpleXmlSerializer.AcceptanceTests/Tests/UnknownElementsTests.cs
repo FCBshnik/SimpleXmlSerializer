@@ -10,24 +10,18 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void UnknownXmlElement_NoError()
         {
-            Serializer = new XmlSerializer();
-
             DeserializeAndAssert(CompositeWithPrimitives.One, "unknownXmlElement");
         }
 
         [TestMethod]
         public void UnknownXmlAttribute_NoError()
         {
-            Serializer = new XmlSerializer();
-
             DeserializeAndAssert(CompositeWithPrimitives.One, "unknownXmlAttribute");
         }
 
         [TestMethod]
         public void UnknownXmlElementWithinCollection_NoError()
         {
-            Serializer = new XmlSerializer();
-
             DeserializeAndAssert(new List<string> { "One", "Two" }, "unknownXmlElementWithinCollection");
         }
     }

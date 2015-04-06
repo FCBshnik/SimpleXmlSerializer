@@ -51,6 +51,7 @@ namespace SimpleXmlSerializer.Core
             }
             else
             {
+                // todo: check not empty name in earlier step
                 throw new SerializationException();
             }
         }

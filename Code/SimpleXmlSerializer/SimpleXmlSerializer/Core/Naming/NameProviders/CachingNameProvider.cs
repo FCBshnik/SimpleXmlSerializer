@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.Core
     /// <summary>
     /// The caching decorator over <see cref="INameProvider"/>.
     /// </summary>
-    public class CachingNameProvider : INameProvider
+    internal class CachingNameProvider : INameProvider
     {
         private readonly Dictionary<Type, NodeName> cacheByType = new Dictionary<Type, NodeName>();
         private readonly Dictionary<PropertyInfo, NodeName> cacheByPropertyInfo = new Dictionary<PropertyInfo, NodeName>();

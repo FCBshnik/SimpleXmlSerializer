@@ -11,7 +11,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DefaultNameProvider()
         {
-            Serializer = new XmlSerializer();
+            Serializer = new XmlSerializer(GetSettingsBuilder().GetSettings());
 
             ActAndAssert(CompositeWithComposites.Numbers, "default");
         }
@@ -19,7 +19,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void XmlAttributesNameProvider()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseXmlAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CompositeWithComposites.Numbers, "xmlAttributes");
@@ -28,7 +28,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void XmlAttributesNameProvider_Order()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseXmlAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CompositeWithPrimitivesOrder.One, "xmlAttributes_order");
@@ -37,7 +37,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void XmlAttributesNameProvider_PrimitivesToAttributes()
         {
-            var settings = new XmlSerializerSettingsBuilder()
+            var settings = GetSettingsBuilder()
                 .UseXmlAttributes()
                 .SerializePrimitivesToAttributes()
                 .GetSettings();
@@ -50,7 +50,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void XmlAttributesNameProvider_XmlArrayAttributes()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseXmlAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 
@@ -61,7 +61,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void XmlAttributesNameProvider_Serialize_ConflictElementsNames()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseXmlAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 
@@ -72,7 +72,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void XmlAttributesNameProvider_Serialize_ConflictAttributesNames()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseXmlAttributes().SerializePrimitivesToAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseXmlAttributes().SerializePrimitivesToAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 
@@ -82,7 +82,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DataAttributesNameProvider()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CompositeWithComposites.Numbers, "dataAttributes");
@@ -91,7 +91,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DataAttributesNameProvider_Order()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CompositeWithPrimitivesOrder.One, "dataAttributes_order");
@@ -100,7 +100,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DataAttributesNameProviderWithPrimitivesToAttributes()
         {
-            var settings = new XmlSerializerSettingsBuilder()
+            var settings = GetSettingsBuilder()
                 .UseDataAttributes()
                 .SerializePrimitivesToAttributes()
                 .GetSettings();
@@ -114,7 +114,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DataAttributesNameProvider_Serialize_ConflictElementsNames()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 
@@ -125,7 +125,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void DataAttributesNameProvider_Serialize_ConflictAttributesNames()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().SerializePrimitivesToAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().SerializePrimitivesToAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 
@@ -135,7 +135,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void CollectionDataAttributeForCollection()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CustomCollection.Numbers, "collectionDataAttributeForCollectionType");
@@ -144,7 +144,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void CollectionDataAttributeForGenericCollection()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CustomGenericCollection<string>.Numbers, "collectionDataAttributeForCollectionType");
@@ -153,7 +153,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void CollectionDataAttributeForDictionary()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CustomDictionary.Numbers, "collectionDataAttributeForDictionaryType");
@@ -162,7 +162,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void CollectionDataAttributeForGenericDictionary()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CustomGenericDictionary<string, string>.Numbers, "collectionDataAttributeForDictionaryType");
@@ -171,7 +171,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         [TestMethod]
         public void CollectionDataAttributeForProperties()
         {
-            var settings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+            var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
             Serializer = new XmlSerializer(settings);
 
             ActAndAssert(CompositeWithCustomCollections.Numbers, "collectionDataAttributeForProperties");

@@ -6,6 +6,9 @@ using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
+    /// <summary>
+    /// Uses specified <see cref="IPropertiesSelector"/> to handle KeyValuePair type.
+    /// </summary>
     internal class KeyValuePairCompositeTypeProvider : ICompositeTypeProvider
     {
         private readonly IPropertiesSelector propertiesSelector;

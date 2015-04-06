@@ -17,7 +17,7 @@ namespace SimpleXmlSerializer.Core
 
         public CompositeTypeProvider(IPropertiesSelector propertiesSelector)
         {
-            if (propertiesSelector == null) 
+            if (propertiesSelector == null)
                 throw new ArgumentNullException("propertiesSelector");
 
             this.propertiesSelector = propertiesSelector;

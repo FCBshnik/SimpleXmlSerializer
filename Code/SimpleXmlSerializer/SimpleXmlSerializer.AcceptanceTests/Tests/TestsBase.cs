@@ -7,7 +7,7 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
     [TestClass]
     public class TestsBase
     {
-        private XmlSerializer serializer = new XmlSerializer();
+        private XmlSerializer serializer = new XmlSerializer(GetSettingsBuilder().GetSettings());
 
         public string AssetsDirectory
         {
@@ -49,6 +49,11 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         protected string GetXmlFilePath(string fileName)
         {
             return Path.Combine(AssetsDirectory, fileName.ToLowerInvariant() + ".xml");
+        }
+
+        protected static XmlSerializerSettingsBuilder GetSettingsBuilder()
+        {
+            return new XmlSerializerSettingsBuilder().UseCamelCaseNamingConvention();
         }
     }
 }

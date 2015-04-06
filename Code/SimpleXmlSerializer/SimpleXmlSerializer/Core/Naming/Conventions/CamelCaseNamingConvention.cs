@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SimpleXmlSerializer.Core
+﻿namespace SimpleXmlSerializer.Core
 {
     public class CamelCaseNamingConvention : INamingConvention
     {
@@ -8,7 +6,7 @@ namespace SimpleXmlSerializer.Core
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentException("Value can not be empty.", "name");
+                return name;
             }
 
             var firstLetter = name.Substring(0, 1);

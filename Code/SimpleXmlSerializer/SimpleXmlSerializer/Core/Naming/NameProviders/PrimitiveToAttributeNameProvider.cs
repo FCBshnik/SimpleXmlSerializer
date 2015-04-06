@@ -3,50 +3,53 @@ using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
-    public class PrimitiveToAttributeNameProvider : INameProvider
+    /// <summary>
+    /// The decorator over <see cref="INameProvider"/> which moves element name
+    /// to attribute name of <see cref="NodeName"/> for primitive types. Primitive types
+    /// are detected using specified <see cref="IPrimitiveTypeProvider"/>.
+    /// </summary>
+    internal class PrimitiveToAttributeNameProvider : INameProvider
     {
+        private readonly INameProvider nameProvider;
         private readonly IPrimitiveTypeProvider primitiveProvider;
-        private readonly INameProvider underlyingProvider;
 
-        public PrimitiveToAttributeNameProvider(INameProvider underlyingProvider, IPrimitiveTypeProvider primitiveProvider)
+        public PrimitiveToAttributeNameProvider(INameProvider nameProvider, IPrimitiveTypeProvider primitiveProvider)
         {
+            if (nameProvider == null) 
+                throw new ArgumentNullException("nameProvider");
+            if (primitiveProvider == null) 
+                throw new ArgumentNullException("primitiveProvider");
+
             this.primitiveProvider = primitiveProvider;
-            this.underlyingProvider = underlyingProvider;
+            this.nameProvider = nameProvider;
         }
 
         public NodeName GetNodeName(Type type)
         {
-            var name = underlyingProvider.GetNodeName(type);
-
-            if (!name.HasAttributeName && IsPrimitive(type))
+            var nodeName = nameProvider.GetNodeName(type);
+            if (!nodeName.HasAttributeName && nodeName.HasElementName && IsPrimitive(type))
             {
-                return new NodeName(null, null, name.ElementName);
+                return new NodeName(null, null, nodeName.ElementName);
             }
 
-            return name;
+            return nodeName;
         }
 
         public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
-            var name = underlyingProvider.GetNodeName(propertyInfo);
-
-            if (!name.HasAttributeName && IsPrimitive(propertyInfo.PropertyType))
+            var nodeName = nameProvider.GetNodeName(propertyInfo);
+            if (!nodeName.HasAttributeName && nodeName.HasElementName && IsPrimitive(propertyInfo.PropertyType))
             {
-                return new NodeName(null, null, name.ElementName);
+                return new NodeName(null, null, nodeName.ElementName);
             }
 
-            return name;
+            return nodeName;
         }
 
         private bool IsPrimitive(Type type)
         {
             PrimitiveTypeDescription primitiveDescription;
-            if (primitiveProvider.TryGetDescription(type, out primitiveDescription))
-            {
-                return true;
-            }
-
-            return false;
+            return primitiveProvider.TryGetDescription(type, out primitiveDescription);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace SimpleXmlSerializer.Core
 {
     /// <summary>
     /// The implementation of <see cref="INameProvider"/> which collects and merges
-    /// node name from collection of <see cref="INameProvider"/>. 
+    /// <see cref="NodeName"/> from collection of <see cref="INameProvider"/>. 
     /// Provider which goes first gets precedence.
     /// </summary>
     public class CompositeNameProvider : INameProvider
@@ -43,11 +43,11 @@ namespace SimpleXmlSerializer.Core
             return nodeName;
         }
 
-        private static NodeName Merge(NodeName to, NodeName from)
+        private static NodeName Merge(NodeName left, NodeName right)
         {
-            var elementName = to.HasElementName ? to.ElementName : from.ElementName;
-            var attributeName = to.HasAttributeName ? to.AttributeName : from.AttributeName;
-            var itemName = to.HastItemName ? to.ItemName : @from.ItemName;
+            var elementName = left.HasElementName ? left.ElementName : right.ElementName;
+            var attributeName = left.HasAttributeName ? left.AttributeName : right.AttributeName;
+            var itemName = left.HastItemName ? left.ItemName : right.ItemName;
 
             return new NodeName(elementName, itemName, attributeName);
         }
