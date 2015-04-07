@@ -135,12 +135,6 @@ namespace SimpleXmlSerializer.AcceptanceTests.Tests
         }
 
         [TestMethod]
-        public void Type()
-        {
-            ActAndAssert(typeof(Type), "type");
-        }
-
-        [TestMethod]
         public void PrimitivesWithinComposite()
         {
             var value = new CompositeWithAllPrimitiveTypes

@@ -22,8 +22,6 @@ namespace SimpleXmlSerializer.Core
 
         public object Visit(Type type)
         {
-            type = nodeProvider.AdjustType(type);
-
             var nodeName = nodeProvider.GetNodeName(type);
 
             if (xmlReader.ReadToNextSibling(nodeName.ElementName.Name))

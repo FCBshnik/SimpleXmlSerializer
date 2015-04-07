@@ -20,7 +20,7 @@ namespace SimpleXmlSerializer.Core
 
         public void Visit(object value)
         {
-            var valueType = nodeProvider.AdjustType(value.GetType());
+            var valueType = value.GetType();
 
             var node = nodeProvider.GetNode(valueType);
             var nodeName = nodeProvider.GetNodeName(valueType);

@@ -74,6 +74,7 @@
     <Compile Include="Core\Primitives\ChainedPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\EnumPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\NullablePrimitiveTypeProvider.cs" />
+    <Compile Include="Core\Primitives\Serializers\CdataSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\CharSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\ByteSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\GuidSerializer.cs" />

@@ -86,10 +86,5 @@ namespace SimpleXmlSerializer.Core
 
             return nodeNames;
         }
-
-        public Type AdjustType(Type type)
-        {
-            return type.IsSubclassOf(typeof(Type)) ? typeof(Type) : type;
-        }
     }
 }

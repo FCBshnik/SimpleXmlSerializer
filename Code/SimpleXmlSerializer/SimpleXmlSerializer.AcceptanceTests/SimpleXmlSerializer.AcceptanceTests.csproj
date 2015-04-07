@@ -55,6 +55,7 @@
     <Compile Include="Dto\CustomGenericCollection.cs" />
     <Compile Include="Dto\CustomDictionary.cs" />
     <Compile Include="Dto\CustomCollection.cs" />
+    <Compile Include="Tests\CdataSectionTests.cs" />
     <Compile Include="Tests\CurcularDependencyTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
     <Compile Include="Tests\PrimitivesToAttributesTests.cs" />
@@ -76,6 +77,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\CdataSection\cdata.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Collections\collectionOfDictionaries.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
