@@ -112,7 +112,7 @@ namespace SimpleXmlSerializer.Core
                     PropertyInfo propertyInfo;
                     if (attributesNames.TryGetValue(xmlReader.LocalName, out propertyInfo))
                     {
-                        var propertyNode = nodeProvider.GetNode(propertyInfo.PropertyType);
+                        var propertyNode = nodeProvider.GetNode(propertyInfo);
                         var propertyNodeName = nodeProvider.GetNodeName(propertyInfo);
                         propertyNode.Name = propertyNodeName;
 
@@ -137,7 +137,7 @@ namespace SimpleXmlSerializer.Core
                     PropertyInfo propertyInfo;
                     if (elementsNames.TryGetValue(xmlReader.LocalName, out propertyInfo))
                     {
-                        var propertyNode = nodeProvider.GetNode(propertyInfo.PropertyType);
+                        var propertyNode = nodeProvider.GetNode(propertyInfo);
                         var propertyNodeName = nodeProvider.GetNodeName(propertyInfo);
                         propertyNode.Name = propertyNodeName;
 

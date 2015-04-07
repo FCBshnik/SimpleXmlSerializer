@@ -12,7 +12,8 @@ namespace SimpleXmlSerializer.Core
     internal class NodeProvider
     {
         private readonly XmlSerializerSettings settings;
-        private readonly IDictionary<Type, INode> nodesCache = new Dictionary<Type, INode>();
+        private readonly IDictionary<Type, INode> nodesCacheByType = new Dictionary<Type, INode>();
+        private readonly IDictionary<PropertyInfo, INode> nodesCacheByProperty = new Dictionary<PropertyInfo, INode>();
 
         public NodeProvider(XmlSerializerSettings settings)
         {
@@ -21,9 +22,9 @@ namespace SimpleXmlSerializer.Core
 
         public INode GetNode(Type type)
         {
-            if (nodesCache.ContainsKey(type))
+            if (nodesCacheByType.ContainsKey(type))
             {
-                return (INode)nodesCache[type].Clone();
+                return (INode)nodesCacheByType[type].Clone();
             }
 
             INode node;
@@ -48,7 +49,40 @@ namespace SimpleXmlSerializer.Core
                 throw new SerializationException(string.Format("Can not serialize type {0}", type));
             }
 
-            nodesCache[type] = node;
+            nodesCacheByType[type] = node;
+            return (INode)node.Clone();
+        }
+
+        public INode GetNode(PropertyInfo propertyInfo)
+        {
+            if (nodesCacheByProperty.ContainsKey(propertyInfo))
+            {
+                return (INode)nodesCacheByProperty[propertyInfo].Clone();
+            }
+
+            INode node;
+            PrimitiveTypeDescription primitiveTypeDescription;
+            CollectionTypeDescription collectionTypeDescription;
+            CompositeTypeDescription compositeTypeDescription;
+
+            if (settings.PrimitiveProvider.TryGetDescription(propertyInfo, out primitiveTypeDescription))
+            {
+                node = new PrimitiveNode(primitiveTypeDescription);
+            }
+            else if (settings.CollectionProvider.TryGetDescription(propertyInfo, out collectionTypeDescription))
+            {
+                node = new CollectionNode(collectionTypeDescription);
+            }
+            else if (settings.CompositeProvider.TryGetDescription(propertyInfo, out compositeTypeDescription))
+            {
+                node = new CompositeNode(compositeTypeDescription);
+            }
+            else
+            {
+                throw new SerializationException(string.Format("Can not serialize property {0}", propertyInfo));
+            }
+
+            nodesCacheByProperty[propertyInfo] = node;
             return (INode)node.Clone();
         }
 

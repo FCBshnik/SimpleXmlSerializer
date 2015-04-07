@@ -39,6 +39,11 @@ namespace SimpleXmlSerializer.Core
             return false;
         }
 
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CompositeTypeDescription description)
+        {
+            return TryGetDescription(propertyInfo.PropertyType, out description);
+        }
+
         private static object CreateObject(ConstructorInfo ctor, IDictionary<PropertyInfo, object> properties)
         {
             return ctor.Invoke(properties.Values.ToArray());

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.Serialization;
 using SimpleXmlSerializer.Extensions;
 using SimpleXmlSerializer.Utils;
@@ -36,6 +37,11 @@ namespace SimpleXmlSerializer.Core
 
             collectionDescription = null;
             return false;
+        }
+
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription)
+        {
+            return TryGetDescription(propertyInfo.PropertyType, out collectionDescription);
         }
 
         private static CollectionTypeDescription GetCollectionDescription(Type collectionType, Type originalType)

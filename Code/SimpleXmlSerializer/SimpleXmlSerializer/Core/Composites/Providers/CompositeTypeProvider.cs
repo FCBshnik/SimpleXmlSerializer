@@ -33,6 +33,11 @@ namespace SimpleXmlSerializer.Core
             return true;
         }
 
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CompositeTypeDescription description)
+        {
+            return TryGetDescription(propertyInfo.PropertyType, out description);
+        }
+
         private static object CreateObject(Func<object> ctor, IDictionary<PropertyInfo, object> properties)
         {
             var value = ctor();

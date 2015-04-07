@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using SimpleXmlSerializer.Core.Serializers;
 
 namespace SimpleXmlSerializer.Core
@@ -8,16 +9,21 @@ namespace SimpleXmlSerializer.Core
     /// </summary>
     public class EnumPrimitiveTypeProvider : IPrimitiveTypeProvider
     {
-        public bool TryGetDescription(Type type, out PrimitiveTypeDescription primitiveDescription)
+        public bool TryGetDescription(Type type, out PrimitiveTypeDescription description)
         {
             if (type.IsEnum)
             {
-                primitiveDescription = new PrimitiveTypeDescription(new EnumSerializer(type));
+                description = new PrimitiveTypeDescription(new EnumSerializer(type));
                 return true;
             }
 
-            primitiveDescription = null;
+            description = null;
             return false;
+        }
+
+        public bool TryGetDescription(PropertyInfo propertyInfo, out PrimitiveTypeDescription description)
+        {
+            return TryGetDescription(propertyInfo.PropertyType, out description);
         }
     }
 }

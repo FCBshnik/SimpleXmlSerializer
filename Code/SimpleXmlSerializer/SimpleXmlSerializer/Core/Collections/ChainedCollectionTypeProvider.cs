@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -24,6 +25,20 @@ namespace SimpleXmlSerializer.Core
             foreach (var provider in providers)
             {
                 if (provider.TryGetDescription(type, out collectionDescription))
+                {
+                    return true;
+                }
+            }
+
+            collectionDescription = null;
+            return false;
+        }
+
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription)
+        {
+            foreach (var provider in providers)
+            {
+                if (provider.TryGetDescription(propertyInfo, out collectionDescription))
                 {
                     return true;
                 }

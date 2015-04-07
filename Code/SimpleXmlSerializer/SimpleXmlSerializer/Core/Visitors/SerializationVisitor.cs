@@ -104,7 +104,7 @@ namespace SimpleXmlSerializer.Core
                 }
 
                 var propertyNodeName = nodeProvider.GetNodeName(propertyInfo);
-                var propertyNode = nodeProvider.GetNode(propertyInfo.PropertyType);
+                var propertyNode = nodeProvider.GetNode(propertyInfo);
                 propertyNode.Value = propertyValue;
                 propertyNode.Name = propertyNodeName;
 

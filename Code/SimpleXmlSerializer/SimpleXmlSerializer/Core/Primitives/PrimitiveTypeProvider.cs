@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -19,17 +20,22 @@ namespace SimpleXmlSerializer.Core
             this.serializers = serializers;
         }
 
-        public bool TryGetDescription(Type type, out PrimitiveTypeDescription primitiveDescription)
+        public bool TryGetDescription(Type type, out PrimitiveTypeDescription description)
         {
             IPrimitiveSerializer primitiveSerializer;
             if (serializers.TryGetValue(type, out primitiveSerializer))
             {
-                primitiveDescription = new PrimitiveTypeDescription(primitiveSerializer);
+                description = new PrimitiveTypeDescription(primitiveSerializer);
                 return true;
             }
 
-            primitiveDescription = null;
+            description = null;
             return false;
+        }
+
+        public bool TryGetDescription(PropertyInfo propertyInfo, out PrimitiveTypeDescription description)
+        {
+            return TryGetDescription(propertyInfo.PropertyType, out description);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -13,5 +14,11 @@ namespace SimpleXmlSerializer.Core
         /// and provides info how collection should be serialized.
         /// </summary>
         bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription);
+
+        /// <summary>
+        /// Checks if specified property should be serialized as collection
+        /// and provides info how collection should be serialized.
+        /// </summary>
+        bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription);
     }
 }
