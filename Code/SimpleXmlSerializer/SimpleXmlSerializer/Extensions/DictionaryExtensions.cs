@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SimpleXmlSerializer.Extensions
+namespace SimpleXmlSerializer
 {
     internal static class DictionaryExtensions
     {
-        public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> destination, IDictionary<TKey, TValue> source)
+        /// <summary>
+        /// Adds to dictionary all entries from specified dictionary not presented in dictionary.
+        /// </summary>
+        public static IDictionary<TKey, TValue> Merge<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, IDictionary<TKey, TValue> source)
         {
-            if (destination == null)
-                throw new ArgumentNullException("destination");
+            if (dictionary == null)
+                throw new ArgumentNullException("dictionary");
             if (source == null)
                 throw new ArgumentNullException("source");
 
-            foreach (var key in destination.Keys)
+            foreach (var key in source.Keys)
             {
-                source[key] = destination[key];
+                if (!dictionary.ContainsKey(key))
+                {
+                    dictionary[key] = source[key];
+                }
             }
 
-            return source;
+            return dictionary;
         }
     }
 }

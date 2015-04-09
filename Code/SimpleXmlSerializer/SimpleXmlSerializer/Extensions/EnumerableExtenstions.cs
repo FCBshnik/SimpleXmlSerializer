@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 
-namespace SimpleXmlSerializer.Extensions
+namespace SimpleXmlSerializer
 {
     internal static class EnumerableExtenstions
     {

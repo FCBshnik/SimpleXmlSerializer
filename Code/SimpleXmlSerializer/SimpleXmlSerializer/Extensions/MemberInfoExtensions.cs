@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace SimpleXmlSerializer.Extensions
+namespace SimpleXmlSerializer
 {
     internal static class MemberInfoExtensions
     {

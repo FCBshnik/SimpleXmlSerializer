@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace SimpleXmlSerializer.Extensions
+namespace SimpleXmlSerializer
 {
     internal static class ListEstensions
     {

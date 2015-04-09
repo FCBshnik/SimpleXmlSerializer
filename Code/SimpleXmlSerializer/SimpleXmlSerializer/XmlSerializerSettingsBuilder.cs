@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using SimpleXmlSerializer.Core;
 using SimpleXmlSerializer.Core.Serializers;
-using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer
 {
@@ -244,7 +243,7 @@ namespace SimpleXmlSerializer
                 return customPrimitiveTypeProvider;
             }
 
-            // merge custom primitive serializers with additional (which have higher precedence)
+            // merge default primitive serializers with additionally added (which have higher precedence)
             var primitiveSerializers = GetDefaultPrimitiveSerializers();
             primitiveSerializers = extraPrimitiveSerializers.Merge(primitiveSerializers);
 
@@ -260,7 +259,7 @@ namespace SimpleXmlSerializer
                     primitiveProvider, new NullablePrimitiveTypeProvider(primitiveProvider)
                 });
 
-            return primitiveProvider;
+            return new CDataPrimitiveTypeProvider(primitiveProvider);
         }
 
         private ICollectionTypeProvider BuildCollectionTypeProvider()

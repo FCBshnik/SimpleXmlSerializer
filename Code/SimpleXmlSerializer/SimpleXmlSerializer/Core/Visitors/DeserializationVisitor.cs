@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml;
-using SimpleXmlSerializer.Extensions;
 using System.Linq;
 
 namespace SimpleXmlSerializer.Core

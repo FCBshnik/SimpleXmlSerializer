@@ -10,13 +10,13 @@ namespace SimpleXmlSerializer.IntegrationTests.Tests
         [TestMethod]
         public void CdataSectionProperties()
         {
-            //var value = new CdataSectionDto
-            //    {
-            //        NoCdata = "Simple text",
-            //        Cdata = "<html>/<html>",
-            //    };
+            var value = new CdataSectionDto
+                {
+                    NoCdata = "Simple text",
+                    Cdata = "<html>/<html>",
+                };
 
-            //ActAndAssert(value, "cdata");
+            ActAndAssert(value, "cdata");
         }
 
         public class CdataSectionDto

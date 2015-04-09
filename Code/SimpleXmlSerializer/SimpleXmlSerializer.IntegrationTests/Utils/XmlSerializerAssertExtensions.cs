@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.Extensions;
 
 namespace SimpleXmlSerializer.IntegrationTests.Utils
 {

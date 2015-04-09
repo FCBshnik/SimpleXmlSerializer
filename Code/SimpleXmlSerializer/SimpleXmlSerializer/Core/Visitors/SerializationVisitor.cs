@@ -42,7 +42,17 @@ namespace SimpleXmlSerializer.Core
             if (node.Name.HasElementName)
             {
                 xmlWriter.WriteStartElement(node.Name.ElementName.Name);
-                xmlWriter.WriteValue(value);
+
+                switch (node.Description.XmlCharacterType)
+                {
+                    case XmlCharacterType.Text:
+                        xmlWriter.WriteValue(value);
+                        break;
+                    case XmlCharacterType.CData:
+                        xmlWriter.WriteCData(value);
+                        break;
+                }
+
                 xmlWriter.WriteEndElement();
             }
             else if (node.Name.HasAttributeName)

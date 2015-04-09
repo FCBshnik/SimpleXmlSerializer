@@ -71,10 +71,10 @@
     <Compile Include="Core\NodeProvider.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />
     <Compile Include="Core\Nodes\CompositeNode.cs" />
+    <Compile Include="Core\Primitives\CDataPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\ChainedPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\EnumPrimitiveTypeProvider.cs" />
     <Compile Include="Core\Primitives\NullablePrimitiveTypeProvider.cs" />
-    <Compile Include="Core\Primitives\Serializers\CdataSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\CharSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\ByteSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\GuidSerializer.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Core\Primitives\Serializers\DoubleSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\FloatSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\UriSerializer.cs" />
+    <Compile Include="Core\Primitives\XmlCharacterType.cs" />
     <Compile Include="Core\Visitors\DeserializationVisitor.cs" />
     <Compile Include="Core\INode.cs" />
     <Compile Include="Core\INodeVisitor.cs" />

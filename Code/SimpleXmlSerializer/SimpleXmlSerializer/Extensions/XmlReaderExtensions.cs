@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace SimpleXmlSerializer.Extensions
+namespace SimpleXmlSerializer
 {
     internal static class XmlReaderExtensions
     {

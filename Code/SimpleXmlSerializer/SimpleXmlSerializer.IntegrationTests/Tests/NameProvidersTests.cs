@@ -1,6 +1,5 @@
 ﻿using System.Runtime.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.Extensions;
 using SimpleXmlSerializer.IntegrationTests.Dto;
 
 namespace SimpleXmlSerializer.IntegrationTests.Tests

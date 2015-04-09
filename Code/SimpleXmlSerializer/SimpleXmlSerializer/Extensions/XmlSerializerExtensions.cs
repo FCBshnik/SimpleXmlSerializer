@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 using SimpleXmlSerializer.Utils;
 
-namespace SimpleXmlSerializer.Extensions
+namespace SimpleXmlSerializer
 {
     public static class XmlSerializerExtensions
     {
