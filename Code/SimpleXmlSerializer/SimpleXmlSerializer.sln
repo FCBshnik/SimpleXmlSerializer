@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.UnitTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.PerformanceTests", "SimpleXmlSerializer.PerformanceTests\SimpleXmlSerializer.PerformanceTests.csproj", "{ABF4687B-76C2-4FF6-9F3D-976EADDF167A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.IntegrationTests", "SimpleXmlSerializer.AcceptanceTests\SimpleXmlSerializer.IntegrationTests.csproj", "{7ABB3CAD-94F4-4A0D-9D37-227553380CF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.IntegrationTests", "SimpleXmlSerializer.IntegrationTests\SimpleXmlSerializer.IntegrationTests.csproj", "{7ABB3CAD-94F4-4A0D-9D37-227553380CF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleXmlSerializer.PerformanceTests.Cmd", "SimpleXmlSerializer.PerformanceTests.Cmd\SimpleXmlSerializer.PerformanceTests.Cmd.csproj", "{A959ACEE-3EA0-4DF8-9AAB-C14B557C90D4}"
 EndProject
