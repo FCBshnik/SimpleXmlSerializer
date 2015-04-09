@@ -90,7 +90,7 @@
 
         private static XmlElementName GetElementName(string name)
         {
-            return XmlElementName.IsValidName(name) ? new XmlElementName(name) : null;
+            return !string.IsNullOrEmpty(name) ? new XmlElementName(name) : null;
         }
     }
 }

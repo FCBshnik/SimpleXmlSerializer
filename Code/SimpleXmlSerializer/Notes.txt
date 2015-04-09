@@ -5,13 +5,13 @@ Features todo:
 
 Features:
 - Serialization of primitive types: bool, byte, int, long, float, double, decimal, char, string, TimeSpan, DateTime, DateTimeOffset
-- Serialization of collection types: Array, IList, ICollection, IEnumerable, IDictionary and theirs generic analogs
+- Serialization of collection types: Array, IList, ICollection, IEnumerable, IDictionary
 - Serialization of composite types (with parameterless ctor)
 - Serialization of enum types
 - Serialization of nullable types
 - Support of Xml* attributes to provide element names (XmlRoot, XmlElement, XmlArray, XmlArrayItem, XmlAttribute, XmlIgnore)
 - Support of Data* attributes to provide element names (DataContract, DataMember, DataCollection, IgnoreDataMember)
-- Naming conventions (no, camel case, pascal case)
+- Naming conventions (no, camel case)
 - Extensibility point for custom serialization of values of specified type
 - Extensibility point for custom serialization of values of specified type as primitives
 
