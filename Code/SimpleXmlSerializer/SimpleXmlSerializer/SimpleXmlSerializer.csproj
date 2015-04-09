@@ -78,6 +78,7 @@
     <Compile Include="Core\Primitives\Serializers\CharSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\ByteSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\GuidSerializer.cs" />
+    <Compile Include="Core\Primitives\Serializers\Iso8601TimeSpanSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\TypeSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\UshortSerializer.cs" />
     <Compile Include="Core\Primitives\Serializers\UlongSerializer.cs" />

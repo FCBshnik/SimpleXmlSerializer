@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SimpleXmlSerializer.Core.Serializers;
 using SimpleXmlSerializer.IntegrationTests.Dto;
 
 namespace SimpleXmlSerializer.IntegrationTests.Tests
@@ -159,6 +160,17 @@ namespace SimpleXmlSerializer.IntegrationTests.Tests
                 };
 
             ActAndAssert(value, "primitivesWithinComposite");
+        }
+
+        [TestMethod]
+        public void Iso8601TimeSpan()
+        {
+            var settings = GetSettingsBuilder()
+                .SetPrimitiveSerializer(typeof(TimeSpan), new Iso8601TimeSpanSerializer())
+                .GetSettings();
+            Serializer = new XmlSerializer(settings);
+
+            ActAndAssert(new TimeSpan(1, 2, 3, 4), "iso8601timespan");
         }
     }
 }

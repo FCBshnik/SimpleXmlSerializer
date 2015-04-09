@@ -176,6 +176,9 @@
     <Content Include="Assets\Primitives\char.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Primitives\iso8601timespan.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Primitives\primitivesWithinComposite.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
