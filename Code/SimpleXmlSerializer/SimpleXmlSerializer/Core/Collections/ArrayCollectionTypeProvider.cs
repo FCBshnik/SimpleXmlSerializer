@@ -9,22 +9,22 @@ namespace SimpleXmlSerializer.Core
     /// </summary>
     public class ArrayCollectionTypeProvider : ICollectionTypeProvider
     {
-        public bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionTypeDescription description)
         {
             if (type.IsArray)
             {
                 var itemType = type.GetElementType();
-                collectionDescription = new CollectionTypeDescription(itemType, items => FactoryUtils.CreateArray(items, itemType));
+                description = new CollectionTypeDescription(itemType, items => FactoryUtils.CreateArray(items, itemType));
                 return true;
             }
 
-            collectionDescription = null;
+            description = null;
             return false;
         }
 
-        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription description)
         {
-            return TryGetDescription(propertyInfo.PropertyType, out collectionDescription);
+            return TryGetDescription(propertyInfo.PropertyType, out description);
         }
     }
 }

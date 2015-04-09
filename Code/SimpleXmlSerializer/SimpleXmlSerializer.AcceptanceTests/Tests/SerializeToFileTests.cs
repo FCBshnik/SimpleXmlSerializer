@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleXmlSerializer.Extensions;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests
+namespace SimpleXmlSerializer.IntegrationTests.Tests
 {
     [TestClass]
     public class SerializeToFileTests : TestsBase

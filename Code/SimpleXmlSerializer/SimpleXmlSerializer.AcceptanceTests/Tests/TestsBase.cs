@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Utils;
+using SimpleXmlSerializer.IntegrationTests.Utils;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests
+namespace SimpleXmlSerializer.IntegrationTests.Tests
 {
     [TestClass]
     public class TestsBase

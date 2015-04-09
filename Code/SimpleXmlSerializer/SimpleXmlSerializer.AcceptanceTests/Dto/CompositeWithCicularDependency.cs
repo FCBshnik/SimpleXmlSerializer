@@ -1,4 +1,4 @@
-﻿namespace SimpleXmlSerializer.AcceptanceTests.Dto
+﻿namespace SimpleXmlSerializer.IntegrationTests.Dto
 {
     public class CompositeWithCicularDependency
     {

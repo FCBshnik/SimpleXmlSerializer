@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests
+namespace SimpleXmlSerializer.IntegrationTests.Tests
 {
     [TestClass]
     public class CompositeTests : TestsBase

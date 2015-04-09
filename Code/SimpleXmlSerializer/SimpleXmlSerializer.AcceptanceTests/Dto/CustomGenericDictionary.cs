@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Dto
+namespace SimpleXmlSerializer.IntegrationTests.Dto
 {
     [CollectionDataContract(Name = "cdcCustomDictionary", ItemName = "cdcAdd", KeyName = "cdcKey", ValueName = "cdcValue")]
     [DataContract(Name = "dcCustomDictionary")]

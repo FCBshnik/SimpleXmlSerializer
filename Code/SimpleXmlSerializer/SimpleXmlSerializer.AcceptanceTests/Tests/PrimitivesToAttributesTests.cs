@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.AcceptanceTests.Dto;
+using SimpleXmlSerializer.IntegrationTests.Dto;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests
+namespace SimpleXmlSerializer.IntegrationTests.Tests
 {
     [TestClass]
     public class PrimitivesToAttributesTests : TestsBase

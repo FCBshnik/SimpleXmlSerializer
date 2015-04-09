@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Dto
+namespace SimpleXmlSerializer.IntegrationTests.Dto
 {
     [XmlRoot(ElementName = "xmlCompositeWithCollections")]
     public class CompositeWithCollectionsXmlArrayAttrs

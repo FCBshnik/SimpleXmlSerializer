@@ -20,31 +20,31 @@ namespace SimpleXmlSerializer.Core
             this.providers = providers;
         }
 
-        public bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionTypeDescription description)
         {
             foreach (var provider in providers)
             {
-                if (provider.TryGetDescription(type, out collectionDescription))
+                if (provider.TryGetDescription(type, out description))
                 {
                     return true;
                 }
             }
 
-            collectionDescription = null;
+            description = null;
             return false;
         }
 
-        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription description)
         {
             foreach (var provider in providers)
             {
-                if (provider.TryGetDescription(propertyInfo, out collectionDescription))
+                if (provider.TryGetDescription(propertyInfo, out description))
                 {
                     return true;
                 }
             }
 
-            collectionDescription = null;
+            description = null;
             return false;
         }
     }

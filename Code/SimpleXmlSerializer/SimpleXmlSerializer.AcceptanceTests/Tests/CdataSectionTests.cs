@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Tests
+namespace SimpleXmlSerializer.IntegrationTests.Tests
 {
     [TestClass]
     public class CdataSectionTests : TestsBase

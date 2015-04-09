@@ -16,25 +16,25 @@ namespace SimpleXmlSerializer.Core
                 typeof(Dictionary<,>)
             };
 
-        public bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionTypeDescription description)
         {
             if (type.IsGenericType)
             {
                 var genericTypeDefinition = type.GetGenericTypeDefinition();
                 if (dictionaryTypes.Contains(genericTypeDefinition))
                 {
-                    collectionDescription = GetDescription(type);
+                    description = GetDescription(type);
                     return true;
                 }
             }
 
-            collectionDescription = null;
+            description = null;
             return false;
         }
 
-        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription description)
         {
-            return TryGetDescription(propertyInfo.PropertyType, out collectionDescription);
+            return TryGetDescription(propertyInfo.PropertyType, out description);
         }
 
         private static CollectionTypeDescription GetDescription(Type dictionaryType)

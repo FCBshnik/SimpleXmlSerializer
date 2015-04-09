@@ -13,7 +13,7 @@ namespace SimpleXmlSerializer.Core
     /// </summary>
     public class DataAttributeCollectionProvider : ICollectionTypeProvider
     {
-        public bool TryGetDescription(Type type, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(Type type, out CollectionTypeDescription description)
         {
             var collectionDataContractAttribute = type.FindAttribute<CollectionDataContractAttribute>();
             if (collectionDataContractAttribute != null)
@@ -21,27 +21,27 @@ namespace SimpleXmlSerializer.Core
                 if (TypeUtils.ImplementsGenericInterface(type, typeof(IDictionary<,>)))
                 {
                     var dictionaryType = TypeUtils.GetImplementedGenericInterface(type, typeof(IDictionary<,>));
-                    collectionDescription = GetDictionaryDescription(dictionaryType, type);
+                    description = GetDictionaryDescription(dictionaryType, type);
                     return true;
                 }
 
                 if (TypeUtils.ImplementsGenericInterface(type, typeof(ICollection<>)))
                 {
                     var collectionType = TypeUtils.GetImplementedGenericInterface(type, typeof(ICollection<>));
-                    collectionDescription = GetCollectionDescription(collectionType, type);
+                    description = GetCollectionDescription(collectionType, type);
                     return true;
                 }
 
                 throw new SerializationException(string.Format("Can not serialize type '{0}' as collection", type));
             }
 
-            collectionDescription = null;
+            description = null;
             return false;
         }
 
-        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription collectionDescription)
+        public bool TryGetDescription(PropertyInfo propertyInfo, out CollectionTypeDescription description)
         {
-            return TryGetDescription(propertyInfo.PropertyType, out collectionDescription);
+            return TryGetDescription(propertyInfo.PropertyType, out description);
         }
 
         private static CollectionTypeDescription GetCollectionDescription(Type collectionType, Type originalType)

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-namespace SimpleXmlSerializer.AcceptanceTests.Dto
+namespace SimpleXmlSerializer.IntegrationTests.Dto
 {
     [DataContract(Name = "dcCompositeWithPrimitives")]
     [XmlRoot(ElementName = "xmlCompositeWithPrimitives")]
