@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<dcCompositeWithComposites>
-  <dcOne dcString="One" dcInt="1" />
-  <dcTwo dcString="Two" dcInt="2" />
-</dcCompositeWithComposites>

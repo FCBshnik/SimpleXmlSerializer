@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xmlCompositeWithComposites>
-  <xmlOne xmlString="One" xmlInt="1" />
-  <xmlTwo xmlString="Two" xmlInt="2" />
-</xmlCompositeWithComposites>

@@ -13,7 +13,6 @@ namespace SimpleXmlSerializer
     public class XmlSerializerSettingsBuilder
     {
         private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
-        private bool mapPrimitivesToAttributes;
         private XmlElementName defaultCollectionName = new XmlElementName("Collection");
         private XmlElementName defaultCollectionItemName = new XmlElementName("Add");
         private INamingConvention namingConvention = new NoNamingConvention();
@@ -87,15 +86,6 @@ namespace SimpleXmlSerializer
         public XmlSerializerSettingsBuilder UseCamelCaseNamingConvention()
         {
             return SetNamingConvention(new CamelCaseNamingConvention());
-        }
-
-        /// <summary>
-        /// Specifies to serialize primitives to xml attributes.
-        /// </summary>
-        public XmlSerializerSettingsBuilder SerializePrimitivesToAttributes()
-        {
-            mapPrimitivesToAttributes = true;
-            return this;
         }
 
         public XmlSerializerSettingsBuilder SetCollectionTypeProvider(ICollectionTypeProvider provider)
@@ -310,11 +300,6 @@ namespace SimpleXmlSerializer
             nameProviders.Add(new NameProvider(namingConvention, collectionProvider, defaultCollectionName, defaultCollectionItemName));
 
             INameProvider nameProvider = new CompositeNameProvider(nameProviders);
-
-            if (mapPrimitivesToAttributes)
-            {
-                nameProvider = new PrimitiveToAttributeNameProvider(nameProvider, primitiveProvider);
-            }
 
             return nameProvider;
         }

@@ -34,19 +34,6 @@ namespace SimpleXmlSerializer.IntegrationTests.Tests
         }
 
         [TestMethod]
-        public void XmlAttributesNameProvider_PrimitivesToAttributes()
-        {
-            var settings = GetSettingsBuilder()
-                .UseXmlAttributes()
-                .SerializePrimitivesToAttributes()
-                .GetSettings();
-
-            Serializer = new XmlSerializer(settings);
-
-            ActAndAssert(CompositeWithComposites.Numbers, "xmlAttributes_primitivesToAttributes");
-        }
-
-        [TestMethod]
         public void XmlAttributesNameProvider_XmlArrayAttributes()
         {
             var settings = GetSettingsBuilder().UseXmlAttributes().GetSettings();
@@ -61,17 +48,6 @@ namespace SimpleXmlSerializer.IntegrationTests.Tests
         public void XmlAttributesNameProvider_Serialize_ConflictElementsNames()
         {
             var settings = GetSettingsBuilder().UseXmlAttributes().GetSettings();
-
-            Serializer = new XmlSerializer(settings);
-
-            Serializer.SerializeToString(CompositeWithPrimitivesConflictElementNames.One);
-        }
-
-        [ExpectedException(typeof(SerializationException))]
-        [TestMethod]
-        public void XmlAttributesNameProvider_Serialize_ConflictAttributesNames()
-        {
-            var settings = GetSettingsBuilder().UseXmlAttributes().SerializePrimitivesToAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 
@@ -96,35 +72,11 @@ namespace SimpleXmlSerializer.IntegrationTests.Tests
             ActAndAssert(CompositeWithPrimitivesOrder.One, "dataAttributes_order");
         }
 
-        [TestMethod]
-        public void DataAttributesNameProviderWithPrimitivesToAttributes()
-        {
-            var settings = GetSettingsBuilder()
-                .UseDataAttributes()
-                .SerializePrimitivesToAttributes()
-                .GetSettings();
-
-            Serializer = new XmlSerializer(settings);
-
-            ActAndAssert(CompositeWithComposites.Numbers, "dataAttributesWithPrimitivesToAttributes");
-        }
-
         [ExpectedException(typeof(SerializationException))]
         [TestMethod]
         public void DataAttributesNameProvider_Serialize_ConflictElementsNames()
         {
             var settings = GetSettingsBuilder().UseDataAttributes().GetSettings();
-
-            Serializer = new XmlSerializer(settings);
-
-            Serializer.SerializeToString(CompositeWithPrimitivesConflictElementNames.One);
-        }
-
-        [ExpectedException(typeof(SerializationException))]
-        [TestMethod]
-        public void DataAttributesNameProvider_Serialize_ConflictAttributesNames()
-        {
-            var settings = GetSettingsBuilder().UseDataAttributes().SerializePrimitivesToAttributes().GetSettings();
 
             Serializer = new XmlSerializer(settings);
 

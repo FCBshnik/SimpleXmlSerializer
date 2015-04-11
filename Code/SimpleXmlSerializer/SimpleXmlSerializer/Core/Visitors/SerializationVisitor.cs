@@ -61,8 +61,7 @@ namespace SimpleXmlSerializer.Core
             }
             else
             {
-                // todo: check not empty name in earlier step
-                throw new SerializationException();
+                throw new SerializationException(string.Format("Name for {0} was not provided", node));
             }
         }
 

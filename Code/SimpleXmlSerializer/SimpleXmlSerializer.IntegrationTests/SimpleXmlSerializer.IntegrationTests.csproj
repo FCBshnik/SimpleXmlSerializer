@@ -58,7 +58,6 @@
     <Compile Include="Tests\CdataSectionTests.cs" />
     <Compile Include="Tests\CurcularDependencyTests.cs" />
     <Compile Include="Tests\NameProvidersTests.cs" />
-    <Compile Include="Tests\PrimitivesToAttributesTests.cs" />
     <Compile Include="Tests\SerializeToFileTests.cs" />
     <Compile Include="Tests\TestsBase.cs" />
     <Compile Include="Tests\UnknownElementsTests.cs" />
@@ -146,12 +145,6 @@
     <Content Include="Assets\NameProviders\xmlAttributes_xmlArrayAttributes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\NameProviders\xmlAttributes_primitivesToAttributes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\NameProviders\dataAttributesWithPrimitivesToAttributes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\NameProviders\default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -159,12 +152,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\NameProviders\dataAttributes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\PrimitivesToAttributes\primitivesToAttributes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\PrimitivesToAttributes\primitivesToAttributesWithNull.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Primitives\boolean.xml">

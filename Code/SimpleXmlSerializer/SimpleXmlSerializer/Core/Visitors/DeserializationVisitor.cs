@@ -78,7 +78,6 @@ namespace SimpleXmlSerializer.Core
 
                 do
                 {
-                    // todo: think about boxing
                     itemNode.Accept(this);
                     items.Add(itemNode.Value);
 

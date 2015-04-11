@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<compositeWithComposites>
-  <one string="One" int="1" />
-  <two string="Two" int="2" />
-</compositeWithComposites>
