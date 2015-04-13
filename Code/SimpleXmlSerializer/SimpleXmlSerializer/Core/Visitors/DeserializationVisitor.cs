@@ -59,7 +59,7 @@ namespace SimpleXmlSerializer.Core
             }
             else
             {
-                throw new SerializationException();
+                throw new SerializationException("Xml element or attribute name was not provided");
             }
         }
 

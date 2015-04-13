@@ -1,5 +1,4 @@
 ﻿using System;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -28,11 +27,6 @@ namespace SimpleXmlSerializer.Core
         public object Clone()
         {
             return new CollectionNode(Description);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("Collection: {0}", Name);
         }
     }
 }

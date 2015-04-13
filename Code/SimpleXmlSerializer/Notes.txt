@@ -1,6 +1,4 @@
 Features todo:
-- deal with nulls and empty names
-- move exception texts to one place
 - unit tests
 - document all public methods
 

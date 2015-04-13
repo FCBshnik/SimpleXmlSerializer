@@ -46,7 +46,7 @@ namespace SimpleXmlSerializer.Core
             }
             else
             {
-                throw new SerializationException(string.Format("Can not serialize type {0}", type));
+                throw new SerializationException(string.Format("Can not serialize type '{0}'", type));
             }
 
             nodesCacheByType[type] = node;
@@ -79,7 +79,7 @@ namespace SimpleXmlSerializer.Core
             }
             else
             {
-                throw new SerializationException(string.Format("Can not serialize property {0}", propertyInfo));
+                throw new SerializationException(string.Format("Can not serialize property '{0}'", propertyInfo));
             }
 
             nodesCacheByProperty[propertyInfo] = node;

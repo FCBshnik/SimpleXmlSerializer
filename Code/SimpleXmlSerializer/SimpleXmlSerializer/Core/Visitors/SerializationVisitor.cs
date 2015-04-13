@@ -61,7 +61,7 @@ namespace SimpleXmlSerializer.Core
             }
             else
             {
-                throw new SerializationException(string.Format("Name for {0} was not provided", node));
+                throw new SerializationException("Xml element or attribute name was not provided");
             }
         }
 
@@ -73,7 +73,6 @@ namespace SimpleXmlSerializer.Core
 
             var itemNodeName = nodeProvider.GetNodeName(node.Description.ItemType);
 
-            // todo: deal with nulls
             foreach (var item in ((IEnumerable)node.Value))
             {
                 // note: passing second parameter to NodeName ctor is not clear
@@ -128,7 +127,6 @@ namespace SimpleXmlSerializer.Core
             TrackCircularDependency(node);
         }
 
-        // todo: try extract to separate class
         private void TrackCircularDependency(INode node)
         {
             var value = node.Value;

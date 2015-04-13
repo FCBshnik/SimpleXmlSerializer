@@ -1,5 +1,4 @@
 ﻿using System;
-using SimpleXmlSerializer.Utils;
 
 namespace SimpleXmlSerializer.Core
 {
@@ -8,9 +7,8 @@ namespace SimpleXmlSerializer.Core
         public PrimitiveNode(PrimitiveTypeDescription description)
         {
             if (description == null)
-            {
                 throw new ArgumentNullException("description");
-            }
+
             Description = description;
         }
 
@@ -28,11 +26,6 @@ namespace SimpleXmlSerializer.Core
         public object Clone()
         {
             return new PrimitiveNode(Description);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("Primitive: {0}", Name);
         }
     }
 }

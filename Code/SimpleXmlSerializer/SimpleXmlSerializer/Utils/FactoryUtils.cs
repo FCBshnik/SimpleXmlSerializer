@@ -22,7 +22,6 @@ namespace SimpleXmlSerializer.Utils
 
         public static IDictionary CreateDictionary(IEnumerable items, Type keyType, Type valueType)
         {
-            // todo: refactor
             var genericArguments = new[] { keyType, valueType };
             var itemType = typeof(KeyValuePair<,>).MakeGenericType(genericArguments);
             var type = typeof(Dictionary<,>).MakeGenericType(genericArguments);

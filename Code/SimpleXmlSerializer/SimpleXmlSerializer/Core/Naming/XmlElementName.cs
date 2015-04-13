@@ -11,7 +11,7 @@ namespace SimpleXmlSerializer.Core
 
         public XmlElementName(string name)
         {
-            if (!IsValidName(name))
+            if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Name is not valid xml element name", "name");
 
             this.name = name;
@@ -25,12 +25,6 @@ namespace SimpleXmlSerializer.Core
         public override string ToString()
         {
             return name;
-        }
-
-        private static bool IsValidName(string name)
-        {
-            // todo: validate xml element name
-            return !string.IsNullOrWhiteSpace(name);
         }
     }
 }
