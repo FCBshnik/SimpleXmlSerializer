@@ -11,14 +11,10 @@ namespace SimpleXmlSerializer.PerformanceTests.Cmd
 
         public static void Main(string[] args)
         {
-            var testSuite = new TestSuite
-                {
-                    TestCases = TestCasesFactory.CreateTestCases()
-                };
+            Console.WriteLine("Executing performance tests...");
 
-            Console.WriteLine("Executing tests...");
-            var testSuiteExecutor = new TestSuiteExecutor();
-            var testSuiteResult = testSuiteExecutor.ExecuteTestSuite(testSuite);
+            var testSuite = new TestSuite { TestCases = TestCasesFactory.CreateTestCases() };
+            var testSuiteResult = new TestSuiteExecutor().ExecuteTestSuite(testSuite);
 
             foreach (var item in testSuiteResult.TestCaseResults)
             {

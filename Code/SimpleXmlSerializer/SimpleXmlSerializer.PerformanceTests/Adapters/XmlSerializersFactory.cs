@@ -22,10 +22,9 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
                 {
                     serializer = factory(type);
                 }
-// ReSharper disable EmptyGeneralCatchClause
                 catch
-// ReSharper restore EmptyGeneralCatchClause
                 {
+                    // ignore if serializer can not deal with some types
                 }
 
                 if (serializer != null)
@@ -33,11 +32,6 @@ namespace SimpleXmlSerializer.PerformanceTests.Adapters
                     yield return serializer;
                 }
             }
-        }
-
-        public static IEnumerable<IXmlSerializerAdapter> CreateSimpleSerializer(Type type)
-        {
-            yield return new SimpleXmlSerializerAdapter(type);
         }
     }
 }
