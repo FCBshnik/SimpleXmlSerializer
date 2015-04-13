@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<compositeWithAllPrimitiveTypes>
+<compositeWithAllPrimitives>
   <char>c</char>
   <string>13</string>
   <byte>13</byte>
+  <sbyte>13</sbyte>
   <short>13</short>
+  <ushort>13</ushort>
   <int>13</int>
+  <nullableInt>13</nullableInt>
+  <uint>13</uint>
   <long>13</long>
+  <ulong>13</ulong>
   <float>13.13</float>
   <double>13.13</double>
   <decimal>13.13</decimal>
@@ -17,4 +22,4 @@
   <uri>http://hostname/path?key1=value1&amp;key2=value2</uri>
   <guid>7c5c2522-944d-4561-9f5f-d9d2c19f470a</guid>
   <type>System.Type</type>
-</compositeWithAllPrimitiveTypes>
+</compositeWithAllPrimitives>
