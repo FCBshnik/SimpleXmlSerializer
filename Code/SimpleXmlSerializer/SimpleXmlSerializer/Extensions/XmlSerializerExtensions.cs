@@ -8,6 +8,9 @@ namespace SimpleXmlSerializer
 {
     public static class XmlSerializerExtensions
     {
+        /// <summary>
+        /// Serializes specified object to string object.
+        /// </summary>
         public static string SerializeToString(this XmlSerializer xmlSerializer, object obj)
         {
             if (xmlSerializer == null)
@@ -23,6 +26,9 @@ namespace SimpleXmlSerializer
             return stringWriter.ToString();
         }
 
+        /// <summary>
+        /// Deserializes object of specified type from string.
+        /// </summary>
         public static object DeserializeFromString(this XmlSerializer xmlSerializer, Type type, string xml)
         {
             if (xmlSerializer == null)
@@ -37,6 +43,9 @@ namespace SimpleXmlSerializer
             }
         }
 
+        /// <summary>
+        /// Serializes specified object to stream.
+        /// </summary>
         public static void SerializeToStream(this XmlSerializer xmlSerializer, object obj, Stream outputStream)
         {
             if (xmlSerializer == null)
@@ -49,6 +58,9 @@ namespace SimpleXmlSerializer
             }
         }
 
+        /// <summary>
+        /// Deserializes object of specified type from stream.
+        /// </summary>
         public static object DeserializeFromStream(this XmlSerializer xmlSerializer, Type type, Stream inputStream)
         {
             if (xmlSerializer == null)
@@ -60,6 +72,9 @@ namespace SimpleXmlSerializer
             }
         }
 
+        /// <summary>
+        /// Serializes specified object to file.
+        /// </summary>
         public static void SerializeToFile(this XmlSerializer xmlSerializer, object obj, string filePath)
         {
             using (var fileStream = File.Open(filePath, FileMode.Create, FileAccess.Write))
@@ -68,6 +83,9 @@ namespace SimpleXmlSerializer
             }
         }
 
+        /// <summary>
+        /// Deserializes object of specified type from file.
+        /// </summary>
         public static object DeserializeFromFile(this XmlSerializer xmlSerializer, Type type, string filePath)
         {
             using (var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read))

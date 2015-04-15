@@ -33,13 +33,16 @@ namespace SimpleXmlSerializer
         private INameProvider customNameProvider;
         private readonly List<INameProvider> extraNameProviders = new List<INameProvider>();
 
+        /// <summary>
+        /// Returns <see cref="XmlSerializerSettings"/> based on current configured state.
+        /// </summary>
         public XmlSerializerSettings GetSettings()
         {
-            var primitiveProvider = BuildPrimitiveTypeProvider();
-            var collectionProvider = BuildCollectionTypeProvider();
-            var propertiesSelector = BuildPropertiesSelector();
-            var compositeTypeProvider = BuildCompositeTypeProvider(propertiesSelector);
-            var nameProvider = BuildNameProvider(primitiveProvider, collectionProvider);
+            var primitiveProvider = customPrimitiveTypeProvider ?? BuildPrimitiveTypeProvider();
+            var collectionProvider = customCollectionTypeProvider ?? BuildCollectionTypeProvider();
+            var propertiesSelector = customPropertiesSelector ?? BuildPropertiesSelector();
+            var compositeTypeProvider = customCompositeTypeProvider ?? BuildCompositeTypeProvider(propertiesSelector);
+            var nameProvider = customNameProvider ?? BuildNameProvider(collectionProvider);
 
             return new XmlSerializerSettings(
                 new CachingNameProvider(nameProvider),
@@ -49,7 +52,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Sets...
+        /// Sets default name used for collection elements.
         /// </summary>
         public XmlSerializerSettingsBuilder SetDefaultCollectionName(string name)
         {
@@ -58,7 +61,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Sets...
+        /// Sets default name used for item elements of collection.
         /// </summary>
         public XmlSerializerSettingsBuilder SetDefaultCollectionItemName(string name)
         {
@@ -83,11 +86,15 @@ namespace SimpleXmlSerializer
         /// Specifies to use camel case naming convention.
         /// Naming convention is used only when no markup attributes are used.
         /// </summary>
-        public XmlSerializerSettingsBuilder UseCamelCaseNamingConvention()
+        public XmlSerializerSettingsBuilder SetCamelCaseNamingConvention()
         {
             return SetNamingConvention(new CamelCaseNamingConvention());
         }
 
+        /// <summary>
+        /// Specifies to use specified <see cref="ICollectionTypeProvider"/>. It overwrites
+        /// all built-in...
+        /// </summary>
         public XmlSerializerSettingsBuilder SetCollectionTypeProvider(ICollectionTypeProvider provider)
         {
             if (provider == null) 
@@ -97,6 +104,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Adds specified <see cref="ICollectionTypeProvider"/> to start of <see cref="ICollectionTypeProvider"/> pipeline. 
+        /// It has precedence to default providers.
+        /// </summary>
         public XmlSerializerSettingsBuilder AddCollectionTypeProvider(ICollectionTypeProvider provider)
         {
             if (provider == null) 
@@ -115,6 +126,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Adds specified <see cref="IPropertiesSelector"/> to start of <see cref="IPropertiesSelector"/> pipeline. 
+        /// It has precedence to default selectors.
+        /// </summary>
         public XmlSerializerSettingsBuilder AddPropertiesSelector(IPropertiesSelector selector)
         {
             if (selector == null) 
@@ -133,6 +148,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Adds specified <see cref="ICompositeTypeProvider"/> to start of <see cref="ICompositeTypeProvider"/> pipeline. 
+        /// It has precedence to default providers.
+        /// </summary>
         public XmlSerializerSettingsBuilder AddCompositeTypeProvider(ICompositeTypeProvider provider)
         {
             if (provider == null)
@@ -151,6 +170,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Adds specified <see cref="INameProvider"/> to start of <see cref="INameProvider"/> pipeline. 
+        /// It has precedence to default providers.
+        /// </summary>
         public XmlSerializerSettingsBuilder AddNameProvider(INameProvider provider)
         {
             if (provider == null)
@@ -190,6 +213,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Adds specified <see cref="IPrimitiveTypeProvider"/> to start of <see cref="IPrimitiveTypeProvider"/> pipeline. 
+        /// It has precedence to default providers.
+        /// </summary>
         public XmlSerializerSettingsBuilder AddPrimitiveTypeProvider(IPrimitiveTypeProvider provider)
         {
             if (provider == null)
@@ -227,12 +254,6 @@ namespace SimpleXmlSerializer
 
         private IPrimitiveTypeProvider BuildPrimitiveTypeProvider()
         {
-            // use custom if specified
-            if (customPrimitiveTypeProvider != null)
-            {
-                return customPrimitiveTypeProvider;
-            }
-
             // merge default primitive serializers with additionally added (which have higher precedence)
             var primitiveSerializers = GetDefaultPrimitiveSerializers();
             primitiveSerializers = extraPrimitiveSerializers.Merge(primitiveSerializers);
@@ -254,54 +275,32 @@ namespace SimpleXmlSerializer
 
         private ICollectionTypeProvider BuildCollectionTypeProvider()
         {
-            if (customCollectionTypeProvider != null)
-            {
-                return customCollectionTypeProvider;
-            }
-
             var collectionProviders = extraCollectionTypeProviders.Concat(GetDefaultCollectionTypeProviders()).ToList();
             return new ChainedCollectionTypeProvider(collectionProviders);
         }
 
         private IPropertiesSelector BuildPropertiesSelector()
         {
-            if (customPropertiesSelector != null)
-            {
-                return customPropertiesSelector;
-            }
-
+            var defaultPublicPropertiesSelector = new PublicPropertiesSelector();
             if (extraPropertiesSelectors.Any())
             {
-                return new ChainedPropertiesSelector(extraPropertiesSelectors);
+                return new ChainedPropertiesSelector(extraPropertiesSelectors.Concat(new[] { defaultPublicPropertiesSelector }));
             }
 
-            return new PublicPropertiesSelector();
+            return defaultPublicPropertiesSelector;
         }
 
         private ICompositeTypeProvider BuildCompositeTypeProvider(IPropertiesSelector propertiesSelector)
         {
-            if (customCompositeTypeProvider != null)
-            {
-                return customCompositeTypeProvider;
-            }
-
             var providers = extraCompositeTypeProviders.Concat(GetDefaultCompositeTypeProviders(propertiesSelector)).ToList();
             return new ChainedCompositeTypeProvider(providers);
         }
 
-        private INameProvider BuildNameProvider(IPrimitiveTypeProvider primitiveProvider, ICollectionTypeProvider collectionProvider)
+        private INameProvider BuildNameProvider(ICollectionTypeProvider collectionProvider)
         {
-            if (customNameProvider != null)
-            {
-                return customNameProvider;
-            }
-
-            var nameProviders = extraNameProviders.ToList();
-            nameProviders.Add(new NameProvider(namingConvention, collectionProvider, defaultCollectionName, defaultCollectionItemName));
-
-            INameProvider nameProvider = new CompositeNameProvider(nameProviders);
-
-            return nameProvider;
+            var defaultNameProvider = new NameProvider(namingConvention, collectionProvider, defaultCollectionName, defaultCollectionItemName);
+            var nameProviders = extraNameProviders.Concat(new []{ defaultNameProvider }).ToList();
+            return new CompositeNameProvider(nameProviders);
         }
 
         private IDictionary<Type, IPrimitiveSerializer> GetDefaultPrimitiveSerializers()
@@ -340,7 +339,7 @@ namespace SimpleXmlSerializer
 
         private IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesSelector propertiesSelector)
         {
-            yield return new KeyValuePairCompositeTypeProvider(new KeyValuePairPropertiesSelector());
+            yield return new KeyValuePairCompositeTypeProvider(new PublicPropertiesSelector());
             yield return new CompositeTypeProvider(propertiesSelector);
         }
     }

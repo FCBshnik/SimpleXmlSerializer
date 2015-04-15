@@ -53,7 +53,6 @@
     <Compile Include="Core\Composites\Selectors\DataAttributesPropertiesSelector.cs" />
     <Compile Include="Core\Composites\ICompositeTypeProvider.cs" />
     <Compile Include="Core\Composites\Providers\KeyValuePairCompositeTypeProvider.cs" />
-    <Compile Include="Core\Composites\Selectors\KeyValuePairPropertiesSelector.cs" />
     <Compile Include="Core\Composites\Selectors\XmlAttributesPropertiesSelector.cs" />
     <Compile Include="Core\Naming\NameProviders\CachingNameProvider.cs" />
     <Compile Include="Core\Naming\NameProviders\CompositeNameProvider.cs" />

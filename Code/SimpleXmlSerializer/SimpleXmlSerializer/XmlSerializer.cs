@@ -4,6 +4,9 @@ using SimpleXmlSerializer.Core;
 
 namespace SimpleXmlSerializer
 {
+    /// <summary>
+    /// Responsible to serialize/deserialize objects to/from xml.
+    /// </summary>
     public class XmlSerializer
     {
         private readonly NodeProvider nodeProvider;
@@ -20,6 +23,9 @@ namespace SimpleXmlSerializer
             nodeProvider = new NodeProvider(settings);
         }
 
+        /// <summary>
+        /// Serializes specified object using provided <see cref="XmlWriter"/>.
+        /// </summary>
         public void Serialize(object value, XmlWriter xmlWriter)
         {
             if (value == null)
@@ -31,6 +37,9 @@ namespace SimpleXmlSerializer
             visitor.Visit(value);
         }
 
+        /// <summary>
+        /// Deserializes object of specified type using provided <see cref="XmlReader"/>.
+        /// </summary>
         public object Deserialize(Type type, XmlReader xmlReader)
         {
             if (type == null)
