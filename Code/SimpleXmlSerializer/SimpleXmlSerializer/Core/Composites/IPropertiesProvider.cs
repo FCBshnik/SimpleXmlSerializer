@@ -7,11 +7,11 @@ namespace SimpleXmlSerializer.Core
     /// <summary>
     /// Responsible to provide properties of composite type to serialize.
     /// </summary>
-    public interface IPropertiesSelector
+    public interface IPropertiesProvider
     {
         /// <summary>
         /// Returns properties of type to serialize.
         /// </summary>
-        IEnumerable<PropertyInfo> SelectProperties(Type type);
+        IEnumerable<PropertyInfo> GetProperties(Type type);
     }
 }

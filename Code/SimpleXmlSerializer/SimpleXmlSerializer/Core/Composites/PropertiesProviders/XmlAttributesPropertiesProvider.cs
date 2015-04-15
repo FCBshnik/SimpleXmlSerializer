@@ -7,14 +7,14 @@ using System.Xml.Serialization;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// The implementation of <see cref="IPropertiesSelector"/> which 
+    /// The implementation of <see cref="IPropertiesProvider"/> which 
     /// returns all read/write public instance properties of type
     /// based on <see cref="XmlElementAttribute"/>, <see cref="XmlArrayAttribute"/> 
     /// and <see cref="XmlIgnoreAttribute"/> attributes.
     /// </summary>
-    public class XmlAttributesPropertiesSelector : IPropertiesSelector
+    public class XmlAttributesPropertiesProvider : IPropertiesProvider
     {
-        public IEnumerable<PropertyInfo> SelectProperties(Type type)
+        public IEnumerable<PropertyInfo> GetProperties(Type type)
         {
             return type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty)
                 .Where(pi => !pi.HasAttribute<XmlIgnoreAttribute>())

@@ -13,7 +13,7 @@ namespace SimpleXmlSerializer.UnitTests.Core.Composite
         [TestMethod]
         public void GetDescription_NoParameterlessCtor_Throws()
         {
-            var provider = new CompositeTypeProvider(new PublicPropertiesSelector());
+            var provider = new CompositeTypeProvider(new PublicPropertiesProvider());
 
             CompositeTypeDescription description;
             provider.TryGetDescription(typeof(ParameterlessCtorType), out description);
@@ -22,7 +22,7 @@ namespace SimpleXmlSerializer.UnitTests.Core.Composite
         [TestMethod]
         public void GetDescription_ValueType_ReturnsCorrectFactory()
         {
-            var provider = new CompositeTypeProvider(new PublicPropertiesSelector());
+            var provider = new CompositeTypeProvider(new PublicPropertiesProvider());
 
             CompositeTypeDescription description;
             provider.TryGetDescription(typeof(DateTime), out description);
@@ -34,7 +34,7 @@ namespace SimpleXmlSerializer.UnitTests.Core.Composite
         [TestMethod]
         public void GetDescription_ReferenceType_ReturnsCorrectFactory()
         {
-            var provider = new CompositeTypeProvider(new PublicPropertiesSelector());
+            var provider = new CompositeTypeProvider(new PublicPropertiesProvider());
 
             CompositeTypeDescription description;
             provider.TryGetDescription(typeof(ParameterlessType), out description);

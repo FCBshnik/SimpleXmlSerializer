@@ -7,18 +7,18 @@ using SimpleXmlSerializer.Utils;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Uses specified <see cref="IPropertiesSelector"/> to handle KeyValuePair type.
+    /// Uses specified <see cref="IPropertiesProvider"/> to handle KeyValuePair type.
     /// </summary>
     internal class KeyValuePairCompositeTypeProvider : ICompositeTypeProvider
     {
-        private readonly IPropertiesSelector propertiesSelector;
+        private readonly IPropertiesProvider propertiesProvider;
 
-        public KeyValuePairCompositeTypeProvider(IPropertiesSelector propertiesSelector)
+        public KeyValuePairCompositeTypeProvider(IPropertiesProvider propertiesProvider)
         {
-            if (propertiesSelector == null) 
-                throw new ArgumentNullException("propertiesSelector");
+            if (propertiesProvider == null) 
+                throw new ArgumentNullException("propertiesProvider");
 
-            this.propertiesSelector = propertiesSelector;
+            this.propertiesProvider = propertiesProvider;
         }
 
         public bool TryGetDescription(Type type, out CompositeTypeDescription description)
@@ -28,7 +28,7 @@ namespace SimpleXmlSerializer.Core
                 var genericArguments = type.GetGenericArguments();
                 var ctor = type.GetConstructor(genericArguments);
 
-                var properties = propertiesSelector.SelectProperties(type).ToList();
+                var properties = propertiesProvider.GetProperties(type).ToList();
                 var getters = properties.ToDictionary(p => p, ExpressionUtils.GetPropertyGetter);
 
                 description = new CompositeTypeDescription(properties, ps => CreateObject(ctor, ps), (obj, pi) => getters[pi](obj));

@@ -7,13 +7,13 @@ using System.Runtime.Serialization;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// The implementation of <see cref="IPropertiesSelector"/> which 
+    /// The implementation of <see cref="IPropertiesProvider"/> which 
     /// returns all read/write public instance properties of type
     /// based on <see cref="DataContractAttribute"/>, <see cref="DataMemberAttribute"/> and <see cref="IgnoreDataMemberAttribute"/> attributes.
     /// </summary>
-    public class DataAttributesPropertiesSelector : IPropertiesSelector
+    public class DataAttributesPropertiesProvider : IPropertiesProvider
     {
-        public IEnumerable<PropertyInfo> SelectProperties(Type type)
+        public IEnumerable<PropertyInfo> GetProperties(Type type)
         {
             if (!type.HasAttribute<DataContractAttribute>())
             {

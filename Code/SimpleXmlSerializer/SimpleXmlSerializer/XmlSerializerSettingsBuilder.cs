@@ -24,8 +24,8 @@ namespace SimpleXmlSerializer
         private ICollectionTypeProvider customCollectionTypeProvider;
         private readonly List<ICollectionTypeProvider> extraCollectionTypeProviders = new List<ICollectionTypeProvider>();
 
-        private IPropertiesSelector customPropertiesSelector;
-        private readonly List<IPropertiesSelector> extraPropertiesSelectors = new List<IPropertiesSelector>();
+        private IPropertiesProvider customPropertiesProvider;
+        private readonly List<IPropertiesProvider> extraPropertiesProviders = new List<IPropertiesProvider>();
 
         private ICompositeTypeProvider customCompositeTypeProvider;
         private readonly List<ICompositeTypeProvider> extraCompositeTypeProviders = new List<ICompositeTypeProvider>();
@@ -40,8 +40,8 @@ namespace SimpleXmlSerializer
         {
             var primitiveProvider = customPrimitiveTypeProvider ?? BuildPrimitiveTypeProvider();
             var collectionProvider = customCollectionTypeProvider ?? BuildCollectionTypeProvider();
-            var propertiesSelector = customPropertiesSelector ?? BuildPropertiesSelector();
-            var compositeTypeProvider = customCompositeTypeProvider ?? BuildCompositeTypeProvider(propertiesSelector);
+            var propertiesProvider = customPropertiesProvider ?? BuildPropertiesProvider();
+            var compositeTypeProvider = customCompositeTypeProvider ?? BuildCompositeTypeProvider(propertiesProvider);
             var nameProvider = customNameProvider ?? BuildNameProvider(collectionProvider);
 
             return new XmlSerializerSettings(
@@ -117,25 +117,25 @@ namespace SimpleXmlSerializer
             return this;
         }
 
-        public XmlSerializerSettingsBuilder SetPropertiesSelector(IPropertiesSelector selector)
+        public XmlSerializerSettingsBuilder SetPropertiesProvider(IPropertiesProvider provider)
         {
-            if (selector == null) 
-                throw new ArgumentNullException("selector");
+            if (provider == null) 
+                throw new ArgumentNullException("provider");
 
-            customPropertiesSelector = selector;
+            customPropertiesProvider = provider;
             return this;
         }
 
         /// <summary>
-        /// Adds specified <see cref="IPropertiesSelector"/> to start of <see cref="IPropertiesSelector"/> pipeline. 
-        /// It has precedence to default selectors.
+        /// Adds specified <see cref="IPropertiesProvider"/> to start of <see cref="IPropertiesProvider"/> pipeline. 
+        /// It has precedence to default providers.
         /// </summary>
-        public XmlSerializerSettingsBuilder AddPropertiesSelector(IPropertiesSelector selector)
+        public XmlSerializerSettingsBuilder AddPropertiesProvider(IPropertiesProvider provider)
         {
-            if (selector == null) 
-                throw new ArgumentNullException("selector");
+            if (provider == null) 
+                throw new ArgumentNullException("provider");
 
-            extraPropertiesSelectors.Add(selector);
+            extraPropertiesProviders.Add(provider);
             return this;
         }
 
@@ -189,7 +189,7 @@ namespace SimpleXmlSerializer
         public XmlSerializerSettingsBuilder UseXmlAttributes()
         {
             AddNameProvider(new XmlAttributesNameProvider());
-            AddPropertiesSelector(new XmlAttributesPropertiesSelector());
+            AddPropertiesProvider(new XmlAttributesPropertiesProvider());
             return this;
         }
 
@@ -199,7 +199,7 @@ namespace SimpleXmlSerializer
         public XmlSerializerSettingsBuilder UseDataAttributes()
         {
             AddNameProvider(new DataAttributesNameProvider());
-            AddPropertiesSelector(new DataAttributesPropertiesSelector());
+            AddPropertiesProvider(new DataAttributesPropertiesProvider());
             AddCollectionTypeProvider(new DataAttributeCollectionProvider());
             return this;
         }
@@ -279,20 +279,20 @@ namespace SimpleXmlSerializer
             return new ChainedCollectionTypeProvider(collectionProviders);
         }
 
-        private IPropertiesSelector BuildPropertiesSelector()
+        private IPropertiesProvider BuildPropertiesProvider()
         {
-            var defaultPublicPropertiesSelector = new PublicPropertiesSelector();
-            if (extraPropertiesSelectors.Any())
+            var defaultPublicPropertiesProvider = new PublicPropertiesProvider();
+            if (extraPropertiesProviders.Any())
             {
-                return new ChainedPropertiesSelector(extraPropertiesSelectors.Concat(new[] { defaultPublicPropertiesSelector }));
+                return new ChainedPropertiesProvider(extraPropertiesProviders.Concat(new[] { defaultPublicPropertiesProvider }));
             }
 
-            return defaultPublicPropertiesSelector;
+            return defaultPublicPropertiesProvider;
         }
 
-        private ICompositeTypeProvider BuildCompositeTypeProvider(IPropertiesSelector propertiesSelector)
+        private ICompositeTypeProvider BuildCompositeTypeProvider(IPropertiesProvider propertiesProvider)
         {
-            var providers = extraCompositeTypeProviders.Concat(GetDefaultCompositeTypeProviders(propertiesSelector)).ToList();
+            var providers = extraCompositeTypeProviders.Concat(GetDefaultCompositeTypeProviders(propertiesProvider)).ToList();
             return new ChainedCompositeTypeProvider(providers);
         }
 
@@ -337,10 +337,10 @@ namespace SimpleXmlSerializer
             yield return new CollectionTypeProvider();
         }
 
-        private IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesSelector propertiesSelector)
+        private IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesProvider propertiesProvider)
         {
-            yield return new KeyValuePairCompositeTypeProvider(new PublicPropertiesSelector());
-            yield return new CompositeTypeProvider(propertiesSelector);
+            yield return new KeyValuePairCompositeTypeProvider(new PublicPropertiesProvider());
+            yield return new CompositeTypeProvider(propertiesProvider);
         }
     }
 }

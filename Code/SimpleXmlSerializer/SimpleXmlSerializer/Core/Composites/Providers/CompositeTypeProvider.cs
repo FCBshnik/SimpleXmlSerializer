@@ -8,24 +8,24 @@ namespace SimpleXmlSerializer.Core
 {
     /// <summary>
     /// The implementation of <see cref="ICompositeTypeProvider"/> which uses 
-    /// specified <see cref="IPropertiesSelector"/> to get properties of composite object
+    /// specified <see cref="IPropertiesProvider"/> to get properties of composite object
     /// and parameterless constructor (if exists) to create instances of composite types.
     /// </summary>
     public class CompositeTypeProvider : ICompositeTypeProvider
     {
-        private readonly IPropertiesSelector propertiesSelector;
+        private readonly IPropertiesProvider propertiesProvider;
 
-        public CompositeTypeProvider(IPropertiesSelector propertiesSelector)
+        public CompositeTypeProvider(IPropertiesProvider propertiesProvider)
         {
-            if (propertiesSelector == null)
-                throw new ArgumentNullException("propertiesSelector");
+            if (propertiesProvider == null)
+                throw new ArgumentNullException("propertiesProvider");
 
-            this.propertiesSelector = propertiesSelector;
+            this.propertiesProvider = propertiesProvider;
         }
 
         public bool TryGetDescription(Type type, out CompositeTypeDescription description)
         {
-            var properties = propertiesSelector.SelectProperties(type).ToList();
+            var properties = propertiesProvider.GetProperties(type).ToList();
             var getters = properties.ToDictionary(p => p, ExpressionUtils.GetPropertyGetter);
             var ctorFunc = ExpressionUtils.GetFactory(type);
 
