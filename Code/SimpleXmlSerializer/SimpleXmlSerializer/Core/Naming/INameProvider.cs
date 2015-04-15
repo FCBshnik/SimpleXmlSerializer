@@ -4,7 +4,7 @@ using System.Reflection;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Responsible to provide xml element and attribute names for serialization process.
+    /// Responsible to provide names for elements and attributes of xml document.
     /// </summary>
     public interface INameProvider
     {

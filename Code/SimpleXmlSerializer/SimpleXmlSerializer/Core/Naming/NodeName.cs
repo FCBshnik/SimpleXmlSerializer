@@ -1,7 +1,7 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Represents name (element or attribute name) of node of object's graph in xml document.
+    /// Represents name (element or attribute name) of node of object graph in xml document.
     /// </summary>
     public class NodeName
     {

@@ -10,7 +10,7 @@ namespace SimpleXmlSerializer.Core
     /// <summary>
     /// Provides info how to serialize collection types based on <see cref="CollectionDataContractAttribute"/> attribute.
     /// </summary>
-    public class DataAttributeCollectionProvider : ICollectionTypeProvider
+    public class DataAttributesCollectionProvider : ICollectionTypeProvider
     {
         public bool TryGetDescription(Type type, out CollectionTypeDescription description)
         {

@@ -33,22 +33,34 @@ namespace SimpleXmlSerializer
             this.collectionProvider = collectionProvider;
             this.compositeProvider = compositeProvider;
         }
-
+        
+        /// <summary>
+        /// Gets <see cref="INameProvider"/>.
+        /// </summary>
         public INameProvider NameProvider
         {
             get { return nameProvider; }
         }
 
+        /// <summary>
+        /// Gets <see cref="IPrimitiveTypeProvider"/>.
+        /// </summary>
         public IPrimitiveTypeProvider PrimitiveProvider
         {
             get { return primitiveProvider; }
         }
 
+        /// <summary>
+        /// Gets <see cref="ICollectionTypeProvider"/>.
+        /// </summary>
         public ICollectionTypeProvider CollectionProvider
         {
             get { return collectionProvider; }
         }
 
+        /// <summary>
+        /// Gets <see cref="ICompositeTypeProvider"/>.
+        /// </summary>
         public ICompositeTypeProvider CompositeProvider
         {
             get { return compositeProvider; }

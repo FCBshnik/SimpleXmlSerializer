@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Responsible to provide and cache info about object graph.
+    /// Responsible to provide and cache info about modes of object graph.
     /// </summary>
     internal class NodeProvider
     {

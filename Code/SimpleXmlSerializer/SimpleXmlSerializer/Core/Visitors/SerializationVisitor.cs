@@ -75,7 +75,7 @@ namespace SimpleXmlSerializer.Core
 
             foreach (var item in ((IEnumerable)node.Value))
             {
-                // note: passing second parameter to NodeName ctor is not clear
+                // passing second parameter to NodeName ctor is not clear:
                 // we pass such parameter for more clear xml output and it does
                 // make sense only for collection of collections
                 var itemNode = nodeProvider.GetNode(node.Description.ItemType);
@@ -95,8 +95,8 @@ namespace SimpleXmlSerializer.Core
 
             var properties = nodeProvider.GetNodeNames(node.Description.Properties);
 
-            // some properties may be presented as attributes and as element
-            // here we give precedence to attributes
+            // some properties may be presented as attributes and as elements
+            // give precedence to attributes
             properties = properties
                 .Where(p => p.Key.HasAttributeName)
                 .Concat(properties.Where(p => !p.Key.HasAttributeName))

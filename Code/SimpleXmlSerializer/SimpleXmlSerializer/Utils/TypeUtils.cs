@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SimpleXmlSerializer.Utils
 {
-    public static class TypeUtils
+    internal static class TypeUtils
     {
         public static bool ImplementsGenericInterface(Type type, Type interfaceType)
         {

@@ -61,7 +61,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Sets default name used for item elements of collection.
+        /// Sets default name used for item elements of collection element.
         /// </summary>
         public XmlSerializerSettingsBuilder SetDefaultCollectionItemName(string name)
         {
@@ -93,7 +93,7 @@ namespace SimpleXmlSerializer
 
         /// <summary>
         /// Specifies to use specified <see cref="ICollectionTypeProvider"/>. It overwrites
-        /// all built-in...
+        /// default providers and providers specified using <see cref="AddCollectionTypeProvider"/> method.
         /// </summary>
         public XmlSerializerSettingsBuilder SetCollectionTypeProvider(ICollectionTypeProvider provider)
         {
@@ -117,6 +117,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Specifies to use specified <see cref="IPropertiesProvider"/>. It overwrites
+        /// default providers and providers specified using <see cref="AddPropertiesProvider"/> method.
+        /// </summary>
         public XmlSerializerSettingsBuilder SetPropertiesProvider(IPropertiesProvider provider)
         {
             if (provider == null) 
@@ -139,6 +143,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Specifies to use specified <see cref="ICompositeTypeProvider"/>. It overwrites
+        /// default providers and providers specified using <see cref="AddCompositeTypeProvider"/> method.
+        /// </summary>
         public XmlSerializerSettingsBuilder SetCompositeTypeProvider(ICompositeTypeProvider provider)
         {
             if (provider == null)
@@ -161,6 +169,10 @@ namespace SimpleXmlSerializer
             return this;
         }
 
+        /// <summary>
+        /// Specifies to use specified <see cref="INameProvider"/>. It overwrites
+        /// default providers and providers specified using <see cref="AddNameProvider"/> method.
+        /// </summary>
         public XmlSerializerSettingsBuilder SetNameProvider(INameProvider provider)
         {
             if (provider == null)
@@ -184,26 +196,9 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to use xml attributes from <see cref="System.Xml.Serialization"/> namespace.
+        /// Specifies to use specified <see cref="IPrimitiveTypeProvider"/>. It overwrites
+        /// default providers and providers specified using <see cref="AddPrimitiveTypeProvider"/> method.
         /// </summary>
-        public XmlSerializerSettingsBuilder UseXmlAttributes()
-        {
-            AddNameProvider(new XmlAttributesNameProvider());
-            AddPropertiesProvider(new XmlAttributesPropertiesProvider());
-            return this;
-        }
-
-        /// <summary>
-        /// Specifies to use data contract attributes from <see cref="System.Runtime.Serialization"/> namespace.
-        /// </summary>
-        public XmlSerializerSettingsBuilder UseDataAttributes()
-        {
-            AddNameProvider(new DataAttributesNameProvider());
-            AddPropertiesProvider(new DataAttributesPropertiesProvider());
-            AddCollectionTypeProvider(new DataAttributeCollectionProvider());
-            return this;
-        }
-
         public XmlSerializerSettingsBuilder SetPrimitiveTypeProvider(IPrimitiveTypeProvider provider)
         {
             if (provider == null)
@@ -249,6 +244,27 @@ namespace SimpleXmlSerializer
                 throw new ArgumentNullException("formatProvider");
 
             this.formatProvider = formatProvider;
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies to use xml attributes from <see cref="System.Xml.Serialization"/> namespace.
+        /// </summary>
+        public XmlSerializerSettingsBuilder UseXmlAttributes()
+        {
+            AddNameProvider(new XmlAttributesNameProvider());
+            AddPropertiesProvider(new XmlAttributesPropertiesProvider());
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies to use data contract attributes from <see cref="System.Runtime.Serialization"/> namespace.
+        /// </summary>
+        public XmlSerializerSettingsBuilder UseDataAttributes()
+        {
+            AddNameProvider(new DataAttributesNameProvider());
+            AddPropertiesProvider(new DataAttributesPropertiesProvider());
+            AddCollectionTypeProvider(new DataAttributesCollectionProvider());
             return this;
         }
 
@@ -339,7 +355,7 @@ namespace SimpleXmlSerializer
 
         private IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesProvider propertiesProvider)
         {
-            yield return new KeyValuePairCompositeTypeProvider(new PublicPropertiesProvider());
+            yield return new KeyValuePairCompositeTypeProvider();
             yield return new CompositeTypeProvider(propertiesProvider);
         }
     }

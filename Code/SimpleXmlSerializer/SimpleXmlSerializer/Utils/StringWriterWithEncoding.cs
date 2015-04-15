@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SimpleXmlSerializer.Utils
 {
-    public class StringWriterWithEncoding : StringWriter
+    internal class StringWriterWithEncoding : StringWriter
     {
         private readonly Encoding encoding;
 

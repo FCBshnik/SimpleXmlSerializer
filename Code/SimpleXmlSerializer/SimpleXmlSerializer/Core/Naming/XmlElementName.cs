@@ -17,6 +17,9 @@ namespace SimpleXmlSerializer.Core
             this.name = name;
         }
 
+        /// <summary>
+        /// Gets name of xml element.
+        /// </summary>
         public string Name
         {
             get { return name; }

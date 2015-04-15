@@ -7,19 +7,11 @@ using SimpleXmlSerializer.Utils;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Uses specified <see cref="IPropertiesProvider"/> to handle KeyValuePair type.
+    /// Provides info how to serialize KeyValuePair type.
     /// </summary>
-    internal class KeyValuePairCompositeTypeProvider : ICompositeTypeProvider
+    public class KeyValuePairCompositeTypeProvider : ICompositeTypeProvider
     {
-        private readonly IPropertiesProvider propertiesProvider;
-
-        public KeyValuePairCompositeTypeProvider(IPropertiesProvider propertiesProvider)
-        {
-            if (propertiesProvider == null) 
-                throw new ArgumentNullException("propertiesProvider");
-
-            this.propertiesProvider = propertiesProvider;
-        }
+        private readonly IPropertiesProvider propertiesProvider = new PublicPropertiesProvider();
 
         public bool TryGetDescription(Type type, out CompositeTypeDescription description)
         {

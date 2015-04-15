@@ -41,7 +41,7 @@ namespace SimpleXmlSerializer.Core
             if (node.Name.HasElementName)
             {
                 // distinguish nodes without value (about which indicates IsEmptyElement)
-                // and nodes with some value (even if this value is empty string),
+                // and nodes with some value (even if this value is empty string), does make sense for strings
                 if (xmlReader.IsEmptyElement)
                 {
                     node.Value = null;
