@@ -113,7 +113,6 @@
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="XmlSerializerSettings.cs" />
     <Compile Include="XmlSerializerSettingsBuilder.cs" />
-    <Compile Include="Extensions\EnumerableExtenstions.cs" />
     <Compile Include="Extensions\ListEstensions.cs" />
     <Compile Include="Extensions\MemberInfoExtensions.cs" />
     <Compile Include="Extensions\XmlReaderExtensions.cs" />

@@ -38,7 +38,7 @@ namespace SimpleXmlSerializer.Utils
             var interfaces = type.GetInterfaces();
             return interfaces
                 .Where(t => t.IsGenericType)
-                .FirstOrDefault(t => t.GetGenericTypeDefinition() ==genericTypeDefinitionInterface);
+                .FirstOrDefault(t => t.GetGenericTypeDefinition() == genericTypeDefinitionInterface);
         }
     }
 }

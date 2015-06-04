@@ -52,7 +52,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Sets default name used for collection elements.
+        /// Sets default name for collection elements of xml document.
         /// </summary>
         public XmlSerializerSettingsBuilder SetDefaultCollectionName(string name)
         {
@@ -61,7 +61,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Sets default name used for item elements of collection element.
+        /// Sets default name for item elements of collection element of xml document.
         /// </summary>
         public XmlSerializerSettingsBuilder SetDefaultCollectionItemName(string name)
         {
@@ -105,7 +105,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Adds specified <see cref="ICollectionTypeProvider"/> to start of <see cref="ICollectionTypeProvider"/> pipeline. 
+        /// Adds specified <see cref="ICollectionTypeProvider"/> to start of <see cref="ICollectionTypeProvider"/> chain. 
         /// It has precedence to default providers.
         /// </summary>
         public XmlSerializerSettingsBuilder AddCollectionTypeProvider(ICollectionTypeProvider provider)
@@ -131,7 +131,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Adds specified <see cref="IPropertiesProvider"/> to start of <see cref="IPropertiesProvider"/> pipeline. 
+        /// Adds specified <see cref="IPropertiesProvider"/> to start of <see cref="IPropertiesProvider"/> chain. 
         /// It has precedence to default providers.
         /// </summary>
         public XmlSerializerSettingsBuilder AddPropertiesProvider(IPropertiesProvider provider)
@@ -157,7 +157,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Adds specified <see cref="ICompositeTypeProvider"/> to start of <see cref="ICompositeTypeProvider"/> pipeline. 
+        /// Adds specified <see cref="ICompositeTypeProvider"/> to start of <see cref="ICompositeTypeProvider"/> chain. 
         /// It has precedence to default providers.
         /// </summary>
         public XmlSerializerSettingsBuilder AddCompositeTypeProvider(ICompositeTypeProvider provider)
@@ -183,7 +183,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Adds specified <see cref="INameProvider"/> to start of <see cref="INameProvider"/> pipeline. 
+        /// Adds specified <see cref="INameProvider"/> to start of <see cref="INameProvider"/> chain. 
         /// It has precedence to default providers.
         /// </summary>
         public XmlSerializerSettingsBuilder AddNameProvider(INameProvider provider)
@@ -209,7 +209,7 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Adds specified <see cref="IPrimitiveTypeProvider"/> to start of <see cref="IPrimitiveTypeProvider"/> pipeline. 
+        /// Adds specified <see cref="IPrimitiveTypeProvider"/> to start of <see cref="IPrimitiveTypeProvider"/> chain. 
         /// It has precedence to default providers.
         /// </summary>
         public XmlSerializerSettingsBuilder AddPrimitiveTypeProvider(IPrimitiveTypeProvider provider)
@@ -346,14 +346,14 @@ namespace SimpleXmlSerializer
                 };
         }
 
-        private IEnumerable<ICollectionTypeProvider> GetDefaultCollectionTypeProviders()
+        private static IEnumerable<ICollectionTypeProvider> GetDefaultCollectionTypeProviders()
         {
             yield return new DictionaryCollectionTypeProvider();
             yield return new ArrayCollectionTypeProvider();
             yield return new CollectionTypeProvider();
         }
 
-        private IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesProvider propertiesProvider)
+        private static IEnumerable<ICompositeTypeProvider> GetDefaultCompositeTypeProviders(IPropertiesProvider propertiesProvider)
         {
             yield return new KeyValuePairCompositeTypeProvider();
             yield return new CompositeTypeProvider(propertiesProvider);

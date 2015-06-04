@@ -19,9 +19,7 @@ namespace SimpleXmlSerializer.Utils
         public static Func<object, object> GetPropertyGetter(PropertyInfo propertyInfo)
         {
             var paramExpr = Expression.Parameter(typeof(object), "arg");
-// ReSharper disable AssignNullToNotNullAttribute
             var instanceExpr = Expression.Convert(paramExpr, propertyInfo.DeclaringType);
-// ReSharper restore AssignNullToNotNullAttribute
             Expression callExpression = Expression.Call(instanceExpr, propertyInfo.GetGetMethod());
 
             if (propertyInfo.PropertyType.IsValueType)
