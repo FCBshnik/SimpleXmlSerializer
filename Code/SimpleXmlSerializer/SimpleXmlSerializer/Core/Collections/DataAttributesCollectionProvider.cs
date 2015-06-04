@@ -17,16 +17,16 @@ namespace SimpleXmlSerializer.Core
             var collectionDataContractAttribute = type.FindAttribute<CollectionDataContractAttribute>();
             if (collectionDataContractAttribute != null)
             {
-                if (TypeUtils.ImplementsGenericInterface(type, typeof(IDictionary<,>)))
+                if (type.ImplementsGenericInterface(typeof(IDictionary<,>)))
                 {
-                    var dictionaryType = TypeUtils.GetImplementedGenericInterface(type, typeof(IDictionary<,>));
+                    var dictionaryType = type.GetImplementedGenericInterface(typeof(IDictionary<,>));
                     description = GetDictionaryDescription(dictionaryType, type);
                     return true;
                 }
 
-                if (TypeUtils.ImplementsGenericInterface(type, typeof(ICollection<>)))
+                if (type.ImplementsGenericInterface(typeof(ICollection<>)))
                 {
-                    var collectionType = TypeUtils.GetImplementedGenericInterface(type, typeof(ICollection<>));
+                    var collectionType = type.GetImplementedGenericInterface(typeof(ICollection<>));
                     description = GetCollectionDescription(collectionType, type);
                     return true;
                 }

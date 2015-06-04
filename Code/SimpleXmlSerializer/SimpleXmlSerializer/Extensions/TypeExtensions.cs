@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-namespace SimpleXmlSerializer.Utils
+namespace SimpleXmlSerializer
 {
-    internal static class TypeUtils
+    internal static class TypeExtensions
     {
-        public static bool ImplementsGenericInterface(Type type, Type interfaceType)
+        public static bool ImplementsGenericInterface(this Type type, Type interfaceType)
         {
             if (type == null)
                 throw new ArgumentNullException("type");
@@ -15,7 +15,7 @@ namespace SimpleXmlSerializer.Utils
             return FindImplementedGenericInterface(type, interfaceType) != null;
         }
 
-        public static Type FindImplementedGenericInterface(Type type, Type interfaceType)
+        public static Type FindImplementedGenericInterface(this Type type, Type interfaceType)
         {
             if (type == null)
                 throw new ArgumentNullException("type");
@@ -33,7 +33,7 @@ namespace SimpleXmlSerializer.Utils
             return interfaces.FirstOrDefault(t => t == interfaceType);
         }
 
-        public static Type GetImplementedGenericInterface(Type type, Type genericTypeDefinitionInterface)
+        public static Type GetImplementedGenericInterface(this Type type, Type genericTypeDefinitionInterface)
         {
             var interfaces = type.GetInterfaces();
             return interfaces

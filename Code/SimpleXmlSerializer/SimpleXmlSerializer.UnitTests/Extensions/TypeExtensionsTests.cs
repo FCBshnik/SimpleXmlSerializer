@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleXmlSerializer.Utils;
 
-namespace SimpleXmlSerializer.UnitTests.Utils
+namespace SimpleXmlSerializer.UnitTests.Extensions
 {
     [TestClass]
-    public class TypeUtilsTests
+    public class TypeExtensionsTests
     {
         [TestMethod]
         public void ImplementsGenericInterface_Implements_ReturnsTrue()
         {
-            var actual = TypeUtils.ImplementsGenericInterface(typeof(Dictionary<string, string>), typeof(IDictionary<string, string>));
+            var actual = typeof(Dictionary<string, string>).ImplementsGenericInterface(typeof(IDictionary<string, string>));
 
             Assert.IsTrue(actual);
         }
@@ -18,7 +17,7 @@ namespace SimpleXmlSerializer.UnitTests.Utils
         [TestMethod]
         public void ImplementsGenericInterface_ImplementsGenericTypeDefinition_ReturnsTrue()
         {
-            var actual = TypeUtils.ImplementsGenericInterface(typeof(Dictionary<string, string>), typeof(IDictionary<,>));
+            var actual = typeof(Dictionary<string, string>).ImplementsGenericInterface(typeof(IDictionary<,>));
 
             Assert.IsTrue(actual);
         }
@@ -26,7 +25,7 @@ namespace SimpleXmlSerializer.UnitTests.Utils
         [TestMethod]
         public void ImplementsGenericInterface_NotImplements_ReturnsFalse()
         {
-            var actual = TypeUtils.ImplementsGenericInterface(typeof(Dictionary<string, string>), typeof(IList<>));
+            var actual = typeof(Dictionary<string, string>).ImplementsGenericInterface(typeof(IList<>));
 
             Assert.IsFalse(actual);
         }

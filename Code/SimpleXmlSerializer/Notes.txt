@@ -1,4 +1,5 @@
 Features todo:
+- clarify XmlReaderExtensions
 - document all public methods
 - unit tests
 

@@ -109,7 +109,7 @@
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Utils\ExpressionUtils.cs" />
     <Compile Include="Utils\FactoryUtils.cs" />
-    <Compile Include="Utils\TypeUtils.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="XmlSerializer.cs" />
     <Compile Include="XmlSerializerSettings.cs" />
     <Compile Include="XmlSerializerSettingsBuilder.cs" />
