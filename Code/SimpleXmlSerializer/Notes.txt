@@ -1,6 +1,4 @@
-Features todo:
-- clarify XmlReaderExtensions
-- document all public methods
+TODO:
 - unit tests
 
 Features:
@@ -14,5 +12,3 @@ Features:
 - Naming conventions (no, camel case)
 - Extensibility point for custom serialization of values of specified type
 - Extensibility point for custom serialization of values of specified type as primitives
-
-Notes:

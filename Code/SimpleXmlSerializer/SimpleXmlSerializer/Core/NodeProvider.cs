@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Responsible to provide and cache info about modes of object graph.
+    /// Responsible to provide and cache info about nodes of object graph.
     /// </summary>
     internal class NodeProvider
     {
@@ -106,7 +106,7 @@ namespace SimpleXmlSerializer.Core
                 .FirstOrDefault(gr => gr.Count() > 1);
             if (conflictedElementNames != null)
             {
-                throw new SerializationException(string.Format("There are multiply properties with element name '{0}'", conflictedElementNames.Key));
+                throw new SerializationException(string.Format("There are more than one properties mapped to element name '{0}'", conflictedElementNames.Key));
             }
 
             var conflictedAttributeNames = nodeNames.Keys
@@ -115,7 +115,7 @@ namespace SimpleXmlSerializer.Core
                 .FirstOrDefault(gr => gr.Count() > 1);
             if (conflictedAttributeNames != null)
             {
-                throw new SerializationException(string.Format("There are multiply properties with attribute name '{0}'", conflictedAttributeNames.Key));
+                throw new SerializationException(string.Format("There are more than one properties mapped to attribute name '{0}'", conflictedAttributeNames.Key));
             }
 
             return nodeNames;

@@ -10,6 +10,7 @@ namespace SimpleXmlSerializer.Core
             {
                 throw new ArgumentNullException("description");
             }
+
             Description = description;
         }
 
