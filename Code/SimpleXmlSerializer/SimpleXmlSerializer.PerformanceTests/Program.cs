@@ -3,7 +3,7 @@ using System.Linq;
 using SimpleXmlSerializer.PerformanceTests.Core;
 using SimpleXmlSerializer.PerformanceTests.TestCases;
 
-namespace SimpleXmlSerializer.PerformanceTests.Cmd
+namespace SimpleXmlSerializer.PerformanceTests
 {
     public class Program
     {
