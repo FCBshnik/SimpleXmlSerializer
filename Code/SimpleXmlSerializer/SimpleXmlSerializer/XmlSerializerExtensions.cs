@@ -11,7 +11,7 @@ namespace SimpleXmlSerializer
         /// <summary>
         /// Serializes specified object to string object.
         /// </summary>
-        public static string SerializeToString(this XmlSerializer xmlSerializer, object obj)
+        public static string SerializeToString(this XmlSerializer xmlSerializer, object value)
         {
             if (xmlSerializer == null)
                 throw new ArgumentNullException("xmlSerializer");
@@ -20,7 +20,7 @@ namespace SimpleXmlSerializer
             var settings = new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 };
             using (var xmlWriter = XmlWriter.Create(stringWriter, settings))
             {
-                xmlSerializer.Serialize(obj, xmlWriter);
+                xmlSerializer.Serialize(value, xmlWriter);
             }
 
             return stringWriter.ToString();
@@ -41,6 +41,14 @@ namespace SimpleXmlSerializer
                     return xmlSerializer.Deserialize(type, xmlReader);
                 }
             }
+        }
+
+        /// <summary>
+        /// Deserializes object of specified type from string.
+        /// </summary>
+        public static TValue DeserializeFromString<TValue>(this XmlSerializer xmlSerializer, string xml)
+        {
+            return (TValue) DeserializeFromString(xmlSerializer, typeof(TValue), xml);
         }
 
         /// <summary>
@@ -73,6 +81,14 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
+        /// Deserializes object of specified type from stream.
+        /// </summary>
+        public static TValue DeserializeFromStream<TValue>(this XmlSerializer xmlSerializer,  Stream inputStream)
+        {
+            return (TValue) DeserializeFromStream(xmlSerializer, typeof(TValue), inputStream);
+        }
+
+        /// <summary>
         /// Serializes specified object to file.
         /// </summary>
         public static void SerializeToFile(this XmlSerializer xmlSerializer, object obj, string filePath)
@@ -92,6 +108,14 @@ namespace SimpleXmlSerializer
             {
                 return xmlSerializer.DeserializeFromStream(type, fileStream);
             }
+        }
+
+        /// <summary>
+        /// Deserializes object of specified type from file.
+        /// </summary>
+        public static TValue DeserializeFromFile<TValue>(this XmlSerializer xmlSerializer, string filePath)
+        {
+            return (TValue) DeserializeFromFile(xmlSerializer, typeof(TValue), filePath);
         }
     }
 }
