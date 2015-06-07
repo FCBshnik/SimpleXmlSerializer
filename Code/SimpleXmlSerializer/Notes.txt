@@ -1,6 +1,3 @@
-TODO:
-- unit tests
-
 Features:
 - Serialization of primitive types: bool, byte, int, long, float, double, decimal, char, string, TimeSpan, DateTime, DateTimeOffset
 - Serialization of collection types: Array, IList, ICollection, IEnumerable, IDictionary

@@ -3,6 +3,9 @@ using System.Xml;
 
 namespace SimpleXmlSerializer.Core.Serializers
 {
+    /// <summary>
+    /// Responsible to serialize <see cref="TimeSpan"/> to string and vice versa according to ISO 8601 standard.
+    /// </summary>
     public class Iso8601TimeSpanSerializer : IPrimitiveSerializer
     {
         public string Serialize(object value)

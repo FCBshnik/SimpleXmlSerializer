@@ -1,7 +1,7 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
     /// <summary>
-    /// Responsible to serialize object to string.
+    /// Responsible to serialize object to string and vice versa.
     /// </summary>
     public interface IPrimitiveSerializer
     {
