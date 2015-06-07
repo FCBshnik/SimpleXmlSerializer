@@ -71,7 +71,6 @@ namespace SimpleXmlSerializer
 
         /// <summary>
         /// Specifies to use specified <see cref="INamingConvention"/>.
-        /// Naming convention is used only when no markup attributes are used.
         /// </summary>
         public XmlSerializerSettingsBuilder SetNamingConvention(INamingConvention namingConvention)
         {
@@ -84,7 +83,6 @@ namespace SimpleXmlSerializer
 
         /// <summary>
         /// Specifies to use camel case naming convention.
-        /// Naming convention is used only when no markup attributes are used.
         /// </summary>
         public XmlSerializerSettingsBuilder SetCamelCaseNamingConvention()
         {
@@ -314,9 +312,9 @@ namespace SimpleXmlSerializer
 
         private INameProvider BuildNameProvider(ICollectionTypeProvider collectionProvider)
         {
-            var defaultNameProvider = new NameProvider(namingConvention, collectionProvider, defaultCollectionName, defaultCollectionItemName);
+            var defaultNameProvider = new NameProvider(collectionProvider, defaultCollectionName, defaultCollectionItemName);
             var nameProviders = extraNameProviders.Concat(new []{ defaultNameProvider }).ToList();
-            return new CompositeNameProvider(nameProviders);
+            return new NamingConventionNameProvider(new CompositeNameProvider(nameProviders), namingConvention);
         }
 
         private IDictionary<Type, IPrimitiveSerializer> GetDefaultPrimitiveSerializers()

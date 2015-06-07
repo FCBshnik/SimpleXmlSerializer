@@ -11,13 +11,10 @@ namespace SimpleXmlSerializer.Core
         private readonly XmlElementName collectionElementName;
         private readonly XmlElementName collectionItemName;
 
-        private readonly INamingConvention namingConvention;
         private readonly ICollectionTypeProvider collectionProvider;
 
-        public NameProvider(INamingConvention namingConvention, ICollectionTypeProvider collectionProvider, XmlElementName collectionElementName, XmlElementName collectionItemName)
+        public NameProvider(ICollectionTypeProvider collectionProvider, XmlElementName collectionElementName, XmlElementName collectionItemName)
         {
-            if (namingConvention == null) 
-                throw new ArgumentNullException("namingConvention");
             if (collectionProvider == null) 
                 throw new ArgumentNullException("collectionProvider");
             if (collectionElementName == null) 
@@ -25,7 +22,6 @@ namespace SimpleXmlSerializer.Core
             if (collectionItemName == null) 
                 throw new ArgumentNullException("collectionItemName");
 
-            this.namingConvention = namingConvention;
             this.collectionProvider = collectionProvider;
             this.collectionElementName = collectionElementName;
             this.collectionItemName = collectionItemName;
@@ -33,7 +29,7 @@ namespace SimpleXmlSerializer.Core
 
         public NodeName GetNodeName(Type type)
         {
-            var elementName = namingConvention.NormalizeName(type.Name);
+            var elementName = type.Name;
             var itemName = string.Empty;
 
             CollectionTypeDescription collectionDescription;
@@ -41,13 +37,13 @@ namespace SimpleXmlSerializer.Core
             // if it is collection type
             if (collectionProvider.TryGetDescription(type, out collectionDescription))
             {
-                elementName = namingConvention.NormalizeName(collectionElementName.Name);
-                itemName = namingConvention.NormalizeName(collectionItemName.Name);
+                elementName = collectionElementName.Name;
+                itemName = collectionItemName.Name;
             }
             else if (type.IsGenericType)
             {
                 // if generic type, cut of 'generic' part of type name
-                elementName = namingConvention.NormalizeName(type.Name.Substring(0, type.Name.IndexOf('`')));
+                elementName = type.Name.Substring(0, type.Name.IndexOf('`'));
             }
 
             return new NodeName(elementName, itemName);
@@ -55,7 +51,7 @@ namespace SimpleXmlSerializer.Core
 
         public NodeName GetNodeName(PropertyInfo propertyInfo)
         {
-            var elementName = namingConvention.NormalizeName(propertyInfo.Name);
+            var elementName = propertyInfo.Name;
             var itemName = string.Empty;
 
             CollectionTypeDescription collectionDescription;
@@ -63,7 +59,7 @@ namespace SimpleXmlSerializer.Core
             // if type of property is collection, then additionally provide item name
             if (collectionProvider.TryGetDescription(propertyInfo.PropertyType, out collectionDescription))
             {
-                itemName = namingConvention.NormalizeName(collectionItemName.Name);
+                itemName = collectionItemName.Name;
             }
 
             return new NodeName(elementName, itemName);

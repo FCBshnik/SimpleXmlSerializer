@@ -60,6 +60,7 @@
     <Compile Include="Core\Naming\NameProviders\NameProvider.cs" />
     <Compile Include="Core\Naming\INameProvider.cs" />
     <Compile Include="Core\Composites\IPropertiesProvider.cs" />
+    <Compile Include="Core\Naming\NameProviders\NamingConventionNameProvider.cs" />
     <Compile Include="Core\Naming\NodeName.cs" />
     <Compile Include="Core\Naming\NameProviders\XmlAttributesNameProvider.cs" />
     <Compile Include="Core\Naming\Conventions\CamelCaseNamingConvention.cs" />
