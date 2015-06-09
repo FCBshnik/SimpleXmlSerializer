@@ -39,7 +39,11 @@ namespace SimpleXmlSerializer.Core
 
             var value = node.Description.Serializer.Serialize(node.Value);
 
-            if (node.Name.HasElementName)
+            if (node.Name.HasAttributeName)
+            {
+                xmlWriter.WriteAttributeString(node.Name.AttributeName.Name, value);
+            }
+            else if (node.Name.HasElementName)
             {
                 xmlWriter.WriteStartElement(node.Name.ElementName.Name);
 
@@ -54,10 +58,6 @@ namespace SimpleXmlSerializer.Core
                 }
 
                 xmlWriter.WriteEndElement();
-            }
-            else if (node.Name.HasAttributeName)
-            {
-                xmlWriter.WriteAttributeString(node.Name.AttributeName.Name, value);
             }
             else
             {

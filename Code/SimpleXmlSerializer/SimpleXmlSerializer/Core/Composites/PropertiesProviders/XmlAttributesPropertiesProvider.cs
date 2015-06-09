@@ -23,9 +23,15 @@ namespace SimpleXmlSerializer.Core
                         Property = p,
                         XmlElementAttr = p.FindAttribute<XmlElementAttribute>(),
                         XmlArrayAttr = p.FindAttribute<XmlArrayAttribute>(),
+                        XmlAttributeAttr = p.FindAttribute<XmlAttributeAttribute>()
                     })
-                .Where(p => p.XmlArrayAttr != null || p.XmlElementAttr != null)
-                .OrderBy(p => p.XmlArrayAttr != null ? p.XmlArrayAttr.Order : p.XmlElementAttr.Order)
+                .Where(p => p.XmlArrayAttr != null || p.XmlElementAttr != null || p.XmlAttributeAttr != null)
+                .Select(p => new
+                {
+                    Property = p.Property,
+                    Order = p.XmlArrayAttr != null ? p.XmlArrayAttr.Order : (p.XmlElementAttr != null ? p.XmlElementAttr.Order : -1)
+                })
+                .OrderBy(p => p.Order)
                 .Select(p => p.Property);
         }
     }
