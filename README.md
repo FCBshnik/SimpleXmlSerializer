@@ -44,3 +44,44 @@ produces
   </Employees>
 </Company>
 ```
+Using Data* attributes:
+```
+[DataContract(Name = "Organization")]
+public class Company
+{
+    [DataMember(Name = "FullName")]
+    public string Name { get; set; }
+
+    [DataMember(Name = "Workers")]
+    public IEnumerable<Employee> Employees { get; set; }
+}
+
+[DataContract(Name = "Worker")]
+public class Employee
+{
+    [DataMember(Name = "FirstName")]
+    public string FirstName { get; set; }
+
+    [DataMember(Name = "Age")]
+    public int Age { get; set; }
+}
+```
+executing
+```
+var serializerSettings = new XmlSerializerSettingsBuilder().UseDataAttributes().GetSettings();
+var serializer = new XmlSerializer(serializerSettings);
+var xml = serializer.SerializeToString(new Company { ... });
+```
+produces
+```
+<?xml version="1.0" encoding="utf-8"?>
+<Organization>
+  <FullName>Some company</FullName>
+  <Workers>
+    <Add>
+      <FirstName>John</FirstName>
+      <Age>45</Age>
+    </Add>
+  </Workers>
+</Organization>
+```
