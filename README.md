@@ -1,7 +1,7 @@
-# SimpleXmlSerializer
+## SimpleXmlSerializer
 Simple xml serialization library for .NET
 
-# Features
+### Features
 Built-in serialization of:
 - primitive types: bool, byte, int, long, float, double, decimal, char, string, TimeSpan, DateTime, DateTimeOffset, Guid, Uri, Type, Enums, Nullable<>
 - collection types: Array, IList, List, ICollection, Collection, IEnumerable, IDictionary, Dictionary and theirs geneic analogs
@@ -11,7 +11,12 @@ Providing xml elements names via:
 - Xml* attributes (XmlRoot, XmlElement, XmlArray, XmlArrayItem, XmlAttribute, XmlIgnore)
 - Data* attributes (DataContract, DataMember, DataCollection, IgnoreDataMember)
 
-# Examples
+When using Xml* attributes you can mark property to be serialized as CDATA section applying following attribute to property:
+```
+[XmlElement(Type = typeof(XmlCDataSection))]
+```
+
+### Examples
 Simplest scenario:
 ```
 public class Company
