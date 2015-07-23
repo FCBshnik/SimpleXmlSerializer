@@ -1,6 +1,6 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
-    public class CamelCaseNamingConvention : INamingConvention
+    public class DecapitalizeNamingConvention : INamingConvention
     {
         public string NormalizeName(string name)
         {
@@ -10,7 +10,7 @@
             }
 
             var firstLetter = name.Substring(0, 1);
-
+            
             return name.Remove(0, 1).Insert(0, firstLetter.ToLowerInvariant());
         }
     }

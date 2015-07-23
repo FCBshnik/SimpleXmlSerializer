@@ -9,7 +9,7 @@ namespace SimpleXmlSerializer
     public static class XmlSerializerExtensions
     {
         /// <summary>
-        /// Serializes specified object to string object.
+        /// Serializes specified object to string.
         /// </summary>
         public static string SerializeToString(this XmlSerializer xmlSerializer, object value)
         {

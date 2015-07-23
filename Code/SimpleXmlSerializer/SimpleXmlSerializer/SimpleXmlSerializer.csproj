@@ -63,7 +63,7 @@
     <Compile Include="Core\Naming\NameProviders\NamingConventionNameProvider.cs" />
     <Compile Include="Core\Naming\NodeName.cs" />
     <Compile Include="Core\Naming\NameProviders\XmlAttributesNameProvider.cs" />
-    <Compile Include="Core\Naming\Conventions\CamelCaseNamingConvention.cs" />
+    <Compile Include="Core\Naming\Conventions\DecapitalizeNamingConvention.cs" />
     <Compile Include="Core\Naming\INamingConvention.cs" />
     <Compile Include="Core\Naming\Conventions\NoNamingConvention.cs" />
     <Compile Include="Core\Naming\XmlElementName.cs" />

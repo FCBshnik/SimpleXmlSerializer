@@ -82,11 +82,11 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to use camel case naming convention.
+        /// Specifies to use <see cref="DecapitalizeNamingConvention"/>.
         /// </summary>
-        public XmlSerializerSettingsBuilder SetCamelCaseNamingConvention()
+        public XmlSerializerSettingsBuilder SetDecapitalizeNamingConvention()
         {
-            return SetNamingConvention(new CamelCaseNamingConvention());
+            return SetNamingConvention(new DecapitalizeNamingConvention());
         }
 
         /// <summary>

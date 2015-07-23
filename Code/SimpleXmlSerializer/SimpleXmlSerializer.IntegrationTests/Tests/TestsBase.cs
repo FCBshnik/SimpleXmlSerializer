@@ -53,7 +53,7 @@ namespace SimpleXmlSerializer.IntegrationTests.Tests
 
         protected static XmlSerializerSettingsBuilder GetSettingsBuilder()
         {
-            return new XmlSerializerSettingsBuilder().SetCamelCaseNamingConvention();
+            return new XmlSerializerSettingsBuilder().SetDecapitalizeNamingConvention();
         }
     }
 }
