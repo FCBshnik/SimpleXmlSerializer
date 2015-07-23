@@ -16,7 +16,7 @@ namespace SimpleXmlSerializer.UnitTests.Core.Composite
             var provider = new CompositeTypeProvider(new PublicPropertiesProvider());
 
             CompositeTypeDescription description;
-            provider.TryGetDescription(typeof(ParameterlessCtorType), out description);
+            provider.TryGetDescription(typeof(ParameternessCtorType), out description);
         }
 
         [TestMethod]
@@ -37,20 +37,20 @@ namespace SimpleXmlSerializer.UnitTests.Core.Composite
             var provider = new CompositeTypeProvider(new PublicPropertiesProvider());
 
             CompositeTypeDescription description;
-            provider.TryGetDescription(typeof(ParameterlessType), out description);
+            provider.TryGetDescription(typeof(ParameterlessCtorType), out description);
             var actual = description.Factory(new Dictionary<PropertyInfo, object>());
 
-            Assert.IsNotNull(actual);
+            Assert.IsInstanceOfType(actual, typeof(ParameterlessCtorType));
         }
 
-        public class ParameterlessCtorType
+        public class ParameternessCtorType
         {
-            public ParameterlessCtorType(object value)
+            public ParameternessCtorType(object value)
             {
             }
         }
 
-        public class ParameterlessType
+        public class ParameterlessCtorType
         {
         }
     }
