@@ -12,10 +12,12 @@ namespace SimpleXmlSerializer
     /// </summary>
     public class XmlSerializerSettingsBuilder
     {
-        private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
         private XmlElementName defaultCollectionName = new XmlElementName("Collection");
         private XmlElementName defaultCollectionItemName = new XmlElementName("Add");
-        private INamingConvention namingConvention = new NoNamingConvention();
+
+        private IFormatProvider formatProvider = CultureInfo.InvariantCulture;
+
+        private INameNormalizer nameNormalizer = new NoNameNormalizer();
 
         private IPrimitiveTypeProvider customPrimitiveTypeProvider;
         private readonly List<IPrimitiveTypeProvider> extraPrimitiveTypeProviders = new List<IPrimitiveTypeProvider>();
@@ -70,23 +72,23 @@ namespace SimpleXmlSerializer
         }
 
         /// <summary>
-        /// Specifies to use specified <see cref="INamingConvention"/>.
+        /// Specifies to use specified <see cref="INameNormalizer"/>.
         /// </summary>
-        public XmlSerializerSettingsBuilder SetNamingConvention(INamingConvention namingConvention)
+        public XmlSerializerSettingsBuilder SetNameNormalizer(INameNormalizer normalizer)
         {
-            if (namingConvention == null)
-                throw new ArgumentNullException("namingConvention");
+            if (normalizer == null)
+                throw new ArgumentNullException("normalizer");
 
-            this.namingConvention = namingConvention;
+            nameNormalizer = normalizer;
             return this;
         }
 
         /// <summary>
-        /// Specifies to use <see cref="DecapitalizeNamingConvention"/>.
+        /// Specifies to use <see cref="DecapitalizeNameNormalizer"/>.
         /// </summary>
-        public XmlSerializerSettingsBuilder SetDecapitalizeNamingConvention()
+        public XmlSerializerSettingsBuilder DecapitalizeFirstLetter()
         {
-            return SetNamingConvention(new DecapitalizeNamingConvention());
+            return SetNameNormalizer(new DecapitalizeNameNormalizer());
         }
 
         /// <summary>
@@ -236,12 +238,12 @@ namespace SimpleXmlSerializer
         /// <summary>
         /// Specifies to use specified <see cref="IFormatProvider"/>.
         /// </summary>
-        public XmlSerializerSettingsBuilder SetFormatProvider(IFormatProvider formatProvider)
+        public XmlSerializerSettingsBuilder SetFormatProvider(IFormatProvider provider)
         {
-            if (formatProvider == null)
-                throw new ArgumentNullException("formatProvider");
+            if (provider == null)
+                throw new ArgumentNullException("provider");
 
-            this.formatProvider = formatProvider;
+            formatProvider = provider;
             return this;
         }
 
@@ -314,7 +316,7 @@ namespace SimpleXmlSerializer
         {
             var defaultNameProvider = new NameProvider(collectionProvider, defaultCollectionName, defaultCollectionItemName);
             var nameProviders = extraNameProviders.Concat(new []{ defaultNameProvider }).ToList();
-            return new NamingConventionNameProvider(new CompositeNameProvider(nameProviders), namingConvention);
+            return new NameNormilizerNameProvider(new CompositeNameProvider(nameProviders), nameNormalizer);
         }
 
         private IDictionary<Type, IPrimitiveSerializer> GetDefaultPrimitiveSerializers()

@@ -60,12 +60,12 @@
     <Compile Include="Core\Naming\NameProviders\NameProvider.cs" />
     <Compile Include="Core\Naming\INameProvider.cs" />
     <Compile Include="Core\Composites\IPropertiesProvider.cs" />
-    <Compile Include="Core\Naming\NameProviders\NamingConventionNameProvider.cs" />
+    <Compile Include="Core\Naming\NameProviders\NameNormilizerNameProvider.cs" />
     <Compile Include="Core\Naming\NodeName.cs" />
     <Compile Include="Core\Naming\NameProviders\XmlAttributesNameProvider.cs" />
-    <Compile Include="Core\Naming\Conventions\DecapitalizeNamingConvention.cs" />
-    <Compile Include="Core\Naming\INamingConvention.cs" />
-    <Compile Include="Core\Naming\Conventions\NoNamingConvention.cs" />
+    <Compile Include="Core\Naming\NameNormalizers\DecapitalizeNameNormalizer.cs" />
+    <Compile Include="Core\Naming\INameNormalizer.cs" />
+    <Compile Include="Core\Naming\NameNormalizers\NoNameNormalizer.cs" />
     <Compile Include="Core\Naming\XmlElementName.cs" />
     <Compile Include="Core\NodeProvider.cs" />
     <Compile Include="Core\Nodes\CollectionNode.cs" />

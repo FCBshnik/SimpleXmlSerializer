@@ -1,9 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F3305A5E-A1EF-456A-9F89-3082DCBB246F}"
 	ProjectSection(SolutionItems) = preProject
-		Notes.txt = Notes.txt
 		SolutionAssemblyInfo.cs = SolutionAssemblyInfo.cs
 	EndProjectSection
 EndProject
@@ -55,9 +56,9 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DFF9DE2C-C663-4998-929F-6C2A1CA1C4CA} = {3D89B95F-E1EC-47A5-B4A4-94BCA2D3314D}
+		{24CABED6-189D-420E-BAFF-BB94C96D30F4} = {DF06D92E-856C-440D-BCFB-4D9677932761}
 		{ABF4687B-76C2-4FF6-9F3D-976EADDF167A} = {DF06D92E-856C-440D-BCFB-4D9677932761}
 		{7ABB3CAD-94F4-4A0D-9D37-227553380CF7} = {DF06D92E-856C-440D-BCFB-4D9677932761}
-		{24CABED6-189D-420E-BAFF-BB94C96D30F4} = {DF06D92E-856C-440D-BCFB-4D9677932761}
 		{35D7CD84-FF2D-4072-8AD8-25E3A2A0DB4B} = {059730E4-058F-4B84-9F01-8B9A9C047738}
 	EndGlobalSection
 EndGlobal

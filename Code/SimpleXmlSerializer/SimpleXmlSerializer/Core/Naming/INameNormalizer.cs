@@ -1,6 +1,6 @@
 ﻿namespace SimpleXmlSerializer.Core
 {
-    public interface INamingConvention
+    public interface INameNormalizer
     {
         string NormalizeName(string name);
     }
